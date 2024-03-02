@@ -12,7 +12,7 @@ from jobsPy.accounts.forms import RegisterUserForm, LoginForm, ChangePassword
 userMode = get_user_model()
 
 class RegisterView(CreateView):
-    template_name = 'register.html'
+    template_name = 'accounts/register.html'
     form_class = RegisterUserForm
 
     # Static way of providing `success_url`
@@ -41,7 +41,7 @@ def singout(request):
 #
 
 class LoginUserView(LoginView):
-    template_name = "login.html"
+    template_name = "accounts/login.html"
     form_class = LoginForm
 
     # def get_success_url(self):
@@ -54,5 +54,5 @@ class LoginUserView(LoginView):
 class ChangePass(PasswordChangeView):
     form_class = ChangePassword
 
-    template_name = "chage_password.html"
+    template_name = "accounts/chage_password.html"
     success_url = reverse_lazy('login_redirect_dashboard')

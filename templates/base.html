@@ -1,0 +1,344 @@
+{% load static %}
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>
+        {% block title %}{% endblock %}
+    </title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" type="image/x-icon" href="{% static '/images/favicon.svg'%}" />
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- Web Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- ========================= CSS here ========================= -->
+    <link rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static '/css/LineIcons.2.0.css' %}" />
+    <link rel="stylesheet" href="{% static '/css/animate.css' %}" />
+    <link rel="stylesheet" href="{% static '/css/tiny-slider.css' %}" />
+    <link rel="stylesheet" href="{% static '/css/glightbox.min.css' %}" />
+    <link rel="stylesheet" href="{% static '/css/main.css' %}" />
+    <link rel="stylesheet" href="{% static '/css/flaticon.css' %}" />
+
+</head>
+
+<body>
+    <!--[if lte IE 9]>
+      <p class="browserupgrade">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="https://browsehappy.com/">upgrade your browser</a> to improve
+        your experience and security.
+      </p>
+    <![endif]-->
+
+{#    <div id="loading-area"></div>#}
+
+    <!-- Start Header Area -->
+    <header class="header style4">
+        <div class="navbar-area">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-12">
+                        <nav class="navbar navbar-expand-lg">
+                            <a class="navbar-brand logo" href="{% url 'index' %}">
+                                <img class="logo1" src="{% static '/images/logo/logo.svg'%}" alt="Logo" />
+                            </a>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                            </button>
+
+              
+                            <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+                                <ul id="nav" class="navbar-nav ml-auto">
+                                    <li class="nav-item">
+                                        <a class="{% if request.resolver_match.url_name == 'index' %}active{% endif %}" href="{% url 'index' %}">Home</a>
+                                    </li>
+
+                                    <li class="nav-item "><a class="{% if request.resolver_match.url_name == 'all-jobs' %}active{% endif %}" href="{% url 'all-jobs' %}">All Jobs</a>
+                                    </li>
+                                    <li class="nav-item"><a class="{% if request.resolver_match.url_name == 'all_company' %}active{% endif %}" href="{% url 'all_company' %}">Company</a>
+                                    </li>
+                                    <li class="nav-item"><a class="{% if request.resolver_match.url_name == 'all-employees' %}active{% endif %}" href="{% url 'all-employees' %}">Employers</a>
+{#                                        <ul class="sub-menu">#}
+{#                                            <li><a href="post-job.html">Add Job</a></li>#}
+{#                                            <li><a href="manage-jobs.html">Manage Jobs</a></li>#}
+{#                                            <li><a href="manage-applications.html">Manage Applications</a></li>#}
+{#                                            <li><a href="manage-resumes.html">Manage Resume</a></li>#}
+{#                                            <li><a href="browse-resumes.html">Browse Resumes</a></li>#}
+{#                                        </ul>#}
+                                    </li>
+                                    <li class="nav-item"><a href="#">Blog</a>
+{#                                        <ul class="sub-menu">#}
+{#                                            <li><a href="blog-grid-sidebar.html">Blog Grid Sidebar</a></li>#}
+{#                                            <li><a href="blog-single.html">Blog Single</a></li>#}
+{#                                            <li><a href="blog-single-sidebar.html">Blog Single Sibebar</a></li>#}
+{#                                        </ul>#}
+                                    </li>
+                                    <li class="nav-item"><a class="{% if request.resolver_match.url_name == 'contact' %}active{% endif %}" href="{% url 'contact' %}">Contact </a> </li>
+                                
+                                    {% if request.user.role == "company"%}
+                                          <li class="nav-item "><a class="{% if request.resolver_match.url_name == 'company-dashboard' %}active{% endif %}" href="{% url 'company-dashboard' %}">Dashboard</a></li>
+                                    {% elif request.user.role == "jobseeker"%}
+                                          <li class="nav-item"><a href="{% url 'jobseeker-dashboard' %}">Dashboard</a></li>
+
+                                    {% endif %}
+                                
+                                </ul>
+                            </div>
+
+                            <!-- navbar collapse -->
+                            <div class="button">
+                                
+                                {% if user.is_authenticated %}
+                                {% if user.company.image %}
+                                    
+                                    <a href="{% url 'login_redirect_dashboard' %} "><img class="user-profile-small" src="{{ user.company.image.url }}" alt="Logo"></a>
+
+                                {% elif user.jobseeker.profile_picture %}
+                                    <a href="{% url 'login_redirect_dashboard' %} "><img class="user-profile-small" src="{{ user.jobseeker.profile_picture.url }}" alt="Logo"></a>
+                                {% else %}
+                                    <div class="text-center align-center"  style="align-items:center !important;justify-content:center !important;background-color: black;width: 50px;height: 50px;border-radius: 50px; margin-right: 20px">
+                                    <a href="{% url 'login_redirect_dashboard' %}" style="padding-top: 10%; color: white; font-size: 25px" >{{ user.email.0 }}</a>
+                                    </div>
+                                {% endif %}
+                                    
+                                    <a href="{% url 'sing-out' %}"  class="login"><i class="lni lni-lock-alt"></i> Logout</a>
+
+                                {% else %}
+                                <a href="{% url 'login' %}"   class="login"><i
+                                        class="lni lni-lock-alt"></i> Login</a>
+                                <a href="{% url 'registration' %}"  class="btn">Sign Up</a>
+                                {% endif %}
+                            </div>
+                        </nav>
+                        <!-- navbar -->
+                    </div>
+                </div>
+                <!-- row -->
+            </div>
+            <!-- container -->
+        </div>
+        <!-- navbar area -->
+    </header>
+    <!-- End Header Area -->
+
+{% block main_content %}
+{% endblock %}
+
+
+    <!-- Start Footer Area -->
+    <footer class="footer">
+{#        <div class="footer-top">#}
+{#            <div class="container">#}
+{#                <div class="row align-items-center justify-content-center">#}
+{#                    <div class="col-lg-6 col-12">#}
+{#                        <div class="download-text">#}
+{#                            <h3>Download Our Best Apps</h3>#}
+{#                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do<br> eiusmod tempor#}
+{#                                incididunt ut labore et dolore</p>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="col-lg-6 col-12">#}
+{#                        <div class="download-button">#}
+{#                            <div class="button">#}
+{#                                <a class="btn" href="#"><i class="lni lni-apple"></i> App Store</a>#}
+{#                                <a class="btn" href="#"><i class="lni lni-play-store"></i> Google Play</a>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+        <!-- Start Middle Top -->
+        <div class="footer-middle">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <!-- Single Widget -->
+                        <div class="f-about single-footer">
+                            <div class="logo">
+                                <a href="index.html"><img src="{% static '/images/logo/logo.svg'%}" alt="Logo"></a>
+                            </div>
+                            <p>#1 project in SoftUni Django Advanced - February 2024</p>
+                            <ul class="contact-address">
+                                <li><span>Address:</span> 555 Wall Street, USA, NY</li>
+                                <li><span>Email:</span> example@apus.com</li>
+                                <li><span>Call:</span> 555-555-1234</li>
+                            </ul>
+                            <div class="footer-social">
+                                <ul>
+                                    <li><a href="https://bg-bg.facebook.com/tihomir.nedelchev" target="_blank"><i class="lni lni-facebook-original"></i></a></li>
+                                    <li><a href="#"><i class="lni lni-twitter-original"></i></a></li>
+                                    <li><a href="https://www.linkedin.com/in/tihomir-nedelchev/" target="_blank"><i class="lni lni-linkedin-original"></i></a></li>
+                                    <li><a href="https://github.com/Nedelchev86" target="_blank"><i class="lni lni-github-original"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- End Single Widget -->
+                    </div>
+                    <div class="col-lg-8 col-12">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-6 col-12">
+                                <!-- Single Widget -->
+                                <div class="single-footer f-link">
+                                    <h3>For Candidates</h3>
+                                    <ul>
+                                        <li><a href="#">User Dashboard</a></li>
+                                        <li><a href="#">CV Packages</a></li>
+                                        <li><a href="#">Jobs Featured</a></li>
+                                        <li><a href="#">Jobs Urgent</a></li>
+                                        <li><a href="#">Candidate List</a></li>
+                                        <li><a href="#">Candidates Grid</a></li>
+                                    </ul>
+                                </div>
+                                <!-- End Single Widget -->
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-12">
+                                <!-- Single Widget -->
+                                <div class="single-footer f-link">
+                                    <h3>For Employers</h3>
+                                    <ul>
+                                        <li><a href="#">Post New</a></li>
+                                        <li><a href="#">Employer List</a></li>
+                                        <li><a href="#">Employers Grid</a></li>
+                                        <li><a href="#">Job Packages</a></li>
+                                        <li><a href="#">Jobs Listing</a></li>
+                                        <li><a href="#">Jobs Featured</a></li>
+                                    </ul>
+                                </div>
+                                <!-- End Single Widget -->
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-12">
+                                <!-- Single Widget -->
+                                <div class="single-footer newsletter">
+                                    <h3>Join Our Newsletter</h3>
+                                    <p>Subscribe to get the latest jobs posted, candidates...</p>
+                                    <form action="mail/mail.php" method="get" target="_blank" class="newsletter-inner">
+                                        <input name="EMAIL" placeholder="Your email address" class="common-input"
+                                            onfocus="this.placeholder = ''"
+                                            onblur="this.placeholder = 'Your email address'" required="" type="email" autocomplete="email">
+                                        <div class="button">
+                                            <button class="btn">Subscribe Now! <span class="dir-part"></span></button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!-- End Single Widget -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/ End Footer Middle -->
+        <!-- Start Footer Bottom -->
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="inner">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-12">
+                            <div class="left">
+                                <p>Django Project by<a href="#" rel="nofollow">Tihomir Nedelchev</a></p>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-12">
+                            <div class="right">
+                                <ul>
+                                    <li><a href="#">Terms of use</a></li>
+                                    <li><a href="#"> Privacy Policy</a></li>
+                                    <li><a href="#">Faq</a></li>
+                                    <li><a href="#">Contact</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Footer Middle -->
+    </footer>
+    <!--/ End Footer Area -->
+
+    <!-- ========================= scroll-top ========================= -->
+    <a href="#" class="scroll-top btn-hover">
+        <i class="lni lni-chevron-up"></i>
+    </a>
+
+    <!-- ========================= JS here ========================= -->
+    <script src="{% static '/js/bootstrap.min.js' %}"></script>
+    <script src="{% static '/js/wow.min.js' %}"></script>
+    <script src="{% static '/js/tiny-slider.js' %}"></script>
+    <script src="{% static '/js/glightbox.min.js' %}"></script>
+    <script src="{% static '/js/main.js' %}"></script>
+    <script src="{% static '/js/animateNumber.js' %}"></script>
+{#    <script type="text/javascript">#}
+{#        //====== Clients Logo Slider#}
+{#        tns({#}
+{#            container: '.client-logo-carousel',#}
+{#            slideBy: 'page',#}
+{#            autoplay: true,#}
+{#            autoplayButtonOutput: false,#}
+{#            mouseDrag: true,#}
+{#            gutter: 15,#}
+{#            nav: false,#}
+{#            controls: false,#}
+{#            responsive: {#}
+{#                0: {#}
+{#                    items: 1,#}
+{#                },#}
+{#                540: {#}
+{#                    items: 2,#}
+{#                },#}
+{#                768: {#}
+{#                    items: 3,#}
+{#                },#}
+{#                992: {#}
+{#                    items: 4,#}
+{#                },#}
+{#                1170: {#}
+{#                    items: 6,#}
+{#                }#}
+{#            }#}
+{#        });#}
+{#        //========= testimonial#}
+{#        tns({#}
+{#            container: '.testimonial-slider',#}
+{#            items: 1,#}
+{#            slideBy: 'page',#}
+{#            autoplay: false,#}
+{#            mouseDrag: true,#}
+{#            gutter: 0,#}
+{#            nav: false,#}
+{#            controls: true,#}
+{#            controlsText: ['<i class="lni lni-arrow-left"></i>', '<i class="lni lni-arrow-right"></i>'],#}
+{#            responsive: {#}
+{#                0: {#}
+{#                    items: 1,#}
+{#                },#}
+{#                540: {#}
+{#                    items: 1,#}
+{#                },#}
+{#                768: {#}
+{#                    items: 1,#}
+{#                },#}
+{#                992: {#}
+{#                    items: 1,#}
+{#                },#}
+{#                1170: {#}
+{#                    items: 1,#}
+{#                }#}
+{#            }#}
+{#        });#}
+{#    </script>#}
+</body>
+
+</html>

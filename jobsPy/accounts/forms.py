@@ -28,22 +28,6 @@ class RegisterUserForm(UserCreationForm):
 
         self.fields['role'].label = "Profile type"
 
-    # def save(self, commit=True):
-    #     # user = super().save(commit=False)
-    #     user = super().save(commit=commit)
-    #     role = self.cleaned_data['role']
-    #
-    #     if role == 'jobseeker':
-    #         profile = JobSeeker(user=user)
-    #     elif role == 'company':
-    #         profile = CompanyProfile(user=user)
-    #     else:
-    #         raise ValueError('Invalid role selected')
-    #
-    #     if commit:
-    #         profile.save()
-    #
-    #     return user
 
     class Meta:
         model = UserModel

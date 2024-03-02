@@ -64,11 +64,11 @@
                                         <a class="{% if request.resolver_match.url_name == 'index' %}active{% endif %}" href="{% url 'index' %}">Home</a>
                                     </li>
 
-                                    <li class="nav-item "><a class="{% if request.resolver_match.url_name == 'all-jobs' %}active{% endif %}" href="{% url 'all-jobs' %}">All Jobs</a>
-                                    </li>
-                                    <li class="nav-item"><a class="{% if request.resolver_match.url_name == 'all_company' %}active{% endif %}" href="{% url 'all_company' %}">Company</a>
-                                    </li>
-                                    <li class="nav-item"><a class="{% if request.resolver_match.url_name == 'all-employees' %}active{% endif %}" href="{% url 'all-employees' %}">Employers</a>
+{#                                    <li class="nav-item "><a class="{% if request.resolver_match.url_name == 'all-jobs' %}active{% endif %}" href="{% url 'all-jobs' %}">All Jobs</a>#}
+{#                                    </li>#}
+{#                                    <li class="nav-item"><a class="{% if request.resolver_match.url_name == 'all_company' %}active{% endif %}" href="{% url 'all_company' %}">Company</a>#}
+{#                                    </li>#}
+{#                                    <li class="nav-item"><a class="{% if request.resolver_match.url_name == 'all-employees' %}active{% endif %}" href="{% url 'all-employees' %}">Employers</a>#}
 {#                                        <ul class="sub-menu">#}
 {#                                            <li><a href="post-job.html">Add Job</a></li>#}
 {#                                            <li><a href="manage-jobs.html">Manage Jobs</a></li>#}
@@ -84,42 +84,42 @@
 {#                                            <li><a href="blog-single-sidebar.html">Blog Single Sibebar</a></li>#}
 {#                                        </ul>#}
                                     </li>
-                                    <li class="nav-item"><a class="{% if request.resolver_match.url_name == 'contact' %}active{% endif %}" href="{% url 'contact' %}">Contact </a> </li>
+{#                                    <li class="nav-item"><a class="{% if request.resolver_match.url_name == 'contact' %}active{% endif %}" href="{% url 'contact' %}">Contact </a> </li>#}
                                 
-                                    {% if request.user.role == "company"%}
-                                          <li class="nav-item "><a class="{% if request.resolver_match.url_name == 'company-dashboard' %}active{% endif %}" href="{% url 'company-dashboard' %}">Dashboard</a></li>
-                                    {% elif request.user.role == "jobseeker"%}
-                                          <li class="nav-item"><a href="{% url 'jobseeker-dashboard' %}">Dashboard</a></li>
-
-                                    {% endif %}
+{#                                    {% if request.user.role == "company"%}#}
+{#                                          <li class="nav-item "><a class="{% if request.resolver_match.url_name == 'company-dashboard' %}active{% endif %}" href="{% url 'company-dashboard' %}">Dashboard</a></li>#}
+{#                                    {% elif request.user.role == "jobseeker"%}#}
+{#                                          <li class="nav-item"><a href="{% url 'jobseeker-dashboard' %}">Dashboard</a></li>#}
+{##}
+{#                                    {% endif %}#}
                                 
                                 </ul>
                             </div>
 
                             <!-- navbar collapse -->
-                            <div class="button">
-                                
-                                {% if user.is_authenticated %}
-                                {% if user.company.image %}
-                                    
-                                    <a href="{% url 'login_redirect_dashboard' %} "><img class="user-profile-small" src="{{ user.company.image.url }}" alt="Logo"></a>
-
-                                {% elif user.jobseeker.profile_picture %}
-                                    <a href="{% url 'login_redirect_dashboard' %} "><img class="user-profile-small" src="{{ user.jobseeker.profile_picture.url }}" alt="Logo"></a>
-                                {% else %}
-                                    <div class="text-center align-center"  style="align-items:center !important;justify-content:center !important;background-color: black;width: 50px;height: 50px;border-radius: 50px; margin-right: 20px">
-                                    <a href="{% url 'login_redirect_dashboard' %}" style="padding-top: 10%; color: white; font-size: 25px" >{{ user.email.0 }}</a>
-                                    </div>
-                                {% endif %}
-                                    
-                                    <a href="{% url 'sing-out' %}"  class="login"><i class="lni lni-lock-alt"></i> Logout</a>
-
-                                {% else %}
-                                <a href="{% url 'login' %}"   class="login"><i
-                                        class="lni lni-lock-alt"></i> Login</a>
-                                <a href="{% url 'registration' %}"  class="btn">Sign Up</a>
-                                {% endif %}
-                            </div>
+{#                            <div class="button">#}
+{#                                #}
+{#                                {% if user.is_authenticated %}#}
+{#                                {% if user.company.image %}#}
+{#                                    #}
+{#                                    <a href="{% url 'login_redirect_dashboard' %} "><img class="user-profile-small" src="{{ user.company.image.url }}" alt="Logo"></a>#}
+{##}
+{#                                {% elif user.jobseeker.profile_picture %}#}
+{#                                    <a href="{% url 'login_redirect_dashboard' %} "><img class="user-profile-small" src="{{ user.jobseeker.profile_picture.url }}" alt="Logo"></a>#}
+{#                                {% else %}#}
+{#                                    <div class="text-center align-center"  style="align-items:center !important;justify-content:center !important;background-color: black;width: 50px;height: 50px;border-radius: 50px; margin-right: 20px">#}
+{#                                    <a href="{% url 'login_redirect_dashboard' %}" style="padding-top: 10%; color: white; font-size: 25px" >{{ user.email.0 }}</a>#}
+{#                                    </div>#}
+{#                                {% endif %}#}
+{#                                    #}
+{#                                    <a href="{% url 'sing-out' %}"  class="login"><i class="lni lni-lock-alt"></i> Logout</a>#}
+{##}
+{#                                {% else %}#}
+{#                                <a href="{% url 'login' %}"   class="login"><i#}
+{#                                        class="lni lni-lock-alt"></i> Login</a>#}
+{#                                <a href="{% url 'registration' %}"  class="btn">Sign Up</a>#}
+{#                                {% endif %}#}
+{#                            </div>#}
                         </nav>
                         <!-- navbar -->
                     </div>

@@ -1,0 +1,451 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main_content %}
+
+    <!-- Start Breadcrumbs -->
+    <div class="breadcrumbs overlay">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumbs-content">
+
+                        <h1 class="page-title">Bookmarked Jobs</h1>
+                        <p>Business plan draws on a wide range of knowledge from different business<br> disciplines.
+                            Business draws on a wide range of different business .</p>
+                    </div>
+                    <ul class="breadcrumb-nav">
+                        <li><a href="index.html">Home</a></li>
+                        <li>Bookmarked Jobs</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Breadcrumbs -->
+
+    <!-- Main Content Start -->
+    <div class="bookmarked section">
+        <div class="container">
+            <div class="alerts-inner">
+                <div class="row">
+                    <!-- Start Main Content -->
+                    {% include 'jobseeker-menu.html' %}
+
+                    <!-- End Main Content -->
+
+
+                    <div class="col-lg-8 col-12">
+
+
+            <div class="cat-head job-category">
+                <div class="row">
+                    <div class="col-md-4 col-12">
+                        <a href="browse-jobs.html" class="single-cat wow fadeInUp" data-wow-delay=".2s">
+                            <div class="icon">
+                                <i >{{ all_favourite }}</i>
+                            </div>
+                            <h3>All Jobs<br> Added To Favourite</h3>
+                        </a>
+                    </div>
+
+
+                    <div class="col-md-4 col-12">
+                        <a href="{% url 'applicant_list' user.pk %}" class="single-cat wow fadeInUp" data-wow-delay=".8s">
+                            <div class="icon">
+                                <i>{{ all_jobs_apply }}</i>
+                            </div>
+                            <h3>All Jobs <br> Aplly</h3>
+                        </a>
+                    </div>
+
+                    <div class="col-md-4 col-12">
+                        <a href="browse-jobs.html" class="single-cat wow fadeInUp" data-wow-delay=".2s">
+                            <div class="icon">
+                                <i >{{ all_jobs_rejected }}</i>
+                            </div>
+                            <h3>All Jobs<br> Rejected</h3>
+                        </a>
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="col-md-4 col-12">
+                        <a href="{% url 'applicant_list' user.pk %}" class="single-cat wow fadeInUp" data-wow-delay=".8s">
+                            <div class="icon">
+                                <i>{{ all_jobs_accepted }}</i>
+                            </div>
+                            <h3>All Jobs <br> Accepted</h3>
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-12">
+                        <a href="browse-jobs.html" class="single-cat wow fadeInUp" data-wow-delay=".2s">
+                            <div class="icon">
+                                <i >{{ all_jobs_pending }}</i>
+                            </div>
+                            <h3>All Jobs<br> Pending</h3>
+                        </a>
+                    </div>
+
+
+                    <div class="col-md-4 col-12">
+                        <a href="{% url 'applicant_list' user.pk %}" class="single-cat wow fadeInUp" data-wow-delay=".8s">
+                            <div class="icon">
+                                <i> 0 </i>
+                            </div>
+                            <h3>Something <br> To Add</h3>
+                        </a>
+                    </div>
+                </div>
+
+
+                <div class="resume ">
+        <div class="container">
+            <div class="resume-inner">
+                <div class="row">
+                    <!-- Start Main Content -->
+
+                    <!-- End Main Content -->
+                    <div class="col-lg-12 col-12">
+                        <div class="inner-content">
+                            <!-- Start Personal Top Content -->
+                            <div class="personal-top-content">
+                                <div class="row">
+                                    <div class="col-lg-5 col-md-5 col-12">
+                                        <div class="name-head">
+                                            {% if user.jobseeker.profile_picture %}
+                                            <a class="mb-2" href="#"><img class="circle-54"
+                                                    src="{{ user.jobseeker.profile_picture.url}}" alt=""></a>
+                                            {% endif %} 
+                                            <h4><a class="name" href="#">{{ user.jobseeker.first_name}}</a></h4>
+                                            <p><a class="deg" href="#">Product Designer</a></p>
+                                            <ul class="social">
+                                                <li><a href="#"><i class="lni lni-facebook-original"></i></a></li>
+                                                <li><a href="#"><i class="lni lni-twitter-original"></i></a></li>
+                                                <li><a href="#"><i class="lni lni-linkedin-original"></i></a></li>
+                                                <li><a href="#"><i class="lni lni-dribbble"></i></a></li>
+                                                <li><a href="#"><i class="lni lni-pinterest"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7 col-md-7 col-12">
+                                        <div class="content-right">
+                                            <h5 class="title-main">Contact Info</h5>
+                                            <!-- Single List -->
+                                            <div class="single-list">
+                                                <h5 class="title">Location</h5>
+                                                <p>New York , USA</p>
+                                            </div>
+                                            <!-- Single List -->
+                                            <!-- Single List -->
+                                            <div class="single-list">
+                                                <h5 class="title">E-mail</h5>
+                                                <p>youremail@gmail.com</p>
+                                            </div>
+                                            <!-- Single List -->
+                                            <!-- Single List -->
+                                            <div class="single-list">
+                                                <h5 class="title">Phone</h5>
+                                                <p>+999 565 562</p>
+                                            </div>
+                                            <!-- Single List -->
+                                            <!-- Single List -->
+                                            <div class="single-list">
+                                                <h5 class="title">Website Linked</h5>
+                                                <p><a href="#">yourwebsite.com</a></p>
+                                            </div>
+                                            <!-- Single List -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Personal Top Content -->
+                            <!-- Start Single Section -->
+                            <div class="single-section">
+                                <h4>About</h4>
+                                <p class="font-size-4 mb-8">A talented professional with an academic background
+                                    in IT and proven
+                                    commercial development experience as C++ developer since 1999. Has a sound
+                                    knowledge of the software
+                                    development life cycle. Was involved in more than 140 software development
+                                    outsourcing projects.</p>
+                                <p class="font-size-4 mb-8">Programming Languages: C/C++, .NET C++, Python,
+                                    Bash, Shell, PERL, Regular
+                                    expressions, Python, Active-script.</p>
+                            </div>
+                            <!-- End Single Section -->
+                            <!-- Start Single Section -->
+                            <div class="single-section skill">
+                                <h4>Skills</h4>
+                                <ul class="list-unstyled d-flex align-items-center flex-wrap">
+                                    <li>
+                                        <a href="#">Agile</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Wireframing</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Prototyping</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Information</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Waterfall Model</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">New Layout</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Ui/Ux Design</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Web Design</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Graphics Design</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- End Single Section -->
+                            <!-- Start Single Section -->
+                            <div class="single-section exprerience">
+                                <h4>Work Exprerience</h4>
+                                <!-- Single Exp -->
+                                <div class="single-exp mb-30">
+                                    <div class="d-flex align-items-center pr-11 mb-9 flex-wrap flex-sm-nowrap">
+                                        <div class="image">
+                                            <img src="{% static '/images/resume/work1.png' %}" alt="#">
+                                        </div>
+                                        <div class="w-100 mt-n2">
+                                            <h3 class="mb-0">
+                                                <a href="#">Lead Product Designer</a>
+                                            </h3>
+                                            <a href="#">Airabnb</a>
+                                            <div class="d-flex align-items-center justify-content-md-between flex-wrap">
+                                                <a href="#">Jun 2020 - April 2023- 3 years</a>
+                                                <a href="#" class="font-size-3 text-gray">
+                                                    <span class="mr-2" style="margin-top: -2px"><i
+                                                            class="lni lni-map-marker"></i></span>New York, USA</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Single Exp -->
+                                <!-- Single Exp -->
+                                <div class="single-exp mb-30">
+                                    <div class="d-flex align-items-center pr-11 mb-9 flex-wrap flex-sm-nowrap">
+                                        <div class="image">
+                                            <img src="{% static '/images/resume/work2.png' %}" alt="#">
+                                        </div>
+                                        <div class="w-100 mt-n2">
+                                            <h3 class="mb-0">
+                                                <a href="#">Senior UI/UX Designer</a>
+                                            </h3>
+                                            <a href="#">Google Inc</a>
+                                            <div class="d-flex align-items-center justify-content-md-between flex-wrap">
+                                                <a href="#">Jun 2020 - April 2023- 3 years</a>
+                                                <a href="#" class="font-size-3 text-gray">
+                                                    <span class="mr-2" style="margin-top: -2px"><i
+                                                            class="lni lni-map-marker"></i></span>New York, USA</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Single Exp -->
+                            </div>
+                            <!-- End Single Section -->
+                            <!-- Start Single Section -->
+                            <div class="single-section education">
+                                <h4>Education</h4>
+                                <!-- Single Edu -->
+                                <div class="single-edu mb-30">
+                                    <div class="d-flex align-items-center pr-11 mb-9 flex-wrap flex-sm-nowrap">
+                                        <div class="image">
+                                            <img src="{% static '/images/resume/edu1.svg' %}" alt="#">
+                                        </div>
+                                        <div class="w-100 mt-n2">
+                                            <h3 class="mb-0">
+                                                <a href="#">Masters in Art Design</a>
+                                            </h3>
+                                            <a href="#">Harvard University</a>
+                                            <div class="d-flex align-items-center justify-content-md-between flex-wrap">
+                                                <a href="#">Jun 2020 - April 2023- 3 years</a>
+                                                <a href="#" class="font-size-3 text-gray">
+                                                    <span class="mr-2" style="margin-top: -2px"><i
+                                                            class="lni lni-map-marker"></i></span>Brylin, USA</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Single Edu -->
+                                <!-- Single Edu -->
+                                <div class="single-edu mb-30">
+                                    <div class="d-flex align-items-center pr-11 mb-9 flex-wrap flex-sm-nowrap">
+                                        <div class="image">
+                                            <img src="{% static '/images/resume/edu2.svg' %}" alt="#">
+                                        </div>
+                                        <div class="w-100 mt-n2">
+                                            <h3 class="mb-0">
+                                                <a href="#">Bachelor in Software Engineering</a>
+                                            </h3>
+                                            <a href="#">Manipal Institute of Technology</a>
+                                            <div class="d-flex align-items-center justify-content-md-between flex-wrap">
+                                                <a href="#">Fed 2019 - April 2023 - 4 years </a>
+                                                <a href="#" class="font-size-3 text-gray">
+                                                    <span class="mr-2" style="margin-top: -2px"><i
+                                                            class="lni lni-map-marker"></i></span>New York, USA</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Single Edu -->
+                            </div>
+                            <!-- End Single Section -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Main Content end -->
+
+    <!-- Login Modal -->
+    <div class="modal fade form-modal" id="login" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog max-width-px-840 position-relative">
+            <button type="button"
+                class="circle-32 btn-reset bg-white pos-abs-tr mt-md-n6 mr-lg-n6 focus-reset z-index-supper"
+                data-dismiss="modal"><i class="lni lni-close"></i></button>
+            <div class="login-modal-main">
+                <div class="row no-gutters">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="heading">
+                                <h3>Login From Here</h3>
+                                <p>Log in to continue your account <br> and explore new jobs.</p>
+                            </div>
+                            <div class="social-login">
+                                <ul>
+                                    <li><a class="linkedin" href="#"><i class="lni lni-linkedin-original"></i> Log in
+                                            with LinkedIn</a></li>
+                                    <li><a class="google" href="#"><i class="lni lni-google"></i> Log in with
+                                            Google</a></li>
+                                    <li><a class="facebook" href="#"><i class="lni lni-facebook-original"></i> Log in
+                                            with Facebook</a></li>
+                                </ul>
+                            </div>
+                            <div class="or-devider">
+                                <span>Or</span>
+                            </div>
+                            <form action="/">
+                                <div class="form-group">
+                                    <label for="email" class="label">E-mail</label>
+                                    <input type="email" class="form-control" placeholder="example@gmail.com" id="email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password" class="label">Password</label>
+                                    <div class="position-relative">
+                                        <input type="password" class="form-control" id="password"
+                                            placeholder="Enter password">
+                                    </div>
+                                </div>
+                                <div class="form-group d-flex flex-wrap justify-content-between">
+                                    <!-- Default checkbox -->
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value=""
+                                            id="flexCheckDefault" />
+                                        <label class="form-check-label" for="flexCheckDefault">Remember password</label>
+                                    </div>
+                                    <a href="" class="font-size-3 text-dodger line-height-reset">Forget Password</a>
+                                </div>
+                                <div class="form-group mb-8 button">
+                                    <button class="btn ">Log in
+                                    </button>
+                                </div>
+                                <p class="text-center create-new-account">Don’t have an account? <a href="#">Create a free account</a></p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Login Modal -->
+
+    <!-- Signup Modal -->
+    <div class="modal fade form-modal" id="signup" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog max-width-px-840 position-relative">
+            <button type="button"
+                class="circle-32 btn-reset bg-white pos-abs-tr mt-md-n6 mr-lg-n6 focus-reset z-index-supper"
+                data-dismiss="modal"><i class="lni lni-close"></i></button>
+            <div class="login-modal-main">
+                <div class="row no-gutters">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="heading">
+                                <h3>Create a free Account <br> Today</h3>
+                                <p>Create your account to continue <br> and explore new jobs.</p>
+                            </div>
+                            <div class="social-login">
+                                <ul>
+                                    <li><a class="linkedin" href="#"><i class="lni lni-linkedin-original"></i> Import from LinkedIn</a></li>
+                                    <li><a class="google" href="#"><i class="lni lni-google"></i> Import from
+                                            Google</a></li>
+                                    <li><a class="facebook" href="#"><i class="lni lni-facebook-original"></i> Import from Facebook</a></li>
+                                </ul>
+                            </div>
+                            <div class="or-devider">
+                                <span>Or</span>
+                            </div>
+                            <form action="/">
+                                <div class="form-group">
+                                    <label for="email" class="label">E-mail</label>
+                                    <input type="email" class="form-control" placeholder="example@gmail.com">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password" class="label">Password</label>
+                                    <div class="position-relative">
+                                        <input type="password" class="form-control"
+                                            placeholder="Enter password">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password" class="label">Confirm Password</label>
+                                    <div class="position-relative">
+                                        <input type="password" class="form-control"
+                                            placeholder="Enter password">
+                                    </div>
+                                </div>
+                                <div class="form-group d-flex flex-wrap justify-content-between">
+                                    <!-- Default checkbox -->
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="">
+                                        <label class="form-check-label" for="flexCheckDefault">Agree to the <a
+                                                href="#">Terms & Conditions</a></label>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-8 button">
+                                    <button class="btn ">Sign Up
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+            </div>
+
+
+                        <!-- Pagination -->
+
+                        <!-- End Pagination -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Main Content end -->
+    
+
+    {%  endblock %}

@@ -1,11 +1,12 @@
 from django.contrib import auth
 from django.contrib.auth import get_user_model, login, alogout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
 
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic import CreateView, View
 
 from jobsPy.accounts.forms import RegisterUserForm, LoginForm, ChangePassword
 
@@ -56,3 +57,17 @@ class ChangePass(PasswordChangeView):
 
     template_name = "accounts/chage_password.html"
     success_url = reverse_lazy('login_redirect_dashboard')
+
+
+
+class RedirectDashboardView(LoginRequiredMixin, View):
+    def get(self, request, *args, **kwargs):
+        user_type = request.user.role
+
+        if user_type == 'company':
+            return redirect('company-dashboard')
+        elif user_type == 'jobseeker':
+            return redirect('job seeker dashboard')
+        else:
+            # Handle other roles or situations
+            return redirect('index')  # Redirect to a default page if the role is not recognized

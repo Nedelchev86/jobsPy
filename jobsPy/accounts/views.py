@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model, login, alogout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
+from django.http import HttpResponseRedirect
 
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
@@ -28,18 +29,18 @@ class RegisterView(CreateView):
 
 
 @login_required(login_url='login')
-def singout(request):
+def logout(request):
     auth.logout(request)
      # messages.success(request, 'You are logged out.')
     return redirect('index')
 
 # def singout(request):
 #     alogout(request)
-    # Redirect to a success page.
+#     Redirect to a success page.
 # class singout(LogoutView):
 #     template_name = "logout.html"
-#
-#
+
+
 
 class LoginUserView(LoginView):
     template_name = "accounts/login.html"

@@ -1,12 +1,12 @@
 from django.urls import path
 
-from jobsPy.accounts.views import RegisterView, singout, ChangePass, LoginUserView
+from jobsPy.accounts.views import RegisterView, ChangePass, LoginUserView, logout
 
 urlpatterns = [
     path("registration/", RegisterView.as_view(), name="registration"),
     path('login/', LoginUserView.as_view(), name="login"),
-    path("sing-out/", singout, name="sing-out"),
+    path("logout/", logout, name="sing-out"),
     path("chage-password/", ChangePass.as_view(), name="change-password"),
-    path('login/', LoginUserView.as_view(), name="login"),
+
 
 ]

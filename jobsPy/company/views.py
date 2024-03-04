@@ -1,6 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
-from django.views.generic import TemplateView, ListView, UpdateView
+from django.views.generic import TemplateView, ListView, UpdateView, DetailView
 
 
 # Create your views here.
@@ -86,3 +86,8 @@ class ApplicantList(LoginRequiredMixin, CompanyRoleRequiredMixin,ListView):
         job_pk = self.kwargs['pk']
         job = get_object_or_404(Job, pk=job_pk)
         return job.applicants.all()
+
+
+class CompanyDetails(DetailView):
+    model = CompanyProfile
+    template_name = "company_details.html"

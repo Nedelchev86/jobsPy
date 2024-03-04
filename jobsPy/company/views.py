@@ -1,6 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
-from django.views.generic import TemplateView, ListView
+from django.views.generic import TemplateView, ListView, UpdateView
 
 
 # Create your views here.
@@ -54,3 +54,25 @@ class EditCompany(LoginRequiredMixin, CompanyRoleRequiredMixin, UpdateView):
         return super().form_valid(form)
 
     success_url = reverse_lazy("company-dashboard")
+
+
+class CompanyApplicant(LoginRequiredMixin, CompanyRoleRequiredMixin, ListView):
+    model = Job
+    template_name = 'jobs_list_aplicant.html'  # Create this template if needed
+    context_object_name = 'jobs'
+
+    def get_queryset(self):
+        user = self.request.user
+
+        # By ChatGPT
+
+        return Job.objects.filter(user=user, is_published=True).annotate(num_applicants=Count('applicants')).filter(num_applicants__gt=0)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        job_applicants_count = {}
+        for job in context['jobs']:
+            applicants_count = Applicant.objects.filter(job=job).count()
+            job_applicants_count[job.id] = applicants_count
+        context['job_applicants_count'] = job_applicants_count
+        return context

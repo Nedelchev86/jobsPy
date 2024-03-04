@@ -23,3 +23,23 @@ class JobCreateView(LoginRequiredMixin, CompanyRoleRequiredMixin, CreateView):
             return self.form_valid(form)
         else:
             return self.form_invalid(form)
+
+
+class AllJobsView(ListView):
+    model = Job
+    template_name = "browsejobs.html"
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        if query:
+            # If a search query is present, filter the queryset by job title
+            return Job.objects.filter(Q(title__icontains=query))
+        else:
+            # If no search query, return all jobs
+            return Job.objects.all()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["category"] = Category.objects.all()
+        context['search_query'] = self.request.GET.get('q', '')
+        return context

@@ -2,7 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, ListView, DetailView
+from django.views.generic import CreateView, ListView, DetailView, UpdateView
 
 from jobsPy.company.models import CompanyProfile
 from jobsPy.core.accounts_mixins import CompanyRoleRequiredMixin
@@ -73,3 +73,44 @@ class JobDetails(DetailView):
 
 
         return context
+
+class EditJob(LoginRequiredMixin, CompanyRoleRequiredMixin, UpdateView):
+    model = Job
+    form_class = EditeJobForm
+    template_name = "edit-job.html"
+
+    def get_success_url(self):
+
+        return reverse_lazy("job_details",  kwargs={"pk":self.object.pk})
+
+
+# class AddToFavoritesView(LoginRequiredMixin, View):
+#     # @login_required
+#     def post(self, request, pk):
+#         job = get_object_or_404(Job, id=pk)
+#
+#         # Check if the job is already in favorites for the current user
+#         if FavoriteJob.objects.filter(user=request.user, job=job).exists():
+#             # Job is already in favorites, handle this case (e.g., display a message)
+#             pass
+#         else:
+#             # Job is not in favorites, add it to the favorites
+#             FavoriteJob.objects.create(user=request.user, job=job)
+#
+#         return redirect('job_details', pk)
+
+# class AddToFavoritesView(LoginRequiredMixin, CreateView):
+#     model = FavoriteJob
+#     template_name = 'add_to_favorites.html'
+#     fields = []
+#
+#     def form_valid(self, form):
+#         job = get_object_or_404(Job, pk=self.kwargs['pk'])
+#         form.instance.user = self.request.user
+#         form.instance.job = job
+#         return super().form_valid(form)
+#
+#     def get_success_url(self):
+#         job = get_object_or_404(Job, pk=self.kwargs['pk'])
+#         return reverse_lazy("job_details",  kwargs={"pk": job.pk})
+

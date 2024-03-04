@@ -1,9 +1,12 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic import CreateView, ListView, DetailView
 
+from jobsPy.company.models import CompanyProfile
 from jobsPy.core.accounts_mixins import CompanyRoleRequiredMixin
+from jobsPy.jobs.models import Job, Category, Applicant, FavoriteJob
 
 
 class JobCreateView(LoginRequiredMixin, CompanyRoleRequiredMixin, CreateView):
@@ -42,4 +45,31 @@ class AllJobsView(ListView):
         context = super().get_context_data(**kwargs)
         context["category"] = Category.objects.all()
         context['search_query'] = self.request.GET.get('q', '')
+        return context
+
+
+class JobDetails(DetailView):
+    template_name = "job-details.html"
+    model = Job
+
+    def get_context_data(self, **kwargs):
+
+        context = super().get_context_data(**kwargs)
+
+        if self.request.user.is_anonymous:
+            return context
+
+        job = context['object']
+
+        context["already_in_favourite"] = FavoriteJob.objects.filter(user=self.request.user, job=job).exists()
+        context["already_apply"] = Applicant.objects.filter(user=self.request.user, job=job).exists()
+        context["status"] = Applicant.objects.filter(user=self.request.user, job=job)
+
+
+        # Access the CompanyProfile through the user's ID
+
+        company_profile = CompanyProfile.objects.get(user_id=job.user_id)
+        context['company'] = company_profile
+
+
         return context

@@ -14,7 +14,8 @@ class CompanyProfile(models.Model):
         null=True, blank=True, upload_to="company/image")
     website_url = models.URLField(max_length=200)
 
+
     @property
     def get_all_applicant(self):
 
-        retur
+        return Applicant.objects.filter(job__user=self.user, job__is_published=True).count()

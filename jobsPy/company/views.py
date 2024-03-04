@@ -1,8 +1,12 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render
+from django.db.models import Count
+from django.shortcuts import render, get_object_or_404
+from django.urls import reverse_lazy
 from django.views.generic import TemplateView, ListView, UpdateView, DetailView
 
+from jobsPy.company.models import CompanyProfile
 from jobsPy.core.accounts_mixins import CompanyRoleRequiredMixin
+from jobsPy.jobs.models import Job, Applicant, FavoriteJob
 
 
 # Create your views here.

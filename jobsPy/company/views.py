@@ -2,6 +2,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.views.generic import TemplateView, ListView, UpdateView, DetailView
 
+from jobsPy.core.accounts_mixins import CompanyRoleRequiredMixin
+
 
 # Create your views here.
 class CompanyDashboard(LoginRequiredMixin, CompanyRoleRequiredMixin, TemplateView):

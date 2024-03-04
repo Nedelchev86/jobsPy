@@ -32,7 +32,8 @@ INSTALLED_APPS = [
     'jobsPy.accounts',
     'jobsPy.main',
     'jobsPy.jobseekers',
-    'jobsPy.company'
+    'jobsPy.company',
+    'jobsPy.jobs'
 ]
 
 MIDDLEWARE = [

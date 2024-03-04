@@ -7,3 +7,12 @@ class JobSeekerRequiredMixin:
             return super().dispatch(request, *args, **kwargs)
         else:
             return HttpResponseForbidden("You do not have permission to access this page.")
+
+
+class CompanyRoleRequiredMixin:
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated and request.user.role == "company":
+            return super().dispatch(request, *args, **kwargs)
+        else:
+            return HttpResponseForbidden("You do not have permission to access this page.")
+

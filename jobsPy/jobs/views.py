@@ -128,3 +128,23 @@ class RemoveFromFavoritesView(LoginRequiredMixin, View):
             favorite_job.delete()
 
         return redirect('job_details', pk)
+
+
+def apply_for_job(request, pk):
+    job = get_object_or_404(Job, id=pk)
+
+    if request.user.is_authenticated and request.user.role == 'jobseeker':
+
+        # Check if the user has already applied for this job
+        if not Applicant.objects.filter(user=request.user, job=job).exists():
+            # Create an Applicant instance and save it to the database
+            Applicant.objects.create(user=request.user, job=job)
+            # You can also use a form to save additional data if needed
+            form = ApplyForJobForms(request.POST or None)
+            if form.is_valid():
+                applicant = form.save(commit=False)
+                applicant.user = request.user
+                applicant.job = job
+                applicant.save()
+
+    return redirect('job_details', pk=job.id)

@@ -76,3 +76,13 @@ class CompanyApplicant(LoginRequiredMixin, CompanyRoleRequiredMixin, ListView):
             job_applicants_count[job.id] = applicants_count
         context['job_applicants_count'] = job_applicants_count
         return context
+
+
+class ApplicantList(LoginRequiredMixin, CompanyRoleRequiredMixin,ListView):
+    model = Applicant
+    template_name = 'applicant_list.html'  # Create this template if needed
+
+    def get_queryset(self):
+        job_pk = self.kwargs['pk']
+        job = get_object_or_404(Job, pk=job_pk)
+        return job.applicants.all()

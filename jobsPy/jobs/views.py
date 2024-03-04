@@ -164,3 +164,13 @@ def add_to_favorites(request, pk):
 
 
     return redirect('job_details', pk=pk)
+
+
+class ChangeStatus(UpdateView):
+    model = Applicant
+
+    template_name = "change_status.html"
+    form_class = ChangeStatus
+
+    def get_success_url(self):
+        return reverse_lazy("applicant_list",

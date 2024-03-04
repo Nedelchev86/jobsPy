@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404, redirect
@@ -148,3 +149,18 @@ def apply_for_job(request, pk):
                 applicant.save()
 
     return redirect('job_details', pk=job.id)
+
+
+@login_required
+def add_to_favorites(request, pk):
+    if request.user.role != 'jobseeker':
+        return redirect('job_details', pk=pk)
+
+    job = get_object_or_404(Job, pk=pk)
+
+    # Check if the job is not already in favorites
+    if not FavoriteJob.objects.filter(user=request.user, job=job).exists():
+        FavoriteJob.objects.create(user=request.user, job=job)
+
+
+    return redirect('job_details', pk=pk)

@@ -39,3 +39,18 @@ class CreatedJobs(LoginRequiredMixin, CompanyRoleRequiredMixin, ListView):
         jobs = Job.objects.filter(user__id=self.request.user.pk).order_by('-id')
         print(jobs)
         return jobs
+
+
+class EditCompany(LoginRequiredMixin, CompanyRoleRequiredMixin, UpdateView):
+    template_name = "edit_company.html"
+    model = CompanyProfile
+
+    form_class = EditCompany
+    # model = CompanyProfile
+    # form_class = CreateProfile
+    def form_valid(self, form):
+        # Ensure you are handling files correctly
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+    success_url = reverse_lazy("company-dashboard")

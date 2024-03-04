@@ -1,6 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView
 
 
 # Create your views here.
@@ -31,3 +31,11 @@ class CompanyDashboard(LoginRequiredMixin, CompanyRoleRequiredMixin, TemplateVie
         context['all_favourite'] = all_favourite
         context['all_applicant'] = all_applicant
         return context
+
+class CreatedJobs(LoginRequiredMixin, CompanyRoleRequiredMixin, ListView):
+    template_name = "created-jobs.html"
+
+    def get_queryset(self):
+        jobs = Job.objects.filter(user__id=self.request.user.pk).order_by('-id')
+        print(jobs)
+        return jobs

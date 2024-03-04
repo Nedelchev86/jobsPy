@@ -71,3 +71,12 @@ class Job(models.Model):
         if not self.slug:
             self.slug = unique_slugify(self, slugify(self.title))
         super().save(*args, **kwargs)
+
+
+class FavoriteJob(models.Model):
+    user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
+    job = models.ForeignKey(Job, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('user', 'job')  # Ensure a job can be favorited only once per user

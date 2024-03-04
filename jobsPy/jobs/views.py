@@ -1,8 +1,8 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, ListView, DetailView, UpdateView
+from django.views.generic import CreateView, ListView, DetailView, UpdateView, View
 
 from jobsPy.company.models import CompanyProfile
 from jobsPy.core.accounts_mixins import CompanyRoleRequiredMixin
@@ -114,3 +114,17 @@ class EditJob(LoginRequiredMixin, CompanyRoleRequiredMixin, UpdateView):
 #         job = get_object_or_404(Job, pk=self.kwargs['pk'])
 #         return reverse_lazy("job_details",  kwargs={"pk": job.pk})
 
+
+class RemoveFromFavoritesView(LoginRequiredMixin, View):
+
+    def post(self, request, pk):
+        job = get_object_or_404(Job, id=pk)
+
+        # Check if the job is in favorites for the current user
+        favorite_job = FavoriteJob.objects.filter(user=request.user, job=job).first()
+
+        if favorite_job:
+            # Job is in favorites, remove it
+            favorite_job.delete()
+
+        return redirect('job_details', pk)

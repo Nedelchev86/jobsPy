@@ -7,6 +7,7 @@ from django.views.generic import CreateView, ListView, DetailView, UpdateView, V
 
 from jobsPy.company.models import CompanyProfile
 from jobsPy.core.accounts_mixins import CompanyRoleRequiredMixin
+from jobsPy.jobs.forms import CreateJobForms, EditeJobForm, ApplyForJobForms, ChangeStatus
 from jobsPy.jobs.models import Job, Category, Applicant, FavoriteJob
 
 

@@ -173,4 +173,4 @@ class ChangeStatus(UpdateView):
     form_class = ChangeStatus
 
     def get_success_url(self):
-        return reverse_lazy("applicant_list",
+        return reverse_lazy("applicant_list", kwargs={"pk": self.object.job_id})

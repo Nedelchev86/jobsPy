@@ -80,3 +80,25 @@ class FavoriteJob(models.Model):
 
     class Meta:
         unique_together = ('user', 'job')  # Ensure a job can be favorited only once per user
+
+
+class Applicant(models.Model):
+    user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
+    job = models.ForeignKey(Job, on_delete=models.CASCADE, related_name="applicants")
+    created_at = models.DateTimeField(auto_now_add=True)
+    comment = models.TextField(blank=True, null=True)
+    status = models.SmallIntegerField(default=1)
+
+    class Meta:
+        ordering = ["id"]
+        unique_together = ["user", "job"]
+
+    @property
+    def get_status(self):
+        if self.status == 1:
+            return "Pending"
+        elif self.status == 2:
+            return "Accepted"
+        else:
+            return "Rejected"
+

@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordChangeForm
 
+
 UserModel = get_user_model()
 
 
@@ -28,14 +29,30 @@ class RegisterUserForm(UserCreationForm):
 
         self.fields['role'].label = "Profile type"
 
+    # def save(self, commit=True):
+    #     # user = super().save(commit=False)
+    #     user = super().save(commit=commit)
+    #     role = self.cleaned_data['role']
+    #
+    #     if role == 'jobseeker':
+    #         profile = JobSeeker(user=user)
+    #     elif role == 'company':
+    #         profile = CompanyProfile(user=user)
+    #     else:
+    #         raise ValueError('Invalid role selected')
+    #
+    #     if commit:
+    #         profile.save()
+    #
+    #     return user
 
-    # class Meta: changed 07.02.24 Doncho User Extending lection
-    class Meta(UserCreationForm.Meta):
+    class Meta:
         model = UserModel
         fields = ["email", "password1", "password2", "role"]
 
 
 class LoginForm(AuthenticationForm):
+
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

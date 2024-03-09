@@ -29,7 +29,8 @@ class RegisterUserForm(UserCreationForm):
         self.fields['role'].label = "Profile type"
 
 
-    class Meta:
+    # class Meta: changed 07.02.24 Doncho User Extending lection
+    class Meta(UserCreationForm.Meta):
         model = UserModel
         fields = ["email", "password1", "password2", "role"]
 

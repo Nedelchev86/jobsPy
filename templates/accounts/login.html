@@ -29,16 +29,16 @@
                 <div class="col-lg-6 col-md-10 col-12">
                     <div class="content-left wow fadeInLeft" data-wow-delay=".3s">
                         <div calss="row">
-{#                            <div calss="col-lg-6 col-12">#}
-{#                                <div class="row">#}
-{#                                    <div class="col-lg-6 col-md-6 col-6">#}
-{#                                        <img class="single-img" src="{% static '/images/about/small1.jpg' %}" alt="#">#}
-{#                                    </div>#}
-{#                                    <div class="col-lg-6 col-md-6 col-6">#}
-{#                                        <img class="single-img mt-50" src="{% static '/images/about/small2.jpg' %}" alt="#">#}
-{#                                    </div>#}
-{#                                </div>#}
-{#                            </div>#}
+                            <div calss="col-lg-6 col-12">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-6">
+                                        <img class="single-img" src="{% static '/images/about/small1.jpg' %}" alt="#">
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-6">
+                                        <img class="single-img mt-50" src="{% static '/images/about/small2.jpg' %}" alt="#">
+                                    </div>
+                                </div>
+                            </div>
                             <div calss="col-lg-6 col-12">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-6">
@@ -60,28 +60,39 @@
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-10 col-12">
-
-                        <div class="job-information">
-                        <h3 class="title title-margin"> Information</h3>
+                                        <div class="login-information">
+                        <h3 class="title title-margin">Login</h3>
                         <form method="post" action="{% url 'login' %}">
-                        
                             <div class="row">
-                                {{ form.as_p }}
-                                
-                                <input type="hidden" value="{{ next }}" name="next"/>
-                                {% csrf_token %}
+    {% csrf_token %}
+    {% if form.non_field_errors %}
+        <div class="alert alert-danger">
+            {{ form.non_field_errors }}
+        </div>
+    {% endif %}
+                 {% for field in form %}
+                    <div class="form-group">
+                    {{ field.label_tag }}
+                    {{ field }}
+                     </div>
+                    {% for error in field.errors %}
+                      <p style="color: red">{{ error }}</p>
+                    {% endfor %}
+
+                {% endfor %}
+                                                <input type="hidden" value="{{ next }}" name="next"/>
+                 
 
                                 <div class="col-lg-12 button">
                                     <button class="btn">
-                                       Login
+                                        Login
                                     </button>
                                 </div>
                             </div>
                         </form>
-
-                    </div>
                 </div>
             </div>
+        </div>
         </div>
     </section>
     <!-- End About Area -->
@@ -115,7 +126,7 @@
         </div>
     </section>
 
-    
+
 {%  endblock %}
 
 

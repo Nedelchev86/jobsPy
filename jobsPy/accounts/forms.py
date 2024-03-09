@@ -1,3 +1,4 @@
+from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordChangeForm
 
@@ -53,7 +54,6 @@ class RegisterUserForm(UserCreationForm):
 
 class LoginForm(AuthenticationForm):
 
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field in self.fields:
@@ -64,6 +64,9 @@ class LoginForm(AuthenticationForm):
 
         self.fields['password'].widget.attrs.update({
                  'placeholder': 'Enter your password'})
+
+
+
 
 
 class ChangePassword(PasswordChangeForm):

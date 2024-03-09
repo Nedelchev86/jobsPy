@@ -3,8 +3,8 @@
                             <ul>
                                 <li class="heading">Manage Account</li>
 
-                    {{  user.jobseeker.pk }}
-{#                                <li><a class="{% if request.resolver_match.url_name == 'edit-profile' %}active{% endif %}"  href="{% url 'edit-profile' user.jobseeker.pk %}"><i class="lni lni-clipboard"></i> Edit Profile</a></li>#}
+    
+                                <li><a class="{% if request.resolver_match.url_name == 'edit-profile' %}active{% endif %}"  href="{% url 'edit-profile' user.jobseeker.pk %}"><i class="lni lni-clipboard"></i> Edit Profile</a></li>
 {#                                <li><a class="{% if request.resolver_match.url_name == 'favourite_jobs' %}active{% endif %}"  href="{% url 'favourite_jobs' %}"><i class="lni lni-clipboard"></i> Favourite <span class="notifi">{{ user.favoritejob_set.all|length}}</span></a></li>#}
 {#                                <li><a class="{% if request.resolver_match.url_name == 'edit-company-profile' %}active{% endif %}" href="{% url 'edit-company-profile' request.user.company.id %}"><i class="lni lni-bookmark"></i> Edit Company </a></li>#}
 {#                                <li><a class="{% if request.resolver_match.url_name == 'created-jobs' %}active{% endif %}" href="{% url 'created-jobs' %}"><i class="lni lni-alarm"></i>Created Jobs <span class="notifi">{{ request.user.job_set.all|length }}</span></a></li>#}

@@ -44,7 +44,7 @@ def singout(request):
 #
 
 class LoginUserView(LoginView):
-    template_name = "login.html"
+    template_name = "accounts/login.html"
     form_class = LoginForm
 
     # def get_success_url(self):
@@ -68,7 +68,7 @@ class RedirectDashboardView(LoginRequiredMixin, View):
         if user_type == 'company':
             return redirect('company-dashboard')
         elif user_type == 'jobseeker':
-            return redirect('jobseeker-dashboard')
+            return redirect('job seeker dashboard')
         else:
             # Handle other roles or situations
             return redirect('index')  # Redirect to a default page if the role is not recognized

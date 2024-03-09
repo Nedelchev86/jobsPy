@@ -69,7 +69,7 @@ class JobSeekerDetails(DetailView):
 
 class EditProfile(UpdateView):
     model = JobSeeker
-    template_name = "edit_profile.html"
+    template_name = "job_seekers/edit_profile.html"
     form_class = EditProfileFrom
     success_url = reverse_lazy("index")
 

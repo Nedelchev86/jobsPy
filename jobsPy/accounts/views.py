@@ -13,6 +13,7 @@ from jobsPy.accounts.forms import RegisterUserForm, LoginForm, ChangePassword
 
 userMode = get_user_model()
 
+
 class RegisterView(CreateView):
     template_name = 'accounts/register.html'
     form_class = RegisterUserForm
@@ -41,7 +42,6 @@ def logout(request):
 #     template_name = "logout.html"
 
 
-
 class LoginUserView(LoginView):
     template_name = "accounts/login.html"
     form_class = LoginForm
@@ -52,13 +52,11 @@ class LoginUserView(LoginView):
     #     return super().get_success_url()
 
 
-
 class ChangePass(PasswordChangeView):
     form_class = ChangePassword
 
     template_name = "accounts/chage_password.html"
     success_url = reverse_lazy('login_redirect_dashboard')
-
 
 
 class RedirectDashboardView(LoginRequiredMixin, View):

@@ -36,7 +36,6 @@ class AccountModel(BaseUserManager):
         return self._create_user(email, password, **extra_fields)
 
 
-
 class Account(AbstractBaseUser, PermissionsMixin):
     username = None
 
@@ -56,5 +55,3 @@ class Account(AbstractBaseUser, PermissionsMixin):
     objects = AccountModel()
 
     is_staff = models.BooleanField(default=False)
-
-

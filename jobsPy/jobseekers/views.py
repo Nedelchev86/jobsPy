@@ -1,9 +1,12 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render
-from django.views.generic import TemplateView
+from django.shortcuts import render, get_object_or_404
+from django.urls import reverse_lazy
+from django.views.generic import TemplateView, ListView, DetailView, UpdateView
 
 from jobsPy.core.accounts_mixins import JobSeekerRequiredMixin
 from jobsPy.jobs.models import FavoriteJob, Applicant
+from jobsPy.jobseekers.forms import EditProfileFrom
+from jobsPy.jobseekers.models import JobSeeker
 
 
 # Create your views here.
@@ -48,3 +51,48 @@ class JobSeekerDashboard(LoginRequiredMixin, JobSeekerRequiredMixin, TemplateVie
         context['all_jobs_accepted'] = all_jobs_accepted
         return context
 
+class AllEmployees(ListView):
+    model = JobSeeker
+    template_name = "all_employers.html"
+
+    # def get_queryset(self):
+    #     # Use prefetch_related to fetch all related languages for each JobSeeker
+    #     print(JobSeeker.objects.prefetch_related('languages').all())
+    #     return JobSeeker.objects.prefetch_related('languages').all()
+
+
+class JobSeekerDetails(DetailView):
+    model = JobSeeker
+    template_name = "jobseekers_details.html"
+
+
+
+class EditProfile(UpdateView):
+    model = JobSeeker
+    template_name = "edit_profile.html"
+    form_class = EditProfileFrom
+    success_url = reverse_lazy("index")
+
+
+    def get_context_data(self, **kwargs):
+        contex = super().get_context_data(**kwargs)
+        print(self.request.user.pk)
+        jobseeker = get_object_or_404(JobSeeker, pk=self.request.user.jobseeker.pk)
+        education = jobseeker.educations.all()
+        if education:
+            contex["educations"] = education
+        return contex
+
+
+class FavouriteJobs(LoginRequiredMixin, JobSeekerRequiredMixin, ListView):
+    template_name = "favourite_jobs.html"
+
+    def get_queryset(self):
+        return FavoriteJob.objects.filter(user=self.request.user).select_related('job')
+
+
+class ApplyJobs(LoginRequiredMixin, JobSeekerRequiredMixin, ListView):
+    template_name = "apply-jobs.html"
+
+    def get_queryset(self):
+        return Applicant.objects.filter(user_id=self.request.user.pk).all()

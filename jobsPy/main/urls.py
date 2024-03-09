@@ -1,6 +1,7 @@
 from django.urls import path
 
 from jobsPy.accounts.views import RedirectDashboardView
+# A
 from jobsPy.main.views import IndexView
 
 urlpatterns = [

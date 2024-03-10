@@ -95,3 +95,8 @@ class ApplicantList(LoginRequiredMixin, CompanyRoleRequiredMixin,ListView):
 class CompanyDetails(DetailView):
     model = CompanyProfile
     template_name = "company/company_details.html"
+
+
+class AllCompany(ListView):
+    model = CompanyProfile
+    template_name = "company/company.html"

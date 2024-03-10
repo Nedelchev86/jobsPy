@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main_content %}
+
+        <div class="breadcrumbs overlay">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumbs-content">
+                        <h1 class="page-title">Blog Single Sidebar</h1>
+                        <p>Business plan draws on a wide range of knowledge from different business<br> disciplines.
+                            Business draws on a wide range of different business .</p>
+                    </div>
+                    <ul class="breadcrumb-nav">
+                        <li><a href="index.html">Home</a></li>
+                        <li>Blog Single Sidebar</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- Start Job Category Area -->
+    <section class="job-category style2 section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-title">
+                        <span class="wow fadeInDown" data-wow-delay=".2s">Company</span>
+                        <h2 class="wow fadeInUp" data-wow-delay=".4s">Browse by Company</h2>
+                        <p class="wow fadeInUp" data-wow-delay=".6s">There are many variations of passages of Lorem
+                            Ipsum available, but the majority have suffered alteration in some form.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="cat-head">
+                <div class="row">
+
+                    {% for company in object_list %}
+                    <div class="col-lg-3 col-md-6 col-12">
+                        <a href="{% url 'company-details' company.pk %}" class="single-cat wow" data-wow-delay=".4s">
+                            <div class="top-side">
+        {% if company.image %}
+          <img src="{{ company.image.url }}" alt="{{ company.name }} Image">
+            {% else %}
+            <img src="{% static 'images/jobs/category-2.jpg' %}" alt="{{ company.name }} Image">
+        {% endif %}
+
+                            </div>
+
+                            <div class="bottom-side">
+
+                                <span class="available-job2">Jobs</span><span class="available-job">{{ company.user.job_set.all|length }}</span>
+                                <h3>{{ company.name }}</h3>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /End Job Category Area -->
+{% endblock %}

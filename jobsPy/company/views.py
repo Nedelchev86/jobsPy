@@ -12,7 +12,7 @@ from jobsPy.jobs.models import Job, Applicant, FavoriteJob
 
 # Create your views here.
 class CompanyDashboard(LoginRequiredMixin, CompanyRoleRequiredMixin, TemplateView):
-    template_name = "company_dashboard.html"
+    template_name = "company/company_dashboard.html"
 
 
     def get_context_data(self, **kwargs):

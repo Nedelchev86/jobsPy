@@ -7,4 +7,5 @@ urlpatterns = [
     path('', include('jobsPy.main.urls')),
     path('accounts/', include('jobsPy.accounts.urls')),
     path('jobseeker/', include('jobsPy.jobseekers.urls')),
+    path('company/', include('jobsPy.company.urls')),
 ]

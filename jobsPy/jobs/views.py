@@ -66,15 +66,12 @@ class JobDetails(DetailView):
         context["already_in_favourite"] = FavoriteJob.objects.filter(user=self.request.user, job=job).exists()
         context["already_apply"] = Applicant.objects.filter(user=self.request.user, job=job).exists()
         context["status"] = Applicant.objects.filter(user=self.request.user, job=job)
-
-
         # Access the CompanyProfile through the user's ID
-
         company_profile = CompanyProfile.objects.get(user_id=job.user_id)
         context['company'] = company_profile
 
-
         return context
+
 
 class EditJob(LoginRequiredMixin, CompanyRoleRequiredMixin, UpdateView):
     model = Job
@@ -162,7 +159,6 @@ def add_to_favorites(request, pk):
     # Check if the job is not already in favorites
     if not FavoriteJob.objects.filter(user=request.user, job=job).exists():
         FavoriteJob.objects.create(user=request.user, job=job)
-
 
     return redirect('job_details', pk=pk)
 

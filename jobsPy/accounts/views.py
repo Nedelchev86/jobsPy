@@ -8,11 +8,12 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, View
 
 from jobsPy.accounts.forms import RegisterUserForm, LoginForm, ChangePassword
+from jobsPy.core.accounts_mixins import RedirectAuthenticatedUserMixin
 
 userMode = get_user_model()
 
 
-class RegisterView(CreateView):
+class RegisterView(RedirectAuthenticatedUserMixin, CreateView):
     template_name = 'accounts/register.html'
     form_class = RegisterUserForm
 
@@ -34,7 +35,7 @@ def singout(request):
     return redirect('index')
 
 
-class LoginUserView(LoginView):
+class LoginUserView(RedirectAuthenticatedUserMixin, LoginView):
     template_name = "accounts/login.html"
     form_class = LoginForm
 

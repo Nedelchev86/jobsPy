@@ -7,6 +7,4 @@ urlpatterns = [
     path('login/', LoginUserView.as_view(), name="login"),
     path("logout/", singout, name="sing-out"),
     path("chage-password/", ChangePass.as_view(), name="change-password"),
-
-
 ]

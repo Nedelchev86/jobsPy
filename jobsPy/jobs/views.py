@@ -12,7 +12,7 @@ from jobsPy.jobs.models import Job, Category, Applicant, FavoriteJob
 
 
 class JobCreateView(LoginRequiredMixin, CompanyRoleRequiredMixin, CreateView):
-    template_name = "create_job.html"
+    template_name = "jobs/create_job.html"
     form_class = CreateJobForms
     extra_context = {"title": "Post New Job"}
     success_url = reverse_lazy("index")
@@ -32,7 +32,7 @@ class JobCreateView(LoginRequiredMixin, CompanyRoleRequiredMixin, CreateView):
 
 class AllJobsView(ListView):
     model = Job
-    template_name = "browsejobs.html"
+    template_name = "jobs/jobs_list.html"
 
     def get_queryset(self):
         query = self.request.GET.get('q')

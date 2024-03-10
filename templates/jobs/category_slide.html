@@ -1,0 +1,11 @@
+                        <div class="widget categories-widget">
+
+                            <h5 class="widget-title"><span>Categories</span></h5>
+                            <ul class="custom">
+                                {% for cat in category %}
+                                <li>
+                                    <a href="{% url 'jobs_category' cat.slug %}">{{ cat.name }}<span>{{ cat.job_set.all|length }}</span></a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>

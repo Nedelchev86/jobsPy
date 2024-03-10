@@ -18,3 +18,7 @@ class IndexView(TemplateView):
         # context["last_jobs"] = last_jobs
         # context["title"] = "JobsPy - Your Future Begins Here"
         return context
+
+
+class Contact(TemplateView):
+    template_name = "core/contacts.html"

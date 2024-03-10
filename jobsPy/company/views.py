@@ -49,9 +49,8 @@ class CreatedJobs(LoginRequiredMixin, CompanyRoleRequiredMixin, ListView):
 
 
 class EditCompany(LoginRequiredMixin, CompanyRoleRequiredMixin, UpdateView):
-    template_name = "edit_company.html"
+    template_name = "company/edit_company.html"
     model = CompanyProfile
-
     form_class = EditCompany
     # model = CompanyProfile
     # form_class = CreateProfile
@@ -65,14 +64,12 @@ class EditCompany(LoginRequiredMixin, CompanyRoleRequiredMixin, UpdateView):
 
 class CompanyApplicant(LoginRequiredMixin, CompanyRoleRequiredMixin, ListView):
     model = Job
-    template_name = 'jobs_list_aplicant.html'  # Create this template if needed
+    template_name = 'company/jobs_list_aplicant.html'  # Create this template if needed
     context_object_name = 'jobs'
 
     def get_queryset(self):
         user = self.request.user
-
         # By ChatGPT
-
         return Job.objects.filter(user=user, is_published=True).annotate(num_applicants=Count('applicants')).filter(num_applicants__gt=0)
 
     def get_context_data(self, **kwargs):
@@ -87,7 +84,7 @@ class CompanyApplicant(LoginRequiredMixin, CompanyRoleRequiredMixin, ListView):
 
 class ApplicantList(LoginRequiredMixin, CompanyRoleRequiredMixin,ListView):
     model = Applicant
-    template_name = 'applicant_list.html'  # Create this template if needed
+    template_name = 'company/applicant_list.html'  # Create this template if needed
 
     def get_queryset(self):
         job_pk = self.kwargs['pk']
@@ -97,4 +94,4 @@ class ApplicantList(LoginRequiredMixin, CompanyRoleRequiredMixin,ListView):
 
 class CompanyDetails(DetailView):
     model = CompanyProfile
-    template_name = "company_details.html"
+    template_name = "company/company_details.html"

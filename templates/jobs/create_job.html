@@ -1,6 +1,15 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block main_content %}
+    
+<script>
+    $(document).ready(function() {
+        $('#id_deadline').datepicker({
+            dateFormat: 'yy-mm-dd',  // Set the desired date format
+            minDate: new Date(),     // Optionally set a minimum date
+        });
+    });
+</script>
     <!-- Start Breadcrumbs -->
     <div class="breadcrumbs overlay">
         <div class="container">
@@ -33,12 +42,11 @@
                     <!-- End Main Content -->
                     <div class="col-lg-8">
                         <div class="password-content">
-                            <h3>Edit Company Profile</h3>
-                            <p>Here you can edit your Copmany Profile.</p>
-                          
-                            <form method="post" action="{% url 'edit-company-profile' user.company.pk %}" enctype="multipart/form-data">
+                            <h3>Create Job</h3>
+                            <p>Here you can post new Job.</p>
+                            <form method="post" action="{% url 'create_job' %}" enctype="multipart/form-data">
                                 <div class="row">
-                                {{ form.as_p }}
+                                {{ form }}
 
 
 
@@ -46,7 +54,7 @@
                                     {% csrf_token %}
                                     <div class="col-lg-12">
                                         <div class="button">
-                                            <button class="btn">Edit</button>
+                                            <button class="btn">Post Job</button>
                                         </div>
                                     </div>
                                 </div>

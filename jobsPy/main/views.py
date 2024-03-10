@@ -1,4 +1,6 @@
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView
+
+from jobsPy.jobs.models import Category, Job
 
 
 class IndexView(TemplateView):
@@ -22,3 +24,28 @@ class IndexView(TemplateView):
 
 class Contact(TemplateView):
     template_name = "core/contacts.html"
+
+
+class JobsCategory(ListView):
+    model = Job
+    template_name = "jobs/jobs_list.html"
+
+
+    def get_queryset(self):
+        # Get the category slug from the URL
+        category_slug = self.kwargs.get('category_slug')
+
+        # Retrieve the Category object based on the slug
+        category = Category.objects.get(slug=category_slug)
+
+        # Filter jobs based on the selected category
+        queryset = Job.objects.filter(category=category)
+
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Pass the selected category to the template
+        context['selected_category'] = Category.objects.get(slug=self.kwargs.get('category_slug'))
+        context["category"] = Category.objects.all()
+        return context

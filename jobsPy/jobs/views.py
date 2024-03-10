@@ -51,7 +51,7 @@ class AllJobsView(ListView):
 
 
 class JobDetails(DetailView):
-    template_name = "job-details.html"
+    template_name = "jobs/job-details.html"
     model = Job
 
     def get_context_data(self, **kwargs):
@@ -171,3 +171,5 @@ class ChangeStatus(UpdateView):
 
     def get_success_url(self):
         return reverse_lazy("applicant_list", kwargs={"pk": self.object.job_id})
+
+

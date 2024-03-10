@@ -66,9 +66,6 @@ class LoginForm(AuthenticationForm):
                  'placeholder': 'Enter your password'})
 
 
-
-
-
 class ChangePassword(PasswordChangeForm):
     class Meta:
         model = UserModel

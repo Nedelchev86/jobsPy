@@ -5,10 +5,8 @@
 
     
                                 <li><a class="{% if request.resolver_match.url_name == 'edit-profile' %}active{% endif %}"  href="{% url 'edit-profile' user.jobseeker.pk %}"><i class="lni lni-clipboard"></i> Edit Profile</a></li>
-{#                                <li><a class="{% if request.resolver_match.url_name == 'favourite_jobs' %}active{% endif %}"  href="{% url 'favourite_jobs' %}"><i class="lni lni-clipboard"></i> Favourite <span class="notifi">{{ user.favoritejob_set.all|length}}</span></a></li>#}
-{#                                <li><a class="{% if request.resolver_match.url_name == 'edit-company-profile' %}active{% endif %}" href="{% url 'edit-company-profile' request.user.company.id %}"><i class="lni lni-bookmark"></i> Edit Company </a></li>#}
-{#                                <li><a class="{% if request.resolver_match.url_name == 'created-jobs' %}active{% endif %}" href="{% url 'created-jobs' %}"><i class="lni lni-alarm"></i>Created Jobs <span class="notifi">{{ request.user.job_set.all|length }}</span></a></li>#}
-{#                                  <li><a class="{% if request.resolver_match.url_name == 'jobs-apply' %}active{% endif %}" href="{% url 'jobs-apply' %}"><i class="lni lni-alarm"></i>Jobs Apply <span class="notifi">{{ user.jobseeker.get_user_all_applicant}}</span></a></li>#}
+                                <li><a class="{% if request.resolver_match.url_name == 'favourite_jobs' %}active{% endif %}"  href="{% url 'favourite_jobs' %}"><i class="lni lni-clipboard"></i> Favourite <span class="notifi">{{ user.favoritejob_set.all|length}}</span></a></li>
+                                <li><a class="{% if request.resolver_match.url_name == 'jobs-apply' %}active{% endif %}" href="{% url 'jobs-apply' %}"><i class="lni lni-alarm"></i>Jobs Apply <span class="notifi">{{ user.jobseeker.get_user_all_applicant}}</span></a></li>
 {#                                <li><a  href="notifications.html"><i class="lni lni-alarm"></i> Notifications <span#}
 {#                                            class="notifi">5</span></a></li>#}
 {#                                <li><a href="manage-applications.html"><i class="lni lni-envelope"></i> Manage#}

@@ -1,13 +1,11 @@
 from django.contrib import auth
-from django.contrib.auth import get_user_model, login, alogout
+from django.contrib.auth import get_user_model, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
-from django.forms import EmailInput
-from django.http import HttpResponseRedirect
+from django.contrib.auth.views import LoginView, PasswordChangeView
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, UpdateView, View
+from django.views.generic import CreateView, View
 
 from jobsPy.accounts.forms import RegisterUserForm, LoginForm, ChangePassword
 
@@ -19,7 +17,7 @@ class RegisterView(CreateView):
     form_class = RegisterUserForm
 
     # Static way of providing `success_url`
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('login_redirect_dashboard')
 
     def form_valid(self, form):
         result = super().form_valid(form)
@@ -32,16 +30,9 @@ class RegisterView(CreateView):
 @login_required(login_url='login')
 def singout(request):
     auth.logout(request)
-     # messages.success(request, 'You are logged out.')
+# messages.success(request, 'You are logged out.')
     return redirect('index')
 
-# def singout(request):
-#     alogout(request)
-    # Redirect to a success page.
-# class singout(LogoutView):
-#     template_name = "logout.html"
-#
-#
 
 class LoginUserView(LoginView):
     template_name = "accounts/login.html"
@@ -53,11 +44,10 @@ class LoginUserView(LoginView):
     #     return super().get_success_url()
 
 
-
 class ChangePass(PasswordChangeView):
     form_class = ChangePassword
 
-    template_name = "chage_password.html"
+    template_name = "accounts/change_password.html"
     success_url = reverse_lazy('login_redirect_dashboard')
 
 

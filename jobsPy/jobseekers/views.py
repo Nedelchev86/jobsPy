@@ -14,7 +14,6 @@ from jobsPy.jobseekers.models import JobSeeker
 class JobSeekerDashboard(LoginRequiredMixin, JobSeekerRequiredMixin, TemplateView):
     template_name = "job_seekers/jobseeker_dashboard.html"
 
-
     def get_context_data(self, **kwargs):
 
         all_favourite = FavoriteJob.objects.filter(user_id=self.request.user.pk).count()
@@ -22,7 +21,6 @@ class JobSeekerDashboard(LoginRequiredMixin, JobSeekerRequiredMixin, TemplateVie
         all_jobs_pending = Applicant.objects.filter(user_id=self.request.user.pk).filter(status= 1).count()
         all_jobs_accepted = Applicant.objects.filter(user_id=self.request.user.pk).filter(status= 2).count()
         all_jobs_rejected = Applicant.objects.filter(user_id=self.request.user.pk).filter(status= 3).count()
-
 
 
 #         job_creator_jobs = Job.objects.filter(user=self.request.user)
@@ -51,6 +49,7 @@ class JobSeekerDashboard(LoginRequiredMixin, JobSeekerRequiredMixin, TemplateVie
         context['all_jobs_accepted'] = all_jobs_accepted
         return context
 
+
 class AllEmployees(ListView):
     model = JobSeeker
     template_name = "all_employers.html"
@@ -66,13 +65,11 @@ class JobSeekerDetails(DetailView):
     template_name = "jobseekers_details.html"
 
 
-
 class EditProfile(UpdateView):
     model = JobSeeker
     template_name = "job_seekers/edit_profile.html"
     form_class = EditProfileFrom
     success_url = reverse_lazy("index")
-
 
     def get_context_data(self, **kwargs):
         contex = super().get_context_data(**kwargs)
@@ -85,14 +82,14 @@ class EditProfile(UpdateView):
 
 
 class FavouriteJobs(LoginRequiredMixin, JobSeekerRequiredMixin, ListView):
-    template_name = "favourite_jobs.html"
+    template_name = "job_seekers/favourite_jobs.html"
 
     def get_queryset(self):
         return FavoriteJob.objects.filter(user=self.request.user).select_related('job')
 
 
 class ApplyJobs(LoginRequiredMixin, JobSeekerRequiredMixin, ListView):
-    template_name = "apply-jobs.html"
+    template_name = "job_seekers/apply-jobs.html"
 
     def get_queryset(self):
         return Applicant.objects.filter(user_id=self.request.user.pk).all()

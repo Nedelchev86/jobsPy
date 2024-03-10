@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 
+from jobsPy.jobs.models import Applicant
 
 UserModel = get_user_model()
 
@@ -36,9 +37,9 @@ class JobSeeker(models.Model):
     # skills = models.ManyToManyField(Skills, related_name="skills")
 
 
-    # @property
-    # def get_user_all_applicant(self):
-    #     return Applicant.objects.filter(user=self.user).count()
+    @property
+    def get_user_all_applicant(self):
+        return Applicant.objects.filter(user=self.user).count()
 
 
 class Education(models.Model):

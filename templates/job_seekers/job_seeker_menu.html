@@ -4,6 +4,7 @@
                                 <li class="heading">Manage Account</li>
 
     
+                                <li><a class="{% if request.resolver_match.url_name == 'job seeker dashboard' %}active{% endif %}"  href="{% url 'job seeker dashboard' %}"><i class="lni lni-clipboard"></i> Dashboard</a></li>
                                 <li><a class="{% if request.resolver_match.url_name == 'edit-profile' %}active{% endif %}"  href="{% url 'edit-profile' user.jobseeker.pk %}"><i class="lni lni-clipboard"></i> Edit Profile</a></li>
 {#                                <li><a class="{% if request.resolver_match.url_name == 'edit-profile' %}active{% endif %}"  href="{% url 'edit-profile'  %}"><i class="lni lni-clipboard"></i> Edit Profile</a></li>#}
                                 <li><a class="{% if request.resolver_match.url_name == 'favourite_jobs' %}active{% endif %}"  href="{% url 'favourite_jobs' %}"><i class="lni lni-clipboard"></i> Favourite <span class="notifi">{{ user.favoritejob_set.all|length}}</span></a></li>

@@ -2,12 +2,12 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, ListView, DetailView, UpdateView
+from django.views.generic import TemplateView, ListView, DetailView, UpdateView, CreateView
 
 from jobsPy.core.accounts_mixins import JobSeekerRequiredMixin, OwnerRequiredMixin
 from jobsPy.jobs.models import FavoriteJob, Applicant
-from jobsPy.jobseekers.forms import EditProfileFrom
-from jobsPy.jobseekers.models import JobSeeker
+from jobsPy.jobseekers.forms import EditProfileFrom, EducationForm
+from jobsPy.jobseekers.models import JobSeeker, Education
 
 userModel = get_user_model()
 # Create your views here.
@@ -53,7 +53,7 @@ class JobSeekerDashboard(LoginRequiredMixin, JobSeekerRequiredMixin, TemplateVie
 
 class AllEmployees(ListView):
     model = JobSeeker
-    template_name = "all_employers.html"
+    template_name = "job_seekers/all_employers.html"
 
     # def get_queryset(self):
     #     # Use prefetch_related to fetch all related languages for each JobSeeker
@@ -63,7 +63,7 @@ class AllEmployees(ListView):
 
 class JobSeekerDetails(DetailView):
     model = JobSeeker
-    template_name = "jobseekers_details.html"
+    template_name = "job_seekers/job_seekers_details.html"
 
 
 class EditProfile(OwnerRequiredMixin, UpdateView):
@@ -95,3 +95,20 @@ class ApplyJobs(LoginRequiredMixin, JobSeekerRequiredMixin, ListView):
 
     def get_queryset(self):
         return Applicant.objects.filter(user_id=self.request.user.pk).all()
+
+
+class AddEducation(CreateView):
+    model = Education
+    template_name = "job_seekers/add_education.html"
+    form_class = EducationForm
+    success_url = reverse_lazy("index")
+
+    def form_valid(self, form):
+        jobseeker_pk = self.kwargs['pk']
+        jobseeker = get_object_or_404(JobSeeker, pk=jobseeker_pk)
+        # Set the job_seeker field and save the form
+        form.instance.job_seeker = jobseeker
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('edit-profile', kwargs={'pk': self.kwargs['pk']})

@@ -40,7 +40,7 @@ class CompanyDashboard(LoginRequiredMixin, CompanyRoleRequiredMixin, TemplateVie
         return context
 
 class CreatedJobs(LoginRequiredMixin, CompanyRoleRequiredMixin, ListView):
-    template_name = "created-jobs.html"
+    template_name = "company/created-jobs.html"
 
     def get_queryset(self):
         jobs = Job.objects.filter(user__id=self.request.user.pk).order_by('-id')

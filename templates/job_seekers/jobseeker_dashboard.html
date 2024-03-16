@@ -39,25 +39,7 @@
 
             <div class="cat-head job-category">
                 <div class="row">
-                    <div class="col-md-4 col-12">
-                        <a href="browse-jobs.html" class="single-cat wow fadeInUp" data-wow-delay=".2s">
-                            <div class="icon">
-                                <i >{{ all_favourite }}</i>
-                            </div>
-                            <h3>All Jobs<br> Added To Favourite</h3>
-                        </a>
-                    </div>
-
-
-                    <div class="col-md-4 col-12">
-                        <a href="{% url 'applicant_list' user.pk %}" class="single-cat wow fadeInUp" data-wow-delay=".8s">
-                            <div class="icon">
-                                <i>{{ all_jobs_apply }}</i>
-                            </div>
-                            <h3>All Jobs <br>Aplly</h3>
-                        </a>
-                    </div>
-
+                    
                     <div class="col-md-4 col-12">
                         <a href="browse-jobs.html" class="single-cat wow fadeInUp" data-wow-delay=".2s">
                             <div class="icon">
@@ -66,19 +48,7 @@
                             <h3>All Jobs<br> Rejected</h3>
                         </a>
                     </div>
-                </div>
-                <div class="row">
-
-                    <div class="col-md-4 col-12">
-{#                        <a href="{% url 'applicant_list' user.pk %}" class="single-cat wow fadeInUp" data-wow-delay=".8s">#}
-                        <a href="#" class="single-cat wow fadeInUp" data-wow-delay=".8s">
-                            <div class="icon">
-                                <i>{{ all_jobs_accepted }}</i>
-                            </div>
-                            <h3>All Jobs <br> Accepted</h3>
-                        </a>
-                    </div>
-                    <div class="col-md-4 col-12">
+                                        <div class="col-md-4 col-12">
                         <a href="browse-jobs.html" class="single-cat wow fadeInUp" data-wow-delay=".2s">
                             <div class="icon">
                                 <i >{{ all_jobs_pending }}</i>
@@ -86,17 +56,17 @@
                             <h3>All Jobs<br> Pending</h3>
                         </a>
                     </div>
-
-
-                    <div class="col-md-4 col-12">
-                        <a href="{% url 'applicant_list' user.pk %}" class="single-cat wow fadeInUp" data-wow-delay=".8s">
+                                        <div class="col-md-4 col-12">
+                        <a href="#" class="single-cat wow fadeInUp" data-wow-delay=".8s">
                             <div class="icon">
-                                <i> 0 </i>
+                                <i>{{ all_jobs_accepted }}</i>
                             </div>
-                            <h3>Something <br> To Add</h3>
+                            <h3>All Jobs <br> Accepted</h3>
                         </a>
                     </div>
                 </div>
+            
+
 
 
                 <div class="resume ">

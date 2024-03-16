@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main_content %}
+    <!-- Start Breadcrumbs -->
+    <div class="breadcrumbs overlay">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumbs-content">
+                        <h1 class="page-title">Change Password</h1>
+                        <p>Business plan draws on a wide range of knowledge from different business<br> disciplines.
+                            Business draws on a wide range of different business .</p>
+                    </div>
+                    <ul class="breadcrumb-nav">
+                        <li><a href="index.html">Home</a></li>
+                        <li>Change Password</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Breadcrumbs -->
+
+    <!-- Main Content Start -->
+    <div class="change-password section">
+        <div class="container">
+            <div class="alerts-inner">
+                <div class="row">
+                    <!-- Start Main Content -->
+
+                    {% include "job_seekers/job_seeker_menu.html" %}
+
+                    <!-- End Main Content -->
+                    <div class="col-lg-8">
+                        <div class="password-content">
+                            <h3>Add Education</h3>
+                            <p>Here you can add education.</p>
+                            
+                
+                            <form method="post" action="{% url 'add-education' user.jobseeker.pk %}" enctype="multipart/form-data">
+                                <div class="row">
+                                {{ form.as_p }}
+
+                                    {% csrf_token %}
+                                    <div class="col-lg-12">
+                                        <div class="button">
+                                            <button class="btn">Add Education</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Main Content end -->
+
+    
+    
+ {% endblock %}

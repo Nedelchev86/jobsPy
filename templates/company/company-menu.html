@@ -4,8 +4,9 @@
                                 <li class="heading">Manage Account</li>
 
 
-                                <li><a class="{% if request.resolver_match.url_name == 'create_job' %}active{% endif %}"  href="{% url 'create_job' %}"><i class="lni lni-clipboard"></i> Create Job</a></li>
+                                <li><a class="{% if request.resolver_match.url_name == 'company-dashboard' %}active{% endif %}" href="{% url 'company-dashboard' request.user.company.id %}"><i class="lni lni-bookmark"></i> Dashboard </a></li>
                                 <li><a class="{% if request.resolver_match.url_name == 'edit-company-profile' %}active{% endif %}" href="{% url 'edit-company-profile' request.user.company.id %}"><i class="lni lni-bookmark"></i> Edit Company </a></li>
+                                <li><a class="{% if request.resolver_match.url_name == 'create_job' %}active{% endif %}"  href="{% url 'create_job' %}"><i class="lni lni-clipboard"></i> Create Job</a></li>
                                 <li><a class="{% if request.resolver_match.url_name == 'created-jobs' %}active{% endif %}" href="{% url 'created-jobs' %}"><i class="lni lni-alarm"></i>Created Jobs <span class="notifi">{{ request.user.job_set.all|length }}</span></a></li>
                                 <li><a class="{% if request.resolver_match.url_name == 'jobs-applicants' %}active{% endif %}" href="{% url 'jobs-applicants' %}"><i class="lni lni-alarm"></i>Jobs Applicant <span class="notifi">{{ request.user.company.get_all_applicant }}</span></a></li>
                                 <li><a  href="notifications.html"><i class="lni lni-alarm"></i> Notifications <span

@@ -10,7 +10,7 @@ from django.views.generic import CreateView, View
 from jobsPy.accounts.forms import RegisterUserForm, LoginForm, ChangePassword
 from jobsPy.core.accounts_mixins import RedirectAuthenticatedUserMixin
 
-userMode = get_user_model()
+userModel = get_user_model()
 
 
 class RegisterView(RedirectAuthenticatedUserMixin, CreateView):

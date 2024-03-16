@@ -1,6 +1,9 @@
+from django.contrib import messages
 from django.views.generic import TemplateView, ListView
 
+from jobsPy.company.models import CompanyProfile
 from jobsPy.jobs.models import Category, Job
+from jobsPy.jobseekers.models import JobSeeker
 
 
 class IndexView(TemplateView):
@@ -8,18 +11,20 @@ class IndexView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # jobseekers = JobSeeker.objects.all().count()
-        # company = CompanyProfile.objects.all().count()
-        # jobs = Job.objects.all().count()
+        job_seekers = JobSeeker.objects.all().count()
+        company = CompanyProfile.objects.all().count()
+        jobs = Job.objects.all().count()
         # last_jobs = Job.objects.all().order_by('pk')[:4]
 
 
-        # context["jobseekers"] = jobseekers
-        # context["company"] = company
-        # context["coutries"] = jobs
+        context["job_seekers"] = job_seekers
+        context["company"] = company
+        context["jobs"] = jobs
         # context["last_jobs"] = last_jobs
-        # context["title"] = "JobsPy - Your Future Begins Here"
+        context["title"] = "JobsPy - Your Future Begins Here"
+
         return context
+
 
 
 class Contact(TemplateView):

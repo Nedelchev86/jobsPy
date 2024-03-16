@@ -1,14 +1,15 @@
+from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, ListView, DetailView, UpdateView
 
-from jobsPy.core.accounts_mixins import JobSeekerRequiredMixin
+from jobsPy.core.accounts_mixins import JobSeekerRequiredMixin, OwnerRequiredMixin
 from jobsPy.jobs.models import FavoriteJob, Applicant
 from jobsPy.jobseekers.forms import EditProfileFrom
 from jobsPy.jobseekers.models import JobSeeker
 
-
+userModel = get_user_model()
 # Create your views here.
 
 class JobSeekerDashboard(LoginRequiredMixin, JobSeekerRequiredMixin, TemplateView):
@@ -65,11 +66,12 @@ class JobSeekerDetails(DetailView):
     template_name = "jobseekers_details.html"
 
 
-class EditProfile(UpdateView):
+class EditProfile(OwnerRequiredMixin, UpdateView):
     model = JobSeeker
     template_name = "job_seekers/edit_profile.html"
     form_class = EditProfileFrom
     success_url = reverse_lazy("index")
+
 
     def get_context_data(self, **kwargs):
         contex = super().get_context_data(**kwargs)

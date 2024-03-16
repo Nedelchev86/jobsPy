@@ -31,50 +31,27 @@
                     <!-- End Main Content -->
                     <div class="col-lg-8 col-12">
                         <div class="job-items">
-
-                            {% for obj in object_list %}
-                                {{ obj }}
-                                {{ obj.user.jobseeker.first_name }}
-                                {{ obj.user.jobseeker.last_name }}
-              
-                                
-
-
+                            {% for jobs in object_list %}
                             <div class="manage-content">
                                 <div class="row align-items-center justify-content-center">
-                                    <div class="col-lg-2 col-md-5 col-12">
+                                    <div class="col-lg-5 col-md-5 col-12">
                                         <div class="title-img">
                                             <div class="can-img">
-                                                {% if obj.user.jobseeker.profile_picture %}
-
-                                                <img src="{{  obj.user.jobseeker.profile_picture.url }}" alt="#">
-                                                {% endif %}
+                                          
+                                                <img src="assets/images/jobs/manage-job1.png" alt="#">
                                             </div>
                                             <h3>{{ jobs.title }}<span>{{ jobs.category}}</span></h3>
                                         </div>
                                     </div>
                                     <div class="col-lg-2 col-md-2 col-12">
-                            
-                                        <p><span class="time {% if obj.status == 3 %}rejected{% elif obj.status == 2 %}apply{% endif %}">{{ obj.get_status }}</span></p>
+                                        <p><span class="time">Full-Time</span></p>
                                     </div>
-
-                                    <div class="col-lg-2 col-md-2 col-12">
-                                            <a href="{% url 'change-status' obj.pk %}" class="btn">Change</a>
-                                    </div>
-
-
                                     <div class="col-lg-3 col-md-3 col-12">
-                                        <p class="location"><i class="lni lni-map-marker"></i>{{ jobs.location}}</p>
+                                        <p class="location"><i class="lni lni-map-marker"></i>{{jobs.location}}</p>
                                     </div>
-
                                     <div class="col-lg-2 col-md-2 col-12">
-
-
                                         <div class="button">
-
-                                           {% if obj.user.jobseeker %}
-                                            <a href="{% url 'jobseeker-details' obj.user.jobseeker.pk %}" class="btn">Profile</a>
-                                            {% endif %}
+                                            <a href="{% url 'applicant_list' jobs.pk %}" class="btn">{{ jobs.applicants.all|length }}</a>
                                         </div>
                                     </div>
                                 </div>

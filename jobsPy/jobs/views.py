@@ -166,7 +166,7 @@ def add_to_favorites(request, pk):
 class ChangeStatus(UpdateView):
     model = Applicant
 
-    template_name = "change_status.html"
+    template_name = "jobs/change_status.html"
     form_class = ChangeStatus
 
     def get_success_url(self):

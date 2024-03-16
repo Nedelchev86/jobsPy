@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 
+from jobsPy.jobs.models import Applicant
 
 UserModel = get_user_model()
 

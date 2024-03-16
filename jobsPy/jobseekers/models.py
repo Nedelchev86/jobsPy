@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 
-from jobsPy.jobs.models import Applicant
+from jobsPy.jobs.models import Applicant, Skills
 
 UserModel = get_user_model()
 
@@ -34,7 +34,7 @@ class JobSeeker(models.Model):
     gender = models.CharField(blank=False, null=False,
                               choices=GENDER_TYPE, max_length=1)
     marital_status = models.CharField(blank=False, null=False, max_length=20, choices=MARITAL_STATUS)
-    # skills = models.ManyToManyField(Skills, related_name="skills")
+    skills = models.ManyToManyField(Skills, related_name="skills")
 
 
     @property

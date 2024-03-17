@@ -44,7 +44,6 @@ class CreatedJobs(LoginRequiredMixin, CompanyRoleRequiredMixin, ListView):
 
     def get_queryset(self):
         jobs = Job.objects.filter(user__id=self.request.user.pk).order_by('-id')
-        print(jobs)
         return jobs
 
 

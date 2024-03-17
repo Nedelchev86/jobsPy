@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block title %} Browse all Jobs -  JobsPy {% endblock %}
+
 {% block main_content %}
     <!-- Start Breadcrumbs -->
     <div class="breadcrumbs overlay">
@@ -7,8 +9,8 @@
             <div class="row">
                 <div class="col-12">
                     <div class="breadcrumbs-content">
-                        <h1 class="page-title">Blog Single Sidebar</h1>
-                        <p>Business plan draws on a wide range of knowledge from different business<br> disciplines.
+                        <h1 class="page-title">Test</h1>
+                        <p>BTest2<br> disciplines.
                             Business draws on a wide range of different business .</p>
                     </div>
                     <ul class="breadcrumb-nav">
@@ -26,7 +28,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
-              
+
                           {% for job in job_list %}
                         <div class="single-job">
                             <div class="job-image-list">

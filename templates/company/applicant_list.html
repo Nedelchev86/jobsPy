@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% block title %} Applicants - JobsPy {% endblock %}
 {% block main_content %}
 
     <!-- Start Breadcrumbs -->
@@ -74,7 +74,7 @@
                                         <div class="button">
 
                                            {% if obj.user.jobseeker %}
-                                            <a href="{% url 'jobseeker-details' obj.user.jobseeker.pk %}" class="btn">Profile</a>
+                                            <a href="{% url 'jobseeker details' obj.user.jobseeker.pk %}" class="btn">Profile</a>
                                             {% endif %}
                                         </div>
                                     </div>

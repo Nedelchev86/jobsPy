@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block title %} All Jobseekrs - JobsPy {% endblock %}
 {% block main_content %}
 
     <!-- Start Breadcrumbs -->
@@ -57,7 +58,7 @@
                                 {% endif %}
                                 <div class="right">
                                     <h3>
-                                        <a href="{% url 'job seeker-details' jobseeker.pk %}">{{ jobseeker.first_name}} {{ jobseeker.last_name }}</a>
+                                        <a href="{% url 'jobseeker details' jobseeker.pk %}">{{ jobseeker.first_name}} {{ jobseeker.last_name }}</a>
                                     </h3>
                                     <span class="deg">Web Developer</span>
                                     <ul class="experience">

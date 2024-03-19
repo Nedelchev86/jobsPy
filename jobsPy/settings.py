@@ -20,7 +20,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', None)
 # ALLOWED_HOSTS = ["localhost",]
 
 DEBUG = os.getenv('DEBUG')
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(' ')
 
 # Application definition
 

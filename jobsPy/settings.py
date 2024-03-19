@@ -14,10 +14,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-#@+a*dqxbh^fs7y)+_6$j^4$5!%)b25)p!r57@ffnz=u%45ooj'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# DEBUG = False
+#
+# ALLOWED_HOSTS = ["localhost",]
+
 DEBUG = True
-
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -133,3 +135,4 @@ LOGOUT_REDIRECT_URL = reverse_lazy("index")
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+

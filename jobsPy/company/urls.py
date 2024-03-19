@@ -14,3 +14,5 @@ urlpatterns = [
     path('details/<int:pk>/', CompanyDetails.as_view(), name="company-details"),
 
 ]
+
+

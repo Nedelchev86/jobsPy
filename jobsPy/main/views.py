@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.shortcuts import render
 from django.views.generic import TemplateView, ListView
 
 from jobsPy.company.models import CompanyProfile
@@ -54,3 +55,9 @@ class JobsCategory(ListView):
         context['selected_category'] = Category.objects.get(slug=self.kwargs.get('category_slug'))
         context["category"] = Category.objects.all()
         return context
+
+
+
+# def custom_403_page(request, exception):
+#     # Add any additional logic here
+#     return render(request, 'errors/403.html', status=403)

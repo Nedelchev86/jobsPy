@@ -53,7 +53,7 @@ class JobSeekerDashboard(LoginRequiredMixin, JobSeekerRequiredMixin, TemplateVie
 
 class AllEmployees(ListView):
     model = JobSeeker
-    template_name = "job_seekers/all_employers.html"
+    template_name = "job_seekers/all_jobseekers.html"
 
     # def get_queryset(self):
     #     # Use prefetch_related to fetch all related languages for each JobSeeker

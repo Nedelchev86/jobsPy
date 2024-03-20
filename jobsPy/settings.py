@@ -19,8 +19,11 @@ SECRET_KEY = os.getenv('SECRET_KEY', None)
 #
 # ALLOWED_HOSTS = ["localhost",]
 
-DEBUG = os.getenv('DEBUG', False)
+# DEBUG = os.getenv('DEBUG', False)
+DEBUG = os.environ.get('DEBUG', False) == 'True'
+
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(' ')
+# ALLOWED_HOSTS = ["localhost",]
 
 
 INSTALLED_APPS = [
@@ -29,6 +32,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    "whitenoise.runserver_nostatic",
     'django.contrib.staticfiles',
 
     'jobsPy.accounts',
@@ -119,6 +123,8 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [ BASE_DIR / 'static',]
+#
+# STATIC_ROOT = BASE_DIR / "static"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -142,4 +148,4 @@ if not DEBUG:
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
     # Enable the WhiteNoise storage backend, which compresses static files to reduce disk use
     # and renames the files with unique names for each version to support long-term caching
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'

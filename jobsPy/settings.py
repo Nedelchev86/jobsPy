@@ -3,6 +3,7 @@ from pathlib import Path
 
 from django.urls import reverse_lazy
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -15,12 +16,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECRET_KEY = 'django-insecure-#@+a*dqxbh^fs7y)+_6$j^4$5!%)b25)p!r57@ffnz=u%45ooj'
 SECRET_KEY = os.getenv('SECRET_KEY', None)
 
-DEBUG = False
+# DEBUG = True
 #
 # ALLOWED_HOSTS = ["localhost",]
 
 # DEBUG = os.getenv('DEBUG', False)
-# DEBUG = os.environ.get('DEBUG', False) == 'True'
+DEBUG = os.environ.get('DEBUG', False) == 'True'
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(' ')
 
@@ -144,9 +145,16 @@ LOGOUT_REDIRECT_URL = reverse_lazy("index")
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+
+# WHITENOISE_SKIP_COMPRESS_EXTENSIONS = []
+
 if not DEBUG:
     # Tell Django to copy static assets into a path called `staticfiles` (this is specific to Render)
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
     # Enable the WhiteNoise storage backend, which compresses static files to reduce disk use
     # and renames the files with unique names for each version to support long-term caching
+
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+
+
+CSRF_TRUSTED_ORIGINS = ['https://localhost']

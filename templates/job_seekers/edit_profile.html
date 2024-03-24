@@ -45,7 +45,7 @@
                                 {% for field in form %}
                     <div class="form-group">
                     {% if field.field.required %}
-                    <span>*{{ field.label_tag }}</span>
+                    <span>{{  field.label_tag }}</span>
                         {% else %}
                         {{ field.label_tag }}
                         {% endif %}

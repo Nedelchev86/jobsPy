@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.contrib.auth.mixins import UserPassesTestMixin, AccessMixin
 from django.core.exceptions import PermissionDenied
 from django.http import HttpResponseForbidden, HttpResponseRedirect
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.urls import reverse
 
 
@@ -11,16 +11,24 @@ class JobSeekerRequiredMixin:
         if request.user.is_authenticated and request.user.role == "jobseeker":
             return super().dispatch(request, *args, **kwargs)
         else:
-            return HttpResponseForbidden("You do not have permission to access this page.")
+            return render(request, '403.html', status=403)
+            # return HttpResponseForbidden("You do not have permission to access this page.")
 
+
+# class CompanyRoleRequiredMixin:
+#     def dispatch(self, request, *args, **kwargs):
+#         if request.user.is_authenticated and request.user.role == "company":
+#             return super().dispatch(request, *args, **kwargs)
+#         else:
+#             return HttpResponseForbidden("You do not have permission to access this page.")
 
 class CompanyRoleRequiredMixin:
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated and request.user.role == "company":
             return super().dispatch(request, *args, **kwargs)
         else:
-            return HttpResponseForbidden("You do not have permission to access this page.")
 
+            return render(request, '403.html', status=403)
 
 class RedirectAuthenticatedUserMixin(UserPassesTestMixin):
     def test_func(self):

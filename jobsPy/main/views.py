@@ -57,7 +57,5 @@ class JobsCategory(ListView):
         return context
 
 
-
-# def custom_403_page(request, exception):
-#     # Add any additional logic here
-#     return render(request, 'errors/403.html', status=403)
+def custom_403(request, exception):
+    return render(request, '403.html')

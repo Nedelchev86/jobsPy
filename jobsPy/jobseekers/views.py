@@ -6,8 +6,8 @@ from django.views.generic import TemplateView, ListView, DetailView, UpdateView,
 
 from jobsPy.core.accounts_mixins import JobSeekerRequiredMixin, OwnerRequiredMixin
 from jobsPy.jobs.models import FavoriteJob, Applicant
-from jobsPy.jobseekers.forms import EditProfileFrom, EducationForm
-from jobsPy.jobseekers.models import JobSeeker, Education
+from jobsPy.jobseekers.forms import EditProfileFrom, EducationForm, WrokExperienceForm
+from jobsPy.jobseekers.models import JobSeeker, Education, Experience
 
 userModel = get_user_model()
 # Create your views here.
@@ -70,8 +70,7 @@ class EditProfile(OwnerRequiredMixin, UpdateView):
     model = JobSeeker
     template_name = "job_seekers/edit_profile.html"
     form_class = EditProfileFrom
-    success_url = reverse_lazy("index")
-
+    success_url = reverse_lazy("job seeker dashboard")
 
     def get_context_data(self, **kwargs):
         contex = super().get_context_data(**kwargs)
@@ -112,3 +111,20 @@ class AddEducation(CreateView):
 
     def get_success_url(self):
         return reverse_lazy('edit-profile', kwargs={'pk': self.kwargs['pk']})
+
+
+class AddWorkExperience(CreateView):
+    # model = Experience
+    template_name = "job_seekers/add_work_experience.html"
+    form_class = WrokExperienceForm
+
+
+    def form_valid(self, form):
+        jobseeker_pk = self.kwargs['pk']
+        jobseeker = get_object_or_404(JobSeeker, pk=jobseeker_pk)
+        # Set the job_seeker field and save the form
+        form.instance.job_seeker = jobseeker
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('job seeker dashboard')

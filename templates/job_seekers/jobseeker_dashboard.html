@@ -101,29 +101,29 @@
                                     </div>
                                     <div class="col-lg-7 col-md-7 col-12">
                                         <div class="content-right">
-                                            <h5 class="title-main">Contact Info</h5>
+                                            <h5 class="title-main">Profile Information</h5>
                                             <!-- Single List -->
                                             <div class="single-list">
                                                 <h5 class="title">Location</h5>
-                                                <p>New York , USA</p>
+                                                <p>{{ request.user.jobseeker.occupation }} , {{ request.user.jobseeker.nationality }}</p>
                                             </div>
                                             <!-- Single List -->
                                             <!-- Single List -->
                                             <div class="single-list">
                                                 <h5 class="title">E-mail</h5>
-                                                <p>youremail@gmail.com</p>
+                                                <p> {{request.user}} </p>
                                             </div>
                                             <!-- Single List -->
                                             <!-- Single List -->
                                             <div class="single-list">
                                                 <h5 class="title">Phone</h5>
-                                                <p>+999 565 562</p>
+                                                <p>{{request.user.jobseeker.phone_number}}</p>
                                             </div>
                                             <!-- Single List -->
                                             <!-- Single List -->
                                             <div class="single-list">
-                                                <h5 class="title">Website Linked</h5>
-                                                <p><a href="#">yourwebsite.com</a></p>
+                                                <h5 class="title">Website</h5>
+                                                <p><a href="#">{{ request.user.jobseeker.website }}</a></p>
                                             </div>
                                             <!-- Single List -->
                                         </div>
@@ -134,67 +134,53 @@
                             <!-- Start Single Section -->
                             <div class="single-section">
                                 <h4>About</h4>
-                                <p class="font-size-4 mb-8">A talented professional with an academic background
-                                    in IT and proven
-                                    commercial development experience as C++ developer since 1999. Has a sound
-                                    knowledge of the software
-                                    development life cycle. Was involved in more than 140 software development
-                                    outsourcing projects.</p>
-                                <p class="font-size-4 mb-8">Programming Languages: C/C++, .NET C++, Python,
-                                    Bash, Shell, PERL, Regular
-                                    expressions, Python, Active-script.</p>
+                                <p class="font-size-4 mb-8">
+                                    {{ request.user.jobseeker.about }}
+                                </p>
+
                             </div>
                             <!-- End Single Section -->
                             <!-- Start Single Section -->
                             <div class="single-section skill">
                                 <h4>Skills</h4>
                                 <ul class="list-unstyled d-flex align-items-center flex-wrap">
-                                    <li>
-                                        <a href="#">Agile</a>
+                                    {%  for skill in request.user.jobseeker.skills.all %}
+                                      <li>
+                                        <a href="#">{{ skill}}</a>
                                     </li>
-                                    <li>
-                                        <a href="#">Wireframing</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Prototyping</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Information</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Waterfall Model</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">New Layout</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Ui/Ux Design</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Web Design</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Graphics Design</a>
-                                    </li>
+                                    {% endfor %}
+
+
                                 </ul>
                             </div>
                             <!-- End Single Section -->
                             <!-- Start Single Section -->
                             <div class="single-section exprerience">
-                                <h4>Work Exprerience</h4>
-                                <!-- Single Exp -->
+                              <a style="float: right" class="education-link" href="{% url 'add-work-experience' user.jobseeker.pk %}">Add Work Experience </a>
+                                <h4>Work Experience</h4>
+
+                                {% for experience in user.jobseeker.experience.all %}
+       
+                                    
+
                                 <div class="single-exp mb-30">
                                     <div class="d-flex align-items-center pr-11 mb-9 flex-wrap flex-sm-nowrap">
                                         <div class="image">
-                                            <img src="{% static '/images/resume/work1.png' %}" alt="#">
+                                            {% if experience.image %}
+                                                <img src="{{ experience.image}}" alt="#" width="80" height="80">
+                                            {% else %}
+                                            <img  width="80" height="80" src="{% static '/images/resume/work.jpg' %}" alt="#">
+                                            {% endif %}
                                         </div>
                                         <div class="w-100 mt-n2">
                                             <h3 class="mb-0">
-                                                <a href="#">Lead Product Designer</a>
+                                                     <a href="#">test </a>
+                                                <a href="#"> {{ experience.company }} </a>
                                             </h3>
-                                            <a href="#">Airabnb</a>
+
+                                            <a href="#">{{ experience.description }}</a>
                                             <div class="d-flex align-items-center justify-content-md-between flex-wrap">
-                                                <a href="#">Jun 2020 - April 2023- 3 years</a>
+                                                <a href="#">{{ experience.start_date}} - {{ experience.end_date}}</a>
                                                 <a href="#" class="font-size-3 text-gray">
                                                     <span class="mr-2" style="margin-top: -2px"><i
                                                             class="lni lni-map-marker"></i></span>New York, USA</a>
@@ -202,46 +188,32 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- End Single Exp -->
-                                <!-- Single Exp -->
-                                <div class="single-exp mb-30">
-                                    <div class="d-flex align-items-center pr-11 mb-9 flex-wrap flex-sm-nowrap">
-                                        <div class="image">
-                                            <img src="{% static '/images/resume/work2.png' %}" alt="#">
-                                        </div>
-                                        <div class="w-100 mt-n2">
-                                            <h3 class="mb-0">
-                                                <a href="#">Senior UI/UX Designer</a>
-                                            </h3>
-                                            <a href="#">Google Inc</a>
-                                            <div class="d-flex align-items-center justify-content-md-between flex-wrap">
-                                                <a href="#">Jun 2020 - April 2023- 3 years</a>
-                                                <a href="#" class="font-size-3 text-gray">
-                                                    <span class="mr-2" style="margin-top: -2px"><i
-                                                            class="lni lni-map-marker"></i></span>New York, USA</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- End Single Exp -->
+                                {% endfor %}
+
+
                             </div>
-                            <!-- End Single Section -->
-                            <!-- Start Single Section -->
+
                             <div class="single-section education">
+                     <a style="float: right" class="education-link" href="{% url 'add-education' user.jobseeker.pk %}">Add Education</a>
                                 <h4>Education</h4>
-                                <!-- Single Edu -->
+
+                                {%  for education in request.user.jobseeker.educations.all %}
                                 <div class="single-edu mb-30">
                                     <div class="d-flex align-items-center pr-11 mb-9 flex-wrap flex-sm-nowrap">
-                                        <div class="image">
-                                            <img src="{% static '/images/resume/edu1.svg' %}" alt="#">
+                                        <div class="image" >
+                                            {% if education.image %}
+                                            <img src="{{ education.image}}" alt="#" width="80" height="80">
+                                            {% else %}
+                                            <img src="{% static 'images/resume/education.jpg' %}" alt="#" width="80" height="80">
+                                            {% endif %}
                                         </div>
                                         <div class="w-100 mt-n2">
                                             <h3 class="mb-0">
-                                                <a href="#">Masters in Art Design</a>
+                                                <a href="#">{{ education.institution}} </a>
                                             </h3>
-                                            <a href="#">Harvard University</a>
+                                            <a href="#">{{ education.description }}</a>
                                             <div class="d-flex align-items-center justify-content-md-between flex-wrap">
-                                                <a href="#">Jun 2020 - April 2023- 3 years</a>
+                                                <a href="#">{{ education.start_date}}- {{ education.end_date}}</a>
                                                 <a href="#" class="font-size-3 text-gray">
                                                     <span class="mr-2" style="margin-top: -2px"><i
                                                             class="lni lni-map-marker"></i></span>Brylin, USA</a>
@@ -249,28 +221,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- End Single Edu -->
-                                <!-- Single Edu -->
-                                <div class="single-edu mb-30">
-                                    <div class="d-flex align-items-center pr-11 mb-9 flex-wrap flex-sm-nowrap">
-                                        <div class="image">
-                                            <img src="{% static '/images/resume/edu2.svg' %}" alt="#">
-                                        </div>
-                                        <div class="w-100 mt-n2">
-                                            <h3 class="mb-0">
-                                                <a href="#">Bachelor in Software Engineering</a>
-                                            </h3>
-                                            <a href="#">Manipal Institute of Technology</a>
-                                            <div class="d-flex align-items-center justify-content-md-between flex-wrap">
-                                                <a href="#">Fed 2019 - April 2023 - 4 years </a>
-                                                <a href="#" class="font-size-3 text-gray">
-                                                    <span class="mr-2" style="margin-top: -2px"><i
-                                                            class="lni lni-map-marker"></i></span>New York, USA</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- End Single Edu -->
+                                {% endfor %}
+
                             </div>
                             <!-- End Single Section -->
                         </div>

@@ -1,11 +1,11 @@
 from django.forms import ModelForm, ModelMultipleChoiceField, CheckboxSelectMultiple
 
 from jobsPy.jobs.models import Skills
-from jobsPy.jobseekers.models import JobSeeker, Education
+from jobsPy.jobseekers.models import JobSeeker, Education, Experience
 
 
 class EditProfileFrom(ModelForm):
-
+    required_css_class = 'required'
     # languages = ModelMultipleChoiceField(
     #                     queryset=Skills.objects.all(),
     #                     label="Language",
@@ -34,9 +34,17 @@ class EditProfileFrom(ModelForm):
 
 
 class EducationForm(ModelForm):
-
+    required_css_class = 'required'
     # tags = forms.ModelMultipleChoiceField(label='Tags', queryset=Tag.objects.order_by('name'),widget=forms.SelectMultiple)
 
     class Meta:
         model = Education
+        exclude = ["job_seeker"]
+
+class WrokExperienceForm(ModelForm):
+    required_css_class = 'required'
+    # tags = forms.ModelMultipleChoiceField(label='Tags', queryset=Tag.objects.order_by('name'),widget=forms.SelectMultiple)
+
+    class Meta:
+        model = Experience
         exclude = ["job_seeker"]

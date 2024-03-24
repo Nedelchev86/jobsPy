@@ -8079,3 +8079,22 @@ blockquote .shape {
   height: auto;
   border-radius: 20px;
 }
+
+label.required::after {
+    content: ' *';
+    color: red;
+}
+
+.education-link {
+  background: #2042e3;
+  color: #fff;
+
+  padding: 8px 15px;
+  border-radius: 3px;
+  font-size: 13px;
+}
+
+.education-link:hover {
+  background: #2042e314;
+  color: #081828;
+}

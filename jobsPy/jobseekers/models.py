@@ -43,8 +43,19 @@ class JobSeeker(models.Model):
 
 
 class Education(models.Model):
+
     job_seeker = models.ForeignKey(JobSeeker, on_delete=models.CASCADE, related_name='educations')
-    degree = models.CharField(max_length=50)
+    image = models.URLField(max_length=200, blank=True, null=True)
     institution = models.CharField(max_length=100)
-    start_date = models.DateField()
+    description = models.CharField(max_length=100)
+    start_date = models.DateField(null=True, blank=True)
+    end_date = models.DateField(null=True, blank=True)
+
+
+class Experience(models.Model):
+    job_seeker = models.ForeignKey(JobSeeker, on_delete=models.CASCADE, related_name='experience')
+    image = models.URLField(max_length=200, blank=True, null=True)
+    company = models.CharField(max_length=100)
+    description = models.CharField(max_length=500)
+    start_date = models.DateField(null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)

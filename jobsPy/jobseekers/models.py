@@ -2,6 +2,7 @@ from django.contrib.auth import get_user_model
 from django.db import models
 
 from jobsPy.jobs.models import Applicant, Skills
+from jobsPy.main.models import Seniority
 
 UserModel = get_user_model()
 
@@ -16,14 +17,13 @@ MARITAL_STATUS= (
 )
 
 
-
-
 class JobSeeker(models.Model):
     user = models.OneToOneField(UserModel, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=50, blank=False, null=False)
     last_name = models.CharField(max_length=50, blank=False, null=False)
     nationality = models.CharField(max_length=50, blank=False, null=False)
     occupation = models.CharField(max_length=50, blank=False, null=False)
+    seniority = models.ForeignKey(Seniority, on_delete=models.SET_NULL, blank=True, null=True)
     website = models.CharField(max_length=70, blank=True, null=True)
     linkedin = models.CharField(blank=False, null=False, max_length=50)
     github = models.CharField(blank=False, null=False, max_length=50)
@@ -35,7 +35,6 @@ class JobSeeker(models.Model):
                               choices=GENDER_TYPE, max_length=1)
     marital_status = models.CharField(blank=False, null=False, max_length=20, choices=MARITAL_STATUS)
     skills = models.ManyToManyField(Skills, related_name="skills")
-
 
     @property
     def get_user_all_applicant(self):

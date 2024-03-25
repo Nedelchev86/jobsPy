@@ -3,6 +3,8 @@ from django.db import models
 from django.utils.crypto import get_random_string
 from django.utils.text import slugify
 
+from jobsPy.main.models import Seniority
+
 # Create your models here.
 
 UserModel = get_user_model()
@@ -51,6 +53,7 @@ class Job(models.Model):
     title = models.CharField(max_length=300)
     slug = models.SlugField(allow_unicode=True, max_length=100, unique=True)
     category = models.ForeignKey(Category,  on_delete=models.CASCADE)
+    seniority = models.ForeignKey(Seniority, on_delete=models.SET_NULL, blank=True, null=True)
     description = models.TextField()
     job_image = models.ImageField(null=True, blank=True, upload_to="jobs/image", default="images/default/default.jpg")
     vacancy = models.IntegerField(null=True, blank=True)

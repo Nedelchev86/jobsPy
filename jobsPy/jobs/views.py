@@ -76,7 +76,7 @@ class JobDetails(DetailView):
 class EditJob(LoginRequiredMixin, CompanyRoleRequiredMixin, UpdateView):
     model = Job
     form_class = EditeJobForm
-    template_name = "edit-job.html"
+    template_name = "jobs/edit-job.html"
 
     def get_success_url(self):
 

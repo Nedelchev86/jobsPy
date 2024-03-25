@@ -11,7 +11,7 @@ class CreateJobForms(ModelForm):
 
     class Meta:
         model = Job
-        fields = ['title', 'category', 'description',  'vacancy', 'location', 'job_type', 'salary',  'deadline',
+        fields = ['title', 'category','seniority', 'description',   'vacancy', 'location', 'job_type', 'salary',  'deadline',
                   'job_image', 'needed_skills']
         widgets = {
             'deadline': DateInput(attrs={'type': 'date'}),
@@ -47,7 +47,7 @@ class ApplyForJobForms(ModelForm):
 class EditeJobForm(CreateJobForms):
     class Meta:
         model = Job
-        fields = ['title', 'category', 'description',  'vacancy', 'location', 'job_type', 'salary',  'deadline',
+        fields = ['title',  'category', 'seniority', 'description',  'vacancy', 'location', 'job_type', 'salary',  'deadline',
                   'job_image', "is_published", "needed_skills"]
         widgets = {
             'deadline': DateInput(attrs={'type': 'date'}),

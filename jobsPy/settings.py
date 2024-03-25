@@ -156,6 +156,5 @@ if not DEBUG:
 
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
-print(os.getenv("CSRF_DJANGO"))
 
 CSRF_TRUSTED_ORIGINS = ['https://localhost', 'http://localhost', 'http://http://127.0.0.1:8000/', 'http://127.0.0.1:8000/']

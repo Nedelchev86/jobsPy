@@ -14,6 +14,7 @@ urlpatterns = [
     path('company/', include('jobsPy.company.urls')),
     path('jobs/', include('jobsPy.jobs.urls')),
     path('contact/', Contact.as_view(), name="contact"),
+    path('api/', include('jobsPy.blog.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 # + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

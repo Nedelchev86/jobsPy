@@ -64,25 +64,25 @@
                                             <!-- Single List -->
                                             <div class="single-list">
                                                 <h5 class="title">Location</h5>
-                                                <p>New York , USA</p>
+                                                <p>{{ object.occupation}} , {{ object.nationality }}</p>
                                             </div>
                                             <!-- Single List -->
                                             <!-- Single List -->
                                             <div class="single-list">
                                                 <h5 class="title">E-mail</h5>
-                                                <p>youremail@gmail.com</p>
+                                                <p>{{ object.user}}</p>
                                             </div>
                                             <!-- Single List -->
                                             <!-- Single List -->
                                             <div class="single-list">
                                                 <h5 class="title">Phone</h5>
-                                                <p>+999 565 562</p>
+                                                <p>{{ object.phone_number}}</p>
                                             </div>
                                             <!-- Single List -->
                                             <!-- Single List -->
                                             <div class="single-list">
                                                 <h5 class="title">Website Linked</h5>
-                                                <p><a href="#">yourwebsite.com</a></p>
+                                                <p><a href="#">{{ object.website }}</a></p>
                                             </div>
                                             <!-- Single List -->
                                         </div>
@@ -93,15 +93,8 @@
                             <!-- Start Single Section -->
                             <div class="single-section">
                                 <h4>About</h4>
-                                <p class="font-size-4 mb-8">A talented professional with an academic background
-                                    in IT and proven
-                                    commercial development experience as C++ developer since 1999. Has a sound
-                                    knowledge of the software
-                                    development life cycle. Was involved in more than 140 software development
-                                    outsourcing projects.</p>
-                                <p class="font-size-4 mb-8">Programming Languages: C/C++, .NET C++, Python,
-                                    Bash, Shell, PERL, Regular
-                                    expressions, Python, Active-script.</p>
+                                <p class="font-size-4 mb-8">{{ object.about}}</p>
+
                             </div>
                             <!-- End Single Section -->
                             <!-- Start Single Section -->
@@ -116,23 +109,26 @@
 
                                 </ul>
                             </div>
-                            <!-- End Single Section -->
-                            <!-- Start Single Section -->
+
                             <div class="single-section exprerience">
                                 <h4>Work Exprerience</h4>
-                                <!-- Single Exp -->
+                                {% for experience in object.experience.all %}
                                 <div class="single-exp mb-30">
                                     <div class="d-flex align-items-center pr-11 mb-9 flex-wrap flex-sm-nowrap">
                                         <div class="image">
-                                            <img src="{% static '/images/resume/work1.png' %}" alt="#">
+                                            {% if experience.image %}
+                                                <img width="80" height="80"  src="{{ experience.image }}"  alt="#">
+                                            {% else %}
+                                             <img width="80" height="80"  src="{% static 'images/resume/work.jpg' %}"  alt="#">
+                                            {% endif %}
                                         </div>
                                         <div class="w-100 mt-n2">
                                             <h3 class="mb-0">
-                                                <a href="#">Lead Product Designer</a>
+                                                <a href="#">{{ experience.company}}</a>
                                             </h3>
-                                            <a href="#">Airabnb</a>
+                                            <a href="#">{{ experience.description }}</a>
                                             <div class="d-flex align-items-center justify-content-md-between flex-wrap">
-                                                <a href="#">Jun 2020 - April 2023- 3 years</a>
+                                                <a href="#">{{ experience.start_date}} - {{ experience.end_date}}</a>
                                                 <a href="#" class="font-size-3 text-gray">
                                                     <span class="mr-2" style="margin-top: -2px"><i
                                                             class="lni lni-map-marker"></i></span>New York, USA</a>
@@ -140,31 +136,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- End Single Exp -->
-                                <!-- Single Exp -->
-                                <div class="single-exp mb-30">
-                                    <div class="d-flex align-items-center pr-11 mb-9 flex-wrap flex-sm-nowrap">
-                                        <div class="image">
-                                            <img src="{% static '/images/resume/work2.png' %}" alt="#">
-                                        </div>
-                                        <div class="w-100 mt-n2">
-                                            <h3 class="mb-0">
-                                                <a href="#">Senior UI/UX Designer</a>
-                                            </h3>
-                                            <a href="#">Google Inc</a>
-                                            <div class="d-flex align-items-center justify-content-md-between flex-wrap">
-                                                <a href="#">Jun 2020 - April 2023- 3 years</a>
-                                                <a href="#" class="font-size-3 text-gray">
-                                                    <span class="mr-2" style="margin-top: -2px"><i
-                                                            class="lni lni-map-marker"></i></span>New York, USA</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- End Single Exp -->
+                                {% endfor %}
+
                             </div>
-                            <!-- End Single Section -->
-                            <!-- Start Single Section -->
+
                             <div class="single-section education">
                                 <h4>Education</h4>
                                 <!-- Single Edu -->
@@ -172,7 +147,11 @@
                                 <div class="single-edu mb-30">
                                     <div class="d-flex align-items-center pr-11 mb-9 flex-wrap flex-sm-nowrap">
                                         <div class="image">
-                                            <img src="{% static '/images/resume/edu1.svg' %}" alt="#">
+                                            {% if education.image %}
+                                                 <img width="80" height="80"  src="{{ education.image }}"  alt="#">
+                                            {% else %}
+                                            <img width="80" height="80" src="{% static '/images/resume/education.jpg' %}" alt="#">
+                                            {% endif %}
                                         </div>
                                         <div class="w-100 mt-n2">
                                             <h3 class="mb-0">
@@ -189,12 +168,9 @@
                                     </div>
                                 </div>
                                 {% endfor %}
-                                <!-- End Single Edu -->
-                                <!-- Single Edu -->
 
-                                <!-- End Single Edu -->
                             </div>
-                            <!-- End Single Section -->
+
                                        
                         </div>
                     </div>

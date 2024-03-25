@@ -1,15 +1,13 @@
 document.addEventListener('DOMContentLoaded', function() {
-    console.log("test");
     fetch('/api/blog/')
         .then(response => response.json())
         .then(data => {
             const blogList = document.getElementById('blog-list');
             data.forEach(blog => {
-                console.log(blog);
                 const div = document.createElement('div');
                 div.classList.add('col-lg-6', 'col-12');
                 div.innerHTML = `
-                    <div class="single-news wow fadeInUp" data-wow-delay=".5s">
+                    <div class="single-news wow">
                         <div class="image">
                             <img class="thumb" src="${blog.image_url_1}" alt="#">
                         </div>
@@ -24,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             </div>
                             <p>${blog.description}</p>
                             <div class="button">
-                                <a href="blog-single.html" class="btn">Read More</a>
+                                <a href="/blog/${blog.id}/" class="btn">Read More</a>
                             </div>
                         </div>
                     </div>`;

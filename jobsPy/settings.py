@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'jobsPy.jobseekers',
     'jobsPy.company',
     'jobsPy.jobs',
+    'jobsPy.blog',
 
 ]
 

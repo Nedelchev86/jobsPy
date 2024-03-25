@@ -1,0 +1,162 @@
+{% extends 'base.html' %}      
+{% load static %}
+{% block title %} Blogs - JobsPy{% endblock %}
+{% block main_content %}
+     <script src="{% static 'js/blog.js' %}"></script>
+
+    <!-- End Header Area -->
+
+    <!-- Start Breadcrumbs -->
+    <div class="breadcrumbs overlay">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumbs-content">
+                        <h1 class="page-title">Blog Grid Sidebar</h1>
+                        <p>Business plan draws on a wide range of knowledge from different business<br> disciplines.
+                            Business draws on a wide range of different business .</p>
+                    </div>
+                    <ul class="breadcrumb-nav">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li>Blog Grid Sidebar</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Breadcrumbs -->
+
+    <!-- Start Blog Singel Area -->
+    <section class="section latest-news-area blog-list">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-7 col-12">
+                    <div id="blog-list" class="row">
+{#                        <div class="col-lg-6 col-12">#}
+{#                            <!-- Single News -->#}
+{#                            <div class="single-news wow fadeInUp" data-wow-delay=".5s">#}
+{#                                <div class="image">#}
+{#                                    <img class="thumb" src="assets/images/blog/blog2.jpg" alt="#">#}
+{#                                </div>#}
+{#                                <div class="content-body">#}
+{#                                    <h4 class="title"><a href="blog-single.html">Today From Connecting With#}
+{#                                            Potential Employers</a></h4>#}
+{#                                    <div class="meta-details">#}
+{#                                        <ul>#}
+{#                                            <li><a href="#"><i class="lni lni-tag"></i> Career advice</a></li>#}
+{#                                            <li><a href="#"><i class="lni lni-calendar"></i> 10-10-2023</a></li>#}
+{#                                            <li><a href="#"><i class="lni lni-eye"></i> 55</a></li>#}
+{#                                        </ul>#}
+{#                                    </div>#}
+{#                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem#}
+{#                                        Ipsum#}
+{#                                        has been the standard.</p>#}
+{#                                    <div class="button">#}
+{#                                        <a href="blog-single.html" class="btn">Read More</a>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <!-- End Single News -->#}
+{#                        </div>#}
+
+
+                    </div>
+                    <!-- Pagination -->
+                    <div class="pagination center">
+                        <ul class="pagination-list">
+                            <li><a href="#"><i class="lni lni-chevron-left"></i></a></li>
+                            <li class="active"><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#"><i class="lni lni-chevron-right"></i></a></li>
+                        </ul>
+                    </div>
+                    <!--/ End Pagination -->
+                </div>
+                <aside class="col-lg-4 col-md-5 col-12">
+                    <div class="sidebar">
+                        <div class="widget search-widget">
+                            <h5 class="widget-title"><span>Search This Site</span></h5>
+                            <form action="#">
+                                <input type="text" placeholder="Search Here...">
+                                <button type="submit"><i class="lni lni-search-alt"></i></button>
+                            </form>
+                        </div>
+                        <div class="widget popular-feeds">
+                            <h5 class="widget-title"><span>Popular Feeds</span></h5>
+                            <div class="popular-feed-loop">
+                                <div class="single-popular-feed">
+                                    <div class="feed-desc">
+                                        <h6 class="post-title"><a href="#">Tips to write an impressive resume online for
+                                                beginner</a></h6>
+                                        <span class="time"><i class="lni lni-calendar"></i> 05th Nov 2023</span>
+                                    </div>
+                                </div>
+                                <div class="single-popular-feed">
+                                    <div class="feed-desc">
+                                        <h6 class="post-title"><a href="#">10 most important SEO focus areas for
+                                                colleges
+                                                and universities</a></h6>
+                                        <span class="time"><i class="lni lni-calendar"></i> 24th March 2023</span>
+                                    </div>
+                                </div>
+                                <div class="single-popular-feed">
+                                    <div class="feed-desc">
+                                        <h6 class="post-title"><a href="#">7 things you should never say to your boss in
+                                                your joblife</a></h6>
+                                        <span class="time"><i class="lni lni-calendar"></i> 30th Jan 2023</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget categories-widget">
+                            <h5 class="widget-title"><span>Categories</span></h5>
+                            <ul class="custom">
+                                <li>
+                                    <a href="#">Announcement<span>26</span></a>
+                                </li>
+                                <li>
+                                    <a href="#">Indeed Events<span>30</span></a>
+                                </li>
+                                <li>
+                                    <a href="#">Tips & Tricks<span>71</span></a>
+                                </li>
+                                <li>
+                                    <a href="#">Experiences<span>56</span></a>
+                                </li>
+                                <li>
+                                    <a href="#">Case Studies<span>15</span></a>
+                                </li>
+                                <li>
+                                    <a href="#">Labor Market News<span>12</span></a>
+                                </li>
+                                <li>
+                                    <a href="#">HR Best Practices<span>17</span></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="widget popular-tag-widget">
+                            <h5 class="widget-title"><span>Popular Tags</span></h5>
+                            <div class="tags">
+                                <a href="#">Jobpress</a>
+                                <a href="#">Design</a>
+                                <a href="#">HR</a>
+                                <a href="#">Recruiter</a>
+                                <a href="#">Interview</a>
+                                <a href="#">Employee</a>
+                                <a href="#">Labor</a>
+                                <a href="#">Salary</a>
+                                <a href="#">Consult</a>
+                                <a href="#">Business</a>
+                                <a href="#">Candidates</a>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+  {% endblock %}

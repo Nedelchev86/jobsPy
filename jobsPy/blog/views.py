@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
-from rest_framework import generics
+from rest_framework import generics, permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from jobsPy.blog.models import BlogPost
+from jobsPy.blog.permission import IsAuthor
 from jobsPy.blog.serializers import BlogPostSerializer
 
 
@@ -13,7 +14,14 @@ from jobsPy.blog.serializers import BlogPostSerializer
 
 class BlogPostListCreateAPIView(generics.ListCreateAPIView):
     queryset = BlogPost.objects.all()
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     serializer_class = BlogPostSerializer
+
+    def get_permissions(self):
+        if self.request.method == 'POST':
+            return [IsAuthor()]
+        return super().get_permissions()
+
 
 
 class BlogPostRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):

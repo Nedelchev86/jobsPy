@@ -76,6 +76,18 @@
                 </div>
                 <aside class="col-lg-4 col-md-5 col-12">
                     <div class="sidebar">
+                                  {% if 'blog.add_blogpost' in perms %}
+                                <div class="sidebar-widget">
+                                <div class="inner">
+                            <div class="row m-n2 button">
+                                        <div class=" col-lg-12  ">
+                                            <a href="{% url 'blog-create' %}" class="d-block btn"><i class="fa fa-heart-o mr-1"></i> Add Blog Post</a>
+                                        </div>
+                                     </div>
+                                </div>
+                            </div>
+
+                    {% endif %}
                         <div class="widget search-widget">
                             <h5 class="widget-title"><span>Search This Site</span></h5>
                             <form action="#">

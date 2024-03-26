@@ -1,48 +1,4 @@
-/* ===========================
-Index Of css
 
-01. Veriables CSS
-02. Normalize CSS
-03. Header CSS
-04. Hero CSS
-05. About CSS
-06. Testimonial CSS
-07. Pricing CSS
-08. Faq CSS
-09. Blog CSS
-10. Clients CSS
-11. Apply Process CSS
-12. Job Category CSS
-13. Find Job CSS
-14. Featured Job CSS
-15. Call Action CSS
-16. Job Details CSS
-17. Post Job CSS
-18. Resume CSS
-19. Privacy Policy CSS
-20. Add Resume CSS
-21. Manage Resumes CSS
-22. Job Alerts CSS
-23. Manage Jobs CSS
-24. Manage Applications CSS
-25. Browse Resumes CSS
-26. Bookmarked CSS
-27. Notifications CSS
-28. Change Password CSS
-29. Responsive CSS
-30. Contact CSS
-31. Error CSS
-32. Mail Success CSS
-33. Modal CSS
-34. Footer CSS
-
-========================== */
-/*======================================
-    Variables
-========================================*/
-/*======================================
-    Normalize CSS
-========================================*/
 @import url("https://fonts.googleapis.com/css2?family=Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap");
 html {
   scroll-behavior: smooth;
@@ -5765,25 +5721,39 @@ blockquote .shape {
 .change-password .password-content form label {
   color: #081828;
   font-size: 14px;
-  display: block;
+  /*display: block;*/
   margin-bottom: 5px;
 }
 
 .change-password .password-content form input {
   height: 50px;
-  width: 100%;
+  /*width: 100%;*/
   border: 1px solid #eee;
   border-radius: 5px;
   padding: 0px 20px;
   font-size: 14px;
 }
 
+.change-password .password-content form input[type='checkbox']{
+  height: 20px;
+
+}
+
 .change-password .password-content .form-group {
   margin-bottom: 15px;
 }
 
+.change-password .password-content form .form-check {
+  display: flex;
+
+  height: 20px;
+  min-width: 100px;
+  text-align: center;
+}
+
 .change-password .password-content .button .btn {
   padding: 12px 25px;
+  margin-top: 40px;
 }
 
 /*======================================
@@ -8098,3 +8068,4 @@ label.required::after {
   background: #2042e314;
   color: #081828;
 }
+

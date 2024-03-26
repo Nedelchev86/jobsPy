@@ -37,3 +37,6 @@ class SingleBlog(TemplateView):
     template_name = 'blog/single-blogs.html'
 
 
+class CreateBlog(TemplateView):
+    template_name = 'blog/create-blog.html'
+    permission_classes = [IsAuthor()]

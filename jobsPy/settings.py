@@ -161,4 +161,4 @@ if not DEBUG:
 
 
 # CSRF_TRUSTED_ORIGINS = ['https://localhost', 'http://localhost', 'http://http://127.0.0.1:8000/', 'http://127.0.0.1:8000/', 'https://jobspy.azurewebsites.net/']
-CSRF_TRUSTED_ORIGINS = ['https://jobspy.azurewebsites.net/', 'http://jobspy.azurewebsites.net']
+CSRF_TRUSTED_ORIGINS = ['https://jobspy.azurewebsites.net']

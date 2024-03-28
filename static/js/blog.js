@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     fetch('/api/blog/')
         .then(response => response.json())
         .then(data => {
+
             const blogList = document.getElementById('blog-list');
             data.forEach(blog => {
                 const div = document.createElement('div');
@@ -16,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <div class="meta-details">
                                 <ul>
                                     <li><a href="#"><i class="lni lni-tag"></i> Career advice</a></li>
-                                    <li><a href="#"><i class="lni lni-calendar"></i> 10-10-2023</a></li>
+                                    <li><a href="#"><i class="lni lni-calendar"></i> ${blog.created_at.split("T")[0]}</a></li>
                                     <li><a href="#"><i class="lni lni-eye"></i>${blog.views}</a></li>
                                 </ul>
                             </div>

@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <h4 class="title"><a href="blog-single.html">${blog.title}</a></h4>
                             <div class="meta-details">
                                 <ul>
-                                    <li><a href="#"><i class="lni lni-tag"></i> Career advice</a></li>
+                                    <li><a href="#"><i class="lni lni-tag"></i> ${blog.author.first_name} ${blog.author.last_name}</a></li>
                                     <li><a href="#"><i class="lni lni-calendar"></i> ${blog.created_at.split("T")[0]}</a></li>
                                     <li><a href="#"><i class="lni lni-eye"></i>${blog.views}</a></li>
                                 </ul>

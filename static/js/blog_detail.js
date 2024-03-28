@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', function() {
             mainImage.src = blog.image_url_1
             const secondImage = document.getElementById('second-image')
             secondImage.src = blog.image_url_2
+            const views = document.getElementById('views')
+            views.innerHTML = `<i class="lni lni-eye"></i>${blog.views} View`
             // Render blog post details on the webpage
 //            const blogDetails = document.getElementById('blog-details');
 //            blogDetails.innerHTML = `

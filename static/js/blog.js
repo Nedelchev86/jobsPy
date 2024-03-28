@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 <ul>
                                     <li><a href="#"><i class="lni lni-tag"></i> Career advice</a></li>
                                     <li><a href="#"><i class="lni lni-calendar"></i> 10-10-2023</a></li>
-                                    <li><a href="#"><i class="lni lni-eye"></i> 55</a></li>
+                                    <li><a href="#"><i class="lni lni-eye"></i>${blog.views}</a></li>
                                 </ul>
                             </div>
                             <p>${blog.description}</p>

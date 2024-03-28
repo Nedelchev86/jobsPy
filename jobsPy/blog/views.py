@@ -2,7 +2,6 @@ from django.shortcuts import render
 from django.views.generic import TemplateView
 from rest_framework import generics, permissions
 from rest_framework.response import Response
-from rest_framework.views import APIView
 
 from jobsPy.blog.models import BlogPost
 from jobsPy.blog.permission import IsAuthor
@@ -23,10 +22,16 @@ class BlogPostListCreateAPIView(generics.ListCreateAPIView):
         return super().get_permissions()
 
 
-
 class BlogPostRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = BlogPost.objects.all()
     serializer_class = BlogPostSerializer
+
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        instance.views += 1
+        instance.save()
+        serializer = self.get_serializer(instance)
+        return Response(serializer.data)
 
 
 class BlogList(TemplateView):
@@ -35,6 +40,7 @@ class BlogList(TemplateView):
 
 class SingleBlog(TemplateView):
     template_name = 'blog/single-blogs.html'
+
 
 
 class CreateBlog(TemplateView):

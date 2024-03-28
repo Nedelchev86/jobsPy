@@ -16,7 +16,13 @@ class CommentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Comment
-        fields = ['id', 'post', 'author', 'content', 'created_at']
+        fields = "__all__"
+
+class CommentSerializerCreate(serializers.ModelSerializer):
+    author = serializers.PrimaryKeyRelatedField(read_only=True)  # Assuming you only want to show the author's ID
+    class Meta:
+        model = Comment
+        fields = ['content', 'author']
 
 class BlogPostSerializer(serializers.ModelSerializer):
     author = JobSeekerSerializer()  # Nested serializer for JobSeeker

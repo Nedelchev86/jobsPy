@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     fetch(`/api/blog/${blogId}/`)
         .then(response => response.json())
         .then(blog => {
+        console.log(blog)
        const post = document.getElementById("single-post")
         post.innerHTML = `<div class="post-thumbnils">
                             <img id="main-image" src=${blog.image_url_1} alt="#">

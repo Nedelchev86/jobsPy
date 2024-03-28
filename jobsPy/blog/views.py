@@ -1,12 +1,12 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
 from rest_framework import generics, permissions
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 
 from jobsPy.blog.models import BlogPost, Comment
 from jobsPy.blog.permission import IsAuthor
-from jobsPy.blog.serializers import BlogPostSerializer, CommentSerializer
+from jobsPy.blog.serializers import BlogPostSerializer, CommentSerializer, CommentSerializerCreate
 
 
 # Create your views here.
@@ -48,27 +48,34 @@ class CreateBlog(TemplateView):
     permission_classes = [IsAuthor()]
 
 
-class CommentListCreateAPIView(generics.CreateAPIView):
+class CommentListCreateAPIView(generics.ListCreateAPIView):
+    queryset = Comment.objects.all()
 
-    serializer_class = CommentSerializer
-    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        # Retrieve the post ID from the URL parameters
         post_id = self.kwargs.get('pk')
-        # Filter comments based on the specified post ID
-        print(post_id)
-        return Comment.objects.filter(pk=post_id)
+        return Comment.objects.filter(post_id=post_id)
 
     def perform_create(self, serializer):
-        # Retrieve the post ID from the URL parameters
         post_id = self.kwargs.get('pk')
-        # Retrieve the blog post object based on the post ID
         blog_post = BlogPost.objects.get(pk=post_id)
-        # Set the post field of the comment to the blog post object
         serializer.save(author=self.request.user, post=blog_post)
-        serializer.save(author=self.request.user)
+
+    def get_serializer_class(self):
+
+        if self.request.method == 'POST':
+            return CommentSerializerCreate
+        return CommentSerializer
+
+
 
 class CommentRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
+
+    def get_object(self):
+        # Retrieve the comment ID from the URL parameters
+        comment_id = self.kwargs.get('comment_pk')
+
+        return Comment.objects.get(pk=comment_id)

@@ -1,4 +1,5 @@
-from django.forms import ModelForm, ModelMultipleChoiceField, CheckboxSelectMultiple
+from ckeditor.widgets import CKEditorWidget
+from django.forms import ModelForm, ModelMultipleChoiceField, CheckboxSelectMultiple, CharField
 
 from jobsPy.jobs.models import Skills
 from jobsPy.jobseekers.models import JobSeeker, Education, Experience
@@ -14,6 +15,11 @@ class EditProfileFrom(ModelForm):
     class Meta:
         model = JobSeeker
         exclude = ["user"]
+
+        widgets = {
+            'about': CharField(widget=CKEditorWidget())
+            # 'is_published': CheckboxInput(attrs={'class': 'form-check-input'}),
+        }
 
     skills = ModelMultipleChoiceField(
         queryset=Skills.objects.all(),

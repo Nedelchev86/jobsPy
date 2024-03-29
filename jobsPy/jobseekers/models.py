@@ -1,3 +1,4 @@
+from ckeditor.fields import RichTextField
 from django.contrib.auth import get_user_model
 from django.db import models
 
@@ -27,7 +28,7 @@ class JobSeeker(models.Model):
     website = models.CharField(max_length=70, blank=True, null=True)
     linkedin = models.CharField(blank=False, null=False, max_length=50)
     github = models.CharField(blank=False, null=False, max_length=50)
-    about = models.TextField()
+    about = RichTextField(blank=False, null=False)
     phone_number = models.CharField(max_length=50, blank=True, null=True)
     profile_picture = models.ImageField(
         blank=True, null=True, upload_to='images/profile')

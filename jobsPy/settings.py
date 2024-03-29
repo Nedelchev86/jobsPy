@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     "whitenoise.runserver_nostatic",
     'django.contrib.staticfiles',
     'rest_framework',
+    'ckeditor',
 
     'jobsPy.accounts',
     'jobsPy.main',

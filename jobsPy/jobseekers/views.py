@@ -4,8 +4,8 @@ from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, ListView, DetailView, UpdateView, CreateView
 
-from jobsPy.core.accounts_mixins import JobSeekerRequiredMixin, OwnerRequiredMixin
-from jobsPy.jobs.models import FavoriteJob, Applicant
+from jobsPy.core.accounts_mixins import JobSeekerRequiredMixin, JobSeekerOwnerRequiredMixin
+from jobsPy.jobs.models import FavoriteJob, Applicant, Skills
 from jobsPy.jobseekers.forms import EditProfileFrom, EducationForm, WrokExperienceForm
 from jobsPy.jobseekers.models import JobSeeker, Education, Experience
 
@@ -56,6 +56,22 @@ class AllEmployees(ListView):
     template_name = "job_seekers/all_jobseekers.html"
     paginate_by = 10
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        city = self.request.GET.get('city')
+        if city:
+            queryset = queryset.filter(city__icontains=city)
+        skill_name = self.request.GET.get('skill')
+        if skill_name:
+            queryset = queryset.filter(skills__name=skill_name)
+        return queryset
+
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['skills'] = Skills.objects.all()
+        return context
+
     # def get_queryset(self):
     #     # Use prefetch_related to fetch all related languages for each JobSeeker
     #     print(JobSeeker.objects.prefetch_related('languages').all())
@@ -67,7 +83,7 @@ class JobSeekerDetails(DetailView):
     template_name = "job_seekers/job_seekers_details.html"
 
 
-class EditProfile(OwnerRequiredMixin, UpdateView):
+class EditProfile(JobSeekerOwnerRequiredMixin, UpdateView):
     model = JobSeeker
     template_name = "job_seekers/edit_profile.html"
     form_class = EditProfileFrom

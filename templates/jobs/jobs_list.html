@@ -65,7 +65,28 @@
                             </div>
                         </div>
                     {% endfor %}
-
+{% if is_paginated %}
+    <div class="pagination left pagination-md-center">
+        <ul class="pagination-list">
+            {% if page_obj.has_previous %}
+{#                <li><a href="?page=1"><i class="lni lni-arrow-left"></i></a></li>#}
+                <li><a href="?page={{ page_obj.previous_page_number }}"><i class="lni lni-arrow-left"></i></a></li>
+                            {% else %}
+                <li><span><i class="lni lni-arrow-left"></i></span></li>
+      
+            {% endif %}
+            {% for num in page_obj.paginator.page_range %}
+                <li {% if page_obj.number == num %}class="active"{% endif %}><a href="?page={{ num }}">{{ num }}</a></li>
+            {% endfor %}
+            {% if page_obj.has_next %}
+{#                <li><a href="?page={{ page_obj.next_page_number }}"><i class="lni lni-arrow-right"></i></a></li>#}
+                <li><a href="?page={{ page_obj.paginator.num_pages }}"><i class="lni lni-arrow-right"></i></a></li>
+            {% else %}
+                <li><span><i class="lni lni-arrow-right"></i></span></li>
+            {% endif %}
+        </ul>
+    </div>
+{% endif %}
                 </div>
                 <aside class="col-lg-4 col-md-12 col-12">
                     <div class="sidebar">

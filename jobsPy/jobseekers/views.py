@@ -58,6 +58,7 @@ class AllEmployees(ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
+        queryset = queryset.filter(activated=True)
         city = self.request.GET.get('city')
         if city:
             queryset = queryset.filter(city__icontains=city)

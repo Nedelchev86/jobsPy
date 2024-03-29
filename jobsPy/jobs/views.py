@@ -33,6 +33,7 @@ class JobCreateView(LoginRequiredMixin, CompanyRoleRequiredMixin, CreateView):
 class AllJobsView(ListView):
     model = Job
     template_name = "jobs/jobs_list.html"
+    paginate_by = 2
 
     def get_queryset(self):
         query = self.request.GET.get('q')

@@ -37,6 +37,7 @@ class JobSeeker(models.Model):
                               choices=GENDER_TYPE, max_length=1)
     marital_status = models.CharField(blank=False, null=False, max_length=20, choices=MARITAL_STATUS)
     skills = models.ManyToManyField(Skills, related_name="skills")
+    activated = models.BooleanField(default=False)
 
     @property
     def get_user_all_applicant(self):

@@ -9,8 +9,6 @@ userModel = get_user_model()
 
 @receiver(post_save, sender=userModel)
 def create_user_profile(sender, instance, created, **kwargs):
-    print(instance)
-    print(instance.role)
 
     """
     Signal receiver function to create a user profile when a new user is created.

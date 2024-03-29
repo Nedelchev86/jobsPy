@@ -135,7 +135,7 @@
                             <div class="single-section">
                                 <h4>About</h4>
                                 <p class="font-size-4 mb-8">
-                                    {{ request.user.jobseeker.about }}
+                                    {{ request.user.jobseeker.about|safe }}
                                 </p>
 
                             </div>

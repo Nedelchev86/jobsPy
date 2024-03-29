@@ -1,4 +1,5 @@
-from django.forms import ModelForm
+from ckeditor.widgets import CKEditorWidget
+from django.forms import ModelForm, CharField
 
 from jobsPy.company.models import CompanyProfile
 
@@ -11,6 +12,10 @@ class EditCompany(ModelForm):
         model = CompanyProfile
         exclude = ["user"]
 
+        widgets = {
+            'description': CharField(widget=CKEditorWidget())
+            # 'is_published': CheckboxInput(attrs={'class': 'form-check-input'}),
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

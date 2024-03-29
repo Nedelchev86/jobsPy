@@ -38,7 +38,7 @@ class RedirectAuthenticatedUserMixin(UserPassesTestMixin):
         return redirect('index')
 
 
-class OwnerRequiredMixin(AccessMixin):
+class JobSeekerOwnerRequiredMixin(AccessMixin):
     """Verify that the current user has this profile."""
 
     # def dispatch(self, request, *args, **kwargs):
@@ -48,6 +48,6 @@ class OwnerRequiredMixin(AccessMixin):
 
 
     def dispatch(self, request, *args, **kwargs):
-        if request.user.pk != kwargs.get('pk', None):
+        if request.user.jobseeker.pk != kwargs.get('pk', None):
             return HttpResponseRedirect(reverse('index'))
         return super().dispatch(request, *args, **kwargs)

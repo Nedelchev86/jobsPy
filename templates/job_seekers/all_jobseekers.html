@@ -47,6 +47,7 @@
 {#                    </div>#}
                     <!-- End Main Content -->
                     <div class="col-lg-8 col-12">
+
                         <div class="inner-content">
                             <!-- Start Resume Item -->
                             {% for jobseeker in object_list %}
@@ -117,13 +118,21 @@
                     <div class="sidebar">
                             <div class="widget search-widget">
 {#                            <h5 class="widget-title"><span>Search This Site</span></h5>#}
-                             <form method="get" action="{% url 'all-jobs' %}">
-                                <input type="text" name="q" placeholder="Search by job title">
+                             <form method="get" action="{% url 'all-employees' %}">
+                                <input type="text" name="city" placeholder="Search by city...">
                                 <button type="submit"><i class="lni lni-search-alt"></i></button>
                             </form>
                         </div>
+                        <div class="widget popular-tag-widget">
+                            <h5 class="widget-title"><span>Popular Skills</span></h5>
+                            <div class="tags">
+                                  {% for skill in skills %}
+                                    <a href="?skill={{ skill.name}}">{{ skill.name }}</a>
+                                  {% endfor %}
 
-                        {% include "jobs/category_slide.html" %}
+                            </div>
+                        </div>
+{#                        {% include "jobs/category_slide.html" %}#}
 
 
                         <div class="widget popular-feeds">
@@ -154,22 +163,7 @@
                             </div>
                         </div>
 
-                        <div class="widget popular-tag-widget">
-                            <h5 class="widget-title"><span>Popular Tags</span></h5>
-                            <div class="tags">
-                                <a href="#">Jobpress</a>
-                                <a href="#">Design</a>
-                                <a href="#">HR</a>
-                                <a href="#">Recruiter</a>
-                                <a href="#">Interview</a>
-                                <a href="#">Employee</a>
-                                <a href="#">Labor</a>
-                                <a href="#">Salary</a>
-                                <a href="#">Consult</a>
-                                <a href="#">Business</a>
-                                <a href="#">Candidates</a>
-                            </div>
-                        </div>
+
                     </div>
                 </aside>
                 </div>

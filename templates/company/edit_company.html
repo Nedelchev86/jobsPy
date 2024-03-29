@@ -39,11 +39,8 @@
                           
                             <form method="post" action="{% url 'edit-company-profile' user.company.pk %}" enctype="multipart/form-data">
                                 <div class="row">
-                                {{ form.as_p }}
-
-
-
-
+                                    {{ form.media }}
+                                    {{ form.as_p }}
                                     {% csrf_token %}
                                     <div class="col-lg-12">
                                         <div class="button">

@@ -47,7 +47,8 @@
                             <p>Here you can post new Job.</p>
                             <form method="post" action="{% url 'create_job' %}" enctype="multipart/form-data">
                                 <div class="row">
-                                {{ form }}
+                                    {{ form.media }}
+                                    {{ form }}
 
 
 

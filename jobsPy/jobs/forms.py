@@ -1,6 +1,6 @@
-
+from ckeditor.widgets import CKEditorWidget
 from django.forms import ModelForm, DateInput, CheckboxInput, ChoiceField, CheckboxSelectMultiple, \
-    ModelMultipleChoiceField
+    ModelMultipleChoiceField, CharField
 
 from jobsPy.jobs.models import Job, Applicant
 
@@ -15,6 +15,7 @@ class CreateJobForms(ModelForm):
                   'job_image', 'needed_skills']
         widgets = {
             'deadline': DateInput(attrs={'type': 'date'}),
+            'description': CharField(widget=CKEditorWidget())
             # 'is_published': CheckboxInput(attrs={'class': 'form-check-input'}),
         }
 

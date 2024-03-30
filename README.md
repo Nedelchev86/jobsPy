@@ -32,6 +32,25 @@ JobsPy is a job portal designed to connect job seekers with companies. It provid
 - **Application Tracking**:
   - Companies can track and manage job applications received for their listings.
   - Job seekers can view the status of their applications.
+ 
+- - **Blog** with Django REST Framework
+  - Create, read, update, and delete blog posts.
+  - Add comments to blog posts.
+  - Rich text editing for blog post content using CKEditor.
+  - User authentication and authorization.
+  - Pagination for blog posts and comments.
+  - API endpoints for retrieving and manipulating blog posts and comments.
+    ![blog](https://github.com/Nedelchev86/jobsPy/assets/122647190/57eb606f-f9f7-4673-918e-4d05738d6d54)
+    ![Blog2](https://github.com/Nedelchev86/jobsPy/assets/122647190/31dedca4-34ce-48cb-85d2-0ea87a50a62c)
+
+ 
+API Endpoints
+/api/blog/: List and create blog posts.
+/api/blog/<pk>/: Retrieve, update, or delete a specific blog post.
+/api/blog/<pk>/comments/: List and create comments for a specific blog post.
+/api/blog/<pk>/comment/<pk>/: Retrieve, update, or delete a specific comment.
+
+![rest](https://github.com/Nedelchev86/jobsPy/assets/122647190/0ddf85b6-50c6-4684-9055-d4f3d8ff8abd)
 
 ## Technologies Used
 

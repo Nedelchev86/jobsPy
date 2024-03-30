@@ -1,3 +1,4 @@
+from ckeditor.fields import RichTextField
 from django.contrib.auth import get_user_model
 from django.db import models
 
@@ -8,8 +9,8 @@ userModel = get_user_model()
 # Create your models here.
 class BlogPost(models.Model):
     title = models.CharField(max_length=2000, null=False, blank=False)
-    description = models.TextField(null=False, blank=False)
-    more_info = models.TextField(null=False, blank=False)
+    description = RichTextField(null=False, blank=False)
+    more_info = RichTextField(null=False, blank=False)
     image_url_1 = models.URLField(null=False, blank=False)
     image_url_2 = models.URLField(null=False, blank=False)
     image_url_3 = models.URLField(null=False, blank=False)

@@ -29,11 +29,21 @@
                     <div  id="single-post" class="single-inner">
                         <h3>Loading...</h3>
                     </div>
+                        <div class="post-comments">
+                                <h3 class="comment-title"><span>3 comments on this post</span></h3>
+                                <ul id="comments-list" class="comments-list">
+
+
+                                </ul>
+                            </div>
                 </div>
             </div>
+
         </div>
+
     </section>
 
+   <script src="{% static '/js/load_comment.js' %}"></script>
    <script src="{% static '/js/blog_detail.js' %}"></script>
 
 {% endblock %}

@@ -8070,3 +8070,10 @@ label.required::after {
   color: #081828;
 }
 
+.truncate-overflow {
+  --max-lines: 3;
+  position: relative;
+  max-height: 120px;
+  overflow: hidden;
+  padding-right: 1rem;
+}

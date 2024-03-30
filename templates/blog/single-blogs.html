@@ -29,70 +29,81 @@
                     <div  id="single-post" class="single-inner">
                         <h3>Loading...</h3>
                     </div>
-                        <div class="post-comments">
+                    <div class="change-password">
+                        <div  class="post-comments password-content">
                             <form id="comment-form">
-    <textarea id="comment-content" rows="4" cols="50" placeholder="Write your comment here..."></textarea>
-    <button type="submit">Post Comment</button>
+                                <div class="required">
+    <label for="comment-content" class="required">Comment:</label>
+                                    <textarea type="text" rows="5" name="comment" id="comment-content" class="form-control" placeholder="Write your comment here..."></textarea>
+                            </div>
+                                <div class="button">
+    <button class="btn" type="submit">Post Comment</button>
+                                </div>
                                 {% csrf_token %}
 </form>
-                                <h3 class="comment-title"><span>3 comments on this post</span></h3>
+                                <h3 id="comment-number" class="comment-title"><span>3 comments on this post</span></h3>
                                 <ul id="comments-list" class="comments-list">
                                 </ul>
                             </div>
+                    </div>
                 </div>
             </div>
 
         </div>
 
     </section>
-       <script src="{% static '/js/blog/blog_detail.js' %}"></script>
-
-{#   <script src="{% static '/js/blog/post_comment.js' %}"></script>#}
     <script>
-    document.addEventListener('DOMContentLoaded', function () {
-    const commentForm = document.getElementById('comment-form');
+    var CSRF_TOKEN = '{{ csrf_token }}';
+</script>
+       <script src="{% static '/js/blog/blog_detail.js' %}"></script>
+       <script src="{% static '/js/blog/load_comment.js' %}"></script>
 
-    commentForm.addEventListener('submit', function (event) {
-        event.preventDefault();
+   <script src="{% static '/js/blog/post_comment.js' %}"></script>
+{#    <script>#}
+{#    document.addEventListener('DOMContentLoaded', function () {#}
+{#    const commentForm = document.getElementById('comment-form');#}
+{##}
+{#    commentForm.addEventListener('submit', function (event) {#}
+{#        event.preventDefault();#}
+{##}
+{#        // Get the comment content from the form#}
+{#        const content = document.getElementById('comment-content').value;#}
+{#            const blogPostId = window.location.pathname.split('/')[2]#}
+{##}
+{##}
+{##}
+{#        // Send the comment data to the backend#}
+{#        postComment(content);#}
+{#    });#}
+{#});#}
+{##}
+{#function postComment(content) {#}
+{#    const blogPostId = window.location.pathname.split('/')[2]#}
+{#         const csrfToken = "{{ csrf_token }}";#}
+{#    // AJAX request to post the comment#}
+{#    fetch(`/api/blog/${blogPostId}/comments/`, {#}
+{#        method: 'POST',#}
+{#        headers: {#}
+{#            'Content-Type': 'application/json',#}
+{#               'X-CSRFToken':  csrfToken,#}
+{#            // Add any required authentication headers if needed#}
+{#        },#}
+{#        body: JSON.stringify({ content: content }),#}
+{#    })#}
+{#    .then(response => response.json())#}
+{#    .then(data => {#}
+{#        // Comment successfully posted, update UI#}
+{#        console.log('Comment posted:', data);#}
+{#        // You can update the UI to display the new comment here#}
+{#          #}
+{#    })#}
+{#    .catch(error => {#}
+{#        console.error('Error posting comment:', error);#}
+{#    });#}
+{#   #}
+{#}#}
+{#    </script>#}
 
-        // Get the comment content from the form
-        const content = document.getElementById('comment-content').value;
-            const blogPostId = window.location.pathname.split('/')[2]
-
-
-
-        // Send the comment data to the backend
-        postComment(content);
-    });
-});
-
-function postComment(content) {
-    const blogPostId = window.location.pathname.split('/')[2]
-         const csrfToken = "{{ csrf_token }}";
-         console.log(csrfToken)
-    // AJAX request to post the comment
-    fetch(`/api/blog/${blogPostId}/comments/`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-               'X-CSRFToken':  csrfToken,
-            // Add any required authentication headers if needed
-        },
-        body: JSON.stringify({ content: content }),
-    })
-    .then(response => response.json())
-    .then(data => {
-        // Comment successfully posted, update UI
-        console.log('Comment posted:', data);
-        // You can update the UI to display the new comment here
-    })
-    .catch(error => {
-        console.error('Error posting comment:', error);
-    });
-}
-    </script>
-
-   <script src="{% static '/js/blog/load_comment.js' %}"></script>
 
 
 {% endblock %}

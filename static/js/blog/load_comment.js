@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', function() {
             // Update HTML with comments
             var commentsList = document.getElementById('comments-list');
             data.forEach(comment => {
-            console.log(comment)
                 var commentElement = document.createElement('li');
 
                 let name =  "Anonymous"
@@ -45,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                             </p>
                                         </div>
                 `
-                console.log(commentElement)
+
                 commentsList.appendChild(commentElement);
             });
         })

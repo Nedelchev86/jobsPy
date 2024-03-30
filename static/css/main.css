@@ -3208,6 +3208,7 @@ blockquote .shape {
   font-size: 22px !important;
   font-weight: 500 !important;
   margin-bottom: 40px !important;
+  padding-top: 20px;
   position: relative;
   z-index: 1;
   text-transform: capitalize;

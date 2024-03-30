@@ -18,6 +18,8 @@ class BlogPost(models.Model):
     views = models.IntegerField(default=0)
     author = models.ForeignKey(JobSeeker, on_delete=models.CASCADE)
 
+    class Meta:
+        ordering = ['-created_at']
     def __str__(self):
         return self.title
 

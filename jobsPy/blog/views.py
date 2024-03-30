@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
-from rest_framework import generics, permissions
+from rest_framework import generics, permissions, pagination
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 
@@ -10,13 +10,16 @@ from jobsPy.blog.serializers import BlogPostSerializer, CommentSerializer, Comme
 
 
 # Create your views here.
-
+class BlogPostPagination(pagination.PageNumberPagination):
+    page_size = 10  # Set the number of items per page
+    page_size_query_param = 'page_size'
+    max_page_size = 1000  # Optionally, set a maximum page size
 
 class BlogPostListCreateAPIView(generics.ListCreateAPIView):
     queryset = BlogPost.objects.all()
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     serializer_class = BlogPostSerializer
-
+    pagination_class = BlogPostPagination
     def perform_create(self, serializer):
         # Automatically set the author as the logged-in jobseeker
         serializer.save(author=self.request.user.jobseeker)
@@ -25,6 +28,8 @@ class BlogPostListCreateAPIView(generics.ListCreateAPIView):
         if self.request.method == 'POST':
             return [IsAuthor()]
         return super().get_permissions()
+
+
 
 
 class BlogPostRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):

@@ -7,7 +7,7 @@ from jobsPy.jobs.models import Applicant
 UserModel = get_user_model()
 
 class CompanyProfile(models.Model):
-    user = models.OneToOneField(UserModel, on_delete=models.CASCADE, related_name="company")
+    user = models.OneToOneField(UserModel, on_delete=models.CASCADE, primary_key=True, related_name="company")
     name = models.CharField(max_length=40)
     description = RichTextField(null=False, blank=False)
     location = models.CharField(max_length=40)

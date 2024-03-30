@@ -17,6 +17,10 @@ class BlogPostListCreateAPIView(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     serializer_class = BlogPostSerializer
 
+    def perform_create(self, serializer):
+        # Automatically set the author as the logged-in jobseeker
+        serializer.save(author=self.request.user.jobseeker)
+
     def get_permissions(self):
         if self.request.method == 'POST':
             return [IsAuthor()]
@@ -38,6 +42,8 @@ class BlogPostRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView
 
 class BlogList(TemplateView):
     template_name = 'blog/blogs.html'
+
+
 
 
 class SingleBlog(TemplateView):

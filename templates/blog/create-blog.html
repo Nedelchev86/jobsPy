@@ -76,8 +76,22 @@
 
                     <input type="text" name="image_url_2" value="" maxlength="200" class="form-control" id="id_image_url_2">
                      </div>
+                                    
+                                                        <div class="form-group">
+
+                        <label for="id_image_url_3">Image :</label>
+
+                    <input type="text" name="image_url_3" value="" maxlength="200" class="form-control" id="id_image_url_3">
+                     </div>
 
                                 </div>
+                                
+                                                    <div class="form-group">
+
+                    <span><label for="id_more_info" class="required">More Info:</label></span>
+
+                    <textarea name="more_info" cols="40" rows="10" class="form-control" required="" id="id_more_info"></textarea>
+                     </div>
 
                                         <div class="button">
                                             <button class="btn">Edit</button>
@@ -96,6 +110,8 @@
         const description = document.getElementById('id_description').value;
         const image_url_1 = document.getElementById('id_image_url_1').value;
         const image_url_2 = document.getElementById('id_image_url_2').value;
+        const image_url_3 = document.getElementById('id_image_url_3').value;
+        const more_info = document.getElementById('id_more_info').value;
         // Get other form field values as needed
 
 
@@ -103,6 +119,9 @@
             title: title,
             description: description,
             image_url_1: image_url_1,
+            image_url_2: image_url_2,
+            image_url_3: image_url_3,
+            more_info: more_info,
             // Include other fields as needed
         };
          const csrfToken = "{{ csrf_token }}";

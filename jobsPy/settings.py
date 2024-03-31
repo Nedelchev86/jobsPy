@@ -205,6 +205,7 @@ SOCIALACCOUNT_PROVIDERS = {
             # 'secret':  os.environ.get('CLIENT_SECRET'),
         },
     },
+
     'github': {
         'APP': {
             'client_id': '',

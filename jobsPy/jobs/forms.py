@@ -24,7 +24,6 @@ class CreateJobForms(ModelForm):
     #     widget=CheckboxSelectMultiple,
     #     required=False
     #     )
-
     def __init__(self, *args, **kwargs):
         super(CreateJobForms, self).__init__(*args, **kwargs)
         self.fields['salary'].widget.attrs['placeholder'] = 'exp:50,000-80,000'

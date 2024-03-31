@@ -5728,7 +5728,7 @@ blockquote .shape {
 
 .change-password .password-content form input {
   height: 50px;
-  /*width: 100%;*/
+  width: 100%;
   border: 1px solid #eee;
   border-radius: 5px;
   padding: 0px 20px;
@@ -5746,8 +5746,8 @@ blockquote .shape {
 
 .change-password .password-content form .form-check {
   display: flex;
-
-  height: 20px;
+  flex-wrap: wrap;
+  /*height: 20px;*/
   min-width: 100px;
   text-align: center;
 }
@@ -8076,4 +8076,70 @@ label.required::after {
   max-height: 120px;
   overflow: hidden;
   padding-right: 1rem;
+}
+
+.truncate-overflow-jobs {
+  --max-lines: 3;
+  position: relative;
+  max-height: 120px;
+  overflow: hidden;
+  padding-right: 1rem;
+}
+
+
+.github{
+    margin-top: 16px;
+    text-align: center;
+    position: relative;
+    background-color: #2042e3;
+    padding: 13px 30px;
+    color: #fff;
+    width: 100%;
+    border-radius: 5px;
+    font-size: 14px;
+    text-transform: capitalize;
+    font-weight: 600;
+    z-index: 2;
+}
+
+.google{
+      margin-top: 16px;
+    text-align: center;
+    position: relative;
+    background-color: #dd4b39;
+    padding: 13px 30px;
+    color: #fff;
+    width: 100%;
+    border-radius: 5px;
+    font-size: 14px;
+    text-transform: capitalize;
+    font-weight: 600;
+    z-index: 2;
+}
+
+.github:hover{
+  background-color: #0925af;
+  color: #fff;
+}
+
+
+.google:hover{
+  background-color: #c22a1c;
+  color: #fff;
+}
+
+.company-link span{
+    padding: 5px 20px;
+    background-color: #2042e3;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 13px;
+    text-transform: capitalize;
+}
+
+.company-link span:hover{
+    color: #fff;
+    background-color: #051a80;
+
+
 }

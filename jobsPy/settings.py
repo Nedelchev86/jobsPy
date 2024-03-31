@@ -199,24 +199,18 @@ if not DEBUG:
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
         'APP': {
-            # 'client_id':  os.environ.get('CLIENT_ID'),
-            'client_id':  '',
-            'secret':  ''
-            # 'secret':  os.environ.get('CLIENT_SECRET'),
+            'client_id':  os.environ.get('CLIENT_ID'),
+            'secret':  os.environ.get('CLIENT_SECRET'),
         },
     },
-
     'github': {
         'APP': {
-            'client_id': '',
-            'secret': '',
-            'scope': ['user:email'],  # Add any additional scopes required
+            'client_id': os.environ.get('GITHUB_CLIENT_ID'),
+            'secret': os.environ.get('GITHUB_CLIENT_SECRET'),
+            'scope': ['user:email'],
         }
     }
 }
-
-
-
 
 SITE_ID = 2
 

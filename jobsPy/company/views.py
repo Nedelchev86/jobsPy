@@ -6,7 +6,7 @@ from django.views.generic import TemplateView, ListView, UpdateView, DetailView
 
 from jobsPy.company.forms import EditCompany
 from jobsPy.company.models import CompanyProfile
-from jobsPy.core.accounts_mixins import CompanyRoleRequiredMixin
+from jobsPy.core.accounts_mixins import CompanyRoleRequiredMixin, CompanyOwnerRequiredMixin
 from jobsPy.jobs.models import Job, Applicant, FavoriteJob
 
 
@@ -39,6 +39,7 @@ class CompanyDashboard(LoginRequiredMixin, CompanyRoleRequiredMixin, TemplateVie
         context['all_applicant'] = all_applicant
         return context
 
+
 class CreatedJobs(LoginRequiredMixin, CompanyRoleRequiredMixin, ListView):
     template_name = "company/created-jobs.html"
 
@@ -47,18 +48,17 @@ class CreatedJobs(LoginRequiredMixin, CompanyRoleRequiredMixin, ListView):
         return jobs
 
 
-class EditCompany(LoginRequiredMixin, CompanyRoleRequiredMixin, UpdateView):
+class EditCompany(LoginRequiredMixin, CompanyRoleRequiredMixin, CompanyOwnerRequiredMixin, UpdateView):
     template_name = "company/edit_company.html"
     model = CompanyProfile
     form_class = EditCompany
+    success_url = reverse_lazy("company-dashboard")
     # model = CompanyProfile
     # form_class = CreateProfile
     def form_valid(self, form):
         # Ensure you are handling files correctly
         form.instance.user = self.request.user
         return super().form_valid(form)
-
-    success_url = reverse_lazy("company-dashboard")
 
 
 class CompanyApplicant(LoginRequiredMixin, CompanyRoleRequiredMixin, ListView):

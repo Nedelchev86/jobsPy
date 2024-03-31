@@ -36,7 +36,6 @@ class CreateJobForms(ModelForm):
 
 
 
-
 class ApplyForJobForms(ModelForm):
 
     class Meta:

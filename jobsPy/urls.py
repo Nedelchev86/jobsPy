@@ -16,6 +16,7 @@ urlpatterns = [
     path('contact/', Contact.as_view(), name="contact"),
     path('api/', include('jobsPy.blog.api.urls')),
     path('blog/', include('jobsPy.blog.urls')),
+    path('accounts/', include('allauth.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 # + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
@@ -25,3 +26,5 @@ if settings.DEBUG:
                               document_root=settings.MEDIA_ROOT)
 
 handler403 = 'jobsPy.main.views.custom_403'
+
+

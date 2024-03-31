@@ -212,16 +212,9 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-
 SITE_ID = 2
+
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
-
-
-CKEDITOR_CONFIGS = {
-    'default': {
-         "removePlugins": "exportpdf",
-    }
-}

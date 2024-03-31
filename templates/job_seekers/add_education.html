@@ -39,7 +39,8 @@
                 
                             <form method="post" action="{% url 'add-education' user.jobseeker.pk %}" enctype="multipart/form-data">
                                 <div class="row">
-                                {{ form.as_p }}
+                                    {{ form.media }}
+                                    {{ form.as_p }}
 
                                     {% csrf_token %}
                                     <div class="col-lg-12">

@@ -1,5 +1,5 @@
 from ckeditor.widgets import CKEditorWidget
-from django.forms import ModelForm, ModelMultipleChoiceField, CheckboxSelectMultiple, CharField
+from django.forms import ModelForm, ModelMultipleChoiceField, CheckboxSelectMultiple, CharField, DateInput
 
 from jobsPy.jobs.models import Skills
 from jobsPy.jobseekers.models import JobSeeker, Education, Experience
@@ -14,7 +14,7 @@ class EditProfileFrom(ModelForm):
 
     class Meta:
         model = JobSeeker
-        exclude = ["user"]
+        exclude = ["user", 'activated']
 
         widgets = {
             'about': CharField(widget=CKEditorWidget())
@@ -47,6 +47,11 @@ class EducationForm(ModelForm):
         model = Education
         exclude = ["job_seeker"]
 
+        widgets = {
+            'start_date': DateInput(attrs={'type': 'date'}),
+            'end_date': DateInput(attrs={'type': 'date'}),
+        }
+
 class WrokExperienceForm(ModelForm):
     required_css_class = 'required'
     # tags = forms.ModelMultipleChoiceField(label='Tags', queryset=Tag.objects.order_by('name'),widget=forms.SelectMultiple)
@@ -54,3 +59,8 @@ class WrokExperienceForm(ModelForm):
     class Meta:
         model = Experience
         exclude = ["job_seeker"]
+
+        widgets = {
+            'start_date': DateInput(attrs={'type': 'date'}),
+            'end_date': DateInput(attrs={'type': 'date'}),
+        }

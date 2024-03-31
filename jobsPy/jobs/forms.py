@@ -6,12 +6,12 @@ from jobsPy.jobs.models import Job, Applicant
 
 
 class CreateJobForms(ModelForm):
-
+    required_css_class = 'required'
     # tags = forms.ModelMultipleChoiceField(label='Tags', queryset=Tag.objects.order_by('name'),widget=forms.SelectMultiple)
 
     class Meta:
         model = Job
-        fields = ['title', 'category','seniority', 'description',   'vacancy', 'location', 'job_type', 'salary',  'deadline',
+        fields = ['title', 'category','seniority', 'description', 'responsibilities', 'benefits',  'vacancy', 'location', 'job_type', 'salary',  'deadline',
                   'job_image', 'needed_skills']
         widgets = {
             'deadline': DateInput(attrs={'type': 'date'}),
@@ -48,8 +48,8 @@ class ApplyForJobForms(ModelForm):
 class EditeJobForm(CreateJobForms):
     class Meta:
         model = Job
-        fields = ['title',  'category', 'seniority', 'description',  'vacancy', 'location', 'job_type', 'salary',  'deadline',
-                  'job_image', "is_published", "needed_skills"]
+        fields = ['title',  'category', 'seniority', 'description', 'responsibilities', 'benefits', 'vacancy', 'location', 'job_type', 'salary',  'deadline',
+                  'job_image', "is_published", "needed_skills",]
         widgets = {
             'deadline': DateInput(attrs={'type': 'date'}),
             # 'is_published': CheckboxInput(attrs={'class': 'form-check-input'}),

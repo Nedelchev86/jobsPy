@@ -34,8 +34,8 @@
                     <!-- End Main Content -->
                     <div class="col-lg-8">
                         <div class="password-content">
-                            <h3>Edit Company Profile</h3>
-                            <p>Here you can edit your Copmany Profile.</p>
+                            <h3>Edit  Profile</h3>
+                            <p>Here you can edit your Profile.</p>
 
                             {% for error in field.errors %}
                       <p style="color: red">{{ error }}</p>
@@ -62,16 +62,13 @@
                                     {% csrf_token %}
                                     <div class="col-lg-12">
                                         <div class="button">
-                                            <button class="btn">Edit</button>
+                                            <button class="btn">Save</button>
                                         </div>
                                     </div>
                                 </div>
-                                {% for education in educations %}
-                                <h1>{{ education }}</h1>
-                                    
-                                {% endfor %}
+          
                             </form>
-<a href="{% url 'add-education' user.jobseeker.pk %}">Add Education</a>
+
 
                         </div>
                     </div>

@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load socialaccount %}
 {%  load static %}
 {% block title %} LogIn - Seek and you shall find - JobsPy{% endblock %}
 {% block main_content %}
@@ -74,11 +75,16 @@
                                 </div>
                             </div>
                         </form>
+
                 </div>
+                    <a href="{% provider_login_url 'github' %}">Login with GitHun</a>
+                    <a href="{% provider_login_url 'google' %}">Login with Google</a>
             </div>
+
         </div>
         </div>
     </section>
+
     <!-- End About Area -->
 
     <!-- Start Apply Process Area -->

@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load socialaccount %}
+{%  load static %}
+{% block title %} LogIn - Seek and you shall find - JobsPy{% endblock %}
+{% block main_content %}
+
+    <!-- Start Breadcrumbs -->
+    <div class="breadcrumbs overlay">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumbs-content">
+                        <h1 class="page-title">LogIn</h1>
+                        <p>Start Your Career Journey with JobsPy </p>
+                    </div>
+                    <ul class="breadcrumb-nav">
+                        <li><a href="{% url 'index' %}">Home</a></li>
+                        <li><a href="{% url 'login' %}">LogIn</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Breadcrumbs -->
+
+    <!-- Start About Area -->
+    <section class="about-us section">
+        <div class="container">
+            <div class="row  justify-content-center">
+                <div class="col-lg-6 col-md-10 col-12">
+                    <div class="content-left wow fadeInLeft" data-wow-delay=".3s">
+                        <div calss="row">
+                            <div calss="col-lg-6 col-12">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-6">
+                                        <img class="single-img" src="{% static '/images/about/small1a.jpg' %}" alt="#">
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-6">
+                                        <img class="single-img mt-50" src="{% static '/images/about/small2a.jpg' %}" alt="#">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-10 col-12">
+                                        <div class="login-information">
+                        <h3 class="title title-margin">You are about to use third party authentication!</h3>
+
+    <form method="post">
+        <div class="justify-center mx-3">
+            {% csrf_token %}
+              <div class="col-lg-12 button">
+            <button type="submit" class="btn">Continue</button>
+              </div>
+        </div>
+    </form>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+<a href="{% provider_login_url 'google' %}">Test</a></a>
+    <!-- End About Area -->
+
+    <!-- Start Apply Process Area -->
+    <section class="apply-process section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-12">
+                    <div class="process-item">
+                        <i class="lni lni-user"></i>
+                        <h4>Register Your Account</h4>
+                        <p>Start Your Career Journey with JobsPy</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-12">
+                    <div class="process-item">
+                        <i class="lni lni-book"></i>
+                        <h4>Upload Your Resume</h4>
+                        <p>Upload your resume to the world's #1 job site.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-12">
+                    <div class="process-item">
+                        <i class="lni lni-briefcase"></i>
+                        <h4>Apply for Dream Job</h4>
+                        <p>Find a job you love,
+and you will never have to work a day in your life.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+{%  endblock %}
+
+
+

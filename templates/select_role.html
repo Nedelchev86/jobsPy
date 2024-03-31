@@ -1,0 +1,23 @@
+<!-- select_role.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Role</title>
+</head>
+<body>
+    <h2>Select Your Role</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label for="role">Choose your role:</label><br>
+        <select id="role" name="role">
+            <option value="jobseeker">Job Seeker</option>
+            <option value="company">Company</option>
+            <!-- Add more options as needed -->
+        </select><br><br>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

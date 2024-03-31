@@ -78,6 +78,8 @@ function postComment(content) {
             console.error('Error fetching comments:', error);
         });
 }
+        document.getElementById('comment-content').value = ""
+        document.getElementById('comments-list').innerHTML = ""
         loadComment(blogPostId)
           
     })

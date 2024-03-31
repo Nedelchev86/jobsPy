@@ -6,7 +6,7 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, View
 
 from jobsPy.company.models import CompanyProfile
-from jobsPy.core.accounts_mixins import CompanyRoleRequiredMixin
+from jobsPy.core.accounts_mixins import CompanyRoleRequiredMixin, JobByCompanyMixin
 from jobsPy.jobs.forms import CreateJobForms, EditeJobForm, ApplyForJobForms, ChangeStatus
 from jobsPy.jobs.models import Job, Category, Applicant, FavoriteJob
 
@@ -33,7 +33,7 @@ class JobCreateView(LoginRequiredMixin, CompanyRoleRequiredMixin, CreateView):
 class AllJobsView(ListView):
     model = Job
     template_name = "jobs/jobs_list.html"
-    paginate_by = 2
+    paginate_by = 10
 
     def get_queryset(self):
         query = self.request.GET.get('q')
@@ -74,7 +74,7 @@ class JobDetails(DetailView):
         return context
 
 
-class EditJob(LoginRequiredMixin, CompanyRoleRequiredMixin, UpdateView):
+class EditJob(LoginRequiredMixin, CompanyRoleRequiredMixin, JobByCompanyMixin, UpdateView):
     model = Job
     form_class = EditeJobForm
     template_name = "jobs/edit-job.html"

@@ -128,7 +128,19 @@ class AddEducation(CreateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse_lazy('edit-profile', kwargs={'pk': self.kwargs['pk']})
+        # return reverse_lazy('edit-profile', kwargs={'pk': self.kwargs['pk']})
+        return reverse_lazy('job seeker dashboard')
+
+
+class EditEducation(UpdateView):
+    model = Education
+    template_name = "job_seekers/edit_education.html"
+    form_class = EducationForm
+
+    def get_success_url(self):
+        # return reverse_lazy('edit-profile', kwargs={'pk': self.kwargs['pk']})
+        return reverse_lazy('job seeker dashboard')
+
 
 
 class AddWorkExperience(CreateView):

@@ -8,13 +8,13 @@
             <div class="row">
                 <div class="col-12">
                     <div class="breadcrumbs-content">
-                        <h1 class="page-title">Blog Single Sidebar</h1>
-                        <p>Business plan draws on a wide range of knowledge from different business<br> disciplines.
-                            Business draws on a wide range of different business .</p>
+                        <h1 class="page-title">Job offers</h1>
+                        <p>Job offers from leading companies <br>
+                           New Company jobs added daily...</p>
                     </div>
                     <ul class="breadcrumb-nav">
-                        <li><a href="index.html">Home</a></li>
-                        <li>Blog Single Sidebar</li>
+                        <li><a href="{% url 'index' %}">Home</a></li>
+                        <li>Job offers</li>
                     </ul>
                 </div>
             </div>
@@ -36,32 +36,36 @@
                                 {% else %}
                  <img src="{% static 'images/jobs/category-2.jpg' %}" alt="{{ company.name }} Image">
                                 {% endif %}
-                               <p> <a href="{% url 'company-details' job.user.company.pk %}">{{ job.user.company.name }}</a></p>
+{#                               <p> <a href="{% url 'company-details' job.user.company.pk %}">{{ job.user.company.name }}</a></p>#}
 
                             </div>
                             <div class="job-content">
                                 <h4><a href="{% url 'job_details' job.pk %}">{{ job.title }}</a></h4>
-                                <p>We are looking for Enrollment Advisors who are looking to take 30-35 appointments per
-                                    week. All leads are pre-scheduled. </p>
+                                <div class="truncate-overflow-jobs">
+                                <p>{{ job.description|safe|default_if_none:"nothing" }}</p>
+                                </div>
                                 <ul>
-                                    <li><i class="lni lni-website"></i><a href="#"> winbrans.com</a></li>
+                                    <li><i class="lni lni-website"></i><a href="#"> {{ job.user.company.website_url }}</a></li>
                                     <li><i class="lni lni-euro"></i> {{ job.salary }} </li>
                                     <li><i class="lni lni-map-marker"></i> {{ job.location }}</li>
-                                    
+                                    <li><i class="lni"></i> {{ job.seniority }}</li>
+                                    <li><i class="lni"></i> {{ job.job_type }}</li>
+
         
 
                                 </ul>
-                            <ul>
+
+                                <ul>
                                                             {% for skill in job.needed_skills.all %}
                                                 <li><span>{{ skill.name }}</span></li>
                                         {% endfor %}
                             </ul>
                             </div>
                             <div class="job-button">
-                                <ul>
-                                    <li><a href="{% url 'apply_for_job' job.pk %}">Apply</a></li>
-                                    <li><span>full time</span></li>
-                                </ul>
+{#                                <ul>#}
+{#                                    <li><a href="{% url 'apply_for_job' job.pk %}">Apply</a></li>#}
+                                    <a class="company-link" href="{% url 'company-details' job.user.company.pk %}"><span>Company : {{ job.user.company.name }}</span></a></li>
+{#                                </ul>#}
                             </div>
                         </div>
                     {% endfor %}

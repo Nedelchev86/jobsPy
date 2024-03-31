@@ -5,7 +5,7 @@
 
     
                                 <li><a class="{% if request.resolver_match.url_name == 'job seeker dashboard' %}active{% endif %}"  href="{% url 'job seeker dashboard' %}"><i class="lni lni-clipboard"></i> Dashboard</a></li>
-                                <li><a class="{% if request.resolver_match.url_name == 'edit-profile' %}active{% endif %}"  href="{% url 'edit-profile' user.jobseeker.pk %}"><i class="lni lni-clipboard"></i> Edit Profile {{ user }}</a></li>
+                                <li><a class="{% if request.resolver_match.url_name == 'edit-profile' %}active{% endif %}"  href="{% url 'edit-profile' user.jobseeker.pk %}"><i class="lni lni-clipboard"></i> Edit Profile </a></li>
 {#                                <li><a class="{% if request.resolver_match.url_name == 'edit-profile' %}active{% endif %}"  href="{% url 'edit-profile'  %}"><i class="lni lni-clipboard"></i> Edit Profile</a></li>#}
                                 <li><a class="{% if request.resolver_match.url_name == 'favourite_jobs' %}active{% endif %}"  href="{% url 'favourite_jobs' %}"><i class="lni lni-clipboard"></i> Favourite <span class="notifi">{{ user.favoritejob_set.all|length}}</span></a></li>
                                 <li><a class="{% if request.resolver_match.url_name == 'jobs-apply' %}active{% endif %}" href="{% url 'jobs-apply' %}"><i class="lni lni-alarm"></i>Jobs Apply <span class="notifi">{{ user.jobseeker.get_user_all_applicant}}</span></a></li>

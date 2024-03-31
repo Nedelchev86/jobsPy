@@ -37,69 +37,27 @@
                                         alt="Company Logo"></a>
                                 {% endif %}
                             </div>
-                            <div class="salary-type col-auto order-sm-3">
-                                <span class="salary-range">{{ job.salary}}</span>
-                                <span class="badge badge-success">{{ job.job_type}}</span>
-                            </div>
+{#                            <div class="salary-type col-auto order-sm-3">#}
+{#                                <span class="salary-range">{{ job.salary}}</span>#}
+{#                                <span class="badge badge-success">{{ job.job_type}}</span>#}
+{#                            </div>#}
                             <div class="content col">
                                 <h5 class="title">{{ job.title}}</h5>
                                 <ul class="meta">
-                                    <li><strong class="text-primary"><a href="http://www.graygrids.com">GrayGrids</a></strong>
+                                    <li><strong class="text-primary"><a href="{% url 'company-details' object.user.pk %}">{{ object.user.company.name }}</a></strong>
                                     </li>
-                                    <li><i class="lni lni-map-marker"></i> 2023 Willshire Glen, GA-30009</li>
+                                    <li><i class="lni lni-map-marker"></i> {{ object.user.company.location}}</li>
                                 </ul>
                             </div>
                         </div>
                         <div class="job-details-body">
                             <h6 class="mb-3">Job Description</h6>
-                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Similique, ex iusto! Tenetur
-                                iusto dolore amet voluptates esse? Ut debitis perferendis, impedit ullam ea officia
-                                sapiente soluta cupiditate molestiae eius enim aut laboriosam, saepe deleniti. Excepturi
-                                nobis amet fugit ipsa corrupti!</p>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo ratione odit qui inventore
-                                maiores labore tenetur earum! Quam eaque, deleniti quibusdam deserunt quos reprehenderit
-                                dolor, in quo voluptates maxime nostrum.</p>
+                            <p>{{ object.description|safe }}</p>
                             <h6 class="mb-3 mt-4">Responsibilities</h6>
-              
-                            <ul>
-                                <li>Proven work experienceas a web designer</li>
-                                <li>Demonstrable graphic design skills with a strong portfolio</li>
-                                <li>Proficiency in HTML, CSS and JavaScript for rapid prototyping</li>
-                                <li>Experience working in an Agile/Scrum development process</li>
-                                <li>Proven work experienceas a web designer</li>
-                                <li>Excellent visual design skills with sensitivity to user-system interaction</li>
-                                <li>Ability to solve problems creatively and effectively</li>
-                                <li>Proven work experienceas a web designer</li>
-                                <li>Up-to-date with the latest Web trends, techniques and technologies</li>
-                                <li>BS/MS in Human-Computer Interaction, Interaction Design or a Visual Arts subject
-                                </li>
-                            </ul>
-                            <h6 class="mb-3 mt-4">Education + Experience</h6>
-                            <ul>
-                                <li>Advanced degree or equivalent experience in graphic and web design</li>
-                                <li>3 or more years of professional design experience</li>
-                                <li>Direct response email experience</li>
-                                <li>Ecommerce website design experience</li>
-                                <li>Familiarity with mobile and web apps preferred</li>
-                                <li>Excellent communication skills, most notably a demonstrated ability to solicit and
-                                    address creative and design feedback</li>
-                                <li>Must be able to work under pressure and meet deadlines while maintaining a positive
-                                    attitude and providing exemplary customer service</li>
-                                <li>Ability to work independently and to carry out assignments to completion within
-                                    parameters of instructions given, prescribed routines, and standard accepted
-                                    practices</li>
-                            </ul>
+                            {{ object.responsibilities }}
                             <h6 class="mb-3 mt-4">Benefits</h6>
-                            <ul>
-                                <li>Medical insurance</li>
-                                <li>Dental insurance</li>
-                                <li>Vision insurance</li>
-                                <li>Supplemental benefits (Short Term Disability, Cancer & Accident).</li>
-                                <li>Employer-sponsored Basic Life & AD&D Insurance</li>
-                                <li>Employer-sponsored Long Term Disability</li>
-                                <li>Employer-sponsored Value Adds – Fresh Beanies</li>
-                                <li>401(k)with matching</li>
-                            </ul>
+                            {{object.benefits }}
+                            
                         </div>
                     </div>
                 </div>
@@ -237,14 +195,13 @@
                             <div class="inner">
                                 <h6 class="title">Job Overview</h6>
                                 <ul class="job-overview list-unstyled">
-                                    <li><strong>Published on:</strong> Nov 6, 2023</li>
-                                    <li><strong>Vacancy:</strong> 02</li>
-                                    <li><strong>Employment Status:</strong> Full-time</li>
-                                    <li><strong>Experience:</strong> 2 to 3 year(s)</li>
-                                    <li><strong>Job Location:</strong> Willshire Glen</li>
-                                    <li><strong>Salary:</strong> $5k - $8k</li>
-                                    <li><strong>Gender:</strong> Any</li>
-                                    <li><strong>Application Deadline:</strong> Dec 15, 2023</li>
+                                    <li><strong>Published on:</strong> {{ object.created_at}}</li>
+                                    <li><strong>Vacancy:</strong> {{ object.vacancy }}</li>
+                                    <li><strong>Employment Status:</strong> {{ object.job_type }}</li>
+                                    <li><strong>Experience:</strong> {{ object.seniority}}</li>
+                                    <li><strong>Job Location:</strong> {{ object.location}}</li>
+                                    <li><strong>Salary:</strong> {{ object.salary }}</li>
+                                    <li><strong>Application Deadline:</strong> {{ object.deadline}}</li>
                                 </ul>
                             </div>
                         </div>
@@ -254,7 +211,7 @@
                         <div class="sidebar-widget">
                             <div class="inner">
                                 <h6 class="title">Job Location</h6>
-                                <div class="mapouter"><div class="gmap_canvas"><iframe width="100%" height="300" id="gmap_canvas" src="https://maps.google.com/maps?q=New%20York&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://123movies-to.com">123movies old site</a><style>.mapouter{position:relative;text-align:right;height:300px;width:100%;}.gmap_canvas {overflow:hidden;background:none!important;height:300px;width:100%;}</style><a href="https://maps-google.github.io/embed-google-map/">embed google map</a></div></div>
+                                <div class="mapouter"><div class="gmap_canvas"><iframe width="100%" height="300" id="gmap_canvas" src="https://maps.google.com/maps?q={{ object.location }}&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://123movies-to.com">123movies old site</a><style>.mapouter{position:relative;text-align:right;height:300px;width:100%;}.gmap_canvas {overflow:hidden;background:none!important;height:300px;width:100%;}</style><a href="https://maps-google.github.io/embed-google-map/">embed google map</a></div></div>
                             </div>
                         </div>
                         <!-- Sidebar (Job Location) End -->

@@ -48,7 +48,7 @@
                                                     src="{% static '/images/clients/default_profile.png' %}" alt=""></a>
                                             {% endif %}
                                             <h4><a class="name" href="#">{{ object.first_name}}</a></h4>
-                                            <p><a class="deg" href="#">Product Designer</a></p>
+                                            <p><a class="deg" href="#">{{ object.occupation}}</a></p>
                                             <ul class="social">
                                                 <li><a href="#"><i class="lni lni-facebook-original"></i></a></li>
                                                 <li><a href="#"><i class="lni lni-twitter-original"></i></a></li>
@@ -64,7 +64,7 @@
                                             <!-- Single List -->
                                             <div class="single-list">
                                                 <h5 class="title">Location</h5>
-                                                <p>{{ object.occupation}} , {{ object.nationality }}</p>
+                                                <p>{{ object.city}} </p>
                                             </div>
                                             <!-- Single List -->
                                             <!-- Single List -->
@@ -161,7 +161,7 @@
                                             <h3 class="mb-0">
                                                 <a href="#">{{ education.institution}}</a>
                                             </h3>
-                                            <a href="#">{{  education.institution }}</a>
+                                            <p>{{  education.description|safe }}</p>
                                             <div class="d-flex align-items-center justify-content-md-between flex-wrap">
                                                 <a href="#">{{ education.start_date}} - {{  education.end_date}}</a>
                                                 <a href="#" class="font-size-3 text-gray">

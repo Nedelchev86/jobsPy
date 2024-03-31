@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load socialaccount %}
 {%  load static %}
 {% block title %} Register - Start Your Career Journey with JobsPy {% endblock %}
 {% block main_content %}
@@ -85,7 +86,10 @@
                             </div>
                         </form>
                 </div>
+                    <a class="google" href="{% provider_login_url 'google' %}">Login with Google</a>
+                    <a class="github" href="{% provider_login_url 'github' %}">Login with GitHun</a>
             </div>
+  
         </div>
         </div>
     </section>

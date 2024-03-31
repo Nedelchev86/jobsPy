@@ -22,9 +22,6 @@ def create_user_profile(sender, instance, created, **kwargs):
             CompanyProfile.objects.create(user=instance)
 
 
-
-
-
 # myapp/signals.py
 
 from django.dispatch import receiver

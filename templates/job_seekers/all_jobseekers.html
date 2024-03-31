@@ -9,13 +9,12 @@
             <div class="row">
                 <div class="col-12">
                     <div class="breadcrumbs-content">
-                        <h1 class="page-title">Manage Resumes</h1>
-{#                        <p>Business plan draws on a wide range of knowledge from different business<br> disciplines.#}
-{#                            Business draws on a wide range of different business .</p>#}
+                        <h1 class="page-title">Job Seekers</h1>
+                        <p>Find employees that match your hiring criteria.</p>
                     </div>
                     <ul class="breadcrumb-nav">
-                        <li><a href="index.html">Home</a></li>
-                        <li>Manage Resumes</li>
+                        <li><a href="{% url 'index' %}">Home</a></li>
+                        <li>Job Seekers</li>
                     </ul>
                 </div>
             </div>
@@ -61,10 +60,11 @@
                                     <h3>
                                         <a href="{% url 'jobseeker details' jobseeker.pk %}">{{ jobseeker.first_name}} {{ jobseeker.last_name }}</a>
                                     </h3>
-                                    <span class="deg">Web Developer</span>
+                                    <span class="deg">{{ jobseeker.occupation}}</span>
                                     <ul class="experience">
                                         <li>Seniority: <span>{{ jobseeker.seniority }}</span></li>
-                                        <li>Hour Rate: <span>$30</span></li>
+                                        <li>GitHub: <span><a href="{{ jobseeker.github }}" target="_blank>">Link</a></span></li>
+{#                                        <li><a href="{{ jobseeker.github }}" target=_blank >GitHub: <span>{{ jobseeker.github }}</span></a></li>#}
                                         <li>
                                             <i class="lni lni-map-marker"></i>
                                             {{ jobseeker.city}}
@@ -77,16 +77,16 @@
 
                                             {% endfor %}
                                     </ul>
-                                    <div class="update-date">
-                                        <p class="status">
-                                            <strong>Updated on:</strong> Fab 22, 2023
-                                        </p>
-                                        <div class="action-btn">
-                                            <a href="#">Hide</a>
-                                            <a href="#">Edit</a>
-                                            <a href="#">Delete</a>
-                                        </div>
-                                    </div>
+{#                                    <div class="update-date">#}
+{#                                        <p class="status">#}
+{#                                            <strong>Updated on:</strong> Fab 22, 2023#}
+{#                                        </p>#}
+{#                                        <div class="action-btn">#}
+{#                                            <a href="#">Hide</a>#}
+{#                                            <a href="#">Edit</a>#}
+{#                                            <a href="#">Delete</a>#}
+{#                                        </div>#}
+{#                                    </div>#}
                                 </div>
                             </div>
                             {% endfor %}

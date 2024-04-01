@@ -10,10 +10,6 @@ userModel = get_user_model()
 
 @receiver(post_save, sender=userModel)
 def create_user_profile(sender, instance, created, **kwargs):
-
-    """
-    Signal receiver function to create a user profile when a new user is created.
-    """
     if created:
         if instance.role == 'jobseeker':
             JobSeeker.objects.create(user=instance)
@@ -28,6 +24,7 @@ from django.dispatch import receiver
 from allauth.account.signals import user_logged_in
 from django.shortcuts import redirect
 
+
 @receiver(user_logged_in)
 def handle_user_logged_in(sender, request, user, **kwargs):
     # Check if the user's role is already set
@@ -37,4 +34,4 @@ def handle_user_logged_in(sender, request, user, **kwargs):
         # user.save()
 
         # Redirect the user to select their role
-        return redirect('select_role')  # Adjust the URL name as per your project's URL configuration
+        return redirect('select_role')

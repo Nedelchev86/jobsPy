@@ -76,3 +76,13 @@ class JobByCompanyMixin(AccessMixin):
         else:
 
             return render(request, '403.html', status=403)
+
+
+class JobEditMixin(AccessMixin):
+    def dispatch(self, request, *args, **kwargs):
+
+        if request.user.pk == self.get_object().job_seeker.pk:
+            return super().dispatch(request, *args, **kwargs)
+        else:
+
+            return render(request, '403.html', status=403)

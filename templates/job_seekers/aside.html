@@ -1,0 +1,36 @@
+{% load static %}
+<aside class="col-lg-4 col-md-12 col-12">
+                    <div class="sidebar">
+                            <div class="widget search-widget">
+{#                            <h5 class="widget-title"><span>Search This Site</span></h5>#}
+                             <form method="get" action="{% url 'all-employees' %}">
+                                <input type="text" name="city" placeholder="Search by city...">
+                                <button type="submit"><i class="lni lni-search-alt"></i></button>
+                            </form>
+                        </div>
+                        <div class="widget popular-tag-widget">
+                            <h5 class="widget-title"><span>Popular Skills</span></h5>
+                            <div class="tags">
+                                  {% for skill in skills %}
+                                    <a href={% url 'all-employees' %}?skill={{ skill.name}}>{{ skill.name }}</a>
+                                  {% endfor %}
+
+                            </div>
+                        </div>
+{#                        {% include "jobs/category_slide.html" %}#}
+
+
+                        <div class="widget popular-feeds">
+                            <h5 class="widget-title"><span>Latest Blog Posts with DRF</span></h5>
+
+                            <div class="popular-feed-loop">
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </aside>
+
+
+        <script src="{% static '/js/blog/popular_feeds.js' %}"></script>

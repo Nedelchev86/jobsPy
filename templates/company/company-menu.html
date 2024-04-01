@@ -10,8 +10,8 @@
                                 <li><a class="{% if request.resolver_match.url_name == 'create_job' %}active{% endif %}"  href="{% url 'create_job' %}"><i class="lni lni-clipboard"></i> Create Job</a></li>
                                 <li><a class="{% if request.resolver_match.url_name == 'created-jobs' %}active{% endif %}" href="{% url 'created-jobs' %}"><i class="lni lni-alarm"></i>Created Jobs <span class="notifi">{{ request.user.job_set.all|length }}</span></a></li>
                                 <li><a class="{% if request.resolver_match.url_name == 'jobs-applicants' %}active{% elif request.resolver_match.url_name == 'applicant_list' %}active{% endif %}" href="{% url 'jobs-applicants' %}"><i class="lni lni-alarm"></i>Applicants <span class="notifi">{{ request.user.company.get_all_applicant }}</span></a></li>
-                                <li><a  href="notifications.html"><i class="lni lni-alarm"></i> Notifications <span
-                                            class="notifi">5</span></a></li>
+                                <li><a  href="#"><i class="lni lni-alarm"></i> Notifications <span
+                                            class="notifi">ToDo</span></a></li>
 {#                                <li><a href="manage-applications.html"><i class="lni lni-envelope"></i> Manage#}
 {#                                        Applications</a></li>#}
 {#                                <li><a href="manage-jobs.html"><i class="lni lni-briefcase"></i> Manage Jobs</a></li>#}

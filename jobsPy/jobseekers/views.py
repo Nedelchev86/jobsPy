@@ -4,7 +4,8 @@ from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, ListView, DetailView, UpdateView, CreateView
 
-from jobsPy.core.accounts_mixins import JobSeekerRequiredMixin, JobSeekerOwnerRequiredMixin
+from jobsPy.core.accounts_mixins import JobSeekerRequiredMixin, JobSeekerOwnerRequiredMixin, JobByCompanyMixin, \
+    JobEditMixin
 from jobsPy.jobs.models import FavoriteJob, Applicant, Skills
 from jobsPy.jobseekers.forms import EditProfileFrom, EducationForm, WrokExperienceForm
 from jobsPy.jobseekers.models import JobSeeker, Education, Experience
@@ -132,7 +133,7 @@ class AddEducation(CreateView):
         return reverse_lazy('job seeker dashboard')
 
 
-class EditEducation(UpdateView):
+class EditEducation(JobSeekerRequiredMixin, JobEditMixin ,UpdateView):
     model = Education
     template_name = "job_seekers/edit_education.html"
     form_class = EducationForm

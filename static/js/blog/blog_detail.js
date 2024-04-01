@@ -62,23 +62,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
                                     </div>
                                 </div>
-                                <h3>A cleansing hot shower or bath</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                                    irure
-                                    dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                                    pariatur.
-                                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia. </p>
+
+                                <p>${blog.more_info}</p>
                                 <!-- post quote -->
                                 <blockquote>
                                     <div class="icon">
                                         <i class="lni lni-quotation"></i>
                                     </div>
-                                    <h4>"Don't demand that things happen as you wish, but wish that they happen as they
-                                        do
-                                        happen, and you will go on well."</h4>
-                                    <span>Epictetus, The Enchiridion</span>
+                                    <p>${blog.footer}</p>
+
 
                                 </blockquote>
 

@@ -8065,6 +8065,23 @@ label.required::after {
   font-size: 13px;
 }
 
+.education-edit {
+  background: #fff;
+  border: 1px solid #2042e3;
+  padding: 6px 12px;
+  border-radius: 3px;
+  font-size: 13px;
+}
+
+.education-edit:hover {
+  background: #2042e3;
+  border: 1px solid #2042e3;
+  color: #fff !important;
+  font-size: 13px;
+}
+
+
+
 .education-link:hover {
   background: #2042e314;
   color: #081828;

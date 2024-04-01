@@ -59,11 +59,11 @@
                                         <a class="{% if request.resolver_match.url_name == 'index' %}active{% endif %}" href="{% url 'index' %}">Home</a>
                                     </li>
 
-                                    <li class="nav-item "><a class="{% if request.resolver_match.url_name == 'all-jobs' %}active{% endif %}" href="{% url 'all-jobs' %}">All Jobs</a>
+                                    <li class="nav-item "><a class="{% if request.resolver_match.url_name == 'all-jobs' or request.resolver_match.url_name == "job_details" or  request.resolver_match.url_name  == "jobs_category" %}active{% endif %}" href="{% url 'all-jobs' %}">Jobs</a>
                                     </li>
-                                    <li class="nav-item"><a class="{% if request.resolver_match.url_name == 'all_company' %}active{% endif %}" href="{% url 'all_company' %}">Company</a>
+                                    <li class="nav-item"><a class="{% if request.resolver_match.url_name == 'all_company' or request.resolver_match.url_name == "company-details" %}active{% endif %}" href="{% url 'all_company' %}">Companies</a>
                                     </li>
-                                    <li class="nav-item"><a class="{% if request.resolver_match.url_name == 'all-employees' %}active{% endif %}" href="{% url 'all-employees' %}">Employers</a></li>
+                                    <li class="nav-item"><a class="{% if request.resolver_match.url_name == 'all-employees' or  request.resolver_match.url_name == "jobseeker details" %}active{% endif %}" href="{% url 'all-employees' %}">Job Seekers</a></li>
 {#                                        <ul class="sub-menu">#}
 {#                                            <li><a href="post-job.html">Add Job</a></li>#}
 {#                                            <li><a href="manage-jobs.html">Manage Jobs</a></li>#}
@@ -72,7 +72,7 @@
 {#                                            <li><a href="browse-resumes.html">Browse Resumes</a></li>#}
 {#                                        </ul>#}
 {#                                    </li>#}
-                                    <li class="nav-item"><a href="{% url 'blog-list' %}">Blog</a>
+                                    <li class="nav-item"><a class="{% if request.resolver_match.url_name == 'blog-detail' or  request.resolver_match.url_name == "blog-list" %}active{% endif %}" href="{% url 'blog-list' %}">Blog</a>
 {#                                        <ul class="sub-menu">#}
 {#                                            <li><a href="blog-grid-sidebar.html">Blog Grid Sidebar</a></li>#}
 {#                                            <li><a href="blog-single.html">Blog Single</a></li>#}

@@ -91,3 +91,7 @@ class CommentRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView)
         comment_id = self.kwargs.get('comment_pk')
 
         return Comment.objects.get(pk=comment_id)
+
+class LatestBlogPostsAPIView(generics.ListAPIView):
+    queryset = BlogPost.objects.all() # Limit queryset to latest 5 blog posts
+    serializer_class = BlogPostSerializer

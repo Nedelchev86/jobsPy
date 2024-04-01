@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 <img class="thumb" src="${blog.image_url_1}" alt="#">
                             </div>
                             <div class="content-body">
-                                <h4 class="title"><a href="blog-single.html">${blog.title}</a></h4>
+                                <h4 class="title"><a href="/blog/${blog.id}/">${blog.title}</a></h4>
                                 <div class="meta-details">
                                     <ul>
                                         <li><a href="#"><i class="lni lni-tag"></i> ${blog.author.first_name} ${blog.author.last_name}</a></li>

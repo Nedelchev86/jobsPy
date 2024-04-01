@@ -1,6 +1,6 @@
 from django.urls import path
 
-from jobsPy.blog.views import BlogList, SingleBlog, CreateBlog
+from jobsPy.blog.views import BlogList, SingleBlog, CreateBlog, LatestBlogPostsAPIView
 
 urlpatterns = [
     # path('blog/', BlogPostListCreateAPIView.as_view(), name='blog-list'),

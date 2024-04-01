@@ -84,6 +84,11 @@ class JobSeekerDetails(DetailView):
     model = JobSeeker
     template_name = "job_seekers/job_seekers_details.html"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['skills'] = Skills.objects.all()
+        return context
+
 
 class EditProfile(JobSeekerOwnerRequiredMixin, UpdateView):
     model = JobSeeker
@@ -158,4 +163,14 @@ class AddWorkExperience(CreateView):
         return super().form_valid(form)
 
     def get_success_url(self):
+        return reverse_lazy('job seeker dashboard')
+
+
+class EditWorkExperience(JobSeekerRequiredMixin, JobEditMixin,UpdateView):
+    model = Experience
+    template_name = "job_seekers/edit_edit_work_experience.html"
+    form_class = WrokExperienceForm
+
+    def get_success_url(self):
+        # return reverse_lazy('edit-profile', kwargs={'pk': self.kwargs['pk']})
         return reverse_lazy('job seeker dashboard')

@@ -1,7 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import UserPassesTestMixin, AccessMixin
-from django.core.exceptions import PermissionDenied
-from django.http import HttpResponseForbidden, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.urls import reverse
 
@@ -30,6 +29,7 @@ class CompanyRoleRequiredMixin:
 
             return render(request, '403.html', status=403)
 
+
 class RedirectAuthenticatedUserMixin(UserPassesTestMixin):
     def test_func(self):
         return not self.request.user.is_authenticated
@@ -46,7 +46,6 @@ class JobSeekerOwnerRequiredMixin(AccessMixin):
     #         raise PermissionDenied("You are not allowed to edit this profile.")
     #     return super().dispatch(request, *args, **kwargs)
 
-
     def dispatch(self, request, *args, **kwargs):
         if request.user.jobseeker.pk != kwargs.get('pk', None):
             return HttpResponseRedirect(reverse('index'))
@@ -60,7 +59,6 @@ class CompanyOwnerRequiredMixin(AccessMixin):
     #     if request.user.pk != kwargs.get('pk', None):
     #         raise PermissionDenied("You are not allowed to edit this profile.")
     #     return super().dispatch(request, *args, **kwargs)
-
 
     def dispatch(self, request, *args, **kwargs):
         if request.user.company.pk != kwargs.get('pk', None):

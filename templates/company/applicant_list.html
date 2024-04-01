@@ -8,13 +8,14 @@
             <div class="row">
                 <div class="col-12">
                     <div class="breadcrumbs-content">
-                        <h1 class="page-title">Bookmarked Jobs</h1>
+                        <h1 class="page-title">Applicants</h1>
                         <p>Business plan draws on a wide range of knowledge from different business<br> disciplines.
                             Business draws on a wide range of different business .</p>
                     </div>
                     <ul class="breadcrumb-nav">
-                        <li><a href="index.html">Home</a></li>
-                        <li>Bookmarked Jobs</li>
+                        <li><a href="{% url 'index' %}">Home</a></li>
+                        <li><a href="{% url 'company-dashboard' %}">Dashboard</a></li>
+                        <li><a href="{% url 'jobs-applicants' %}">Applicants</a></li>
                     </ul>
                 </div>
             </div>

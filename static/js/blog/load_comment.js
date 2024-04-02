@@ -20,8 +20,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 let name = "Anonymous";
                 if (comment.author.first_name) {
                     name = comment.author.first_name;
-                } else if (comment.author.title) {
-                    name = comment.author.title;
+                } else if (comment.author.name) {
+                    name = comment.author.name;
                 }
                 let image = "/static/images/clients/default_profile.png";
                 if (comment.author.profile_picture) {
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <div class="desc-top">
                             <h6>${name}</h6>
                             <span class="date">${comment.created_at}</span>
-                            <a href="#" class="reply-link"><i class="lni lni-reply"></i>Reply</a>
+                            <a href="#" class="reply-link"><i class="lni lni-reply"></i>Reply ( ToDo )</a>
                         </div>
                         <p>
                             ${comment.content}

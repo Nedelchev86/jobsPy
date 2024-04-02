@@ -11,6 +11,7 @@ class CompanyProfile(models.Model):
     name = models.CharField(max_length=40, null=False, blank=False)
     description = RichTextField(null=False, blank=False)
     location = models.CharField(max_length=40, null=False, blank=False)
+    phone = models.CharField(max_length=20, null=True, blank=True)
     address = models.CharField(null=False, blank=False, max_length=200)
     email = models.EmailField(max_length=254, null=False, blank=False)
     image = models.ImageField(null=True, blank=True, upload_to="company/image")
@@ -18,7 +19,7 @@ class CompanyProfile(models.Model):
     linkedin_url = models.URLField(max_length=200, null=True, blank=True)
     facebook_url = models.URLField(max_length=200, null=True, blank=True)
     employees = models.PositiveIntegerField(null=False, blank=False)
-    year_of_foundation = models.PositiveIntegerField(null=False, blank=False)
+    foundation_year = models.PositiveIntegerField(null=False, blank=False)
     skills = models.ManyToManyField(Skills, related_name="Technologies")
     activated = models.BooleanField(default=False)
 

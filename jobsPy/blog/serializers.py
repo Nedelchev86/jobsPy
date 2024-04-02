@@ -43,7 +43,7 @@ class CommentJobSeekerSerializer(serializers.ModelSerializer):
 class CommentCompanySerializer(serializers.ModelSerializer):
     class Meta:
         model = CompanyProfile
-        fields = ['title', 'image', 'pk']
+        fields = ['name', 'image', 'pk']
 
 
 class CommentSerializerCreate(serializers.ModelSerializer):

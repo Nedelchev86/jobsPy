@@ -10,7 +10,7 @@ class EditCompany(ModelForm):
 
     class Meta:
         model = CompanyProfile
-        exclude = ["user"]
+        exclude = ['user', 'activated']
 
         widgets = {
             'description': CharField(widget=CKEditorWidget())

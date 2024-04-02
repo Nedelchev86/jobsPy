@@ -2,7 +2,7 @@ from ckeditor.fields import RichTextField
 from django.contrib.auth import get_user_model
 from django.db import models
 
-from jobsPy.jobs.models import Applicant
+from jobsPy.jobs.models import Applicant, Skills
 
 UserModel = get_user_model()
 
@@ -19,6 +19,7 @@ class CompanyProfile(models.Model):
     facebook_url = models.URLField(max_length=200, null=True, blank=True)
     employees = models.PositiveIntegerField(null=False, blank=False)
     year_of_foundation = models.PositiveIntegerField(null=False, blank=False)
+    skills = models.ManyToManyField(Skills, related_name="Technologies")
     activated = models.BooleanField(default=False)
 
 

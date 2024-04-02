@@ -94,25 +94,37 @@
                                             <!-- Single List -->
                                             <div class="single-list">
                                                 <h5 class="title">Location</h5>
-                                                <p>New York , USA</p>
+                                                <p>{{ user.company.location }}</p>
                                             </div>
                                             <!-- Single List -->
                                             <!-- Single List -->
                                             <div class="single-list">
                                                 <h5 class="title">E-mail</h5>
-                                                <p>youremail@gmail.com</p>
+                                                <p>{{ user.company.email }}</p>
                                             </div>
                                             <!-- Single List -->
                                             <!-- Single List -->
                                             <div class="single-list">
                                                 <h5 class="title">Phone</h5>
-                                                <p>+999 565 562</p>
+                                                <p>{{ user.company.phone }}</p>
+                                            </div>
+                                            <div class="single-list">
+                                                <h5 class="title">Address</h5>
+                                                <p>{{ user.company.address }}</p>
+                                            </div>
+                                            <div class="single-list">
+                                                <h5 class="title">Employees</h5>
+                                                <p>{{ user.company.employees }}</p>
+                                            </div>
+                                            <div class="single-list">
+                                                <h5 class="title">Foundation Year</h5>
+                                                <p>{{ user.company.foundation_year }}</p>
                                             </div>
                                             <!-- Single List -->
                                             <!-- Single List -->
                                             <div class="single-list">
                                                 <h5 class="title">Website Linked</h5>
-                                                <p><a href="#">yourwebsite.com</a></p>
+                                                <p><a href="#">{{ user.company.website_url }}</a></p>
                                             </div>
                                             <!-- Single List -->
                                         </div>
@@ -123,48 +135,21 @@
                             <!-- Start Single Section -->
                             <div class="single-section">
                                 <h4>About</h4>
-                                <p class="font-size-4 mb-8">A talented professional with an academic background
-                                    in IT and proven
-                                    commercial development experience as C++ developer since 1999. Has a sound
-                                    knowledge of the software
-                                    development life cycle. Was involved in more than 140 software development
-                                    outsourcing projects.</p>
-                                <p class="font-size-4 mb-8">Programming Languages: C/C++, .NET C++, Python,
-                                    Bash, Shell, PERL, Regular
-                                    expressions, Python, Active-script.</p>
+                                <p class="font-size-4 mb-8">{{ user.company.description|safe }}</p>
+
                             </div>
                             <!-- End Single Section -->
                             <!-- Start Single Section -->
                             <div class="single-section skill">
-                                <h4>Skills</h4>
+                                <h4>Technologies</h4>
                                 <ul class="list-unstyled d-flex align-items-center flex-wrap">
+
+                                    {% for skill in user.company.skills.all %}
                                     <li>
-                                        <a href="#">Agile</a>
+                                        <a href="#">{{ skill }}</a>
                                     </li>
-                                    <li>
-                                        <a href="#">Wireframing</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Prototyping</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Information</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Waterfall Model</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">New Layout</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Ui/Ux Design</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Web Design</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Graphics Design</a>
-                                    </li>
+                                    {% endfor %}
+
                                 </ul>
                             </div>
                             <!-- End Single Section -->

@@ -35,9 +35,8 @@
                         <div class="job-items">
 
                             {% for obj in object_list %}
-                                {{ obj }}
-                                {{ obj.user.jobseeker.first_name }}
-                                {{ obj.user.jobseeker.last_name }}
+{#                                {{ obj.user.jobseeker.first_name }}#}
+{#                                {{ obj.user.jobseeker.last_name }}#}
               
                                 
 
@@ -51,6 +50,7 @@
 
                                                 <img src="{{  obj.user.jobseeker.profile_picture.url }}" alt="#">
                                                 {% endif %}
+
                                             </div>
                                             <h3>{{ jobs.title }}<span>{{ jobs.category}}</span></h3>
                                         </div>
@@ -66,7 +66,7 @@
 
 
                                     <div class="col-lg-3 col-md-3 col-12">
-                                        <p class="location"><i class="lni lni-map-marker"></i>{{ jobs.location}}</p>
+                                        <p class="location"><i class="lni lni-user"></i>{{ obj.user.jobseeker.first_name }} {{ obj.user.jobseeker.last_name }}</p>
                                     </div>
 
                                     <div class="col-lg-2 col-md-2 col-12">
@@ -85,16 +85,16 @@
    
                         </div>
                         <!-- Pagination -->
-                        <div class="pagination left pagination-md-center">
-                            <ul class="pagination-list">
-                                <li><a href="#"><i class="lni lni-arrow-left"></i></a></li>
-                                <li class="active"><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#"><i class="lni lni-arrow-right"></i></a></li>
-                            </ul>
-                        </div>
+{#                        <div class="pagination left pagination-md-center">#}
+{#                            <ul class="pagination-list">#}
+{#                                <li><a href="#"><i class="lni lni-arrow-left"></i></a></li>#}
+{#                                <li class="active"><a href="#">1</a></li>#}
+{#                                <li><a href="#">2</a></li>#}
+{#                                <li><a href="#">3</a></li>#}
+{#                                <li><a href="#">4</a></li>#}
+{#                                <li><a href="#"><i class="lni lni-arrow-right"></i></a></li>#}
+{#                            </ul>#}
+{#                        </div>#}
                         <!-- End Pagination -->
                     </div>
                 </div>

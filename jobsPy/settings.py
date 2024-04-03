@@ -141,7 +141,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [BASE_DIR / 'static', ]
+# STATICFILES_DIRS = [BASE_DIR / 'static', ]
 
 #
 # STATIC_ROOT = BASE_DIR / "static"
@@ -166,12 +166,15 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # WHITENOISE_SKIP_COMPRESS_EXTENSIONS = []
 
-if not DEBUG:
-    # Tell Django to copy static assets into a path called `staticfiles` (this is specific to Render)
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-    # Enable the WhiteNoise storage backend, which compresses static files to reduce disk use
-    # and renames the files with unique names for each version to support long-term caching
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+# if not DEBUG:
+#     # Tell Django to copy static assets into a path called `staticfiles` (this is specific to Render)
+#     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+#     # Enable the WhiteNoise storage backend, which compresses static files to reduce disk use
+#     # and renames the files with unique names for each version to support long-term caching
+#     # STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+# else:
+#     STATICFILES_DIRS = [BASE_DIR / 'static', ]
+
 
 # if not DEBUG:
 #     # Tell Django to copy static assets into a path called `staticfiles` (this is specific to Render)
@@ -181,8 +184,20 @@ if not DEBUG:
 #
 #     STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 #
+#
 # STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+
+
+if DEBUG:
+
+    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+else:
+
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = 'smtp.gmail.com'

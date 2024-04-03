@@ -187,14 +187,14 @@
                             <div class="col-lg-4 col-md-6 col-12">
                                 <!-- Single Widget -->
                                 <div class="single-footer f-link">
-                                    <h3>For Candidates</h3>
+                                    <h3>For Job Seekers</h3>
                                     <ul>
-                                        <li><a href="#">User Dashboard</a></li>
-                                        <li><a href="#">CV Packages</a></li>
-                                        <li><a href="#">Jobs Featured</a></li>
-                                        <li><a href="#">Jobs Urgent</a></li>
-                                        <li><a href="#">Candidate List</a></li>
-                                        <li><a href="#">Candidates Grid</a></li>
+                                        <li><a href="{% url 'login_redirect_dashboard' %}">User Dashboard</a></li>
+                                        <li><a href="#">Edit Profile</a></li>
+                                        <li><a href="{% url 'all_company' %}">Companies</a></li>
+                                        <li><a href="{% url 'all-jobs' %}">Jobs</a></li>
+                                        <li><a href="{% url 'favourite_jobs' %}">Saved Jobs</a></li>
+
                                     </ul>
                                 </div>
                                 <!-- End Single Widget -->
@@ -202,14 +202,14 @@
                             <div class="col-lg-4 col-md-6 col-12">
                                 <!-- Single Widget -->
                                 <div class="single-footer f-link">
-                                    <h3>For Employers</h3>
+                                    <h3>For Companies</h3>
                                     <ul>
-                                        <li><a href="#">Post New</a></li>
-                                        <li><a href="#">Employer List</a></li>
-                                        <li><a href="#">Employers Grid</a></li>
-                                        <li><a href="#">Job Packages</a></li>
-                                        <li><a href="#">Jobs Listing</a></li>
-                                        <li><a href="#">Jobs Featured</a></li>
+                                        <li><a href="{% url 'login_redirect_dashboard' %}">Company Dashboard</a></li>
+                                        <li><a href="{% url 'create_job' %}">Add Job Offer</a></li>
+                                        <li><a href='{% url 'all-employees' %}'>Job Seekers List</a></li>
+                                        <li><a href="{% url 'created-jobs' %}">Created Jobs</a></li>
+                                        <li><a href="{% url 'jobs-applicants' %}">Applicants</a></li>
+
                                     </ul>
                                 </div>
                                 <!-- End Single Widget -->

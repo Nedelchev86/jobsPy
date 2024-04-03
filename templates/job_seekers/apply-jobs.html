@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block main_content %}
+    {% block title %}Job Applications {{ object_list.count }} - JobsPy {% endblock %}
 
     <!-- Start Breadcrumbs -->
     <div class="breadcrumbs overlay">
@@ -12,8 +13,9 @@
                             Business draws on a wide range of different business .</p>
                     </div>
                     <ul class="breadcrumb-nav">
-                        <li><a href="index.html">Home</a></li>
-                        <li>Bookmarked Jobs</li>
+                        <li><a href="{% url 'index' %}">Home</a></li>
+                        <li><a href="{% url 'job seeker dashboard' %}">Dashboard</a></li>
+                        <li>Job Applications </li>
                     </ul>
                 </div>
             </div>
@@ -45,11 +47,28 @@
                                     <div class="col-lg-2 col-md-2 col-12">
                                         <p><span class="time {% if obj.status == 3 %}rejected{% elif obj.status == 2 %}apply{% endif %}">{{ obj.get_status }}</span></p>
                                     </div>
-                                {% if obj.comment|length > 0 %}
-                                    {{ obj.comment }}
-                                {% endif %}
+
+
+                                
                                     <div class="col-lg-3 col-md-3 col-12">
-                                        <p class="location"><i class="lni lni-map-marker"></i>{{obj.job.location}}</p>
+                                        {% if obj.comment|length > 0 %}
+                                      <a data-toggle="modal" data-target="#exampleModalCenter" href="{% url 'job_details' obj.job.pk %}" class="btn">Comment</a>
+                                            
+                                                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+
+      <div class="modal-body">
+          {{ obj.comment }}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+                                        {% endif %}
+
                                     </div>
                                     <div class="col-lg-2 col-md-2 col-12">
                                         <div class="button">

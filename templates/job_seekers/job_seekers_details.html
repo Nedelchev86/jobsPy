@@ -51,11 +51,16 @@
                                             <h4><a class="name" href="#">{{ object.first_name}}</a></h4>
                                             <p><a class="deg" href="#">{{ object.occupation}}</a></p>
                                             <ul class="social">
-                                                <li><a href="#"><i class="lni lni-facebook-original"></i></a></li>
-                                                <li><a href="#"><i class="lni lni-twitter-original"></i></a></li>
-                                                <li><a href="#"><i class="lni lni-linkedin-original"></i></a></li>
-                                                <li><a href="#"><i class="lni lni-dribbble"></i></a></li>
-                                                <li><a href="#"><i class="lni lni-pinterest"></i></a></li>
+                                            {% if object.facebook %}
+                                                <li><a target="_blank" href="{{ object.facebook }}"><i class="lni lni-facebook-original"></i></a></li>
+                                            {% endif %}
+                                                {% if object.linkedin %}
+                                                <li><a target="_blank" href="{{ object.linkedin }}"><i class="lni lni-linkedin-original"></i></a></li>
+                                                {% endif %}
+                                            {% if object.github %}
+                                                <li><a target="_blank" href="{{ object.github }}"><i class="lni lni-github"></i></a></li>
+                                            {% endif %}
+
                                             </ul>
                                         </div>
                                     </div>
@@ -73,17 +78,15 @@
                                                 <h5 class="title">E-mail</h5>
                                                 <p>{{ object.user}}</p>
                                             </div>
-                                            <!-- Single List -->
-                                            <!-- Single List -->
+
                                             <div class="single-list">
                                                 <h5 class="title">Phone</h5>
                                                 <p>{{ object.phone_number}}</p>
                                             </div>
-                                            <!-- Single List -->
-                                            <!-- Single List -->
+
                                             <div class="single-list">
-                                                <h5 class="title">Website Linked</h5>
-                                                <p><a href="#">{{ object.website }}</a></p>
+                                                <h5 class="title">Website</h5>
+                                                <p><a target="_blank" href="{{ object.website }}">Link</a></p>
                                             </div>
                                             <div class="single-list">
                                                 <h5 class="title">Seniority</h5>

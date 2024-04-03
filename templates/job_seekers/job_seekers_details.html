@@ -15,6 +15,7 @@
                     <ul class="breadcrumb-nav">
                         <li><a href="{% url 'index' %}">Home</a></li>
                         <li><a href="{% url 'all-employees' %}">All Job Seekers</a></li>
+                        <li>{{ object.first_name}} {{ object.last_name }}</li>
 
                     </ul>
                 </div>

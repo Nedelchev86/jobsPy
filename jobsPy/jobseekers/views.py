@@ -96,14 +96,14 @@ class EditProfile(JobSeekerOwnerRequiredMixin, UpdateView):
     form_class = EditProfileFrom
     success_url = reverse_lazy("job seeker dashboard")
 
-    def get_context_data(self, **kwargs):
-        contex = super().get_context_data(**kwargs)
-        print(self.request.user.pk)
-        jobseeker = get_object_or_404(JobSeeker, pk=self.request.user.jobseeker.pk)
-        education = jobseeker.educations.all()
-        if education:
-            contex["educations"] = education
-        return contex
+    # def get_context_data(self, **kwargs):
+    #     contex = super().get_context_data(**kwargs)
+    #     print(self.request.user.pk)
+    #     jobseeker = get_object_or_404(JobSeeker, pk=self.request.user.jobseeker.pk)
+    #     education = jobseeker.educations.all()
+    #     if education:
+    #         contex["educations"] = education
+    #     return contex
 
 
 class FavouriteJobs(LoginRequiredMixin, JobSeekerRequiredMixin, ListView):

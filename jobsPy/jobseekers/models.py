@@ -28,6 +28,7 @@ class JobSeeker(models.Model):
     seniority = models.ForeignKey(Seniority, on_delete=models.SET_NULL, blank=True, null=True)
     website = models.URLField(max_length=70, blank=True, null=True)
     linkedin = models.URLField(blank=False, null=False, max_length=50)
+    facebook = models.URLField(blank=False, null=False, max_length=50)
     github = models.URLField(blank=False, null=False, max_length=50)
     about = RichTextField(blank=False, null=False)
     phone_number = models.CharField(max_length=50, blank=True, null=True)

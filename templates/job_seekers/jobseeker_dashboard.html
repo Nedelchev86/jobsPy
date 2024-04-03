@@ -40,31 +40,32 @@
 
             <div class="cat-head job-category">
                 <div class="row">
-                    
                     <div class="col-md-4 col-12">
-                        <a href="browse-jobs.html" class="single-cat wow fadeInUp" data-wow-delay=".2s">
-                            <div class="icon">
-                                <i >{{ all_jobs_rejected }}</i>
-                            </div>
-                            <h3>Rejected<br> applications</h3>
-                        </a>
-                    </div>
-                                        <div class="col-md-4 col-12">
-                        <a href="browse-jobs.html" class="single-cat wow fadeInUp" data-wow-delay=".2s">
-                            <div class="icon">
-                                <i >{{ all_jobs_pending }}</i>
-                            </div>
-                            <h3>Pending<br> applications</h3>
-                        </a>
-                    </div>
-                                        <div class="col-md-4 col-12">
-                        <a href="#" class="single-cat wow fadeInUp" data-wow-delay=".8s">
+                        <a href="{% url 'jobs-apply' %}" class="single-cat wow fadeInUp" data-wow-delay=".8s">
                             <div class="icon">
                                 <i>{{ all_jobs_accepted }}</i>
                             </div>
                             <h3>Approved <br> applications</h3>
                         </a>
                     </div>
+                    <div class="col-md-4 col-12">
+                        <a href="{% url 'jobs-apply' %}" class="single-cat wow fadeInUp" data-wow-delay=".2s">
+                            <div class="icon">
+                                <i >{{ all_jobs_pending }}</i>
+                            </div>
+                            <h3>Pending<br> applications</h3>
+                        </a>
+                    </div>
+
+                    <div class="col-md-4 col-12">
+                        <a href="{% url 'jobs-apply' %}" class="single-cat wow fadeInUp" data-wow-delay=".2s">
+                            <div class="icon">
+                                <i >{{ all_jobs_rejected }}</i>
+                            </div>
+                            <h3>Rejected<br> applications</h3>
+                        </a>
+                    </div>
+
                 </div>
             
 
@@ -91,11 +92,17 @@
                                             <h4><a class="name" href="#">{{ user.jobseeker.first_name}} {{ user.jobseeker.last_name }}</a></h4>
                                             <p><a class="deg" href="#">{{ user.jobseeker.occupation}}</a></p>
                                             <ul class="social">
-                                                <li><a href="#"><i class="lni lni-facebook-original"></i></a></li>
-                                                <li><a href="#"><i class="lni lni-twitter-original"></i></a></li>
-                                                <li><a href="#"><i class="lni lni-linkedin-original"></i></a></li>
-                                                <li><a href="#"><i class="lni lni-dribbble"></i></a></li>
-                                                <li><a href="#"><i class="lni lni-pinterest"></i></a></li>
+                                                {% if user.jobseeker.facebook %}
+                                                <li><a target="_blank" href="{{ user.jobseeker.facebook }}"><i class="lni lni-facebook-original"></i></a></li>
+                                                {% endif %}
+
+                                                {% if user.jobseeker.linkedin %}
+                                                <li><a target="_blank" href="{{ user.jobseeker.linkedin }}"><i class="lni lni-linkedin-original"></i></a></li>
+                                                {% endif %}
+
+                                                {% if user.jobseeker.github %}
+                                                <li><a target="_blank" href="{{ user.jobseeker.github }}"><i class="lni lni-github"></i></a></li>
+                                                {% endif %}
                                             </ul>
                                         </div>
                                     </div>
@@ -123,7 +130,7 @@
                                             <!-- Single List -->
                                             <div class="single-list">
                                                 <h5 class="title">Website</h5>
-                                                <p><a href="#">{{ request.user.jobseeker.website }}</a></p>
+                                                <p><a target="_blank" href="{{ user.jobseeker.website  }}"> Link </a></p>
                                             </div>
                                             <!-- Single List -->
                                         </div>

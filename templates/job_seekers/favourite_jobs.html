@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block title %} Favourites Jobs - JobsPy {% endblock %}
+{% load static %}
 {% block main_content %}
     
 
@@ -10,11 +11,12 @@
                 <div class="col-12">
                     <div class="breadcrumbs-content">
                         <h1 class="page-title">Bookmarked Jobs</h1>
-                        <p>Business plan draws on a wide range of knowledge from different business<br> disciplines.
-                            Business draws on a wide range of different business .</p>
+                        <p>Find a job you love, and you  will never have to work a day in your life.<br> 
+                           Good Luck !</p>
                     </div>
                     <ul class="breadcrumb-nav">
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="{% url 'index' %}">Home</a></li>
+                        <li><a href="{% url 'index' %}">Dashboard</a></li>
                         <li>Bookmarked Jobs</li>
                     </ul>
                 </div>
@@ -39,15 +41,17 @@
                                     <div class="col-lg-5 col-md-5 col-12">
                                         <div class="title-img">
                                             <div class="can-img">
-                                                {% if obj.job.image %}
+                                                {% if obj.job.job_image %}
                                                 <img src="{{ obj.job.job_image.url }}" alt="#">
+                                                    {% else %}
+                                                    <img src="{% static 'images/default/default.jpg' %}" alt="#">
                                                 {% endif %}
                                             </div>
                                             <h3>{{ obj.job.title }}<span>{{ obj.job.category}}</span></h3>
                                         </div>
                                     </div>
                                     <div class="col-lg-2 col-md-2 col-12">
-                                        <p><span class="time">Full-Time</span></p>
+                                        <p><span class="time"><i class="lni lni-coin"></i> {{ obj.job.salary }}</span></p>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-12">
                                         <p class="location"><i class="lni lni-map-marker"></i>{{obj.job.location}}</p>
@@ -62,18 +66,6 @@
                             {% endfor %}
    
                         </div>
-                        <!-- Pagination -->
-                        <div class="pagination left pagination-md-center">
-                            <ul class="pagination-list">
-                                <li><a href="#"><i class="lni lni-arrow-left"></i></a></li>
-                                <li class="active"><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#"><i class="lni lni-arrow-right"></i></a></li>
-                            </ul>
-                        </div>
-                        <!-- End Pagination -->
                     </div>
                 </div>
             </div>

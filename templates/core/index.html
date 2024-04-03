@@ -16,8 +16,10 @@
                                 <p class="wow fadeInUp" data-wow-delay=".5s">What do you seek? Whether it’s a work-from-home role or a bigger salary, we’ll help you find the right job. There’s no secret – just better job matches than ever before. Seek and you shall find.
                                 </p>
                                 <div class="button wow fadeInUp" data-wow-delay=".7s">
-                                    <a href="post-job.html" class="btn">Post a Job</a>
-                                    <a href="browse-jobs.html" class="btn btn-alt">See Our Jobs</a>
+                                    {% if user.company %}
+                                    <a href="{% url "create_job" %}" class="btn">Post a Job</a>
+                                    {% endif %}
+                                    <a href="{% url 'all-jobs' %}" class="btn btn-alt">See Our Jobs</a>
                                 </div>
                             </div>
                         </div>
@@ -214,7 +216,7 @@
                                 finding a suitable job and let recruiters contact you
                                 about jobs that are not needed to pay for advertising.</p>
                             <div class="button wow fadeInUp" data-wow-delay=".8s">
-                                <a href="add-resume.html" class="btn"><i class="lni lni-upload"></i> Upload Your Resume</a>
+                                <a href="{% url 'login_redirect_dashboard' %}" class="btn"><i class="lni lni-upload"></i> Make Your Resume</a>
                             </div>
                         </div>
                     </div>

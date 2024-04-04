@@ -1,7 +1,10 @@
 import os
 from pathlib import Path
-
 from django.urls import reverse_lazy
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -101,13 +104,25 @@ WSGI_APPLICATION = 'jobsPy.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.getenv("DB_NAME", None),
+        "USER": os.getenv("DB_USER", None),
+        "PASSWORD": os.getenv("DB_PASSWORD", None),
+        "HOST": os.getenv("DB_HOST", None),
+        "PORT": "11592",
+        'ATOMIC_REQUESTS': True
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -208,8 +223,8 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = '587'
-EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = True
 
 # CSRF_TRUSTED_ORIGINS = ['https://localhost', 'http://localhost', 'http://http://127.0.0.1:8000/', 'http://127.0.0.1:8000/', 'https://jobspy.azurewebsites.net/']
@@ -223,14 +238,14 @@ EMAIL_USE_TLS = True
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
         'APP': {
-            'client_id':  os.environ.get('CLIENT_ID'),
-            'secret':  os.environ.get('CLIENT_SECRET'),
+            'client_id':  os.getenv('CLIENT_ID'),
+            'secret':  os.getenv('CLIENT_SECRET'),
         },
     },
     'github': {
         'APP': {
-            'client_id': os.environ.get('GITHUB_CLIENT_ID'),
-            'secret': os.environ.get('GITHUB_CLIENT_SECRET'),
+            'client_id': os.getenv('GITHUB_CLIENT_ID'),
+            'secret': os.getenv('GITHUB_CLIENT_SECRET'),
             'scope': ['user:email'],
         }
     }

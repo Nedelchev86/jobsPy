@@ -1,9 +1,11 @@
+from django.contrib.auth.views import LoginView
 from django.shortcuts import render
 from django.views.generic import TemplateView
 from rest_framework import generics, permissions, pagination
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 
+from jobsPy.accounts.forms import LoginForm
 from jobsPy.blog.models import BlogPost, Comment
 from jobsPy.blog.permission import IsAuthor
 from jobsPy.blog.serializers import BlogPostSerializer, CommentSerializer, CommentSerializerCreate
@@ -51,8 +53,12 @@ class BlogList(TemplateView):
 
 
 
-class SingleBlog(TemplateView):
+class SingleBlog(TemplateView, LoginView):
     template_name = 'blog/single-blogs.html'
+    form_class = LoginForm
+
+
+
 
 
 class CreateBlog(TemplateView):

@@ -18,8 +18,8 @@ class CompanyProfile(models.Model):
     website_url = models.URLField(max_length=200, null=True, blank=True)
     linkedin_url = models.URLField(max_length=200, null=True, blank=True)
     facebook_url = models.URLField(max_length=200, null=True, blank=True)
-    employees = models.PositiveIntegerField(null=False, blank=False)
-    foundation_year = models.PositiveIntegerField(null=False, blank=False)
+    employees = models.PositiveIntegerField(null=False, blank=False, default=0)
+    foundation_year = models.PositiveIntegerField(null=False, blank=False, default=0)
     skills = models.ManyToManyField(Skills, related_name="technologies")
     activated = models.BooleanField(default=False)
 

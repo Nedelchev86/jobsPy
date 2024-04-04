@@ -1,15 +1,12 @@
-//import { loadComment } from './js/blog/load.comment.js'
 
-    document.addEventListener('DOMContentLoaded', function () {
-    const commentForm = document.getElementById('comment-form');
-    commentForm.addEventListener('submit', function (event) {
+document.addEventListener("DOMContentLoaded", function () {
+    const commentForm = document.getElementById("comment-form");
+    commentForm.addEventListener("submit", function (event) {
         event.preventDefault();
 
         // Get the comment content from the form
-        const content = document.getElementById('comment-content').value;
-            const blogPostId = window.location.pathname.split('/')[2]
-
-
+        const content = document.getElementById("comment-content").value;
+        const blogPostId = window.location.pathname.split("/")[2];
 
         // Send the comment data to the backend
         postComment(content);
@@ -17,29 +14,38 @@
 });
 
 function postComment(content) {
-    const blogPostId = window.location.pathname.split('/')[2]
+    const blogPostId = window.location.pathname.split("/")[2];
     // AJAX request to post the comment
     fetch(`/api/blog/${blogPostId}/comments/`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-            'Content-Type': 'application/json',
-               'X-CSRFToken':  CSRF_TOKEN,
+            "Content-Type": "application/json",
+            "X-CSRFToken": CSRF_TOKEN,
             // Add any required authentication headers if needed
         },
-        body: JSON.stringify({ content: content }),
+        body: JSON.stringify({content: content}),
     })
-    .then(response => response.json())
-    .then(data => {
+        .then((response) => response.json())
+        .then((data) => {
+            document.getElementById("comment-content").value = "";
+            document.getElementById("comments-list").innerHTML = "";
+            loadComment(blogPostId);
+        })
+        .catch((error) => {
+            console.error("Error posting comment:", error);
+        });
+}
 
-    function loadComment(blogPostId) {
+function loadComment(blogPostId) {
     fetch(`/api/blog/${blogPostId}/comments/`)
-        .then(response => response.json())
-        .then(data => {
+        .then((response) => response.json())
+        .then((data) => {
+            const commentNumber = document.getElementById("comment-number");
+            commentNumber.textContent = `${data.length} comments`;
 
-            // Update HTML with comments
-            var commentsList = document.getElementById('comments-list');
-            data.forEach(comment => {
-                var commentElement = document.createElement('li');
+            var commentsList = document.getElementById("comments-list");
+            data.forEach((comment) => {
+                var commentElement = document.createElement("li");
 
                 let name = "Anonymous";
                 if (comment.author.first_name) {
@@ -73,17 +79,7 @@ function postComment(content) {
                 commentsList.appendChild(commentElement);
             });
         })
-        .catch(error => {
-            console.error('Error fetching comments:', error);
+        .catch((error) => {
+            console.error("Error fetching comments:", error);
         });
-}
-        document.getElementById('comment-content').value = ""
-        document.getElementById('comments-list').innerHTML = ""
-        loadComment(blogPostId)
-          
-    })
-    .catch(error => {
-        console.error('Error posting comment:', error);
-    });
-   
 }

@@ -25,18 +25,18 @@ class JobSeeker(models.Model):
     city = models.CharField(max_length=50, blank=False, null=False)
     nationality = models.CharField(max_length=50, blank=False, null=False)
     occupation = models.CharField(max_length=50, blank=False, null=False)
-    seniority = models.ForeignKey(Seniority, on_delete=models.SET_NULL, blank=True, null=True)
+    seniority = models.ForeignKey(Seniority, on_delete=models.CASCADE, blank=False, null=False)
     website = models.URLField(max_length=70, blank=True, null=True)
-    linkedin = models.URLField(blank=False, null=False, max_length=50)
-    facebook = models.URLField(blank=False, null=False, max_length=50)
-    github = models.URLField(blank=False, null=False, max_length=50)
+    linkedin = models.URLField(blank=True, null=True, max_length=50)
+    facebook = models.URLField(blank=True, null=True, max_length=50)
+    github = models.URLField(blank=True, null=True, max_length=50)
     about = RichTextField(blank=False, null=False)
     phone_number = models.CharField(max_length=50, blank=True, null=True)
     profile_picture = models.ImageField(
         blank=True, null=True, upload_to='images/profile')
     gender = models.CharField(blank=False, null=False,
                               choices=GENDER_TYPE, max_length=1)
-    marital_status = models.CharField(blank=False, null=False, max_length=20, choices=MARITAL_STATUS)
+    marital_status = models.CharField(blank=True, null=True, max_length=20, choices=MARITAL_STATUS)
     skills = models.ManyToManyField(Skills, related_name="skills")
     activated = models.BooleanField(default=False)
 

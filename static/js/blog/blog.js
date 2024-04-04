@@ -1,43 +1,3 @@
-//document.addEventListener('DOMContentLoaded', function() {
-//    fetch('`/api/blog/?page=${page}&page_size=${pageSize}')
-//        .then(response => response.json())
-//        .then(data => {
-//        console.log(data.results)
-//
-//            const blogList = document.getElementById('blog-list');
-//            data.forEach(blog => {
-//                const div = document.createElement('div');
-//                div.classList.add('col-lg-6', 'col-12');
-//                div.innerHTML = `
-//                    <div class="single-news wow">
-//                        <div class="image">
-//                            <img class="thumb" src="${blog.image_url_1}" alt="#">
-//                        </div>
-//                        <div class="content-body">
-//                            <h4 class="title"><a href="blog-single.html">${blog.title}</a></h4>
-//                            <div class="meta-details">
-//                                <ul>
-//                                    <li><a href="#"><i class="lni lni-tag"></i> ${blog.author.first_name} ${blog.author.last_name}</a></li>
-//                                    <li><a href="#"><i class="lni lni-calendar"></i> ${blog.created_at.split("T")[0]}</a></li>
-//                                    <li><a href="#"><i class="lni lni-eye"></i>${blog.views}</a></li>
-//                                </ul>
-//                            </div>
-//                            <div class="truncate-overflow">
-//                            <p>${blog.description}</p>
-//                            <div>
-//                            <div class="button">
-//                                <a href="/blog/${blog.id}/" class="btn">Read More</a>
-//                            </div>
-//                        </div>
-//                    </div>`;
-//                blogList.appendChild(div);
-//            });
-//        })
-//        .catch(error => {
-//            console.error('Error fetching blogs:', error);
-//        });
-//});
-
 
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -141,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
 
                 const pagination = createPaginationLinks(data.count, page, pageSize);
-                console.log(pagination)
+//                console.log(pagination)
                 const paginationDiv = document.getElementsByClassName("pagination")[0]
                 paginationDiv.innerHTML = ""
                 paginationDiv.appendChild(pagination);
@@ -157,3 +117,4 @@ document.addEventListener('DOMContentLoaded', function() {
     // Fetch blogs when the DOM content is loaded
     fetchBlogs();
 });
+

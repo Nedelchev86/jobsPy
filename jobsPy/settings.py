@@ -212,11 +212,8 @@ EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = True
 
-
-
 # CSRF_TRUSTED_ORIGINS = ['https://localhost', 'http://localhost', 'http://http://127.0.0.1:8000/', 'http://127.0.0.1:8000/', 'https://jobspy.azurewebsites.net/']
 # CSRF_TRUSTED_ORIGINS = ['https://jobspy.azurewebsites.net']
-
 
 # AUTHENTICATION_BACKENDS = [
 #     'django.contrib.auth.backends.ModelBackend',

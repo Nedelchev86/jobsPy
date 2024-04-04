@@ -14,7 +14,7 @@ def create_user_profile(sender, instance, created, **kwargs):
     if created:
         if instance.role == 'jobseeker':
             JobSeeker.objects.create(user=instance)
-        else:
+        elif instance.role == 'company':
             CompanyProfile.objects.create(user=instance)
 
 

@@ -39,6 +39,8 @@ class LoginUserView(RedirectAuthenticatedUserMixin, LoginView):
     template_name = "accounts/login.html"
     form_class = LoginForm
 
+
+
     # def get_success_url(self):
     #     if self.request.user.role == "jobseeker":
     #         return reverse_lazy("index")

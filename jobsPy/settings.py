@@ -168,12 +168,18 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # if not DEBUG:
 #     # Tell Django to copy static assets into a path called `staticfiles` (this is specific to Render)
-#     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+#     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfile')
 #     # Enable the WhiteNoise storage backend, which compresses static files to reduce disk use
 #     # and renames the files with unique names for each version to support long-term caching
 #     # STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 # else:
-#     STATICFILES_DIRS = [BASE_DIR / 'static', ]
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 
 # if not DEBUG:
@@ -189,13 +195,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 
-if DEBUG:
-
-    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-
-else:
-
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# if DEBUG:
+#
+#     STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+#
+# else:
+#
+#     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfile')
 
 
 

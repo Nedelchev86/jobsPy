@@ -1,5 +1,7 @@
 import os
 from pathlib import Path
+
+import dj_database_url
 from django.urls import reverse_lazy
 from dotenv import load_dotenv
 
@@ -112,18 +114,25 @@ WSGI_APPLICATION = 'jobsPy.wsgi.application'
 # }
 
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.getenv("DB_NAME", None),
-        "USER": os.getenv("DB_USER", None),
-        "PASSWORD": os.getenv("DB_PASSWORD", None),
-        "HOST": os.getenv("DB_HOST", None),
-        "PORT": os.getenv("DB_PORT", None),
-        'ATOMIC_REQUESTS': True
-    }
-}
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": os.getenv("DB_NAME", None),
+#         "USER": os.getenv("DB_USER", None),
+#         "PASSWORD": os.getenv("DB_PASSWORD", None),
+#         "HOST": os.getenv("DB_HOST", None),
+#         "PORT": os.getenv("DB_PORT", None),
+#         'ATOMIC_REQUESTS': True
+#     }
+# }
 
+DATABASES = {
+    'default': dj_database_url.config(
+        # Replace this value with your local database's connection string.
+        default=os.getenv("DATABASE_URL", None),
+        conn_max_age=600
+    )
+}
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 

@@ -13,9 +13,9 @@ function loadComment(blogPostId) {
             commentNumber.textContent = `${data.length}  comments`;
 
             // Update HTML with comments
-            var commentsList = document.getElementById('comments-list');
+            const commentsList = document.getElementById('comments-list');
             data.forEach(comment => {
-                var commentElement = document.createElement('li');
+                const commentElement = document.createElement('li');
 
                 let name = "Anonymous";
                 if (comment.author.first_name) {
@@ -25,34 +25,34 @@ function loadComment(blogPostId) {
                 }
                 let image = "/static/images/clients/default_profile.png";
                 if (comment.author.profile_picture) {
-                    image = comment.author.profile_picture;
+                    image = `https://res.cloudinary.com/drjgddl0y/${comment.author.profile_picture}`
                 } else if (comment.author.image) {
-                    image = comment.author.image;
+                    image = `https://res.cloudinary.com/drjgddl0y/${comment.author.image}`
                 }
 
                 // Create comment elements
-                var commentImg = document.createElement('div');
+                const commentImg = document.createElement('div');
                 commentImg.classList.add('comment-img');
-                var img = document.createElement('img');
+                const img = document.createElement('img');
                 img.src = image;
                 img.classList.add('rounded-circle');
                 img.alt = 'img';
                 commentImg.appendChild(img);
 
-                var commentDesc = document.createElement('div');
+                const commentDesc = document.createElement('div');
                 commentDesc.classList.add('comment-desc');
 
-                var descTop = document.createElement('div');
+                const descTop = document.createElement('div');
                 descTop.classList.add('desc-top');
-                var h6 = document.createElement('h6');
+                const h6 = document.createElement('h6');
                 h6.textContent = name;
-                var span = document.createElement('span');
+                const span = document.createElement('span');
                 span.classList.add('date');
                 span.textContent = comment.created_at;
-                var a = document.createElement('a');
+                const a = document.createElement('a');
                 a.href = '#';
                 a.classList.add('reply-link');
-                var i = document.createElement('i');
+                const i = document.createElement('i');
                 i.classList.add('lni', 'lni-reply');
                 a.appendChild(i);
                 a.textContent = 'Reply ( ToDo )';
@@ -60,7 +60,7 @@ function loadComment(blogPostId) {
                 descTop.appendChild(span);
                 descTop.appendChild(a);
 
-                var p = document.createElement('p');
+                const p = document.createElement('p');
                 p.textContent = comment.content;
 
                 commentDesc.appendChild(descTop);

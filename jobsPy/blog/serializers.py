@@ -6,6 +6,7 @@ from jobsPy.company.models import CompanyProfile
 from jobsPy.jobseekers.models import JobSeeker
 userModel = get_user_model()
 
+
 class JobSeekerSerializer(serializers.ModelSerializer):
     class Meta:
         model = JobSeeker
@@ -13,13 +14,13 @@ class JobSeekerSerializer(serializers.ModelSerializer):
         # read_only_fields = ['first_name', 'last_name', 'pk']
 
 
-
-
 class CommentSerializer(serializers.ModelSerializer):
     author = serializers.SerializerMethodField()
+
     class Meta:
         model = Comment
         fields = '__all__'
+
     def get_author(self, obj):
         # Check if the author is a jobseeker
         user = obj.author

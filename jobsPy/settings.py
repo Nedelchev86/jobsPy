@@ -1,6 +1,5 @@
 import os
 from pathlib import Path
-
 import dj_database_url
 from django.urls import reverse_lazy
 from dotenv import load_dotenv
@@ -275,7 +274,7 @@ RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:
     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
-CLOUDINARY_URL=os.getenv('CLOUDINARY_URL')
+CLOUDINARY_URL = os.getenv('CLOUDINARY_URL')
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
@@ -283,4 +282,10 @@ CLOUDINARY_UPLOAD_OPTIONS = {
     "max_width": 2000,
     "max_height": 2000,
     "max_bytes": 5000000
+}
+
+CKEDITOR_CONFIGS = {
+    'default': {
+         "removePlugins": "exportpdf",
+    }
 }

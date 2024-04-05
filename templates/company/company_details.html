@@ -121,24 +121,25 @@
                               <h4>Open positions </h4>
                                      <div class="job-items">
                             {% for job in jobs_published %}
-                            <div class="manage-content">
+                            <div class="manage-content" style="margin-top: 16px">
                                 <div class="row align-items-center justify-content-center">
-                                    <div class="col-lg-5 col-md-5 col-12">
+                                    <div class="col-lg-6 col-md-6 col-12">
                                         <div class="title-img" style="display: flex">
                                             <div class="can-img">
                                                 {% if job.job_image %}
-                                                <img style="height: 60px;" src="{{ job.job_image.url }}" alt="#">
+                                                <img style="height: 60px; width: 60px;" src="{{ job.job_image.url }}" alt="#">
                                                     {% else %}
-                                                    <img style="height: 60px;" src="{{object.image}}" alt="#">
+                                                    <img style="height: 60px; width: 60px;" src="{{object.image}}" alt="#">
                                                 {% endif %}
                                             </div>
-                                            <h6  style="padding-left: 10px">{{ job.title }}<span>{{ job.category}}</span></h6>
+                                            <h6  style="padding-left: 10px">{{ job.title }}</h6>
+                                                <span style="text-align: right">{{ job.category}}</span>
                                         </div>
                                     </div>
                                     <div class="col-lg-2 col-md-2 col-12">
                                         <p><span class="time"><i class="lni lni-coin"></i> {{ job.salary }}</span></p>
                                     </div>
-                                    <div class="col-lg-3 col-md-3 col-12">
+                                    <div class="col-lg-2 col-md-2 col-12">
                                         <p class="location"><i class="lni lni-map-marker"></i>{{job.location}}</p>
                                     </div>
                                     <div class="col-lg-2 col-md-2 col-12">

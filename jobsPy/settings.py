@@ -4,6 +4,9 @@ from pathlib import Path
 import dj_database_url
 from django.urls import reverse_lazy
 from dotenv import load_dotenv
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 # Load environment variables from .env file
 load_dotenv()
@@ -34,8 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     "whitenoise.runserver_nostatic",
     'django.contrib.staticfiles',
-    'cloudinary_storage',
-    'cloudinary',
     'rest_framework',
     'ckeditor',
     'django.contrib.sites',
@@ -277,3 +278,9 @@ if RENDER_EXTERNAL_HOSTNAME:
 CLOUDINARY_URL=os.getenv('CLOUDINARY_URL')
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+CLOUDINARY_UPLOAD_OPTIONS = {
+    "max_width": 2000,
+    "max_height": 2000,
+    "max_bytes": 5000000
+}

@@ -127,9 +127,9 @@
                                         <div class="title-img" style="display: flex">
                                             <div class="can-img">
                                                 {% if job.job_image %}
-                                                <img src="{{ job.job_image.url }}" alt="#">
+                                                <img style="height: 60px;" src="{{ job.job_image.url }}" alt="#">
                                                     {% else %}
-                                                    <img style="height: 60px;" src="{% static 'images/default/default.jpg' %}" alt="#">
+                                                    <img style="height: 60px;" src="{{object.image}}" alt="#">
                                                 {% endif %}
                                             </div>
                                             <h6  style="padding-left: 10px">{{ job.title }}<span>{{ job.category}}</span></h6>

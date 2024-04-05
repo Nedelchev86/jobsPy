@@ -8,6 +8,7 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, View
 
 from jobsPy.accounts.forms import RegisterUserForm, LoginForm, ChangePassword
+from jobsPy.accounts.signals import create_user_profile
 from jobsPy.core.accounts_mixins import RedirectAuthenticatedUserMixin
 
 userModel = get_user_model()
@@ -73,6 +74,7 @@ def select_role(request):
             # Update the user's role
             request.user.role = role
             request.user.save()
+            create_user_profile(sender=userModel, instance=request.user, created=True)
             return redirect('login_redirect_dashboard')  # Redirect the user to the home page or any other appropriate URL
 
     return render(request, 'select_role.html')  # Render a template with a form to select the user's role

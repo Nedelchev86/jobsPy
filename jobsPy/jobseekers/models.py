@@ -1,4 +1,5 @@
 from ckeditor.fields import RichTextField
+from cloudinary.models import CloudinaryField
 from django.contrib.auth import get_user_model
 from django.db import models
 
@@ -32,8 +33,9 @@ class JobSeeker(models.Model):
     github = models.URLField(blank=True, null=True, max_length=50)
     about = RichTextField(blank=False, null=False)
     phone_number = models.CharField(max_length=50, blank=True, null=True)
-    profile_picture = models.ImageField(
-        blank=True, null=True, upload_to='images/profile')
+    # profile_picture = models.ImageField(
+    #     blank=True, null=True, upload_to='images/profile')
+    profile_picture = CloudinaryField('image', blank=True, null=True)
     gender = models.CharField(blank=False, null=False,
                               choices=GENDER_TYPE, max_length=1)
     marital_status = models.CharField(blank=True, null=True, max_length=20, choices=MARITAL_STATUS)

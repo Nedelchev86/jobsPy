@@ -1,4 +1,5 @@
 from ckeditor.fields import RichTextField
+from cloudinary.models import CloudinaryField
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.utils.crypto import get_random_string
@@ -59,7 +60,8 @@ class Job(models.Model):
     description = RichTextField(null=False, blank=False)
     responsibilities = RichTextField(null=False, blank=False)
     benefits = RichTextField(null=True, blank=True)
-    job_image = models.ImageField(null=True, blank=True, upload_to="jobs/image", default="images/default/default.jpg")
+    # job_image = models.ImageField(null=True, blank=True, upload_to="jobs/image", default="images/default/default.jpg")
+    job_image = CloudinaryField('image', blank=True, null=True)
     vacancy = models.IntegerField(null=True, blank=True)
     location = models.CharField(max_length=300,)
     job_type = models.CharField(choices=JOB_TYPE, max_length=10)

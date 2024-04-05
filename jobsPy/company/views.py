@@ -95,6 +95,13 @@ class CompanyDetails(DetailView):
     model = CompanyProfile
     template_name = "company/company_details.html"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        company = self.get_object()
+        jobs_published = Job.objects.filter(user=company.user)
+        context['jobs_published'] = jobs_published
+        return context
+
 
 class AllCompany(ListView):
     model = CompanyProfile

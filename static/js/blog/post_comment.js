@@ -43,9 +43,9 @@ function loadComment(blogPostId) {
             const commentNumber = document.getElementById("comment-number");
             commentNumber.textContent = `${data.length} comments`;
 
-            var commentsList = document.getElementById("comments-list");
+            const commentsList = document.getElementById("comments-list");
             data.forEach((comment) => {
-                var commentElement = document.createElement("li");
+                const commentElement = document.createElement("li");
 
                 let name = "Anonymous";
                 if (comment.author.first_name) {
@@ -55,9 +55,9 @@ function loadComment(blogPostId) {
                 }
                 let image = "/static/images/clients/default_profile.png";
                 if (comment.author.profile_picture) {
-                    image = comment.author.profile_picture;
+                    image = `https://res.cloudinary.com/drjgddl0y/${comment.author.profile_picture}`;
                 } else if (comment.author.image) {
-                    image = comment.author.image;
+                    image = `https://res.cloudinary.com/drjgddl0y/${comment.author.image}`;
                 }
 
                 commentElement.innerHTML = `

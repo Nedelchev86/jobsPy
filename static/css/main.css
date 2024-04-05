@@ -1916,7 +1916,7 @@ background: linear-gradient(to right, #2042e3 0%, #a16ae8 100%);
 
 .hero-area.style4 {
   overflow: visible;
-  background-image: url("../images/hero/home-page4.jpg");
+  /*background-image: url("../images/hero/home-page4.jpg");*/
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

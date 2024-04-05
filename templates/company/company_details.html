@@ -117,8 +117,43 @@
                                 {% endfor %}
                                 </ul>
                             </div>
+                             <div class="single-section">
+                              <h4>Open positions </h4>
+                                     <div class="job-items">
+                            {% for job in jobs_published %}
+                            <div class="manage-content">
+                                <div class="row align-items-center justify-content-center">
+                                    <div class="col-lg-5 col-md-5 col-12">
+                                        <div class="title-img" style="display: flex">
+                                            <div class="can-img">
+                                                {% if job.job_image %}
+                                                <img src="{{ job.job_image.url }}" alt="#">
+                                                    {% else %}
+                                                    <img style="height: 60px;" src="{% static 'images/default/default.jpg' %}" alt="#">
+                                                {% endif %}
+                                            </div>
+                                            <h6  style="padding-left: 10px">{{ job.title }}<span>{{ job.category}}</span></h6>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-12">
+                                        <p><span class="time"><i class="lni lni-coin"></i> {{ job.salary }}</span></p>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-12">
+                                        <p class="location"><i class="lni lni-map-marker"></i>{{job.location}}</p>
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-12">
+                                        <div class="button">
+                                            <a href="{% url 'job_details' job.pk %}" class="btn">Details</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+
+                        </div>
+                             </div>
                             <!-- End Single Section -->
-                            <!-- Start Single Section -->
+
 {#                            <div class="single-section exprerience">#}
 {#                                <h4>Work Exprerience</h4>#}
 {#                                <!-- Single Exp -->#}

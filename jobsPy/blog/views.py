@@ -32,8 +32,6 @@ class BlogPostListCreateAPIView(generics.ListCreateAPIView):
         return super().get_permissions()
 
 
-
-
 class BlogPostRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = BlogPost.objects.all()
     serializer_class = BlogPostSerializer
@@ -51,14 +49,9 @@ class BlogList(TemplateView):
     template_name = 'blog/blogs.html'
 
 
-
-
 class SingleBlog(TemplateView, LoginView):
     template_name = 'blog/single-blogs.html'
     form_class = LoginForm
-
-
-
 
 
 class CreateBlog(TemplateView):
@@ -68,7 +61,6 @@ class CreateBlog(TemplateView):
 
 class CommentListCreateAPIView(generics.ListCreateAPIView):
     queryset = Comment.objects.all()
-
 
     def get_queryset(self):
         post_id = self.kwargs.get('pk')
@@ -86,7 +78,6 @@ class CommentListCreateAPIView(generics.ListCreateAPIView):
         return CommentSerializer
 
 
-
 class CommentRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
@@ -97,6 +88,7 @@ class CommentRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView)
         comment_id = self.kwargs.get('comment_pk')
 
         return Comment.objects.get(pk=comment_id)
+
 
 class LatestBlogPostsAPIView(generics.ListAPIView):
     queryset = BlogPost.objects.all() # Limit queryset to latest 5 blog posts

@@ -40,7 +40,7 @@
 
                             </div>
                             <div class="job-content">
-                                <h4><a href="{% url 'job_details' job.pk %}">{{ job.title }}</a></h4>
+                                <h4 style="padding-right: 0px"><a href="{% url 'job_details' job.pk %}">{{ job.title }}</a></h4>
                                 <div class="truncate-overflow-jobs">
                                 <p>{{ job.description|safe|default_if_none:"nothing" }}</p>
                                 </div>
@@ -60,7 +60,7 @@
                                         {% endfor %}
                             </ul>
                             </div>
-                            <div class="job-button">
+                            <div class="job-button2">
 {#                                <ul>#}
 {#                                    <li><a href="{% url 'apply_for_job' job.pk %}">Apply</a></li>#}
                                     <a class="company-link" href="{% url 'company-details' job.user.company.pk %}"><span>Company : {{ job.user.company.name }}</span></a></li>

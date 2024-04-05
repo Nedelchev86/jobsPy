@@ -8157,6 +8157,9 @@ label.required::after {
 .company-link span:hover{
     color: #fff;
     background-color: #051a80;
+}
 
-
+.single-job .job-button2 {
+    position: absolute;
+    right: 40px;
 }

@@ -286,5 +286,6 @@ CLOUDINARY_UPLOAD_OPTIONS = {
 CKEDITOR_CONFIGS = {
     'default': {
          "removePlugins": "exportpdf",
+         "versionCheck": False,
     }
 }

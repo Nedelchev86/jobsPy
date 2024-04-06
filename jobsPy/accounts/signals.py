@@ -4,7 +4,9 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from jobsPy.company.models import CompanyProfile
 from jobsPy.jobseekers.models import JobSeeker
+from django.dispatch import receiver
 from allauth.account.signals import user_logged_in
+from django.shortcuts import redirect
 
 userModel = get_user_model()
 
@@ -19,10 +21,6 @@ def create_user_profile(sender, instance, created, **kwargs):
 
 
 # myapp/signals.py
-
-from django.dispatch import receiver
-from allauth.account.signals import user_logged_in
-from django.shortcuts import redirect
 
 
 @receiver(user_logged_in)

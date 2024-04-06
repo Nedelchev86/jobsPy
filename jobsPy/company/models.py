@@ -30,3 +30,6 @@ class CompanyProfile(models.Model):
     def get_all_applicant(self):
 
         return Applicant.objects.filter(job__user=self.user, job__is_published=True).count()
+
+    class Meta:
+        ordering = ['-pk']

@@ -296,9 +296,7 @@ cloudinary.config(
 )
 
 
-# CELERY_RESULT_BACKEND = "redis://default:WFGej6jVfvT2ZYy0HdB1uh2xYWXduuy5@redis-17020.c100.us-east-1-4.ec2.cloud.redislabs.com:17020"
-# CELERY_BROKER_URL = "redis://default:WFGej6jVfvT2ZYy0HdB1uh2xYWXduuy5@redis-17020.c100.us-east-1-4.ec2.cloud.redislabs.com:17020"
 
 
-CELERY_RESULT_BACKEND = "rediss://red-co641dgl5elc73ab3hs0:Jlg00zlgUDSGJHHq1ebePSEG5mizNMRD@frankfurt-redis.render.com:6379/0?ssl_cert_reqs=CERT_REQUIRED"
-CELERY_BROKER_URL = "rediss://red-co641dgl5elc73ab3hs0:Jlg00zlgUDSGJHHq1ebePSEG5mizNMRD@frankfurt-redis.render.com:6379/0?ssl_cert_reqs=CERT_REQUIRED"
+CELERY_RESULT_BACKEND = os.getenv('CELERY_RESULT_BACKEND')
+CELERY_BROKER_URL = os.getenv('CELERY_BROKER_URL')

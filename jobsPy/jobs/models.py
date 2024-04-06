@@ -80,6 +80,9 @@ class Job(models.Model):
             self.slug = unique_slugify(self, slugify(self.title))
         super().save(*args, **kwargs)
 
+    class Meta:
+        ordering = ['-created_at']
+
 
 class FavoriteJob(models.Model):
     user = models.ForeignKey(UserModel, on_delete=models.CASCADE)

@@ -46,6 +46,9 @@ class JobSeeker(models.Model):
     def get_user_all_applicant(self):
         return Applicant.objects.filter(user=self.user).count()
 
+    class Meta:
+        ordering = ['-pk']
+
 
 class Education(models.Model):
 

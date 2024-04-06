@@ -30,14 +30,14 @@ class IndexView(TemplateView):
 
         return context
 
-    def dispatch(self, request, *args, **kwargs):
-        # Send email when the view is accessed
-        subject = 'Test Email'
-        message = 'This is a test email sent from Django.'
-        recipient_list = ['soyo@abv.bg']  # Add recipient email address
-        send_async_email.delay(subject, message, recipient_list)
-        # Continue with the normal view processing
-        return super().dispatch(request, *args, **kwargs)
+    # def dispatch(self, request, *args, **kwargs):
+    #     # Send email when the view is accessed
+    #     subject = 'Test Email'
+    #     message = 'This is a test email sent from Django.'
+    #     recipient_list = ['soyo@abv.bg']  # Add recipient email address
+    #     send_async_email.delay(subject, message, recipient_list)
+    #     # Continue with the normal view processing
+    #     return super().dispatch(request, *args, **kwargs)
 
 
 

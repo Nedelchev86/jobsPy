@@ -55,10 +55,11 @@ class EditCompany(LoginRequiredMixin, CompanyRoleRequiredMixin, CompanyOwnerRequ
     success_url = reverse_lazy("company-dashboard")
     # model = CompanyProfile
     # form_class = CreateProfile
-    def form_valid(self, form):
-        # Ensure you are handling files correctly
-        form.instance.user = self.request.user
-        return super().form_valid(form)
+
+    # def form_valid(self, form):
+    #     # Ensure you are handling files correctly
+    #     form.instance.user = self.request.user
+    #     return super().form_valid(form)
 
 
 class CompanyApplicant(LoginRequiredMixin, CompanyRoleRequiredMixin, ListView):
@@ -106,3 +107,9 @@ class CompanyDetails(DetailView):
 class AllCompany(ListView):
     model = CompanyProfile
     template_name = "company/company.html"
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        queryset = queryset.filter(activated=True)
+
+        return queryset

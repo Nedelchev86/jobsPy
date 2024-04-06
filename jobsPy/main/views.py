@@ -1,10 +1,14 @@
+from celery import shared_task
 from django.contrib import messages
+from django.core.mail import send_mail
 from django.shortcuts import render
 from django.views.generic import TemplateView, ListView
 
+from jobsPy import settings
 from jobsPy.company.models import CompanyProfile
 from jobsPy.jobs.models import Category, Job
 from jobsPy.jobseekers.models import JobSeeker
+from .tasks import send_async_email
 
 
 class IndexView(TemplateView):
@@ -25,6 +29,15 @@ class IndexView(TemplateView):
         context["title"] = "JobsPy - Your Future Begins Here"
 
         return context
+
+    def dispatch(self, request, *args, **kwargs):
+        # Send email when the view is accessed
+        subject = 'Test Email'
+        message = 'This is a test email sent from Django.'
+        recipient_list = ['soyo@abv.bg']  # Add recipient email address
+        send_async_email.delay(subject, message, recipient_list)
+        # Continue with the normal view processing
+        return super().dispatch(request, *args, **kwargs)
 
 
 

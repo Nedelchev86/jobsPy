@@ -9,8 +9,6 @@ from django.views.generic import CreateView, View
 from jobsPy.accounts.forms import RegisterUserForm, LoginForm, ChangePassword
 from jobsPy.accounts.signals import create_user_profile
 from jobsPy.core.accounts_mixins import RedirectAuthenticatedUserMixin
-from jobsPy.accounts.tasks import send_password_reset_email
-
 
 userModel = get_user_model()
 

@@ -3,12 +3,10 @@ from django.contrib import messages
 from django.core.mail import send_mail
 from django.shortcuts import render
 from django.views.generic import TemplateView, ListView
-
-from jobsPy import settings
 from jobsPy.company.models import CompanyProfile
 from jobsPy.jobs.models import Category, Job
 from jobsPy.jobseekers.models import JobSeeker
-from .tasks import send_async_email
+
 
 
 class IndexView(TemplateView):

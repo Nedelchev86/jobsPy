@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.urls import path, include, re_path
 from django.views.static import serve
 
-from jobsPy.main.views import Contact
+from jobsPy.main.views import Contact, ContactFrom
 from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls import handler403
@@ -15,7 +15,7 @@ urlpatterns = [
     path('jobseeker/', include('jobsPy.jobseekers.urls')),
     path('company/', include('jobsPy.company.urls')),
     path('jobs/', include('jobsPy.jobs.urls')),
-    path('contact/', Contact.as_view(), name="contact"),
+    path('contact/', ContactFrom.as_view(), name="contact"),
     path('api/', include('jobsPy.blog.api.urls')),
     path('blog/', include('jobsPy.blog.urls')),
     path('accounts/', include('allauth.urls')),

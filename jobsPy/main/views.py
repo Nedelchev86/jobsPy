@@ -1,11 +1,11 @@
-from celery import shared_task
-from django.contrib import messages
-from django.core.mail import send_mail
 from django.shortcuts import render
-from django.views.generic import TemplateView, ListView
+from django.urls import reverse_lazy
+from django.views.generic import TemplateView, ListView, CreateView
 from jobsPy.company.models import CompanyProfile
 from jobsPy.jobs.models import Category, Job
 from jobsPy.jobseekers.models import JobSeeker
+from jobsPy.main.models import Contact
+from jobsPy.main.tasks import send_contact_form_confirmation, send_contact_form_notification_to_team
 
 
 
@@ -38,9 +38,8 @@ class IndexView(TemplateView):
     #     return super().dispatch(request, *args, **kwargs)
 
 
-
-class Contact(TemplateView):
-    template_name = "core/contacts.html"
+# class Contact(TemplateView):
+#     template_name = "core/contacts.html"
 
 
 class JobsCategory(ListView):
@@ -70,3 +69,19 @@ class JobsCategory(ListView):
 
 def custom_403(request, exception):
     return render(request, '403.html')
+
+
+class ContactFrom(CreateView):
+    model = Contact
+    fields = ['name', 'email', 'subject', 'phone', 'message']
+    success_url = reverse_lazy('index')
+    template_name = "core/contacts.html"
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+
+        send_contact_form_confirmation.delay(form.instance.name, form.instance.email,)
+
+        send_contact_form_notification_to_team.delay(form.instance.name, form.instance.email, form.instance.subject, form.instance.phone, form.instance.message)
+
+        return response

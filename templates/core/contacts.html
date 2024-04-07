@@ -29,19 +29,54 @@
             <div class="contact-head wow fadeInUp" data-wow-delay=".4s">
                 <div class="row">
                     <div class="col-lg-7 col-12">
-             
+
                         <div class="form-main">
-                            <form class="form" method="post" action="{% url 'contact' %}">
-                                <div class="row">
-                                {{ form }}
-                                    {% csrf_token %}
-                                </div>
-                                <div class="col-12">
-                                      <div class="form-group button">
-                                            <button type="submit" class="btn ">Submit Message</button>
-                                       </div>
-                                  </div>
-                            </form>
+{#                            <form class="form" method="post" action="{% url 'contact' %}">#}
+<form class="form" method="post" action="{% url 'contact' %}">
+    <div class="row">
+        <div class="col-lg-6 col-12">
+            <div class="form-group">
+                {{ form.name.label_tag }}
+                {{ form.name }}
+                {{ form.name.errors }}
+            </div>
+        </div>
+        <div class="col-lg-6 col-12">
+            <div class="form-group">
+                {{ form.subject.label_tag }}
+                {{ form.subject }}
+                {{ form.subject.errors }}
+            </div>
+        </div>
+        <div class="col-lg-6 col-12">
+            <div class="form-group">
+                {{ form.email.label_tag }}
+                {{ form.email }}
+                {{ form.email.errors }}
+            </div>
+        </div>
+        <div class="col-lg-6 col-12">
+            <div class="form-group">
+                {{ form.phone.label_tag }}
+                {{ form.phone }}
+                {{ form.phone.errors }}
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="form-group message">
+                {{ form.message.label_tag }}
+                {{ form.message }}
+                {{ form.message.errors }}
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="form-group button">
+                <button type="submit" class="btn">Submit Message</button>
+            </div>
+        </div>
+    </div>
+    {% csrf_token %}
+</form>
 {#                            <form class="form" method="post">#}
 {#                                <div class="row">#}
 {#                                    <div class="col-lg-6 col-12">#}

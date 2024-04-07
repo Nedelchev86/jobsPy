@@ -24,6 +24,11 @@ class CompanyProfile(models.Model):
     skills = models.ManyToManyField(Skills, related_name="technologies")
     activated = models.BooleanField(default=False)
 
+    def __str__(self):
+        if self.name:
+            return self.name
+        return str(self.user)
+
 
     @property
     def get_all_applicant(self):

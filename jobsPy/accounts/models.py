@@ -55,7 +55,10 @@ class Account(AbstractBaseUser, PermissionsMixin):
     REQUIRED_FIELDS = []
 
     objects = AccountModel()
-    # is_active = models.BooleanField(default=True)
+
+
+    def __str__(self):
+        return self.email
 
 
     # @property

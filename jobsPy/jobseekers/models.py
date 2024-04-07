@@ -52,6 +52,7 @@ class JobSeeker(models.Model):
         else:
             return self.user.email
 
+
     class Meta:
         ordering = ['-pk']
 
@@ -65,6 +66,9 @@ class Education(models.Model):
     start_date = models.DateField(null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)
 
+    def __str__(self):
+        return self.institution
+
 
 class Experience(models.Model):
     job_seeker = models.ForeignKey(JobSeeker, on_delete=models.CASCADE, related_name='experience')
@@ -73,3 +77,6 @@ class Experience(models.Model):
     description = RichTextField(max_length=500)
     start_date = models.DateField(null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)
+
+    def __str__(self):
+        return self.company

@@ -28,6 +28,16 @@
     <!-- Main Content Start -->
     <div class="bookmarked section">
         <div class="container">
+                    {% if messages %}
+            <div class="alert alert-danger" role="alert">
+                
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
             <div class="alerts-inner">
                 <div class="row">
                     <!-- Start Main Content -->

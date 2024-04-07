@@ -3,10 +3,12 @@ from django.contrib import admin
 from jobsPy.company.models import CompanyProfile
 
 
-# Register your models here.
-
 @admin.register(CompanyProfile)
-class CompanyAdmin(admin.ModelAdmin):
+class CompanyProfileAdmin(admin.ModelAdmin):
+    list_display = ('name', 'location', 'email', 'get_all_applicant', 'activated')
+    list_filter = ('activated', 'location')
+    search_fields = ('name', 'location', 'email')
 
-    search_fields = ['name', 'email']
-
+    def get_all_applicant(self, obj):
+        return obj.get_all_applicant
+    get_all_applicant.short_description = 'Total Applicants'

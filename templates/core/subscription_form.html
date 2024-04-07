@@ -1,0 +1,10 @@
+<form action="{% url 'subscribe' %}" method="post" class="newsletter-inner">
+    {% csrf_token %}
+
+       {{ subscription_form.non_field_errors }}
+    {{ subscription_form.email.errors }}
+    {{ subscription_form.email  }}
+    <div class="button">
+        <button type="submit" class="btn">Subscribe Now! <span class="dir-part"></span></button>
+    </div>
+</form>

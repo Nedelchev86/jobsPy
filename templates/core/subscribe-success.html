@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block main_content %}
+  <!-- Start Error Area -->
+  <div class="maill-success">
+    <div class="d-table">
+      <div class="d-table-cell">
+        <div class="container">
+          <div class="success-content">
+            <h1>Thank you for subscribing!</h1>
+            <h4>You have successfully subscribed to our newsletter</h4>
+
+            <div class="button">
+              <a href="{% url 'index' %}" class="btn">Go To Home</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Error Area -->
+{% endblock %}

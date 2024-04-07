@@ -9,6 +9,7 @@ from jobsPy.accounts.forms import LoginForm
 from jobsPy.blog.models import BlogPost, Comment
 from jobsPy.blog.permission import IsAuthor
 from jobsPy.blog.serializers import BlogPostSerializer, CommentSerializer, CommentSerializerCreate
+from jobsPy.core.accounts_mixins import AuthorRequiredMixin
 
 
 # Create your views here.
@@ -35,7 +36,7 @@ class BlogPostListCreateAPIView(generics.ListCreateAPIView):
 class BlogPostRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = BlogPost.objects.all()
     serializer_class = BlogPostSerializer
-    # permission_classes = [IsAuthor]
+    permission_classes = [IsAuthor]
 
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
@@ -54,7 +55,7 @@ class SingleBlog(TemplateView, LoginView):
     form_class = LoginForm
 
 
-class CreateBlog(TemplateView):
+class CreateBlog(AuthorRequiredMixin, TemplateView):
     template_name = 'blog/create-blog.html'
     permission_classes = [IsAuthor()]
 

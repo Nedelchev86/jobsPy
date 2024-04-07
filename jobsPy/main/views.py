@@ -1,8 +1,10 @@
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, ListView, CreateView, FormView
 from jobsPy.company.models import CompanyProfile
+from jobsPy.core.accounts_mixins import AuthorRequiredMixin
 from jobsPy.jobs.models import Category, Job
 from jobsPy.jobseekers.models import JobSeeker
 from jobsPy.main.forms import SubscriberForm
@@ -103,14 +105,14 @@ class SubscribeSuccessView(TemplateView):
 
 
 
-class NewsletterCreateView(CreateView):
+class NewsletterCreateView(LoginRequiredMixin, AuthorRequiredMixin, CreateView):
     model = Newsletter
     fields = ['title', 'content']
     template_name = 'core/newsletter.html'
     success_url = reverse_lazy('subscribe success')
 
-    # def form_valid(self, form):
-    #     news = form.save(commit=False)
-    #     news.save()
-    #     send_news_notification.delay(news.title, news.content)
-    #     return super().form_valid(form)
+    def form_valid(self, form):
+        news = form.save(commit=False)
+        news.save()
+        send_news_notification.delay(news.title, news.content)
+        return super().form_valid(form)

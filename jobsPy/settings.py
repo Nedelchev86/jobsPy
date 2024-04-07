@@ -60,6 +60,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "allauth.account.middleware.AccountMiddleware",
+
 ]
 
 ROOT_URLCONF = 'jobsPy.urls'
@@ -227,6 +228,10 @@ CKEDITOR_CONFIGS = {
          "versionCheck": False,
     }
 }
+
+
+# Stop message for ckeditor version not secure
+SILENCED_SYSTEM_CHECKS = ["ckeditor.W001"]
 
 cloudinary.config(
     secure=True

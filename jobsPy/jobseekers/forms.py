@@ -41,7 +41,7 @@ class EditProfileFrom(ModelForm):
 
 class EducationForm(ModelForm):
     required_css_class = 'required'
-    # tags = forms.ModelMultipleChoiceField(label='Tags', queryset=Tag.objects.order_by('name'),widget=forms.SelectMultiple)
+# tags = forms.ModelMultipleChoiceField(label='Tags', queryset=Tag.objects.order_by('name'),widget=forms.SelectMultiple)
 
     class Meta:
         model = Education
@@ -52,9 +52,10 @@ class EducationForm(ModelForm):
             'end_date': DateInput(attrs={'type': 'date'}),
         }
 
+
 class WrokExperienceForm(ModelForm):
     required_css_class = 'required'
-    # tags = forms.ModelMultipleChoiceField(label='Tags', queryset=Tag.objects.order_by('name'),widget=forms.SelectMultiple)
+# tags = forms.ModelMultipleChoiceField(label='Tags', queryset=Tag.objects.order_by('name'),widget=forms.SelectMultiple)
 
     class Meta:
         model = Experience

@@ -12,10 +12,11 @@ GENDER_TYPE = (
     ('M', "Male"),
     ('F', "Female"),
 )
-MARITAL_STATUS= (
+
+MARITAL_STATUS = (
      ('Married', "Married"),
-    ('Unmarried', "Unmarried"),
-    ('Devorced', "Devorced"),
+     ('Unmarried', "Unmarried"),
+     ('Devorced', "Devorced"),
 )
 
 
@@ -50,8 +51,7 @@ class JobSeeker(models.Model):
         if self.first_name and self.last_name:
             return f"{self.first_name} {self.last_name}"
         else:
-            return self.user.email
-
+            return str(self.user)
 
     class Meta:
         ordering = ['-pk']

@@ -59,7 +59,7 @@ statusChoice = {
     3: "Rejected",
 }
 
-class ChangeStatus(ModelForm):
+class ChangeStatusForm(ModelForm):
     class Meta:
         model = Applicant
         fields = ["status", "comment"]

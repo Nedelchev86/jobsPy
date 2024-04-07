@@ -7,6 +7,7 @@ from jobsPy.jobs.models import Applicant, Skills
 
 UserModel = get_user_model()
 
+
 class CompanyProfile(models.Model):
     user = models.OneToOneField(UserModel, on_delete=models.CASCADE, primary_key=True, related_name="company")
     name = models.CharField(max_length=40, null=False, blank=False)
@@ -28,7 +29,6 @@ class CompanyProfile(models.Model):
         if self.name:
             return self.name
         return str(self.user)
-
 
     @property
     def get_all_applicant(self):

@@ -2,7 +2,7 @@ from django.contrib import auth
 from django.contrib.auth import get_user_model, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.views import LoginView, PasswordChangeView, PasswordResetView
+from django.contrib.auth.views import LoginView, PasswordChangeView
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, View
@@ -39,8 +39,6 @@ class LoginUserView(RedirectAuthenticatedUserMixin, LoginView):
     template_name = "accounts/login.html"
     form_class = LoginForm
 
-
-
     # def get_success_url(self):
     #     if self.request.user.role == "jobseeker":
     #         return reverse_lazy("index")
@@ -66,6 +64,7 @@ class RedirectDashboardView(LoginRequiredMixin, View):
             # Handle other roles or situations
             return redirect('select_role')  # Redirect to a default page if the role is not recognized
 
+
 def select_role(request):
     if request.method == 'POST':
         role = request.POST.get('role')  # Assuming you have a form field named 'role' for role selection
@@ -74,7 +73,6 @@ def select_role(request):
             request.user.role = role
             request.user.save()
             create_user_profile(sender=userModel, instance=request.user, created=True)
-            return redirect('login_redirect_dashboard')  # Redirect the user to the home page or any other appropriate URL
+            return redirect('login_redirect_dashboard')
 
-    return render(request, 'select_role.html')  # Render a template with a form to select the user's role
-
+    return render(request, 'select_role.html')

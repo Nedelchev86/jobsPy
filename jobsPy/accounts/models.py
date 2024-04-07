@@ -56,10 +56,8 @@ class Account(AbstractBaseUser, PermissionsMixin):
 
     objects = AccountModel()
 
-
     def __str__(self):
         return self.email
-
 
     # @property
     # def is_active(self):

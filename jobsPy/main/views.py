@@ -33,7 +33,6 @@ class IndexView(TemplateView):
         return context
 
 
-
 # class Contact(TemplateView):
 #     template_name = "core/contacts.html"
 
@@ -41,7 +40,6 @@ class IndexView(TemplateView):
 class JobsCategory(ListView):
     model = Job
     template_name = "jobs/jobs_list.html"
-
 
     def get_queryset(self):
         # Get the category slug from the URL
@@ -102,7 +100,6 @@ class SubscribeToNewsletterView(FormView):
 
 class SubscribeSuccessView(TemplateView):
     template_name = "core/subscribe-success.html"
-
 
 
 class NewsletterCreateView(LoginRequiredMixin, AuthorRequiredMixin, CreateView):

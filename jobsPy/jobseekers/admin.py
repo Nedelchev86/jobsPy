@@ -17,6 +17,7 @@ class EducationAdmin(admin.ModelAdmin):
     search_fields = ('job_seeker__user__username', 'institution', 'description')
     readonly_fields = ['job_seeker']
 
+
 @admin.register(Experience)
 class ExperienceAdmin(admin.ModelAdmin):
     list_display = ('job_seeker', 'company', 'start_date', 'end_date')

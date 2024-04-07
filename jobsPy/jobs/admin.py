@@ -11,11 +11,13 @@ class JobAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
     readonly_fields = ["user"]
 
+
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('name', 'description')
     search_fields = ('name', 'description')
     prepopulated_fields = {'slug': ('name',)}
+
 
 @admin.register(Applicant)
 class ApplicantAdmin(admin.ModelAdmin):

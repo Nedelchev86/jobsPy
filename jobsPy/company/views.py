@@ -1,9 +1,8 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Count
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, ListView, UpdateView, DetailView
-
 from jobsPy.company.forms import EditCompanyFrom
 from jobsPy.company.models import CompanyProfile
 from jobsPy.core.accounts_mixins import CompanyRoleRequiredMixin, CompanyOwnerRequiredMixin, ApplicantOwnerRequiredMixin
@@ -14,7 +13,6 @@ from jobsPy.jobs.models import Job, Applicant, FavoriteJob
 class CompanyDashboard(LoginRequiredMixin, CompanyRoleRequiredMixin, TemplateView):
     template_name = "company/company_dashboard.html"
 
-
     def get_context_data(self, **kwargs):
         job_creator_jobs = Job.objects.filter(user=self.request.user)
         all_favourite = FavoriteJob.objects.filter(job__in=job_creator_jobs).count()
@@ -22,8 +20,7 @@ class CompanyDashboard(LoginRequiredMixin, CompanyRoleRequiredMixin, TemplateVie
 
         job_count = FavoriteJob.objects.filter(job__in=job_creator_jobs).count()
 
-        job_for_this_user = Job.objects.filter(user=self.request.user, is_published=True)
-
+        # job_for_this_user = Job.objects.filter(user=self.request.user, is_published=True)
 
 # ChatGPT get all applicant for current logged user
         all_applicant = (

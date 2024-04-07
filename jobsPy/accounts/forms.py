@@ -1,6 +1,5 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordChangeForm, PasswordResetForm
-from django.urls import reverse_lazy
 
 UserModel = get_user_model()
 
@@ -68,7 +67,6 @@ class LoginForm(AuthenticationForm):
 class ChangePassword(PasswordChangeForm):
     class Meta:
         model = UserModel
-
 
 
 class CustomPasswordResetForm(PasswordResetForm):

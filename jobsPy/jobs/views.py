@@ -1,14 +1,13 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, View
-
 from jobsPy.company.models import CompanyProfile
 from jobsPy.core.accounts_mixins import CompanyRoleRequiredMixin, JobByCompanyMixin, CompanyProfileActivationMixin
 from jobsPy.core.decorators import job_seeker_activated_required
-from jobsPy.jobs.forms import CreateJobForms, EditeJobForm, ApplyForJobForms, ChangeStatus
+from jobsPy.jobs.forms import CreateJobForms, EditeJobForm, ApplyForJobForms, ChangeStatusForm
 from jobsPy.jobs.models import Job, Category, Applicant, FavoriteJob
 
 
@@ -41,10 +40,8 @@ class AllJobsView(ListView):
         queryset = Job.objects.filter(is_published=True)
         if query:
             # If a search query is present, filter the queryset by job title
-            return Job.objects.filter(Q(title__icontains=query))
-        else:
-            # If no search query, return all jobs
-            return Job.objects.all()
+            queryset = queryset.filter(title__icontains=query)
+        return queryset
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -83,7 +80,7 @@ class EditJob(LoginRequiredMixin, CompanyRoleRequiredMixin, JobByCompanyMixin, U
 
     def get_success_url(self):
 
-        return reverse_lazy("job_details",  kwargs={"pk":self.object.pk})
+        return reverse_lazy("job_details",  kwargs={"pk": self.object.pk})
 
 
 # class AddToFavoritesView(LoginRequiredMixin, View):
@@ -170,11 +167,8 @@ def add_to_favorites(request, pk):
 
 class ChangeStatus(UpdateView):
     model = Applicant
-
     template_name = "jobs/change_status.html"
-    form_class = ChangeStatus
+    form_class = ChangeStatusForm
 
     def get_success_url(self):
         return reverse_lazy("applicant_list", kwargs={"pk": self.object.job_id})
-
-

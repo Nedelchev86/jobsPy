@@ -4,7 +4,6 @@ from django.contrib.auth import get_user_model
 from django.db import models
 from django.utils.crypto import get_random_string
 from django.utils.text import slugify
-
 from jobsPy.main.models import Seniority
 
 # Create your models here.
@@ -112,4 +111,3 @@ class Applicant(models.Model):
             return "Accepted"
         else:
             return "Rejected"
-

@@ -1,7 +1,5 @@
 from django.contrib.auth import get_user_model
-from django.core.mail import send_mail
 from django.db.models.signals import post_save
-from django.dispatch import receiver
 from jobsPy.company.models import CompanyProfile
 from jobsPy.jobseekers.models import JobSeeker
 from django.dispatch import receiver
@@ -18,8 +16,6 @@ def create_user_profile(sender, instance, created, **kwargs):
             JobSeeker.objects.create(user=instance)
         elif instance.role == 'company':
             CompanyProfile.objects.create(user=instance)
-
-
 
 
 @receiver(user_logged_in)

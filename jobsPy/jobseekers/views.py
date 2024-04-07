@@ -1,16 +1,16 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, ListView, DetailView, UpdateView, CreateView
-from jobsPy.core.accounts_mixins import JobSeekerRequiredMixin, JobSeekerOwnerRequiredMixin, JobByCompanyMixin, \
-    JobEditMixin
+from jobsPy.core.accounts_mixins import JobSeekerRequiredMixin, JobSeekerOwnerRequiredMixin, JobEditMixin
 from jobsPy.jobs.models import FavoriteJob, Applicant, Skills
 from jobsPy.jobseekers.forms import EditProfileFrom, EducationForm, WrokExperienceForm
 from jobsPy.jobseekers.models import JobSeeker, Education, Experience
 
 userModel = get_user_model()
 # Create your views here.
+
 
 class JobSeekerDashboard(LoginRequiredMixin, JobSeekerRequiredMixin, TemplateView):
     template_name = "job_seekers/jobseeker_dashboard.html"
@@ -19,9 +19,9 @@ class JobSeekerDashboard(LoginRequiredMixin, JobSeekerRequiredMixin, TemplateVie
 
         all_favourite = FavoriteJob.objects.filter(user_id=self.request.user.pk).count()
         all_jobs_apply = Applicant.objects.filter(user_id=self.request.user.pk).count()
-        all_jobs_pending = Applicant.objects.filter(user_id=self.request.user.pk).filter(status= 1).count()
-        all_jobs_accepted = Applicant.objects.filter(user_id=self.request.user.pk).filter(status= 2).count()
-        all_jobs_rejected = Applicant.objects.filter(user_id=self.request.user.pk).filter(status= 3).count()
+        all_jobs_pending = Applicant.objects.filter(user_id=self.request.user.pk).filter(status=1).count()
+        all_jobs_accepted = Applicant.objects.filter(user_id=self.request.user.pk).filter(status=2).count()
+        all_jobs_rejected = Applicant.objects.filter(user_id=self.request.user.pk).filter(status=3).count()
 
 
 #         job_creator_jobs = Job.objects.filter(user=self.request.user)
@@ -66,7 +66,6 @@ class AllEmployees(ListView):
         if skill_name:
             queryset = queryset.filter(skills__name=skill_name)
         return queryset
-
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -137,7 +136,7 @@ class AddEducation(CreateView):
         return reverse_lazy('job seeker dashboard')
 
 
-class EditEducation(JobSeekerRequiredMixin, JobEditMixin ,UpdateView):
+class EditEducation(JobSeekerRequiredMixin, JobEditMixin, UpdateView):
     model = Education
     template_name = "job_seekers/edit_education.html"
     form_class = EducationForm
@@ -147,12 +146,10 @@ class EditEducation(JobSeekerRequiredMixin, JobEditMixin ,UpdateView):
         return reverse_lazy('job seeker dashboard')
 
 
-
 class AddWorkExperience(CreateView):
     # model = Experience
     template_name = "job_seekers/add_work_experience.html"
     form_class = WrokExperienceForm
-
 
     def form_valid(self, form):
         jobseeker_pk = self.kwargs['pk']
@@ -165,7 +162,7 @@ class AddWorkExperience(CreateView):
         return reverse_lazy('job seeker dashboard')
 
 
-class EditWorkExperience(JobSeekerRequiredMixin, JobEditMixin,UpdateView):
+class EditWorkExperience(JobSeekerRequiredMixin, JobEditMixin, UpdateView):
     model = Experience
     template_name = "job_seekers/edit_edit_work_experience.html"
     form_class = WrokExperienceForm

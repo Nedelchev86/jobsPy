@@ -6,7 +6,6 @@ from jobsPy.company.models import CompanyProfile
 
 @receiver(post_save, sender=CompanyProfile)
 def update_company_activation(sender, instance, **kwargs):
-    print("test")
     # Recursion
     if instance.name and not instance.activated:
         instance.activated = True

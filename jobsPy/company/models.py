@@ -15,7 +15,6 @@ class CompanyProfile(models.Model):
     phone = models.CharField(max_length=20, null=True, blank=True)
     address = models.CharField(null=False, blank=False, max_length=200)
     email = models.EmailField(max_length=254, null=False, blank=False)
-    # image = models.ImageField(null=True, blank=True, upload_to="company/image")
     image = CloudinaryField('image', blank=True, null=True)
     website_url = models.URLField(max_length=200, null=True, blank=True)
     linkedin_url = models.URLField(max_length=200, null=True, blank=True)

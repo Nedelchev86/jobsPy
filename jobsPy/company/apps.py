@@ -6,5 +6,5 @@ class CompanyConfig(AppConfig):
     name = 'jobsPy.company'
 
     def ready(self):
-        import jobsPy.accounts.signals
+        import jobsPy.company.signals
 

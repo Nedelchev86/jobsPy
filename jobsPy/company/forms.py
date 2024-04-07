@@ -4,7 +4,7 @@ from django.forms import ModelForm, CharField
 from jobsPy.company.models import CompanyProfile
 
 
-class EditCompany(ModelForm):
+class EditCompanyFrom(ModelForm):
     required_css_class = 'required'
     # tags = forms.ModelMultipleChoiceField(label='Tags', queryset=Tag.objects.order_by('name'),widget=forms.SelectMultiple)
 

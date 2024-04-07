@@ -5,7 +5,7 @@ from jobsPy.company.models import CompanyProfile
 
 @admin.register(CompanyProfile)
 class CompanyProfileAdmin(admin.ModelAdmin):
-    list_display = ('name', 'location', 'email', 'get_all_applicant', 'activated')
+    list_display = ('user' ,'name', 'location', 'email', 'get_all_applicant', 'activated')
     list_filter = ('activated', 'location')
     search_fields = ('name', 'location', 'email')
 

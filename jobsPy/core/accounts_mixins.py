@@ -1,8 +1,10 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import UserPassesTestMixin, AccessMixin
 from django.http import HttpResponseRedirect
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from django.urls import reverse, reverse_lazy
+
+from jobsPy.jobs.models import Job
 
 
 class JobSeekerRequiredMixin:
@@ -62,6 +64,7 @@ class CompanyOwnerRequiredMixin(AccessMixin):
 
     def dispatch(self, request, *args, **kwargs):
         if request.user.company.pk != kwargs.get('pk', None):
+            messages.error(self.request, "You don't have permission to access this page.")
             return HttpResponseRedirect(reverse('index'))
         return super().dispatch(request, *args, **kwargs)
 
@@ -112,3 +115,15 @@ class AuthorRequiredMixin(UserPassesTestMixin):
     def handle_no_permission(self):
         messages.error(self.request, "You don't have permission to access this page.")
         return HttpResponseRedirect(reverse('index'))
+
+
+
+class ApplicantOwnerRequiredMixin:
+
+    def dispatch(self, request, *args, **kwargs):
+        job_pk = self.kwargs.get('pk')
+        job = get_object_or_404(Job, pk=job_pk)
+        if not request.user == job.user:
+            messages.error(self.request, "You don't have permission to access this page.")
+            return redirect('index')
+        return super().dispatch(request, *args, **kwargs)

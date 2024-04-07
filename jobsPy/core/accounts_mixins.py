@@ -104,3 +104,11 @@ class CompanyProfileActivationMixin:
 #             messages.warning(request, "Please complete your company profile information before posting a job. Go to: Edit Company")
 #             return redirect(reverse_lazy('company-dashboard'))
 #         return super().dispatch(request, *args, **kwargs)
+
+class AuthorRequiredMixin(UserPassesTestMixin):
+    def test_func(self):
+        return self.request.user.groups.filter(name='Author').exists()
+
+    def handle_no_permission(self):
+        messages.error(self.request, "You don't have permission to access this page.")
+        return HttpResponseRedirect(reverse('index'))

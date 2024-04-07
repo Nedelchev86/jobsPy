@@ -9,6 +9,7 @@ class JobAdmin(admin.ModelAdmin):
     list_filter = ('category', 'location', 'deadline', 'is_published')
     search_fields = ('title', 'description', 'responsibilities', 'location', 'salary')
     prepopulated_fields = {'slug': ('title',)}
+    readonly_fields = ["user"]
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):

@@ -137,60 +137,7 @@
                             </div>
                         {% endif %}
 
-{#                        <div class="sidebar-widget">#}
-{#                            <div class="inner">#}
-{#                                {% if user.is_authenticated and user.pk == object.user.id %}#}
-{#                                    <div class="row m-n2 button">#}
-{#                                    <div class="col-xl-auto col-lg-12 col-sm-auto col-12 p-2">#}
-{#                                        <a href="{% url 'edit_job' object.pk  %}" class="d-block btn"><i class="fa fa-heart-o mr-1"></i>Edit Job</a>#}
-{#                                    </div>#}
-{#                                    <div class="col-xl-auto col-lg-12 col-sm-auto col-12 p-2">#}
-{#                                        <a href="job-details.html" class="d-block btn btn-alt">Close</a>#}
-{#                                    </div>#}
-{#                                </div>#}
-{#                                {% elif user.is_authenticated and  user.role == "jobseeker"  %}#}
-{#                                    <div class="row m-n2 button">#}
-{#                                    <div class="col-xl-auto col-lg-12 col-sm-auto col-12 p-2">#}
-{#                                        {% if already_in_favourite %}#}
-{#                                        <form method="post" action="{% url 'remove_From_fav' object.pk %}">#}
-{#                                            <button class="d-block btn"><i class="fa fa-heart-o mr-1"></i>Remove From Fav</button>#}
-{#                                           {% csrf_token %}#}
-{#                                        </form>#}
-{#                                       {% else %}#}
-{#                                        <form method="post" action="{% url 'add-to-favourite' object.pk %}">#}
-{#                                            {% csrf_token %}#}
-{#                                            <button class="d-block btn"><i class="fa fa-heart-o mr-1"></i> Save Job</button>#}
-{#                                        </form>#}
-{#                                           {% endif %}#}
-{##}
-{#                                        </div>#}
-{#                                    #}
-{#                                    <div class="col-xl-auto col-lg-12 col-sm-auto col-12 p-2">#}
-{#                                        {% if not already_apply %}#}
-{#                                        <form method="post" action="{% url 'apply_for_job' object.pk %}">#}
-{#                                            {% csrf_token %}#}
-{#                                            <button class="d-block btn"><i class="fa fa-heart-o mr-1"></i>Apply</button>#}
-{#                                        </form>#}
-{#                                        {% endif %}#}
-{#                                    </div>#}
-{#                                </div>#}
-{#                                {% elif not user.is_authenticated %}#}
-{#                            test#}
-{#                            {% endif %}#}
-{##}
-{#                                <form method="post" action="{% url 'add-to-favourite' object.pk %}">#}
-{#                                            {% csrf_token %}#}
-{#                                            <button class="d-block btn"><i class="fa fa-heart-o mr-1"></i> Save Job</button>#}
-{#                                </form>#}
-{##}
-{#                            </div>#}
-{#                        </div>#}
-        
 
-
-
-                        <!-- Sidebar (Apply Buttons) End -->
-                        <!-- Sidebar (Job Overview) Start -->
                         <div class="sidebar-widget">
                             <div class="inner">
                                 <h6 class="title">Job Overview</h6>

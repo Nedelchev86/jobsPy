@@ -7,6 +7,7 @@ from django.views.generic import CreateView, ListView, DetailView, UpdateView, V
 
 from jobsPy.company.models import CompanyProfile
 from jobsPy.core.accounts_mixins import CompanyRoleRequiredMixin, JobByCompanyMixin
+from jobsPy.core.decorators import job_seeker_activated_required
 from jobsPy.jobs.forms import CreateJobForms, EditeJobForm, ApplyForJobForms, ChangeStatus
 from jobsPy.jobs.models import Job, Category, Applicant, FavoriteJob
 
@@ -130,6 +131,8 @@ class RemoveFromFavoritesView(LoginRequiredMixin, View):
         return redirect('job_details', pk)
 
 
+@login_required
+@job_seeker_activated_required
 def apply_for_job(request, pk):
     job = get_object_or_404(Job, id=pk)
 

@@ -1,6 +1,5 @@
 from django.urls import path
 
-
 from jobsPy.jobs.views import JobCreateView, JobDetails, EditJob, AllJobsView, \
     RemoveFromFavoritesView, add_to_favorites, apply_for_job
 from jobsPy.jobseekers.views import FavouriteJobs, ApplyJobs

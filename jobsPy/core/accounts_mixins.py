@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.contrib.auth.mixins import UserPassesTestMixin, AccessMixin
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 
 
 class JobSeekerRequiredMixin:
@@ -84,3 +84,23 @@ class JobEditMixin(AccessMixin):
         else:
 
             return render(request, '403.html', status=403)
+
+
+class CompanyProfileActivationMixin:
+
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.company.activated:
+
+            messages.warning(request, "Please complete your company profile information before posting a job. Go to: Edit Company")
+            return redirect(reverse_lazy('company-dashboard'))
+        return super().dispatch(request, *args, **kwargs)
+
+
+# class JonSeekerProfileActivationMixin:
+#
+#     def dispatch(self, request, *args, **kwargs):
+#         if not self.request.user.jobseeker.activated:
+#
+#             messages.warning(request, "Please complete your company profile information before posting a job. Go to: Edit Company")
+#             return redirect(reverse_lazy('company-dashboard'))
+#         return super().dispatch(request, *args, **kwargs)

@@ -38,6 +38,7 @@ class AllJobsView(ListView):
 
     def get_queryset(self):
         query = self.request.GET.get('q')
+        queryset = Job.objects.filter(is_published=True)
         if query:
             # If a search query is present, filter the queryset by job title
             return Job.objects.filter(Q(title__icontains=query))

@@ -1,7 +1,8 @@
+import time
 from celery import shared_task
 from django.core.mail import send_mail
-
 from jobsPy import settings
+from jobsPy.main.models import Subscriber
 
 
 @shared_task
@@ -25,3 +26,12 @@ def send_contact_form_notification_to_team(name, email, subject, phone, message)
 
     # Send the email notification
     send_mail(email_subject, email_message, from_email, [admin_email])
+
+
+@shared_task
+def send_news_notification(news_title, news_content):
+    subscribers = Subscriber.objects.filter(is_active=True)
+    subject = f"{news_title} - JobsPy"
+    message = f"{news_content}\n\nRegards,\nJobsPy Team"
+    recipient_list = [subscriber.email for subscriber in subscribers]
+    send_mail(subject, message, settings.EMAIL_HOST_USER, recipient_list, fail_silently=False)

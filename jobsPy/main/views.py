@@ -6,9 +6,9 @@ from jobsPy.company.models import CompanyProfile
 from jobsPy.jobs.models import Category, Job
 from jobsPy.jobseekers.models import JobSeeker
 from jobsPy.main.forms import SubscriberForm
-from jobsPy.main.models import Contact, Subscriber
-from jobsPy.main.tasks import send_contact_form_confirmation, send_contact_form_notification_to_team
-
+from jobsPy.main.models import Contact, Subscriber, Newsletter
+from jobsPy.main.tasks import send_contact_form_confirmation, send_contact_form_notification_to_team, \
+    send_news_notification
 
 
 class IndexView(TemplateView):
@@ -100,3 +100,17 @@ class SubscribeToNewsletterView(FormView):
 
 class SubscribeSuccessView(TemplateView):
     template_name = "core/subscribe-success.html"
+
+
+
+class NewsletterCreateView(CreateView):
+    model = Newsletter
+    fields = ['title', 'content']
+    template_name = 'core/newsletter.html'
+    success_url = reverse_lazy('subscribe success')
+
+    # def form_valid(self, form):
+    #     news = form.save(commit=False)
+    #     news.save()
+    #     send_news_notification.delay(news.title, news.content)
+    #     return super().form_valid(form)

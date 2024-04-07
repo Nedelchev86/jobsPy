@@ -29,44 +29,56 @@
             <div class="contact-head wow fadeInUp" data-wow-delay=".4s">
                 <div class="row">
                     <div class="col-lg-7 col-12">
+             
                         <div class="form-main">
-                            <form class="form" method="post">
+                            <form class="form" method="post" action="{% url 'contact' %}">
                                 <div class="row">
-                                    <div class="col-lg-6 col-12">
-                                        <div class="form-group">
-                                            <input name="name" type="text" placeholder="Your Name" required="required">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-12">
-                                        <div class="form-group">
-                                            <input name="subject" type="text" placeholder="Your Subject"
-                                                required="required">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-12">
-                                        <div class="form-group">
-                                            <input name="email" type="email" placeholder="Your Email"
-                                                required="required">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-12">
-                                        <div class="form-group">
-                                            <input name="phone" type="text" placeholder="Your Phone"
-                                                required="required">
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-group message">
-                                            <textarea name="message" placeholder="Your Message"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-group button">
-                                            <button type="submit" class="btn ">Submit Message</button>
-                                        </div>
-                                    </div>
+                                {{ form }}
+                                    {% csrf_token %}
                                 </div>
+                                <div class="col-12">
+                                      <div class="form-group button">
+                                            <button type="submit" class="btn ">Submit Message</button>
+                                       </div>
+                                  </div>
                             </form>
+{#                            <form class="form" method="post">#}
+{#                                <div class="row">#}
+{#                                    <div class="col-lg-6 col-12">#}
+{#                                        <div class="form-group">#}
+{#                                            <input name="name" type="text" placeholder="Your Name" required="required">#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                    <div class="col-lg-6 col-12">#}
+{#                                        <div class="form-group">#}
+{#                                            <input name="subject" type="text" placeholder="Your Subject"#}
+{#                                                required="required">#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                    <div class="col-lg-6 col-12">#}
+{#                                        <div class="form-group">#}
+{#                                            <input name="email" type="email" placeholder="Your Email"#}
+{#                                                required="required">#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                    <div class="col-lg-6 col-12">#}
+{#                                        <div class="form-group">#}
+{#                                            <input name="phone" type="text" placeholder="Your Phone"#}
+{#                                                required="required">#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                    <div class="col-12">#}
+{#                                        <div class="form-group message">#}
+{#                                            <textarea name="message" placeholder="Your Message"></textarea>#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                    <div class="col-12">#}
+{#                                        <div class="form-group button">#}
+{#                                            <button type="submit" class="btn ">Submit Message</button>#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </form>#}
                         </div>
                     </div>
                     <div class="col-lg-5 col-12">

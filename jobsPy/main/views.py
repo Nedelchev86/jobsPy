@@ -1,10 +1,12 @@
+from django.contrib import messages
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, ListView, CreateView
+from django.views.generic import TemplateView, ListView, CreateView, FormView
 from jobsPy.company.models import CompanyProfile
 from jobsPy.jobs.models import Category, Job
 from jobsPy.jobseekers.models import JobSeeker
-from jobsPy.main.models import Contact
+from jobsPy.main.forms import SubscriberForm
+from jobsPy.main.models import Contact, Subscriber
 from jobsPy.main.tasks import send_contact_form_confirmation, send_contact_form_notification_to_team
 
 
@@ -85,3 +87,24 @@ class ContactFrom(CreateView):
         send_contact_form_notification_to_team.delay(form.instance.name, form.instance.email, form.instance.subject, form.instance.phone, form.instance.message)
 
         return response
+
+
+class SubscribeToNewsletterView(FormView):
+    template_name = 'core/subscribe.html'
+    form_class = SubscriberForm
+    success_url = reverse_lazy('subscribe success')
+
+
+    def form_valid(self, form):
+        email = form.cleaned_data['email']
+        if Subscriber.objects.filter(email=email).exists():
+            messages.error(self.request, 'Email already subscribed.')
+            form.add_error('email', 'Email already subscribed.')
+            return self.render_to_response(self.get_context_data(form=form))
+        form.save()
+        messages.success(self.request, 'Successfully subscribed.')
+        return super().form_valid(form)
+
+
+class SubscribeSuccessView(TemplateView):
+    template_name = "core/subscribe-success.html"

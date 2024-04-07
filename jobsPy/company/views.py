@@ -4,9 +4,9 @@ from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, ListView, UpdateView, DetailView
 
-from jobsPy.company.forms import EditCompany
+from jobsPy.company.forms import EditCompanyFrom
 from jobsPy.company.models import CompanyProfile
-from jobsPy.core.accounts_mixins import CompanyRoleRequiredMixin, CompanyOwnerRequiredMixin
+from jobsPy.core.accounts_mixins import CompanyRoleRequiredMixin, CompanyOwnerRequiredMixin, ApplicantOwnerRequiredMixin
 from jobsPy.jobs.models import Job, Applicant, FavoriteJob
 
 
@@ -49,10 +49,10 @@ class CreatedJobs(LoginRequiredMixin, CompanyRoleRequiredMixin, ListView):
 
 
 class EditCompany(LoginRequiredMixin, CompanyRoleRequiredMixin, CompanyOwnerRequiredMixin, UpdateView):
-    template_name = "company/edit_company.html"
     model = CompanyProfile
-    form_class = EditCompany
+    form_class = EditCompanyFrom
     success_url = reverse_lazy("company-dashboard")
+    template_name = "company/edit_company.html"
     # model = CompanyProfile
     # form_class = CreateProfile
 
@@ -82,7 +82,7 @@ class CompanyApplicant(LoginRequiredMixin, CompanyRoleRequiredMixin, ListView):
         return context
 
 
-class ApplicantList(LoginRequiredMixin, CompanyRoleRequiredMixin,ListView):
+class ApplicantList(LoginRequiredMixin, CompanyRoleRequiredMixin, ApplicantOwnerRequiredMixin, ListView):
     model = Applicant
     template_name = 'company/applicant_list.html'  # Create this template if needed
 

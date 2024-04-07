@@ -6,13 +6,13 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, View
 
 from jobsPy.company.models import CompanyProfile
-from jobsPy.core.accounts_mixins import CompanyRoleRequiredMixin, JobByCompanyMixin
+from jobsPy.core.accounts_mixins import CompanyRoleRequiredMixin, JobByCompanyMixin, CompanyProfileActivationMixin
 from jobsPy.core.decorators import job_seeker_activated_required
 from jobsPy.jobs.forms import CreateJobForms, EditeJobForm, ApplyForJobForms, ChangeStatus
 from jobsPy.jobs.models import Job, Category, Applicant, FavoriteJob
 
 
-class JobCreateView(LoginRequiredMixin, CompanyRoleRequiredMixin, CreateView):
+class JobCreateView(LoginRequiredMixin, CompanyRoleRequiredMixin, CompanyProfileActivationMixin, CreateView):
     template_name = "jobs/create_job.html"
     form_class = CreateJobForms
     extra_context = {"title": "Post New Job"}

@@ -46,6 +46,12 @@ class JobSeeker(models.Model):
     def get_user_all_applicant(self):
         return Applicant.objects.filter(user=self.user).count()
 
+    def __str__(self):
+        if self.first_name and self.last_name:
+            return f"{self.first_name} {self.last_name}"
+        else:
+            return self.user.email
+
     class Meta:
         ordering = ['-pk']
 

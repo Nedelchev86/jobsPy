@@ -1,19 +1,18 @@
 from django.contrib import admin
+from .models import Seniority, Contact, Subscriber
 
-from jobsPy.main.models import Seniority, Contact, Subscriber
-
-
-# Register your models here.
 @admin.register(Seniority)
 class SeniorityAdmin(admin.ModelAdmin):
-    pass
-
+    list_display = ('name',)
 
 @admin.register(Contact)
 class ContactAdmin(admin.ModelAdmin):
-    pass
-
+    list_display = ('name', 'subject', 'email', 'phone', 'created_on', 'processed')
+    list_filter = ('processed',)
+    search_fields = ('name', 'subject', 'email')
 
 @admin.register(Subscriber)
 class SubscriberAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('email', 'subscribed_at', 'is_active')
+    list_filter = ('is_active',)
+    search_fields = ('email',)

@@ -6,6 +6,10 @@
                                 <li><a class="{% if request.resolver_match.url_name == 'edit-profile' %}active{% endif %}"  href="{% url 'edit-profile' user.jobseeker.pk %}"><i class="lni lni-clipboard"></i> Edit Profile </a></li>
                                 <li><a class="{% if request.resolver_match.url_name == 'favourite_jobs' %}active{% endif %}"  href="{% url 'favourite_jobs' %}"><i class="lni lni-clipboard"></i> Bookmarked Jobs <span class="notifi">{{ user.favoritejob_set.all|length}}</span></a></li>
                                 <li><a class="{% if request.resolver_match.url_name == 'jobs-apply' %}active{% endif %}" href="{% url 'jobs-apply' %}"><i class="lni lni-alarm"></i>Job Applications <span class="notifi">{{ user.jobseeker.get_user_all_applicant}}</span></a></li>
+               
+                                 {% if 'main.add_newsletter' in perms %}
+                                <li><a class="{% if request.resolver_match.url_name == 'newsletter' %}active{% endif %}" href="{% url 'newsletter' %}"><i class="lni lni-alarm"></i>Send Newsletter </a></li>
+                               {% endif %}
                                 <li><a  href="#"><i class="lni lni-alarm"></i> Notifications <span class="notifi">ToDo</span></a></li>
                                 <li><a class="{% if request.resolver_match.url_name == 'change-password' %}active{% endif %}" href="{% url 'change-password' %}"><i class="lni lni-lock"></i> Change Password</a></li>
                                 <li><a href="{% url 'sing-out' %}"><i class="lni lni-upload"></i> Sign Out</a></li>

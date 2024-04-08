@@ -7,7 +7,7 @@ from jobsPy.company.models import CompanyProfile
 from jobsPy.core.accounts_mixins import AuthorRequiredMixin
 from jobsPy.jobs.models import Category, Job
 from jobsPy.jobseekers.models import JobSeeker
-from jobsPy.main.forms import SubscriberForm
+from jobsPy.main.forms import SubscriberForm, NewsletterForm
 from jobsPy.main.models import Contact, Subscriber, Newsletter
 from jobsPy.main.tasks import send_contact_form_confirmation, send_contact_form_notification_to_team, \
     send_news_notification
@@ -104,7 +104,7 @@ class SubscribeSuccessView(TemplateView):
 
 class NewsletterCreateView(LoginRequiredMixin, AuthorRequiredMixin, CreateView):
     model = Newsletter
-    fields = ['title', 'content']
+    form_class = NewsletterForm
     template_name = 'core/newsletter.html'
     success_url = reverse_lazy('subscribe success')
 

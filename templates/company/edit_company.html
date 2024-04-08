@@ -37,11 +37,24 @@ while also allowing jobs seekers and potential clients to find you</p>
                         <div class="password-content">
                             <h3>Edit Company Profile</h3>
                             <p>Here you can edit your Copmany Profile.</p>
-                          
+                            {% if form.errors %}
+                            <div class="alert alert-danger">
+                            {{ form.errors }}
+                            </div>
+                            {% endif %}
                             <form method="post" action="{% url 'edit-company-profile' user.company.pk %}" enctype="multipart/form-data">
                                 <div class="row">
                                     {{ form.media }}
-                                    {{ form.as_p }}
+                                                     {% for field in form %}
+                    <div class="form-group">
+                    {{ field.label_tag }}
+                    {{ field }}
+                     </div>
+                    {% for error in field.errors %}
+                      <p style="color: red">{{ error }}</p>
+                    {% endfor %}
+
+                {% endfor %}
                                     {% csrf_token %}
                                     <div class="col-lg-12">
                                         <div class="button">

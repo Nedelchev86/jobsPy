@@ -32,16 +32,29 @@
                     <!-- Start Main Content -->
 
                     {% include "company/company-menu.html" %}
-
                     <!-- End Main Content -->
                     <div class="col-lg-8">
                         <div class="password-content">
                             <h3>Create Job</h3>
                             <p>Here you can post new Job.</p>
+                            {% if form.errors %}
+                            <div class="alert alert-danger">
+                            {{ form.errors }}
+                            </div>
+                            {% endif %}
                             <form method="post" action="{% url 'create_job' %}" enctype="multipart/form-data">
                                 <div class="row">
                                     {{ form.media }}
-                                    {{ form }}
+                     {% for field in form %}
+                    <div class="form-group">
+                    {{ field.label_tag }}
+                    {{ field }}
+                     </div>
+                    {% for error in field.errors %}
+                      <p style="color: red">{{ error }}</p>
+                    {% endfor %}
+
+                {% endfor %}
 
                                     {% csrf_token %}
                                     <div class="col-lg-12">

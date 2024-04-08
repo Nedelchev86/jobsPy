@@ -1,3 +1,4 @@
+from ckeditor.fields import RichTextField
 from django.db import models
 
 
@@ -32,7 +33,7 @@ class Subscriber(models.Model):
 
 class Newsletter(models.Model):
     title = models.CharField(max_length=200, null=False, blank=False)
-    content = models.TextField(null=False, blank=False)
+    content = RichTextField(null=False, blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

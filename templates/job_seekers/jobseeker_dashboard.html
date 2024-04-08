@@ -196,7 +196,7 @@
                                                 <a href="#"> {{ experience.company }} </a>
                                             </h3>
 
-                                            <a href="#">{{ experience.description }}</a>
+                                            <a href="#">{{ experience.description|safe }}</a>
                                             <div class="d-flex align-items-center justify-content-md-between flex-wrap">
                                                 <a href="#">{{ experience.start_date}} - {{ experience.end_date}}</a>
                                                 <a  href="{% url 'edit-work-experience' experience.pk %}" class="education-edit font-size-3">Edit</a>

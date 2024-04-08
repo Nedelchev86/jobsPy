@@ -4,6 +4,8 @@ from django.contrib.auth import get_user_model
 from django.db import models
 from django.utils.crypto import get_random_string
 from django.utils.text import slugify
+
+from jobsPy.jobs.validators import validate_deadline_after_today
 from jobsPy.main.models import Seniority
 
 # Create your models here.
@@ -65,7 +67,9 @@ class Job(models.Model):
     location = models.CharField(max_length=300,)
     job_type = models.CharField(choices=JOB_TYPE, max_length=10)
     salary = models.CharField(max_length=30, blank=True)
-    deadline = models.DateField()
+    deadline = models.DateField(
+        validators=[validate_deadline_after_today]
+    )
     is_published = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)

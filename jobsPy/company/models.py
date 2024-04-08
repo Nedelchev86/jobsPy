@@ -22,7 +22,7 @@ class CompanyProfile(models.Model):
     facebook_url = models.URLField(max_length=200, null=True, blank=True)
     employees = models.PositiveIntegerField(null=False, blank=False, default=0)
     foundation_year = models.PositiveIntegerField(null=False, blank=False, default=0)
-    skills = models.ManyToManyField(Skills, related_name="technologies")
+    skills = models.ManyToManyField(Skills, related_name="technologies", verbose_name="Technologies")
     activated = models.BooleanField(default=False)
 
     def __str__(self):

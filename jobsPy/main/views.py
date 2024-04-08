@@ -68,7 +68,7 @@ def custom_403(request, exception):
 class ContactFrom(CreateView):
     model = Contact
     fields = ['name', 'email', 'subject', 'phone', 'message']
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('mail success')
     template_name = "core/contacts.html"
 
     def form_valid(self, form):
@@ -113,3 +113,8 @@ class NewsletterCreateView(LoginRequiredMixin, AuthorRequiredMixin, CreateView):
         news.save()
         send_news_notification.delay(news.title, news.content)
         return super().form_valid(form)
+
+
+class MailSuccessView(TemplateView):
+    template_name = "core/mail-success.html"
+

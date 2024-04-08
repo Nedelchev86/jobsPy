@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}Job Applications {{ object_list.count }} - JobsPy {% endblock %}
 {% block main_content %}
 
@@ -39,7 +40,12 @@
                                     <div class="col-lg-5 col-md-5 col-12">
                                         <div class="title-img">
                                             <div class="can-img">
+                                                {% if obj.job.job_image %}
                                                 <img src="{{ obj.job.job_image.url }}" alt="#">
+                                                {% else %}
+                                                    <img src="{% static ' images/jobs/category-2.jpg' %}" alt="#">
+                                                {% endif %}
+                                            
                                             </div>
                                             <h3>{{ obj.job.title }}<span>{{ obj.job.category}}</span></h3>
                                         </div>

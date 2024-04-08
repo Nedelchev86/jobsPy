@@ -76,9 +76,3 @@ jobs:
           app-name: 'JobsPy'
           slot-name: 'Production'
 
-
-      - name: Start Celery workers
-        run: |
-          cd $HOME/site/wwwroot
-          source venv/bin/activate
-          celery -A jobsPy worker --loglevel=info -P eventlet -E

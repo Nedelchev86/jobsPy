@@ -129,7 +129,7 @@
                                                 {% if job.job_image %}
                                                 <img style="height: 60px; width: 60px;" src="{{ job.job_image.url }}" alt="#">
                                                     {% else %}
-                                                    <img style="height: 60px; width: 60px;" src="{{object.image}}" alt="#">
+                                                    <img style="height: 60px; width: 60px;" src="{{ object.image.url }}" alt="#">
                                                 {% endif %}
                                             </div>
                                             <h6  style="padding-left: 10px">{{ job.title }}</h6>

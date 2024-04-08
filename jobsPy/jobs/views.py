@@ -15,7 +15,7 @@ class JobCreateView(LoginRequiredMixin, CompanyRoleRequiredMixin, CompanyProfile
     template_name = "jobs/create_job.html"
     form_class = CreateJobForms
     extra_context = {"title": "Post New Job"}
-    success_url = reverse_lazy("created_jobs")
+    success_url = reverse_lazy("index")
 
     def form_valid(self, form):
         form.instance.user = self.request.user

@@ -1,13 +1,12 @@
 from django.contrib.auth.views import LoginView
-from django.shortcuts import render
 from django.views.generic import TemplateView
 from rest_framework import generics, permissions, pagination
-from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
+from rest_framework.permissions import  IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 
 from jobsPy.accounts.forms import LoginForm
 from jobsPy.blog.models import BlogPost, Comment
-from jobsPy.blog.permission import IsAuthor
+from jobsPy.blog.permission import IsAuthor, IsAuthorOrReadOnly
 from jobsPy.blog.serializers import BlogPostSerializer, CommentSerializer, CommentSerializerCreate
 from jobsPy.core.accounts_mixins import AuthorRequiredMixin
 
@@ -36,7 +35,7 @@ class BlogPostListCreateAPIView(generics.ListCreateAPIView):
 class BlogPostRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = BlogPost.objects.all()
     serializer_class = BlogPostSerializer
-    permission_classes = [IsAuthor]
+    permission_classes = [IsAuthorOrReadOnly]
 
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
@@ -44,6 +43,7 @@ class BlogPostRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView
         instance.save()
         serializer = self.get_serializer(instance)
         return Response(serializer.data)
+
 
 
 class BlogList(TemplateView):

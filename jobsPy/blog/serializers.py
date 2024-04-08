@@ -1,6 +1,5 @@
 from django.contrib.auth import get_user_model
-from rest_framework import serializers
-
+from rest_framework import serializers, permissions
 from jobsPy.blog.models import BlogPost, Comment
 from jobsPy.company.models import CompanyProfile
 from jobsPy.jobseekers.models import JobSeeker
@@ -38,7 +37,6 @@ class CommentJobSeekerSerializer(serializers.ModelSerializer):
         model = JobSeeker
         fields = ['first_name', 'last_name', 'profile_picture', 'pk']
 
-
         # read_only_fields = ['first_name', 'last_name', 'pk']
 
 class CommentCompanySerializer(serializers.ModelSerializer):
@@ -49,9 +47,11 @@ class CommentCompanySerializer(serializers.ModelSerializer):
 
 class CommentSerializerCreate(serializers.ModelSerializer):
     author = serializers.SerializerMethodField()
+
     class Meta:
         model = Comment
         fields = ['content', 'author']
+
     def get_author(self, obj):
         # Check if the author is a jobseeker
         user = obj.author
@@ -69,8 +69,3 @@ class BlogPostSerializer(serializers.ModelSerializer):
     class Meta:
         model = BlogPost
         fields = '__all__'
-
-
-
-
-

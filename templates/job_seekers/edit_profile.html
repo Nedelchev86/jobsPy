@@ -37,14 +37,25 @@ while also allowing companies to find you</p>
                         <div class="password-content">
                             <h3>Edit  Profile</h3>
                             <p>Here you can edit your Profile.</p>
-
-                            {% for error in field.errors %}
-                      <p style="color: red">{{ error }}</p>
-                    {% endfor %}
+                            {% if form.errors %}
+                            <div class="alert alert-danger">
+                            {{ form.errors }}
+                            </div>
+                            {% endif %}
+                        
                             <form method="post" action="{% url 'edit-profile' user.jobseeker.pk %}" enctype="multipart/form-data">
                                 <div class="row">
                                     {{ form.media }}
-                                    {{ form }}
+                                                     {% for field in form %}
+                    <div class="form-group">
+                    {{ field.label_tag }}
+                    {{ field }}
+                     </div>
+                    {% for error in field.errors %}
+                      <p style="color: red">{{ error }}</p>
+                    {% endfor %}
+
+                {% endfor %}
 {#                                {% for field in form %}#}
 {#                    <div class="form-group">#}
 {#                    {% if field.field.required %}#}
@@ -54,9 +65,7 @@ while also allowing companies to find you</p>
 {#                        {% endif %}#}
 {#                    {{ field }}#}
 {#                     </div>#}
-                    {% for error in field.errors %}
-                      <p style="color: red">{{ error }}</p>
-                    {% endfor %}
+
 {##}
 {#                {% endfor %}#}
 

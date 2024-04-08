@@ -1,5 +1,5 @@
 from django.forms import ModelForm, EmailInput
-from jobsPy.main.models import Subscriber
+from jobsPy.main.models import Subscriber, Newsletter
 
 
 class SubscriberForm(ModelForm):
@@ -16,3 +16,12 @@ class SubscriberForm(ModelForm):
                 'required': True,
                 'autocomplete': 'email'}),
         }
+
+
+class NewsletterForm(ModelForm):
+    required_css_class = 'required'
+
+    class Meta:
+        model = Newsletter
+        fields = ['title', 'content']
+

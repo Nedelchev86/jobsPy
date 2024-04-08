@@ -43,9 +43,10 @@
                                                 {% if obj.job.job_image %}
                                                 <img src="{{ obj.job.job_image.url }}" alt="#">
                                                 {% else %}
-                                                    <img src="{% static ' images/jobs/category-2.jpg' %}" alt="#">
+
+                                                    <img src="{% static 'images/jobs/category-2.jpg' %}" alt="#">
                                                 {% endif %}
-                                            
+
                                             </div>
                                             <h3>{{ obj.job.title }}<span>{{ obj.job.category}}</span></h3>
                                         </div>

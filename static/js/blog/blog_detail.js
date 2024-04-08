@@ -27,12 +27,6 @@ document.addEventListener('DOMContentLoaded', function() {
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#">
-                                            <i class="lni lni-comments"></i>
-                                            35 Comments
-                                        </a>
-                                    </li>
-                                    <li>
                                         <a id="views" href="#">
                                             <i class="lni lni-eye"></i>
                                             ${blog.views} View

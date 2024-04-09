@@ -23,7 +23,6 @@ class IndexView(TemplateView):
         jobs = Job.objects.all().count()
         # last_jobs = Job.objects.all().order_by('pk')[:4]
 
-
         context["job_seekers"] = job_seekers
         context["company"] = company
         context["jobs"] = jobs
@@ -86,7 +85,6 @@ class SubscribeToNewsletterView(FormView):
     form_class = SubscriberForm
     success_url = reverse_lazy('subscribe success')
 
-
     def form_valid(self, form):
         email = form.cleaned_data['email']
         if Subscriber.objects.filter(email=email).exists():
@@ -117,4 +115,3 @@ class NewsletterCreateView(LoginRequiredMixin, AuthorRequiredMixin, CreateView):
 
 class MailSuccessView(TemplateView):
     template_name = "core/mail-success.html"
-

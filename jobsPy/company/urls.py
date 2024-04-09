@@ -1,8 +1,6 @@
 from django.urls import path
-
 from jobsPy.company.views import CompanyDashboard, CreatedJobs, EditCompany, CompanyApplicant, ApplicantList, \
     CompanyDetails, AllCompany
-
 from jobsPy.jobs.views import ChangeStatus
 
 urlpatterns = [
@@ -16,5 +14,3 @@ urlpatterns = [
     path('', AllCompany.as_view(), name="all_company"),
 
 ]
-
-

@@ -98,7 +98,6 @@ class CompanyProfileActivationMixin:
             return redirect(reverse_lazy('company-dashboard'))
         return super().dispatch(request, *args, **kwargs)
 
-
 # class JonSeekerProfileActivationMixin:
 #
 #     def dispatch(self, request, *args, **kwargs):
@@ -115,7 +114,6 @@ class AuthorRequiredMixin(UserPassesTestMixin):
     def handle_no_permission(self):
         messages.error(self.request, "You don't have permission to access this page.")
         return HttpResponseRedirect(reverse('index'))
-
 
 
 class ApplicantOwnerRequiredMixin:

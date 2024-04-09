@@ -1,8 +1,9 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, ListView, DetailView, UpdateView, CreateView
+from django.views.generic import TemplateView, ListView, DetailView, UpdateView, CreateView, DeleteView
 from jobsPy.core.accounts_mixins import JobSeekerRequiredMixin, JobSeekerOwnerRequiredMixin, JobEditMixin
 from jobsPy.jobs.models import FavoriteJob, Applicant, Skills
 from jobsPy.jobseekers.forms import EditProfileFrom, EducationForm, WrokExperienceForm
@@ -170,3 +171,18 @@ class EditWorkExperience(JobSeekerRequiredMixin, JobEditMixin, UpdateView):
     def get_success_url(self):
         # return reverse_lazy('edit-profile', kwargs={'pk': self.kwargs['pk']})
         return reverse_lazy('job seeker dashboard')
+
+
+class JobSeekerDeleteView(LoginRequiredMixin, DeleteView):
+    model = userModel
+    template_name = "job_seekers/delete_profile.html"
+    success_url = reverse_lazy('deleted_success')
+
+
+    def get_object(self, queryset=None):
+        # Return the JobSeeker instance for the current logged-in user
+        return self.request.user
+
+
+class ProfileDeletedView(TemplateView):
+    template_name = "job_seekers/profile_deleted.html"

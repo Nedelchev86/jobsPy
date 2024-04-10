@@ -43,10 +43,10 @@ while also allowing companies to find you</p>
                             </div>
                             {% endif %}
                         
-                            <form method="post" action="{% url 'edit-profile' user.jobseeker.pk %}" enctype="multipart/form-data">
+                            <form method="post" action="{% url 'edit-profile' %}" enctype="multipart/form-data">
                                 <div class="row">
                                     {{ form.media }}
-                                                     {% for field in form %}
+                   {% for field in form %}
                     <div class="form-group">
                     {{ field.label_tag }}
                     {{ field }}

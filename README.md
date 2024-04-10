@@ -61,6 +61,25 @@ API Endpoints
 - Python: Programming language used for backend development.
 - HTML/CSS/JavaScript: Frontend technologies for user interface and interactivity.
 
+## Make .env Files
+
+SECRET_KEY=
+DEBUG=True
+ALLOWED_HOSTS=localhost 127.0.0.1
+CLIENT_ID=
+CLIENT_SECRET=
+GITHUB_CLIENT_ID=
+GITHUB_CLIENT_SECRET=
+EMAIL_HOST_USER=
+EMAIL_HOST_PASSWORD
+DATABASE_URL=
+CLOUDINARY_URL=
+CELERY_RESULT_BACKEND=
+CELERY_BROKER_URL=
+CSRF_TRUSTED_ORIGINS=http://localhost http://127.0.0.1
+
+
+
 ## Installation
 
 To run JobsPy locally, follow these steps:
@@ -71,6 +90,8 @@ To run JobsPy locally, follow these steps:
 4. Create a superuser: `python manage.py createsuperuser`
 5. Start the development server: `python manage.py runserver`
 6. Access the application at `http://localhost:8000`
+
+   
 
 ## Contributors
 

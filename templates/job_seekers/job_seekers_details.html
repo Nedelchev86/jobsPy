@@ -79,20 +79,25 @@
                                                 <h5 class="title">E-mail</h5>
                                                 <p>{{ object.user}}</p>
                                             </div>
-
+                                            {% if object.phone %}
                                             <div class="single-list">
+                                               
                                                 <h5 class="title">Phone</h5>
                                                 <p>{{ object.phone_number}}</p>
                                             </div>
 
+                                           {% endif %}
                                             <div class="single-list">
                                                 <h5 class="title">Website</h5>
                                                 <p><a target="_blank" href="{{ object.website }}">Link</a></p>
                                             </div>
+                                            {% if object.seniority %}
                                             <div class="single-list">
+                                            
                                                 <h5 class="title">Seniority</h5>
                                                 <p><a href="#">{{ object.seniority }}</a></p>
                                             </div>
+                                               {% endif %}
                                             <!-- Single List -->
                                         </div>
                                     </div>
@@ -120,7 +125,7 @@
                             </div>
 
                             <div class="single-section exprerience">
-                                <h4>Work Exprerience</h4>
+                                <h4>Work Experience</h4>
                                 {% for experience in object.experience.all %}
                                 <div class="single-exp mb-30">
                                     <div class="d-flex align-items-center pr-11 mb-9 flex-wrap flex-sm-nowrap">

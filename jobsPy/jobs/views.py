@@ -5,7 +5,8 @@ from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, View, DeleteView
 from jobsPy.company.models import CompanyProfile
-from jobsPy.core.accounts_mixins import CompanyRoleRequiredMixin, JobByCompanyMixin, CompanyProfileActivationMixin
+from jobsPy.core.accounts_mixins import CompanyRoleRequiredMixin, JobByCompanyMixin, CompanyProfileActivationMixin, \
+    ApplicantCompanyMixin
 from jobsPy.core.decorators import job_seeker_activated_required
 from jobsPy.jobs.forms import CreateJobForms, EditeJobForm, ApplyForJobForms, ChangeStatusForm
 from jobsPy.jobs.models import Job, Category, Applicant, FavoriteJob
@@ -165,7 +166,7 @@ def add_to_favorites(request, pk):
     return redirect('job_details', pk=pk)
 
 
-class ChangeStatus(UpdateView):
+class ChangeStatus(LoginRequiredMixin, CompanyRoleRequiredMixin, ApplicantCompanyMixin, UpdateView):
     model = Applicant
     template_name = "jobs/change_status.html"
     form_class = ChangeStatusForm

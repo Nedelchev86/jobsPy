@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render, get_object_or_404
 from django.urls import reverse, reverse_lazy
 
-from jobsPy.jobs.models import Job
+from jobsPy.jobs.models import Job, Applicant
 
 
 class JobSeekerRequiredMixin:
@@ -71,12 +71,23 @@ class CompanyOwnerRequiredMixin(AccessMixin):
 
 class JobByCompanyMixin(AccessMixin):
     def dispatch(self, request, *args, **kwargs):
-        print(self.get_object().user)
         if request.user.pk == self.get_object().user.pk:
             return super().dispatch(request, *args, **kwargs)
         else:
 
             return render(request, '403.html', status=403)
+
+
+class ApplicantCompanyMixin(AccessMixin):
+    def dispatch(self, request, *args, **kwargs):
+        applicant_pk = self.kwargs.get('pk')
+        applicant = get_object_or_404(Applicant, pk=applicant_pk)
+        if request.user.pk == applicant.job.user.pk:
+            return super().dispatch(request, *args, **kwargs)
+        else:
+
+            return render(request, '403.html', status=403)
+
 
 
 class JobEditMixin(AccessMixin):

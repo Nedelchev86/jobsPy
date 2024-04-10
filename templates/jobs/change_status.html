@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block title %}Change Status for {{ object.user.jobseeker.first_name  }} {{ object.user.jobseeker.last_name  }}{% endblock %}
 {% block main_content %}
     <!-- Start Breadcrumbs -->
     <div class="breadcrumbs overlay">
@@ -7,13 +8,13 @@
             <div class="row">
                 <div class="col-12">
                     <div class="breadcrumbs-content">
-                        <h1 class="page-title">Change Password</h1>
+                        <h1 class="page-title">Change status for {{ object.user.jobseeker.first_name  }} {{ object.user.jobseeker.last_name  }}</h1>
                         <p>Business plan draws on a wide range of knowledge from different business<br> disciplines.
                             Business draws on a wide range of different business .</p>
                     </div>
                     <ul class="breadcrumb-nav">
-                        <li><a href="index.html">Home</a></li>
-                        <li>Change Password</li>
+                        <li><a href="{% url 'index' %}">Home</a></li>
+                        <li>Change Status</li>
                     </ul>
                 </div>
             </div>
@@ -33,12 +34,23 @@
                     <!-- End Main Content -->
                     <div class="col-lg-8">
                         <div class="password-content">
-                            <h3>Edit Company Profile</h3>
-                            <p>Here you can edit your Copmany Profile.</p>
+                            <h3>Edit {{ object.user.jobseeker.first_name  }} {{ object.user.jobseeker.last_name  }} status</h3>
 
+<h1>{{ object.job.user.pk }}</h1>
+<h1>{{ user.pk }}</h1>
                             <form method="post" action="{% url 'change-status' object.pk %}" enctype="multipart/form-data">
                                 <div class="row">
-                                {{ form.as_p }}
+
+                                                     {% for field in form %}
+                    <div class="form-group">
+                    <div>{{ field.label_tag }}</div>
+                    {{ field }}
+                     </div>
+                    {% for error in field.errors %}
+                      <p style="color: red">{{ error }}</p>
+                    {% endfor %}
+
+                {% endfor %}
 
 
 
@@ -46,7 +58,7 @@
                                     {% csrf_token %}
                                     <div class="col-lg-12">
                                         <div class="button">
-                                            <button class="btn">Edit</button>
+                                            <button class="btn">Change</button>
                                         </div>
                                     </div>
                                 </div>

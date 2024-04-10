@@ -42,7 +42,7 @@ while also allowing jobs seekers and potential clients to find you</p>
                             {{ form.errors }}
                             </div>
                             {% endif %}
-                            <form method="post" action="{% url 'edit-company-profile' user.company.pk %}" enctype="multipart/form-data">
+                            <form method="post" action="{% url 'edit-company-profile' %}" enctype="multipart/form-data">
                                 <div class="row">
                                     {{ form.media }}
                                                      {% for field in form %}

@@ -8,14 +8,14 @@
             <div class="row">
                 <div class="col-12">
                     <div class="breadcrumbs-content">
-                        <h1 class="page-title">Edit  Profile</h1>
+                        <h1 class="page-title">Delete  Profile</h1>
                         <p>Editing and updating a profile allows you to keep information current and accurate,<br>
 while also allowing companies to find you</p>
                     </div>
                     <ul class="breadcrumb-nav">
                         <li><a href="{% url 'index' %}">Home</a></li>
                         <li><a href="{% url 'job seeker dashboard' %}">Dashboard</a></li>
-                        <li>Edit Profile</li>
+                        <li>Delete Profile</li>
                     </ul>
                 </div>
             </div>
@@ -42,24 +42,12 @@ while also allowing companies to find you</p>
                                 <div class="row">
                                     {{ form }}
 
-{#                                {% for field in form %}#}
-{#                    <div class="form-group">#}
-{#                    {% if field.field.required %}#}
-{#                    <span>{{  field.label_tag }}</span>#}
-{#                        {% else %}#}
-{#                        {{ field.label_tag }}#}
-{#                        {% endif %}#}
-{#                    {{ field }}#}
-{#                     </div>#}
-
-{##}
-{#                {% endfor %}#}
 
                                     {% csrf_token %}
                                     <div class="col-lg-12">
                                         <div class="button">
                                             <button class="btn">Delete</button>
-                                                             <a style="margin-left: 20px" class="btn" href="{% url 'index' %}">Cancel</a>  <!-- Redirect to profile page if cancel -->
+                                           <a style="margin-left: 20px" class="btn" href="{% url 'job seeker dashboard' %}">Cancel</a>  <!-- Redirect to profile page if cancel -->
                                         </div>
     
                                     </div>

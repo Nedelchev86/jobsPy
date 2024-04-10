@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %} Edit Profile Details - JobsPy {% endblock %}
+{% block title %} Send Newsletter to All subscribers - JobsPy {% endblock %}
 {% block main_content %}
     <!-- Start Breadcrumbs -->
     <div class="breadcrumbs overlay">
@@ -8,9 +8,8 @@
             <div class="row">
                 <div class="col-12">
                     <div class="breadcrumbs-content">
-                        <h1 class="page-title">Edit  Profile</h1>
-                        <p>Editing and updating a profile allows you to keep information current and accurate,<br>
-while also allowing companies to find you</p>
+                        <h1 class="page-title">Send Newsletter</h1>
+                        <p>Send Newsletter to All subscribers - JobsPy<br></p>
                     </div>
                     <ul class="breadcrumb-nav">
                         <li><a href="{% url 'index' %}">Home</a></li>
@@ -35,13 +34,13 @@ while also allowing companies to find you</p>
                     <!-- End Main Content -->
                     <div class="col-lg-8">
                         <div class="password-content">
-                            <h3>Edit  Profile</h3>
-                            <p>Here you can edit your Profile.</p>
+                            <h3>Send Newsletter </h3>
+                            <p>Send Newsletter to All subscribers </p>
 
                             {% for error in field.errors %}
                       <p style="color: red">{{ error }}</p>
                     {% endfor %}
-                            <form method="post" action="{% url 'edit-profile' user.jobseeker.pk %}" enctype="multipart/form-data">
+                            <form method="post" action="{% url 'newsletter'  %}" enctype="multipart/form-data">
                                 <div class="row">
                                     {{ form.media }}
                                     {{ form }}
@@ -63,7 +62,7 @@ while also allowing companies to find you</p>
                                     {% csrf_token %}
                                     <div class="col-lg-12">
                                         <div class="button">
-                                            <button class="btn">Save</button>
+                                            <button class="btn">Send</button>
                                         </div>
                                     </div>
                                 </div>

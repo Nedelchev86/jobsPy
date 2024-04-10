@@ -227,11 +227,14 @@
                                             <h3 class="mb-0">
                                                 <a href="#">{{ education.institution}} </a>
                                             </h3>
-                                            <a href="#">{{ education.description|safe }}</a>
+                                            <p>{{ education.description|safe }}<p>
                                             <div class="d-flex align-items-center justify-content-md-between flex-wrap">
-                                                <a href="#">{{ education.start_date}}- {{ education.end_date}}</a>
+                                                <p>{{ education.start_date}}- {{ education.end_date}}</p>
+                                                <div>
                                                 <a  href="{% url 'edit-education' education.pk %}" class="education-edit font-size-3">Edit</a>
-                                            </div>
+                                                <a  style="color: red; margin-left: 20px" href="{% url 'delete education' education.pk %}" class="education-edit font-size-3">Delete</a>
+                                                </div>
+                                                </div>
                                         </div>
                                     </div>
                                 </div>

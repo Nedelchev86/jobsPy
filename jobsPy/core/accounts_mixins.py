@@ -43,11 +43,6 @@ class RedirectAuthenticatedUserMixin(UserPassesTestMixin):
 class JobSeekerOwnerRequiredMixin(AccessMixin):
     """Verify that the current user has this profile."""
 
-    # def dispatch(self, request, *args, **kwargs):
-    #     if request.user.pk != kwargs.get('pk', None):
-    #         raise PermissionDenied("You are not allowed to edit this profile.")
-    #     return super().dispatch(request, *args, **kwargs)
-
     def dispatch(self, request, *args, **kwargs):
         if request.user.jobseeker.pk != kwargs.get('pk', None):
             return HttpResponseRedirect(reverse('index'))

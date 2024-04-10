@@ -192,15 +192,17 @@
                                         </div>
                                         <div class="w-100 mt-n2">
                                             <h3 class="mb-0">
-                                                     <a href="#">test </a>
                                                 <a href="#"> {{ experience.company }} </a>
                                             </h3>
 
-                                            <a href="#">{{ experience.description|safe }}</a>
+                                            <p>{{ experience.description|safe }}</p>
                                             <div class="d-flex align-items-center justify-content-md-between flex-wrap">
-                                                <a href="#">{{ experience.start_date}} - {{ experience.end_date}}</a>
+                                                <p>{{ experience.start_date}} - {{ experience.end_date}}</p>
+                                                <div>
                                                 <a  href="{% url 'edit-work-experience' experience.pk %}" class="education-edit font-size-3">Edit</a>
-                                            </div>
+                                                 <a  style="color: red; margin-left: 20px" href="{% url 'delete work experience' experience.pk %}" class="education-edit font-size-3">Delete</a>
+                                                </div>
+                                                </div>
                                         </div>
                                     </div>
                                 </div>

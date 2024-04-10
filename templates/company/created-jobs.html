@@ -50,13 +50,16 @@
                                             <h3>{{ jobs.title }}<span>{{ jobs.category}}</span></h3>
                                         </div>
                                     </div>
-                                    <div class="col-lg-2 col-md-2 col-12">
-                                        <p><span class="time">{{ jobs.job_type }}</span></p>
-                                    </div>
-                                    <div class="col-lg-3 col-md-3 col-12">
+                                                                    <div class="col-lg-3 col-md-3 col-12">
                                         <p class="location"><i class="lni lni-map-marker"></i>{{jobs.location}}</p>
                                     </div>
                                     <div class="col-lg-2 col-md-2 col-12">
+                                        <div class="button">
+                                                       <a style="background-color: #2042e314; color:red" href="{% url 'delete job' jobs.pk %}" class="btn">Delete</a>
+                                            </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-12">
+
                                         <div class="button">
                                             <a href="{% url 'job_details' jobs.pk %}" class="btn">Details</a>
                                         </div>

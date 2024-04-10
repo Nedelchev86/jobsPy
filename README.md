@@ -19,6 +19,15 @@ JobsPy is a job portal designed to connect job seekers with companies. It provid
   - About: A brief description of the job seeker.
   - Education: Allows job seekers to add their educational background.
   - Skills: Job seekers can add their skills to their profile.
+
+ ![jobseekers](https://github.com/Nedelchev86/jobsPy/assets/122647190/27c2c7f5-4a0d-43dd-9a79-55c8c12f116e)
+ ![jobs1](https://github.com/Nedelchev86/jobsPy/assets/122647190/43a62956-29ee-4106-a9d4-9d36d2e95435)
+ ![jobss2](https://github.com/Nedelchev86/jobsPy/assets/122647190/99b8efbe-05dc-486e-9cfc-c64464e303be)
+
+
+
+
+  
 - **Company Profile**:
   - Company Information: Name, description, location, email, website URL, etc.
   - Image: Option to upload a company logo or image.

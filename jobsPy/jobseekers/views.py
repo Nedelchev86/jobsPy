@@ -89,11 +89,15 @@ class JobSeekerDetails(DetailView):
         return context
 
 
-class EditProfile(LoginRequiredMixin, JobSeekerOwnerRequiredMixin, UpdateView):
+class EditProfile(LoginRequiredMixin, UpdateView):
     model = JobSeeker
     template_name = "job_seekers/edit_profile.html"
     form_class = EditProfileFrom
     success_url = reverse_lazy("job seeker dashboard")
+
+    def get_object(self, queryset=None):
+        # Get the JobSeeker instance associated with the current logged-in user
+        return self.request.user.jobseeker
 
 
 
@@ -139,6 +143,7 @@ class EditEducation(LoginRequiredMixin, JobSeekerRequiredMixin, JobEditMixin, Up
         # return reverse_lazy('edit-profile', kwargs={'pk': self.kwargs['pk']})
         return reverse_lazy('job seeker dashboard')
 
+
 class DeleteEducation(LoginRequiredMixin, JobSeekerRequiredMixin, JobEditMixin, DeleteView):
     model = Education
     template_name = "job_seekers/delete_education.html"
@@ -169,6 +174,12 @@ class EditWorkExperience(JobSeekerRequiredMixin, JobEditMixin, UpdateView):
     def get_success_url(self):
         # return reverse_lazy('edit-profile', kwargs={'pk': self.kwargs['pk']})
         return reverse_lazy('job seeker dashboard')
+
+
+class DeleteWorkExperience(LoginRequiredMixin, JobSeekerRequiredMixin, JobEditMixin, DeleteView):
+    model = Experience
+    template_name = "job_seekers/delete_experience.html"
+    success_url = reverse_lazy('job seeker dashboard')
 
 
 class JobSeekerDeleteView(LoginRequiredMixin, JobSeekerRequiredMixin, DeleteView):

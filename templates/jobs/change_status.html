@@ -35,9 +35,7 @@
                     <div class="col-lg-8">
                         <div class="password-content">
                             <h3>Edit {{ object.user.jobseeker.first_name  }} {{ object.user.jobseeker.last_name  }} status</h3>
-
-<h1>{{ object.job.user.pk }}</h1>
-<h1>{{ user.pk }}</h1>
+                        
                             <form method="post" action="{% url 'change-status' object.pk %}" enctype="multipart/form-data">
                                 <div class="row">
 

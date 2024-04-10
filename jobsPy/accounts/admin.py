@@ -8,7 +8,6 @@ userModel = get_user_model()
 
 @admin.register(userModel)
 class UserAdmin(UserAdmin):
-    """Define admin model for custom User model with no email field."""
 
     fieldsets = (
         (None, {'fields': ('email', 'password', "role")}),
@@ -27,4 +26,4 @@ class UserAdmin(UserAdmin):
     search_fields = ('email', )
     ordering = ('pk','email',)
     list_filter = ["email"]
-    readonly_fields = ["last_login", "role"]
+    readonly_fields = ["last_login"]

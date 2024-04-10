@@ -7,10 +7,6 @@ from jobsPy.jobseekers.models import JobSeeker, Education, Experience
 
 class EditProfileFrom(ModelForm):
     required_css_class = 'required'
-    # languages = ModelMultipleChoiceField(
-    #                     queryset=Skills.objects.all(),
-    #                     label="Language",
-    #                     widget=CheckboxSelectMultiple)
 
     class Meta:
         model = JobSeeker
@@ -34,14 +30,10 @@ class EditProfileFrom(ModelForm):
             self.fields[field].widget.attrs['class'] = 'form-control'
         self.fields["skills"].widget.attrs['class'] = "form-check"
 
-    # widgets = {
-    #     'languages': CheckboxSelectMultiple()
-    # }
-
 
 class EducationForm(ModelForm):
     required_css_class = 'required'
-# tags = forms.ModelMultipleChoiceField(label='Tags', queryset=Tag.objects.order_by('name'),widget=forms.SelectMultiple)
+
 
     class Meta:
         model = Education
@@ -55,7 +47,7 @@ class EducationForm(ModelForm):
 
 class WrokExperienceForm(ModelForm):
     required_css_class = 'required'
-# tags = forms.ModelMultipleChoiceField(label='Tags', queryset=Tag.objects.order_by('name'),widget=forms.SelectMultiple)
+
 
     class Meta:
         model = Experience

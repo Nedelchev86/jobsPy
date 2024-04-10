@@ -1,4 +1,4 @@
-# JobsPy
+# JobsPy - LIVE DEMO [JobsPy](https://jobspy.eu)
 
 JobsPy is a job portal designed to connect job seekers with companies. It provides a platform for job seekers to showcase their skills and for companies to advertise job openings and manage applications.
 ![main](https://github.com/Nedelchev86/jobsPy/assets/122647190/d8cf6df9-c9b2-441f-b6fc-7add2de84595)
@@ -7,7 +7,9 @@ JobsPy is a job portal designed to connect job seekers with companies. It provid
 ## Features
 
 - **User Authentication**: Utilizes Django's built-in authentication system for secure user registration and login.
-  ![login](https://github.com/Nedelchev86/jobsPy/assets/122647190/01e8c997-072e-45ff-8b15-97f9f6bcb719)
+- Login with Google and GitHub
+![login](https://github.com/Nedelchev86/jobsPy/assets/122647190/59bc234d-caeb-424f-a287-3ad0d7aae9a8)
+
 
 - **User Roles**: Supports two types of users: job seekers and companies.
   
@@ -69,6 +71,19 @@ API Endpoints
 
 ![rest](https://github.com/Nedelchev86/jobsPy/assets/122647190/0ddf85b6-50c6-4684-9055-d4f3d8ff8abd)
 
+
+## Newsletter
+  Subscribe for newsletter ( Celery and Redis for sending mails )
+![newsletter](https://github.com/Nedelchev86/jobsPy/assets/122647190/cb41ec38-b8f2-4ef2-98d1-0092bdae24f4)
+
+
+## Contact From
+  Send mail for confirmation to you and to admin ( Celery and Redis for sending mails )
+![contactUs](https://github.com/Nedelchev86/jobsPy/assets/122647190/9ff11d8d-28b3-40d6-9666-2a1bc259f577)
+
+  
+
+
 ## Technologies Used
 
 - Django: Backend framework for building the web application.
@@ -77,21 +92,7 @@ API Endpoints
 
 ## Make .env Files
 
-SECRET_KEY=
-DEBUG=True
-ALLOWED_HOSTS=localhost 127.0.0.1
-CLIENT_ID=
-CLIENT_SECRET=
-GITHUB_CLIENT_ID=
-GITHUB_CLIENT_SECRET=
-EMAIL_HOST_USER=
-EMAIL_HOST_PASSWORD
-DATABASE_URL=
-CLOUDINARY_URL=
-CELERY_RESULT_BACKEND=
-CELERY_BROKER_URL=
-CSRF_TRUSTED_ORIGINS=http://localhost http://127.0.0.1
-
+See envSampe.txt
 
 
 ## Installation

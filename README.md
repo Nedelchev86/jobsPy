@@ -1,4 +1,4 @@
-# JobsPy
+# JobsPy - LIVE DEMO https://jobsPy.eu
 
 JobsPy is a job portal designed to connect job seekers with companies. It provides a platform for job seekers to showcase their skills and for companies to advertise job openings and manage applications.
 ![main](https://github.com/Nedelchev86/jobsPy/assets/122647190/d8cf6df9-c9b2-441f-b6fc-7add2de84595)
@@ -77,6 +77,13 @@ API Endpoints
 ![newsletter](https://github.com/Nedelchev86/jobsPy/assets/122647190/cb41ec38-b8f2-4ef2-98d1-0092bdae24f4)
 
 
+## Contact From
+  Send mail for confirmation to you and to admin ( Celery and Redis for sending mails )
+![contactUs](https://github.com/Nedelchev86/jobsPy/assets/122647190/9ff11d8d-28b3-40d6-9666-2a1bc259f577)
+
+  
+
+
 ## Technologies Used
 
 - Django: Backend framework for building the web application.
@@ -85,7 +92,7 @@ API Endpoints
 
 ## Make .env Files
 
-See envSapme.txt
+See envSampe.txt
 
 
 ## Installation

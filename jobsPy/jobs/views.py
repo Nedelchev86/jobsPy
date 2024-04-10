@@ -3,7 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, ListView, DetailView, UpdateView, View
+from django.views.generic import CreateView, ListView, DetailView, UpdateView, View, DeleteView
 from jobsPy.company.models import CompanyProfile
 from jobsPy.core.accounts_mixins import CompanyRoleRequiredMixin, JobByCompanyMixin, CompanyProfileActivationMixin
 from jobsPy.core.decorators import job_seeker_activated_required
@@ -15,7 +15,7 @@ class JobCreateView(LoginRequiredMixin, CompanyRoleRequiredMixin, CompanyProfile
     template_name = "jobs/create_job.html"
     form_class = CreateJobForms
     extra_context = {"title": "Post New Job"}
-    success_url = reverse_lazy("index")
+    success_url = reverse_lazy("company-dashboard")
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -172,3 +172,9 @@ class ChangeStatus(UpdateView):
 
     def get_success_url(self):
         return reverse_lazy("applicant_list", kwargs={"pk": self.object.job_id})
+
+
+class DeleteJob(LoginRequiredMixin, CompanyRoleRequiredMixin, JobByCompanyMixin, DeleteView):
+    model = Job
+    template_name = "company/delete_job.html"
+    success_url = reverse_lazy('company-dashboard')

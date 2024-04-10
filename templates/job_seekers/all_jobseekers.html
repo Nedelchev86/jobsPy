@@ -62,9 +62,16 @@
                                     </h3>
                                     <span class="deg">{{ jobseeker.occupation}}</span>
                                     <ul class="experience">
+                                        {% if jobseeker.seniority %}
                                         <li>Seniority: <span>{{ jobseeker.seniority }}</span></li>
-                                        <li>GitHub: <span><a href="{{ jobseeker.github }}" target="_blank>">Link</a></span></li>
-{#                                        <li><a href="{{ jobseeker.github }}" target=_blank >GitHub: <span>{{ jobseeker.github }}</span></a></li>#}
+                                            {% else %}
+                                            <li>Seniority: <span></span></li>
+                                        {% endif %}
+                                    {% if jobseeker.github %}
+                                        <li>GitHub: <span><a target="_blank" href="{{ jobseeker.github }}" target="_blank>">Link</a></span></li>
+                    {% else %}
+                                        <li>GitHub: </li>
+                                                    {% endif %}
                                         <li>
                                             <i class="lni lni-map-marker"></i>
                                             {{ jobseeker.city}}

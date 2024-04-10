@@ -49,7 +49,7 @@
                                                     src="{% static '/images/clients/default_profile.png' %}" alt=""></a>
                                             {% endif %}
                                             <h4><a class="name" href="#">{{ object.name}}</a></h4>
-                                            <p><a class="deg" href="#">Product Designer</a></p>
+
                                             <ul class="social">
                                                 {% if object.facebook_url %}
                                                 <li><a href="{{ object.facebook_url }}"><i class="lni lni-facebook-original"></i></a></li>
@@ -71,10 +71,12 @@
                                                 <h5 class="title">E-mail</h5>
                                                 <p>{{ object.email }}</p>
                                             </div>
+                                            {% if object.phone %}
                                             <div class="single-list">
                                                 <h5 class="title">Phone</h5>
                                                 <p>{{ object.phone }}</p>
                                             </div>
+                                            {% endif %}
                                             <div class="single-list">
                                                 <h5 class="title">Address</h5>
                                                 <p>{{ object.address }}</p>
@@ -87,11 +89,12 @@
                                                 <h5 class="title">Foundation Year</h5>
                                                 <p>{{ object.foundation_year }}</p>
                                             </div>
-
+                                        {% if object.website_url %}
                                             <div class="single-list">
                                                 <h5 class="title">Website Linked</h5>
                                                 <p><a target="_blank" href="{{ object.website_url }}"> Link </a></p>
                                             </div>
+                                        {% endif %}
                                         </div>
                                     </div>
                                 </div>

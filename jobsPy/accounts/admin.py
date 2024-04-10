@@ -23,8 +23,8 @@ class UserAdmin(UserAdmin):
             'fields': ('email', 'password1', 'password2', "role"),
         }),
     )
-    list_display = ('email', 'is_staff', "role")
+    list_display = ('pk', 'email', 'is_staff', "role")
     search_fields = ('email', )
-    ordering = ('email',)
+    ordering = ('pk','email',)
     list_filter = ["email"]
     readonly_fields = ["last_login", "role"]

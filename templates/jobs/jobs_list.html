@@ -99,7 +99,22 @@
                                 <input type="text" name="q" placeholder="Search by job title">
                                 <button type="submit"><i class="lni lni-search-alt"></i></button>
                             </form>
-                        </div>
+                             </div>
+
+                                 <div class="widget search-widget">
+
+                               <form method="GET" action="{% url 'all-jobs' %}">
+                                    <select style="max-width: 70%" class="form-select form-select-sm"  name="seniority">
+                                    <option value="">All</option>
+                                    {% for seniority in seniorities %}
+                                        <option value="{{ seniority.name }}">{{ seniority.name }}</option>
+                                    {% endfor %}
+                                    </select>
+                               <div>
+                                    <button  type="submit">Filter</button>
+                               </div>
+                                 </form>
+                             </div>
 
                         {% include "jobs/category_slide.html" %}
 

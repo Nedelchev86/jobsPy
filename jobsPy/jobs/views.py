@@ -10,6 +10,7 @@ from jobsPy.core.accounts_mixins import CompanyRoleRequiredMixin, JobByCompanyMi
 from jobsPy.core.decorators import job_seeker_activated_required
 from jobsPy.jobs.forms import CreateJobForms, EditeJobForm, ApplyForJobForms, ChangeStatusForm
 from jobsPy.jobs.models import Job, Category, Applicant, FavoriteJob
+from jobsPy.main.models import Seniority
 
 
 class JobCreateView(LoginRequiredMixin, CompanyRoleRequiredMixin, CompanyProfileActivationMixin, CreateView):
@@ -36,9 +37,15 @@ class AllJobsView(ListView):
     template_name = "jobs/jobs_list.html"
     paginate_by = 10
 
+
     def get_queryset(self):
         query = self.request.GET.get('q')
+        seniority_filter = self.request.GET.get('seniority')
         queryset = Job.objects.filter(is_published=True)
+
+        if seniority_filter:
+            queryset = queryset.filter(seniority__name=seniority_filter)
+
         if query:
             # If a search query is present, filter the queryset by job title
             queryset = queryset.filter(title__icontains=query)
@@ -47,6 +54,7 @@ class AllJobsView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["category"] = Category.objects.all()
+        context["seniorities"] = Seniority.objects.all()
         context['search_query'] = self.request.GET.get('q', '')
         return context
 

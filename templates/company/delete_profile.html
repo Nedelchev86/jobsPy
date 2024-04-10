@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Delete Company Details - JobsPy {% endblock %}
+{% block main_content %}
+    <!-- Start Breadcrumbs -->
+    <div class="breadcrumbs overlay">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumbs-content">
+                        <h1 class="page-title">Delete Company Profile</h1>
+                        <p>Editing and updating a company profile allows you to keep information current and accurate,<br>
+while also allowing jobs seekers and potential clients to find you</p>
+                    </div>
+                    <ul class="breadcrumb-nav">
+                        <li><a href="{% url "index" %}">Home</a></li>
+                        <li><a href="{% url "company-dashboard" %}">Dashboard</a></li>
+                        <li>Delete Company Profile</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Breadcrumbs -->
+
+    <!-- Main Content Start -->
+    <div class="change-password section">
+        <div class="container">
+            <div class="job-post">
+                <div class="row">
+                    <!-- Start Main Content -->
+
+                    {% include "company/company-menu.html" %}
+
+                    <!-- End Main Content -->
+                    <div class="col-lg-8">
+                        <div class="password-content">
+                            <h3>Delete Company Profile</h3>
+                            <p>Here you can Delete your Company Profile.</p>
+                                                       <form method="post">
+                                <div class="row">
+                                    {{ form }}
+
+
+                                    {% csrf_token %}
+                                    <div class="col-lg-12">
+                                        <div class="button">
+                                            <button class="btn">Delete</button>
+                                           <a style="margin-left: 20px" class="btn" href="{% url 'company-dashboard' %}">Cancel</a>  <!-- Redirect to profile page if cancel -->
+                                        </div>
+    
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Main Content end -->
+
+ {% endblock %}

@@ -16,6 +16,7 @@
 {#                                        Applications</a></li>#}
 {#                                <li><a href="manage-jobs.html"><i class="lni lni-briefcase"></i> Manage Jobs</a></li>#}
                                 <li><a href="{% url 'change-password' %}"><i class="lni lni-lock"></i> Change Password</a></li>
+                                <li><a style="color:red" class="{% if request.resolver_match.url_name == 'delete_company' %}active{% endif %}" href="{% url 'delete_company' %}"><i class="lni lni-bookmark"></i> Delete Company </a></li>
                                 <li><a href="{% url 'sing-out' %}"><i class="lni lni-upload"></i> Sign Out</a></li>
                             </ul>
                         </div>

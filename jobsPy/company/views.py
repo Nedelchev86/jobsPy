@@ -6,12 +6,12 @@ from django.urls import reverse_lazy
 from django.views.generic import TemplateView, ListView, UpdateView, DetailView, DeleteView
 from jobsPy.company.forms import EditCompanyFrom
 from jobsPy.company.models import CompanyProfile
-from jobsPy.core.accounts_mixins import CompanyRoleRequiredMixin, CompanyOwnerRequiredMixin, ApplicantOwnerRequiredMixin
+from jobsPy.core.accounts_mixins import CompanyRoleRequiredMixin, ApplicantOwnerRequiredMixin
 from jobsPy.jobs.models import Job, Applicant, FavoriteJob
 
 userModel = get_user_model()
 
-# Create your views here.
+
 class CompanyDashboard(LoginRequiredMixin, CompanyRoleRequiredMixin, TemplateView):
     template_name = "company/company_dashboard.html"
 
@@ -19,10 +19,8 @@ class CompanyDashboard(LoginRequiredMixin, CompanyRoleRequiredMixin, TemplateVie
         job_creator_jobs = Job.objects.filter(user=self.request.user)
         all_favourite = FavoriteJob.objects.filter(job__in=job_creator_jobs).count()
         user_jobs = Job.objects.filter(user=self.request.user)
-
         job_count = FavoriteJob.objects.filter(job__in=job_creator_jobs).count()
 
-        # job_for_this_user = Job.objects.filter(user=self.request.user, is_published=True)
 
 # ChatGPT get all applicant for current logged user
         all_applicant = (
@@ -122,5 +120,3 @@ class CompanyDeleteView(LoginRequiredMixin, CompanyRoleRequiredMixin, DeleteView
 
 class CompanyDeletedView(TemplateView):
     template_name = "company/profile_deleted.html"
-
-

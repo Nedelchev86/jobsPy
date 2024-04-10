@@ -6,7 +6,7 @@ from jobsPy.jobseekers.models import JobSeeker
 
 userModel = get_user_model()
 
-# Create your models here.
+
 class BlogPost(models.Model):
     title = models.CharField(max_length=2000, null=False, blank=False)
     description = RichTextField(null=False, blank=False)
@@ -20,6 +20,7 @@ class BlogPost(models.Model):
 
     class Meta:
         ordering = ['-created_at']
+
     def __str__(self):
         return self.title
 

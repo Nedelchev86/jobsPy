@@ -1,9 +1,8 @@
 from django.contrib.auth.views import LoginView
 from django.views.generic import TemplateView
 from rest_framework import generics, permissions, pagination
-from rest_framework.permissions import  IsAuthenticatedOrReadOnly
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
-
 from jobsPy.accounts.forms import LoginForm
 from jobsPy.blog.models import BlogPost, Comment
 from jobsPy.blog.permission import IsAuthor, IsAuthorOrReadOnly
@@ -17,13 +16,14 @@ class BlogPostPagination(pagination.PageNumberPagination):
     page_size_query_param = 'page_size'
     max_page_size = 1000  # Optionally, set a maximum page size
 
+
 class BlogPostListCreateAPIView(generics.ListCreateAPIView):
     queryset = BlogPost.objects.all()
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     serializer_class = BlogPostSerializer
     pagination_class = BlogPostPagination
+
     def perform_create(self, serializer):
-        # Automatically set the author as the logged-in jobseeker
         serializer.save(author=self.request.user.jobseeker)
 
     def get_permissions(self):
@@ -43,7 +43,6 @@ class BlogPostRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView
         instance.save()
         serializer = self.get_serializer(instance)
         return Response(serializer.data)
-
 
 
 class BlogList(TemplateView):
@@ -94,3 +93,4 @@ class CommentRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView)
 class LatestBlogPostsAPIView(generics.ListAPIView):
     queryset = BlogPost.objects.all() # Limit queryset to latest 5 blog posts
     serializer_class = BlogPostSerializer
+

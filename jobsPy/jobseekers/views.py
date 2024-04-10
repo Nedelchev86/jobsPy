@@ -100,8 +100,6 @@ class EditProfile(LoginRequiredMixin, UpdateView):
         return self.request.user.jobseeker
 
 
-
-
 class FavouriteJobs(LoginRequiredMixin, JobSeekerRequiredMixin, ListView):
     template_name = "job_seekers/favourite_jobs.html"
 
@@ -186,7 +184,6 @@ class JobSeekerDeleteView(LoginRequiredMixin, JobSeekerRequiredMixin, DeleteView
     model = userModel
     template_name = "job_seekers/delete_profile.html"
     success_url = reverse_lazy('deleted_success')
-
 
     def get_object(self, queryset=None):
         return self.request.user

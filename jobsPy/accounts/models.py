@@ -58,8 +58,3 @@ class Account(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
-
-    # @property
-    # def is_active(self):
-    #     # Add your custom logic here
-    #     return True

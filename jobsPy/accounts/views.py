@@ -31,18 +31,12 @@ class RegisterView(RedirectAuthenticatedUserMixin, CreateView):
 @login_required(login_url='login')
 def singout(request):
     auth.logout(request)
-# messages.success(request, 'You are logged out.')
     return redirect('index')
 
 
 class LoginUserView(RedirectAuthenticatedUserMixin, LoginView):
     template_name = "accounts/login.html"
     form_class = LoginForm
-
-    # def get_success_url(self):
-    #     if self.request.user.role == "jobseeker":
-    #         return reverse_lazy("index")
-    #     return super().get_success_url()
 
 
 class ChangePass(PasswordChangeView):

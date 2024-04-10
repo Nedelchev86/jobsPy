@@ -143,11 +143,15 @@
                                 <h6 class="title">Job Overview</h6>
                                 <ul class="job-overview list-unstyled">
                                     <li><strong>Published on:</strong> {{ object.created_at}}</li>
+                                    {% if object.vacancy %}
                                     <li><strong>Vacancy:</strong> {{ object.vacancy }}</li>
+                                    {% endif %}
                                     <li><strong>Employment Status:</strong> {{ object.job_type }}</li>
                                     <li><strong>Experience:</strong> {{ object.seniority}}</li>
                                     <li><strong>Job Location:</strong> {{ object.location}}</li>
+                                {% if object.salary  %}
                                     <li><strong>Salary:</strong> {{ object.salary }}</li>
+                                {% endif %}
                                     <li><strong>Application Deadline:</strong> {{ object.deadline}}</li>
                                 </ul>
                             </div>

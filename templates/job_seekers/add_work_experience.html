@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block title %} Add Work Experience {% endblock %}
 {% block main_content %}
     <!-- Start Breadcrumbs -->
     <div class="breadcrumbs overlay">
@@ -7,13 +8,13 @@
             <div class="row">
                 <div class="col-12">
                     <div class="breadcrumbs-content">
-                        <h1 class="page-title">Change Password</h1>
+                        <h1 class="page-title">Add work experience</h1>
                         <p>Business plan draws on a wide range of knowledge from different business<br> disciplines.
                             Business draws on a wide range of different business .</p>
                     </div>
                     <ul class="breadcrumb-nav">
-                        <li><a href="index.html">Home</a></li>
-                        <li>Change Password</li>
+                        <li><a href="{% url 'index' %}">Home</a></li>
+                        <li>Add Work Experience</li>
                     </ul>
                 </div>
             </div>
@@ -35,13 +36,25 @@
                         <div class="password-content">
                             <h3>Add Work Experience</h3>
                             <p>Here you can add work experience.</p>
+                             {% if form.errors %}
+                            <div class="alert alert-danger">
+                            {{ form.errors }}
+                            </div>
+                            {% endif %}
                             
                 
                             <form method="post" action="{% url 'add-work-experience' user.jobseeker.pk %}" enctype="multipart/form-data">
                                 <div class="row">
                                     {{ form.media }}
-                                {{ form.as_p }}
-
+                              {% for field in form %}
+                    <div class="form-group">
+                        {{ field.label_tag }}
+                        {{ field }}
+                     </div>
+                        {% for error in field.errors %}
+                          <p style="color: red">{{ error }}</p>
+                        {% endfor %}
+                    {% endfor %}
                                     {% csrf_token %}
                                     <div class="col-lg-12">
                                         <div class="button">

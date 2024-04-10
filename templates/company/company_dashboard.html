@@ -113,10 +113,12 @@
                                                 <h5 class="title">E-mail</h5>
                                                 <p>{{ user.company.email }}</p>
                                             </div>
+                                        {% if user.company.phone %}
                                             <div class="single-list">
                                                 <h5 class="title">Phone</h5>
                                                 <p>{{ user.company.phone }}</p>
                                             </div>
+                                        {% endif %}
                                             <div class="single-list">
                                                 <h5 class="title">Address</h5>
                                                 <p>{{ user.company.address }}</p>
@@ -129,11 +131,14 @@
                                                 <h5 class="title">Foundation Year</h5>
                                                 <p>{{ user.company.foundation_year }}</p>
                                             </div>
-
+                                        {% if user.company.website_url %}
                                             <div class="single-list">
-                                                <h5 class="title">Website Linked</h5>
+                                                <h5 class="title">Website</h5>
+                                            
                                                 <p><a target="_blank" href="{{  user.company.website_url }}"> Link </a></p>
+                                                
                                             </div>
+                                        {% endif %}
                                         </div>
                                     </div>
                                 </div>

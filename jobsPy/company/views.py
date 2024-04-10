@@ -1,13 +1,15 @@
+from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Count
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, ListView, UpdateView, DetailView
+from django.views.generic import TemplateView, ListView, UpdateView, DetailView, DeleteView
 from jobsPy.company.forms import EditCompanyFrom
 from jobsPy.company.models import CompanyProfile
 from jobsPy.core.accounts_mixins import CompanyRoleRequiredMixin, CompanyOwnerRequiredMixin, ApplicantOwnerRequiredMixin
 from jobsPy.jobs.models import Job, Applicant, FavoriteJob
 
+userModel = get_user_model()
 
 # Create your views here.
 class CompanyDashboard(LoginRequiredMixin, CompanyRoleRequiredMixin, TemplateView):
@@ -110,3 +112,19 @@ class AllCompany(ListView):
         queryset = queryset.filter(activated=True)
 
         return queryset
+
+
+class CompanyDeleteView(LoginRequiredMixin, CompanyRoleRequiredMixin, DeleteView):
+    model = userModel
+    template_name = "company/delete_profile.html"
+    success_url = reverse_lazy('deleted_success_company')
+
+    def get_object(self, queryset=None):
+        # Return the JobSeeker instance for the current logged-in user
+        return self.request.user
+
+
+class CompanyDeletedView(TemplateView):
+    template_name = "company/profile_deleted.html"
+
+

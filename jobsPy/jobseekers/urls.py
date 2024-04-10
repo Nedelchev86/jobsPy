@@ -2,7 +2,7 @@ from django.urls import path
 
 from jobsPy.jobseekers.views import JobSeekerDashboard, EditProfile, FavouriteJobs, ApplyJobs, JobSeekerDetails, \
     AllEmployees, AddEducation, AddWorkExperience, EditEducation, EditWorkExperience, JobSeekerDeleteView, \
-    ProfileDeletedView
+    ProfileDeletedView, DeleteEducation
 
 urlpatterns = [
     path("all/", AllEmployees.as_view(), name="all-employees"),
@@ -17,5 +17,7 @@ urlpatterns = [
     path("favourite-jobs/", FavouriteJobs.as_view(), name="favourite_jobs"),
     path("apply-jobs/", ApplyJobs.as_view(), name="jobs-apply"),
     path('delete/', JobSeekerDeleteView.as_view(), name='delete_profile'),
-    path('delete/', ProfileDeletedView.as_view(), name='deleted_success'),
+    path('deleted/', ProfileDeletedView.as_view(), name='deleted_success'),
+    path('delete-education/<int:pk>', DeleteEducation.as_view(), name='delete education'),
+
 ]

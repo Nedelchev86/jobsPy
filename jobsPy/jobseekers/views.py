@@ -89,20 +89,13 @@ class JobSeekerDetails(DetailView):
         return context
 
 
-class EditProfile(JobSeekerOwnerRequiredMixin, UpdateView):
+class EditProfile(LoginRequiredMixin, JobSeekerOwnerRequiredMixin, UpdateView):
     model = JobSeeker
     template_name = "job_seekers/edit_profile.html"
     form_class = EditProfileFrom
     success_url = reverse_lazy("job seeker dashboard")
 
-    # def get_context_data(self, **kwargs):
-    #     contex = super().get_context_data(**kwargs)
-    #     print(self.request.user.pk)
-    #     jobseeker = get_object_or_404(JobSeeker, pk=self.request.user.jobseeker.pk)
-    #     education = jobseeker.educations.all()
-    #     if education:
-    #         contex["educations"] = education
-    #     return contex
+
 
 
 class FavouriteJobs(LoginRequiredMixin, JobSeekerRequiredMixin, ListView):
@@ -137,7 +130,7 @@ class AddEducation(CreateView):
         return reverse_lazy('job seeker dashboard')
 
 
-class EditEducation(JobSeekerRequiredMixin, JobEditMixin, UpdateView):
+class EditEducation(LoginRequiredMixin, JobSeekerRequiredMixin, JobEditMixin, UpdateView):
     model = Education
     template_name = "job_seekers/edit_education.html"
     form_class = EducationForm
@@ -145,6 +138,11 @@ class EditEducation(JobSeekerRequiredMixin, JobEditMixin, UpdateView):
     def get_success_url(self):
         # return reverse_lazy('edit-profile', kwargs={'pk': self.kwargs['pk']})
         return reverse_lazy('job seeker dashboard')
+
+class DeleteEducation(LoginRequiredMixin, JobSeekerRequiredMixin, JobEditMixin, DeleteView):
+    model = Education
+    template_name = "job_seekers/delete_education.html"
+    success_url = reverse_lazy('job seeker dashboard')
 
 
 class AddWorkExperience(CreateView):
@@ -173,16 +171,16 @@ class EditWorkExperience(JobSeekerRequiredMixin, JobEditMixin, UpdateView):
         return reverse_lazy('job seeker dashboard')
 
 
-class JobSeekerDeleteView(LoginRequiredMixin, DeleteView):
+class JobSeekerDeleteView(LoginRequiredMixin, JobSeekerRequiredMixin, DeleteView):
     model = userModel
     template_name = "job_seekers/delete_profile.html"
     success_url = reverse_lazy('deleted_success')
 
 
     def get_object(self, queryset=None):
-        # Return the JobSeeker instance for the current logged-in user
         return self.request.user
 
 
 class ProfileDeletedView(TemplateView):
     template_name = "job_seekers/profile_deleted.html"
+

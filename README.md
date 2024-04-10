@@ -7,7 +7,9 @@ JobsPy is a job portal designed to connect job seekers with companies. It provid
 ## Features
 
 - **User Authentication**: Utilizes Django's built-in authentication system for secure user registration and login.
-  ![login](https://github.com/Nedelchev86/jobsPy/assets/122647190/01e8c997-072e-45ff-8b15-97f9f6bcb719)
+- Login with Google and GitHub
+![login](https://github.com/Nedelchev86/jobsPy/assets/122647190/59bc234d-caeb-424f-a287-3ad0d7aae9a8)
+
 
 - **User Roles**: Supports two types of users: job seekers and companies.
   
@@ -68,6 +70,12 @@ API Endpoints
   /api/blog/<pk>/comment/<pk>/: Retrieve, update, or delete a specific comment.
 
 ![rest](https://github.com/Nedelchev86/jobsPy/assets/122647190/0ddf85b6-50c6-4684-9055-d4f3d8ff8abd)
+
+
+## Newsletter
+  Subscribe for newsletter ( Celery and Redis for sending mails )
+![newsletter](https://github.com/Nedelchev86/jobsPy/assets/122647190/cb41ec38-b8f2-4ef2-98d1-0092bdae24f4)
+
 
 ## Technologies Used
 

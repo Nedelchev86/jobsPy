@@ -89,25 +89,25 @@ WSGI_APPLICATION = 'jobsPy.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 #
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
-
 # DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.postgresql",
-#         "NAME": os.getenv("DB_NAME", None),
-#         "USER": os.getenv("DB_USER", None),
-#         "PASSWORD": os.getenv("DB_PASSWORD", None),
-#         "HOST": os.getenv("DB_HOST", None),
-#         "PORT": os.getenv("DB_PORT", None),
-#         'ATOMIC_REQUESTS': True
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+
+
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.getenv("DB_NAME", None),
+        "USER": os.getenv("DB_USER", None),
+        "PASSWORD": os.getenv("DB_PASSWORD", None),
+        "HOST": os.getenv("DB_HOST", None),
+        "PORT": os.getenv("DB_PORT", None),
+        'ATOMIC_REQUESTS': True
+    }
+}
 
 # DATABASES = {
 #     'default': dj_database_url.config(

@@ -4,16 +4,17 @@ from django.contrib.auth import get_user_model
 from django.db import models
 
 from jobsPy.jobs.models import Applicant, Skills
+from jobsPy.core.validators import validate_phone_number, validate_start_with_upper
 
 UserModel = get_user_model()
 
 
 class CompanyProfile(models.Model):
     user = models.OneToOneField(UserModel, on_delete=models.CASCADE, primary_key=True, related_name="company")
-    name = models.CharField(max_length=40, null=False, blank=False)
+    name = models.CharField(max_length=40, null=False, blank=False, validators=[validate_start_with_upper])
     description = RichTextField(null=False, blank=False)
     location = models.CharField(max_length=40, null=False, blank=False)
-    phone = models.CharField(max_length=20, null=True, blank=True)
+    phone = models.CharField(max_length=20, null=True, blank=True, validators=[validate_phone_number])
     address = models.CharField(null=False, blank=False, max_length=200)
     email = models.EmailField(max_length=254, null=False, blank=False)
     image = CloudinaryField('image', blank=True, null=True)

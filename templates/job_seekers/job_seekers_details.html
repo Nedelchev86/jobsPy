@@ -49,7 +49,7 @@
                                                    <a class="mb-2" href="#"><img class="circle-54"
                                                     src="{% static '/images/clients/default_profile.png' %}" alt=""></a>
                                             {% endif %}
-                                            <h4>{{ object.first_name}}</h4>
+                                            <h4>{{ object }}</h4>
                                             <p>{{ object.occupation}}</p>
                                             <ul class="social">
                                             {% if object.facebook %}
@@ -99,7 +99,15 @@
                                                 <h5 class="title">Seniority</h5>
                                                 <p>{{ object.seniority }}</p>
                                             </div>
+
                                                {% endif %}
+                                            {% if object.phone_number %}
+                                                <div class="single-list">
+
+                                                <h5 class="title">Phone</h5>
+                                                <p> Hidden </p>
+                                            </div>
+                                                          {% endif %}
                                             <!-- Single List -->
                                         </div>
                                     </div>

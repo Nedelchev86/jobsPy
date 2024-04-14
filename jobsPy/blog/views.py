@@ -91,6 +91,6 @@ class CommentRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView)
 
 
 class LatestBlogPostsAPIView(generics.ListAPIView):
-    queryset = BlogPost.objects.all() # Limit queryset to latest 5 blog posts
+    queryset = BlogPost.objects.all().order_by('-created_at')[:5]
     serializer_class = BlogPostSerializer
 

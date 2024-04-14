@@ -37,7 +37,6 @@ class AllJobsView(ListView):
     template_name = "jobs/jobs_list.html"
     paginate_by = 10
 
-
     def get_queryset(self):
         query = self.request.GET.get('q')
         seniority_filter = self.request.GET.get('seniority')
@@ -64,21 +63,17 @@ class JobDetails(DetailView):
     model = Job
 
     def get_context_data(self, **kwargs):
-
         context = super().get_context_data(**kwargs)
-
         if self.request.user.is_anonymous:
             return context
 
         job = context['object']
-
         context["already_in_favourite"] = FavoriteJob.objects.filter(user=self.request.user, job=job).exists()
         context["already_apply"] = Applicant.objects.filter(user=self.request.user, job=job).exists()
         context["status"] = Applicant.objects.filter(user=self.request.user, job=job)
         # Access the CompanyProfile through the user's ID
         company_profile = CompanyProfile.objects.get(user_id=job.user_id)
         context['company'] = company_profile
-
         return context
 
 
@@ -88,7 +83,6 @@ class EditJob(LoginRequiredMixin, CompanyRoleRequiredMixin, JobByCompanyMixin, U
     template_name = "jobs/edit-job.html"
 
     def get_success_url(self):
-
         return reverse_lazy("job_details",  kwargs={"pk": self.object.pk})
 
 

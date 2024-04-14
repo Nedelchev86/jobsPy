@@ -2,7 +2,7 @@ from ckeditor.widgets import CKEditorWidget
 from django.forms import ModelForm, DateInput, CheckboxInput, ChoiceField, CheckboxSelectMultiple, \
     ModelMultipleChoiceField, CharField
 
-from jobsPy.jobs.models import Job, Applicant
+from jobsPy.jobs.models import Job, Applicant, Skills
 
 
 class CreateJobForms(ModelForm):
@@ -15,8 +15,8 @@ class CreateJobForms(ModelForm):
                   'job_image', 'needed_skills']
         widgets = {
             'deadline': DateInput(attrs={'type': 'date'}),
-            'description': CharField(widget=CKEditorWidget())
-            # 'is_published': CheckboxInput(attrs={'class': 'form-check-input'}),
+            'description': CharField(widget=CKEditorWidget()),
+            'is_published': CheckboxInput(attrs={'class': 'form-check-input'}),
         }
 
     # needed_skills = ModelMultipleChoiceField(
@@ -30,9 +30,8 @@ class CreateJobForms(ModelForm):
 
         for field in self.fields:
             self.fields[field].widget.attrs['class'] = 'form-control'
-            # self.fields['is_published'].widget.attrs['class'] = 'form-check-input'
-            # self.fields['is_closed'].widget.attrs['class'] = 'form-check-input'
-        # self.fields["needed_skills"].widget.attrs['class'] = "form-check"
+
+
 
 
 
@@ -43,15 +42,32 @@ class ApplyForJobForms(ModelForm):
         fields = ("job",)
 
 
-class EditeJobForm(CreateJobForms):
+class EditeJobForm(ModelForm):
     class Meta:
         model = Job
         fields = ['title',  'category', 'seniority', 'description', 'responsibilities', 'benefits', 'vacancy', 'location', 'job_type', 'salary',  'deadline',
-                  'job_image', "is_published", "needed_skills",]
+                  'job_image', "needed_skills", "is_published"]
+
         widgets = {
             'deadline': DateInput(attrs={'type': 'date'}),
-            # 'is_published': CheckboxInput(attrs={'class': 'form-check-input'}),
+            'description': CharField(widget=CKEditorWidget()),
+            'needed_skills': CheckboxSelectMultiple(attrs={'class': 'form-check'}),
+            'is_published': CheckboxInput(attrs={'class': 'form-check-input'}),
         }
+
+    # needed_skills = ModelMultipleChoiceField(
+    #     queryset=Skills.objects.all(),
+    #     widget=CheckboxSelectMultiple,
+    #     required=False
+    #     )
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['salary'].widget.attrs['placeholder'] = 'exp:50,000-80,000'
+
+        for field in self.fields:
+            self.fields[field].widget.attrs['class'] = 'form-control'
+        self.fields["is_published"].widget.attrs['class'] = "form-check"
+        self.fields["needed_skills"].widget.attrs['class'] = "form-check"
 
 statusChoice = {
     1: "Pending",

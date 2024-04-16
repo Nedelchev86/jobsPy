@@ -96,14 +96,18 @@
 
                                 {% if user.is_authenticated %}
                                 {% if user.company.image %}
-
-                                    <a href="{% url 'login_redirect_dashboard' %} "><img class="user-profile-small" src="{{ user.company.image.url }}" alt="Logo"></a>
-
+                                    <div class="user-profile-container">
+                                    <a href="{% url 'login_redirect_dashboard' %} "><img class="user-profile-small" src="{{ user.company.image.url }}" alt="Logo"> <span class="notification-badge">{{ request.user.notification_set.all|length }}</span> </a>
+                                    </div>
                                 {% elif user.jobseeker.profile_picture %}
-                                    <a href="{% url 'login_redirect_dashboard' %} "><img class="user-profile-small" src="{{ user.jobseeker.profile_picture.url }}" alt="Logo"></a>
+                                    <div class="user-profile-container">
+                                    <a href="{% url 'login_redirect_dashboard' %} "><img class="user-profile-small" src="{{ user.jobseeker.profile_picture.url }}" alt="Logo"> <span class="notification-badge">{{ request.user.notification_set.all|length }}</span> </a>
+                                       </div>
                                 {% else %}
                                     <div class="text-center align-center"  style="align-items:center !important;justify-content:center !important;background-color: black;width: 50px;height: 50px;border-radius: 50px; margin-right: 20px">
+                                    <div class="user-profile-container">
                                     <a href="{% url 'login_redirect_dashboard' %}" style="padding-top: 10%; color: white; font-size: 25px" >{{ user.email.0 }}</a>
+                                    </div>
                                     </div>
                                 {% endif %}
 

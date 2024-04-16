@@ -61,7 +61,7 @@ h4,
 h5,
 h6 {
   font-weight: 600;
-  margin: 0px;
+  margin: 0;
   color: #081828;
 }
 
@@ -100,8 +100,8 @@ h6 {
 
 ul,
 ol {
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
   list-style-type: none;
 }
 
@@ -1116,7 +1116,7 @@ background: linear-gradient(to right, #2042e3 0%, #a16ae8 100%);
 }
 
 .pagination .pagination-list li:last-child {
-  margin-right: 0px;
+  margin-right: 0;
 }
 
 .pagination .pagination-list li a {
@@ -1124,7 +1124,6 @@ background: linear-gradient(to right, #2042e3 0%, #a16ae8 100%);
   color: #081828;
   font-weight: 500;
   font-size: 13px;
-  border-radius: 0;
   line-height: 40px;
   height: 40px;
   width: 40px;
@@ -3460,7 +3459,7 @@ blockquote .shape {
   font-weight: 400;
   border-radius: 0;
   border: 1px solid #eee;
-  border-radius: 3pxpx;
+  border-radius: 3px;
 }
 
 .sidebar .widget.search-widget form input::-webkit-input-placeholder {
@@ -8162,4 +8161,23 @@ label.required::after {
 .single-job .job-button2 {
     position: absolute;
     right: 40px;
+}
+
+.user-profile-container {
+    position: relative;
+    display: inline-block;
+}
+
+.notification-badge {
+    position: absolute;
+    top: -6px;
+    right: 10px;
+    background-color: #051a80;
+    color: white;
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    text-align: center;
+    line-height: 20px;
+    font-size: 12px;
 }

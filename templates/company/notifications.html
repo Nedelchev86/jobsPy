@@ -40,16 +40,21 @@
                                     <div class="col-lg-2 col-md-2 col-12">
                                         <div class="title-img">
                                             <div class="can-img">
-                                                <img src="{{ notification.job.job_image.url}}" alt="#">
+                                                {% if notification.job_seeker.jobseeker.profile_picture %}
+                                                <img src="{{ notification.job_seeker.jobseeker.profile_picture.url}}" alt="#">
+                                                {% else %}
+                                                <img src="{% static 'images/clients/default_profile.png' %}" alt="#">
+                                                {% endif %}
+
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-7 col-md-7 ">
-                                        <p class="description">{{ notification.message}}</p>
+                                        <p class="description"><a href="{% url 'jobseeker details' notification.job_seeker.jobseeker.pk %}">{{ notification.job_seeker.jobseeker }}</a>{{ notification.message}} <a href="{% url 'job_details' notification.job.pk %}">{{ notification.job }}</a></p>
                                     </div>
                                     <div class="col-lg-3 col-md-3">
                                         <div class="time">
-                                            <p><i class="lni lni-timer"></i> {{ notification.created_at|date:"h:i  (j F Y)"  }}</p>
+                                            <p><i class="lni lni-timer"></i> {{ notification.created_at|date:"H:i - d/m/y" }}</p>
                                         </div>
                                     </div>
                                 </div>

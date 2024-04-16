@@ -2,6 +2,7 @@ from django.contrib.auth import get_user_model
 from django.db import models
 
 from jobsPy.jobs.models import Job
+from jobsPy.jobseekers.models import JobSeeker
 
 UserModel = get_user_model()
 

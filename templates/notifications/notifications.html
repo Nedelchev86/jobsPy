@@ -2,8 +2,10 @@
 
     <h1>Notification List</h1>
     <ul>
+    {{notifications  }}
         {% for notification in notifications %}
-            <li>{{ notification.message }}</li>
+            <li>Your status for the {{ notification.job }} has been changed to {{ notification.status }} -  {{ notification.comment }} "</li>
+
         {% empty %}
             <li>No notifications</li>
         {% endfor %}

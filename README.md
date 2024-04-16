@@ -16,8 +16,11 @@ JobsPy is a job portal designed to connect job seekers with companies. It provid
   ![singUp](https://github.com/Nedelchev86/jobsPy/assets/122647190/aaf1dafa-867a-422f-85bc-9e32c2270923)
 
 
+
 - ** Notifications system **
+ 
   ![notifications](https://github.com/Nedelchev86/jobsPy/assets/122647190/2388e8d7-f0dc-483a-8028-c46b14313384)
+
 
    
 - **Job Seeker Profile**:

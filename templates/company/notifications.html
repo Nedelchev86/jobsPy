@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Applicants - JobsPy {% endblock %}
+{% block main_content %}
+
+    <!-- Start Breadcrumbs -->
+    <div class="breadcrumbs overlay">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumbs-content">
+                        <h1 class="page-title">Notifications</h1>
+                        <p>Business plan draws on a wide range of knowledge from different business<br> disciplines.
+                            Business draws on a wide range of different business .</p>
+                    </div>
+                    <ul class="breadcrumb-nav">
+                        <li><a href="{% url 'index' %}">Home</a></li>
+                        <li><a href="{% url 'company-dashboard' %}">Dashboard</a></li>
+                        <li>Notifications</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Breadcrumbs -->
+
+    <!-- Main Content Start -->
+    <div class="bookmarked section">
+        <div class="container">
+            <div class="alerts-inner">
+                <div class="row">
+                    <!-- Start Main Content -->
+{% include 'company/company-menu.html' %}
+                    <!-- End Main Content -->
+                    <div class="col-lg-8 col-12">
+                        <div class="job-items">
+                            {% for notification in object_list %}
+                                <div class="manage-content">
+                                    <div class="row align-items-center justify-content-center">
+                                    <div class="col-lg-2 col-md-2 col-12">
+                                        <div class="title-img">
+                                            <div class="can-img">
+                                                <img src="{{ notification.job.job_image.url}}" alt="#">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7 col-md-7 ">
+                                        <p class="description">{{ notification.message}}</p>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3">
+                                        <div class="time">
+                                            <p><i class="lni lni-timer"></i> {{ notification.created_at|date:"h:i  (j F Y)"  }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                         </div>
+
+                        </div>
+                        <!-- Pagination -->
+                        <div class="pagination left pagination-md-center">
+{#                            <ul class="pagination-list">#}
+{#                                <li><a href="#"><i class="lni lni-arrow-left"></i></a></li>#}
+{#                                <li class="active"><a href="#">1</a></li>#}
+{#                                <li><a href="#">2</a></li>#}
+{#                                <li><a href="#">3</a></li>#}
+{#                                <li><a href="#">4</a></li>#}
+{#                                <li><a href="#"><i class="lni lni-arrow-right"></i></a></li>#}
+{#                            </ul>#}
+                        </div>
+                        <!-- End Pagination -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Main Content end -->
+{% endblock %}

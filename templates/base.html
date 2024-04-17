@@ -1,5 +1,7 @@
 {% load static %}
 {% load socialaccount %}
+{% load notification_tags %}
+
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
 
@@ -97,19 +99,19 @@
                                 {% if user.is_authenticated %}
                                 {% if user.company.image %}
                                     <div class="user-profile-container">
-                                    <a href="{% url 'login_redirect_dashboard' %} "><img class="user-profile-small" src="{{ user.company.image.url }}" alt="Logo"> <span class="notification-badge">{{ request.user.notification_set.all|length }}</span> </a>
+                                    <a href="{% url 'login_redirect_dashboard' %} "><img class="user-profile-small" src="{{ user.company.image.url }}" alt="Logo"> <span class="notification-badge">{{ request.user|unread_notifications }}</span> </a>
                                     </div>
                                 {% elif user.jobseeker.profile_picture %}
                                     <div class="user-profile-container">
-                                    <a href="{% url 'login_redirect_dashboard' %} "><img class="user-profile-small" src="{{ user.jobseeker.profile_picture.url }}" alt="Logo"> <span class="notification-badge">{{request.user.notificationjobseeker_set.all|length  }}</span> </a>
+                                    <a href="{% url 'login_redirect_dashboard' %} "><img class="user-profile-small" src="{{ user.jobseeker.profile_picture.url }}" alt="Logo"> <span class="notification-badge">{{request.user|unread_notifications  }}</span> </a>
                                        </div>
                                 {% else %}
                                     <div class="text-center align-center"  style="align-items:center !important;justify-content:center !important;background-color: black;width: 50px;height: 50px;border-radius: 50px; margin-right: 20px">
                                     <div class="user-profile-container">
                                         {% if user.company %}
-                                            <a href="{% url 'login_redirect_dashboard' %}" class="user-profile-small" style="padding-top: 10%; color: white; font-size: 25px" >{{ user.email.0 }}<span class="notification-badge">{{request.user.notification_set.all|length  }}</span> </a>
+                                            <a href="{% url 'login_redirect_dashboard' %}" class="user-profile-small" style="padding-top: 10%; color: white; font-size: 25px" >{{ user.email.0 }}<span class="notification-badge">{{request.user|unread_notifications  }}</span> </a>
                                         {% elif user.jobseeker %}
-                                            <a href="{% url 'login_redirect_dashboard' %}" class="user-profile-small" style="padding-top: 10%; color: white; font-size: 25px" >{{ user.email.0 }}<span class="notification-badge">{{request.user.notificationjobseeker_set.all|length  }}</span> </a>
+                                            <a href="{% url 'login_redirect_dashboard' %}" class="user-profile-small" style="padding-top: 10%; color: white; font-size: 25px" >{{ user.email.0 }}<span class="notification-badge">{{request.user|unread_notifications  }}</span> </a>
                                         {% endif %}
                                             </div>
                                     </div>

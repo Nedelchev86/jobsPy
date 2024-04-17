@@ -34,13 +34,14 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'celery',
 
+    'jobsPy.notifications',
     'jobsPy.accounts',
     'jobsPy.main',
     'jobsPy.jobseekers',
     'jobsPy.company',
     'jobsPy.jobs',
     'jobsPy.blog',
-    'jobsPy.notifications',
+
 
     'allauth',
     'allauth.account',

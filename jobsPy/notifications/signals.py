@@ -11,10 +11,11 @@ def create_notification(sender, instance, created, **kwargs):
         message = f" has applied for the job: "
         Notification.objects.create(user=job_owner, job=instance.job, job_seeker=instance.user,  message=message)
     else:
+
         NotificationJobSeeker.objects.create(
             user=instance.user,
             job=instance.job,
-            status=instance.get_status(),
+            status=instance.get_status,
             comment=instance.comment,
 
         )

@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Job Applications {{ object_list.count }} - JobsPy {% endblock %}
+{% block main_content %}
+
+    <!-- Start Breadcrumbs -->
+    <div class="breadcrumbs overlay">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumbs-content">
+                        <h1 class="page-title">Job Applications</h1>
+                        <p>Business plan draws on a wide range of knowledge from different business<br> disciplines.
+                            Business draws on a wide range of different business .</p>
+                    </div>
+                    <ul class="breadcrumb-nav">
+                        <li><a href="{% url 'index' %}">Home</a></li>
+                        <li><a href="{% url 'job seeker dashboard' %}">Dashboard</a></li>
+                        <li>Job Applications </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Breadcrumbs -->
+
+    <!-- Main Content Start -->
+    <div class="bookmarked section">
+        <div class="container">
+            <div class="alerts-inner">
+                <div class="row">
+                    <!-- Start Main Content -->
+{% include 'job_seekers/job_seeker_menu.html' %}
+                    <!-- End Main Content -->
+                    <div class="col-lg-8 col-12">
+                        <div class="job-items">
+                              {% for notification in object_list %}
+                                <div class="manage-content">
+                                    <div class="row align-items-center justify-content-center">
+                                    <div class="col-lg-2 col-md-2 col-12">
+                                        <div class="title-img">
+                                            <div class="can-img">
+
+                                                {% if notification.job.job_image  %}
+                                                <img src="{{ notification.job.job_image.url}}" alt="#">
+                                                {% else %}
+                                                <img src="{% static 'images/clients/default_profile.png' %}" alt="#">
+                                                {% endif %}
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7 col-md-7 ">
+                                        <p class="description">Your status for the <a href="{% url 'job_details' notification.job.pk %}" target="_blank">{{ notification.job }}</a> has been changed to {{ notification.status }}</p>
+                                        <p>Feedback: {{ notification.comment }}</p>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3">
+                                        <div class="time">
+                                            <p><i class="lni lni-timer"></i> {{ notification.created_at|date:"H:i - d/m/y" }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Main Content end -->
+{% endblock %}

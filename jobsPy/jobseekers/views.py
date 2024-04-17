@@ -8,6 +8,7 @@ from jobsPy.core.accounts_mixins import JobSeekerRequiredMixin, JobSeekerOwnerRe
 from jobsPy.jobs.models import FavoriteJob, Applicant, Skills
 from jobsPy.jobseekers.forms import EditProfileFrom, EducationForm, WrokExperienceForm
 from jobsPy.jobseekers.models import JobSeeker, Education, Experience
+from jobsPy.notifications.models import NotificationJobSeeker
 
 userModel = get_user_model()
 # Create your views here.
@@ -192,3 +193,12 @@ class JobSeekerDeleteView(LoginRequiredMixin, JobSeekerRequiredMixin, DeleteView
 class ProfileDeletedView(TemplateView):
     template_name = "job_seekers/profile_deleted.html"
 
+
+
+class JobSeekerNotificationListView(LoginRequiredMixin, ListView):
+    model = NotificationJobSeeker
+    template_name = 'job_seekers/notifications.html'
+    context_object_name = 'notifications'
+
+    def get_queryset(self):
+        return super().get_queryset().filter(user=self.request.user)

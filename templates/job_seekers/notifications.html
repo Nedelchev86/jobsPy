@@ -54,11 +54,21 @@
                                         <p class="description">Your status for the <a href="{% url 'job_details' notification.job.pk %}" target="_blank">{{ notification.job }}</a> has been changed to {{ notification.status }}</p>
                                         <p>Feedback: {{ notification.comment }}</p>
                                     </div>
-                                    <div class="col-lg-3 col-md-3">
+
+                                    <div class="col-lg-2 col-md-3">
                                         <div class="time">
-                                            <p><i class="lni lni-timer"></i> {{ notification.created_at|date:"H:i - d/m/y" }}</p>
+                                            <p style="text-align: center"><i class="lni lni-timer"></i> {{ notification.created_at|date:"H:i  d/m/y" }}</p>
                                         </div>
                                     </div>
+
+                                        <div class="col-lg-1 col-md-2">
+                                            {%  if not notification.is_read %}
+                                            <a href="{% url 'mark_as_read_job_seeker' notification.pk %}" class="btn btn-primary btn-sm">Read</a>
+
+                                            {% else %}
+                                             <a href="{% url 'mark_as_read_job_seeker' notification.pk %}" class="btn btn-primary btn-sm"><i class="lni lni-checkmark"></i></a>
+                                            {% endif %}
+                                        </div>
                                 </div>
                             </div>
                             {% endfor %}

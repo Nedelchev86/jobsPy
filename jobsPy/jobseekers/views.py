@@ -1,9 +1,9 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, ListView, DetailView, UpdateView, CreateView, DeleteView
+from django.views.generic import TemplateView, ListView, DetailView, UpdateView, CreateView, DeleteView, View
 from jobsPy.core.accounts_mixins import JobSeekerRequiredMixin, JobSeekerOwnerRequiredMixin, JobEditMixin
 from jobsPy.jobs.models import FavoriteJob, Applicant, Skills
 from jobsPy.jobseekers.forms import EditProfileFrom, EducationForm, WrokExperienceForm
@@ -202,3 +202,12 @@ class JobSeekerNotificationListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         return super().get_queryset().filter(user=self.request.user)
+
+
+class MarkNotificationAsReadView(View):
+    def get(self, request, *args, **kwargs):
+        notification_id = self.kwargs['pk']
+        notification = NotificationJobSeeker.objects.get(pk=notification_id)
+        notification.is_read = not notification.is_read
+        notification.save()
+        return redirect('job seeker notifications')

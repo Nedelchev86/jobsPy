@@ -10,7 +10,7 @@
                                  {% if 'main.add_newsletter' in perms %}
                                 <li><a class="{% if request.resolver_match.url_name == 'newsletter' %}active{% endif %}" href="{% url 'newsletter' %}"><i class="lni lni-alarm"></i>Send Newsletter </a></li>
                                {% endif %}
-                                <li><a  href="#"><i class="lni lni-alarm"></i> Notifications <span class="notifi">ToDo</span></a></li>
+                                <li><a  href="{% url 'job seeker notifications' %}"><i class="lni lni-alarm"></i> Notifications <span class="notifi">{{ request.user.notificationjobseeker_set.all|length  }}</span></a></li>
                                 <li><a class="{% if request.resolver_match.url_name == 'change-password' %}active{% endif %}" href="{% url 'change-password' %}"><i class="lni lni-lock"></i> Change Password</a></li>
                                 <li><a class="{% if request.resolver_match.url_name == 'delete_profile' %}active{% endif %}" style="color:red" href="{% url 'delete_profile' %}"><i class="lni lni-lock"></i> Delete Profile</a></li>
                                 <li><a href="{% url 'sing-out' %}"><i class="lni lni-upload"></i> Sign Out</a></li>

@@ -2,7 +2,8 @@ from django.urls import path
 
 from jobsPy.jobseekers.views import JobSeekerDashboard, EditProfile, FavouriteJobs, ApplyJobs, JobSeekerDetails, \
     AllEmployees, AddEducation, AddWorkExperience, EditEducation, EditWorkExperience, JobSeekerDeleteView, \
-    ProfileDeletedView, DeleteEducation, DeleteWorkExperience, JobSeekerNotificationListView, MarkNotificationAsReadView
+    ProfileDeletedView, DeleteEducation, DeleteWorkExperience
+from jobsPy.notifications.views import JobSeekerNotificationListView, MarkNotificationAsReadView
 
 urlpatterns = [
     path("all/", AllEmployees.as_view(), name="all-employees"),

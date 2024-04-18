@@ -34,7 +34,20 @@
                     <!-- End Main Content -->
                     <div class="col-lg-8 col-12">
                         <div class="job-items">
+                            <form  method="GET" action="">
+                                <div class="form-group d-flex align-items-end">
+                                   <div class="form-group col-md-4 mr-4">
+                                <select class="form-control" name="filter" id="filter">
+                                    <option value="all" {% if request.GET.filter == 'all' %}selected{% endif %}>All</option>
+                                    <option value="unread" {% if request.GET.filter == 'unread' %}selected{% endif %}>Unread</option>
+                                    <option value="read" {% if request.GET.filter == 'read' %}selected{% endif %}>Read</option>
+                                </select>
+                                  </div>
+                                        <button class="btn btn-primary" >Filter</button>
+                                    </div>
+                            </form>
                               {% for notification in object_list %}
+                                  {% if not request.GET.filter or request.GET.filter == 'all' or request.GET.filter == 'unread' and not notification.is_read or request.GET.filter == 'read' and notification.is_read %}
                                 <div class="manage-content">
                                     <div class="row align-items-center justify-content-center">
                                     <div class="col-lg-2 col-md-2 col-12">
@@ -71,6 +84,7 @@
                                         </div>
                                 </div>
                             </div>
+                                  {% endif %}
                             {% endfor %}
 
                         </div>

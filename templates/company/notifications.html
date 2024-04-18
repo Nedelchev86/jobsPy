@@ -33,9 +33,22 @@
 {% include 'company/company-menu.html' %}
                     <!-- End Main Content -->
                     <div class="col-lg-8 col-12">
+
                         <div class="job-items">
+                            <form  method="GET" action="">
+                                <div class="form-group d-flex align-items-end">
+                                   <div class="form-group col-md-4 mr-4">
+                                <select class="form-control" name="filter" id="filter">
+                                    <option value="all" {% if request.GET.filter == 'all' %}selected{% endif %}>All</option>
+                                    <option value="unread" {% if request.GET.filter == 'unread' %}selected{% endif %}>Unread</option>
+                                    <option value="read" {% if request.GET.filter == 'read' %}selected{% endif %}>Read</option>
+                                </select>
+                                  </div>
+                                        <button class="btn btn-primary" >Filter</button>
+                                    </div>
+                            </form>
                             {% for notification in object_list %}
-                                {{ notification.is_read }}
+                               {% if not request.GET.filter or request.GET.filter == 'all' or request.GET.filter == 'unread' and not notification.is_read or request.GET.filter == 'read' and notification.is_read %}
                                 <div class="manage-content">
                                     <div class="row align-items-center justify-content-center">
                                     <div class="col-lg-2 col-md-2 col-12">
@@ -53,13 +66,22 @@
                                     <div class="col-lg-7 col-md-7 ">
                                         <p class="description"><a href="{% url 'jobseeker details' notification.job_seeker.jobseeker.pk %}">{{ notification.job_seeker.jobseeker }}</a>{{ notification.message}} <a href="{% url 'job_details' notification.job.pk %}">{{ notification.job }}</a></p>
                                     </div>
-                                    <div class="col-lg-3 col-md-3">
+                                    <div class="col-lg-2 col-md-3">
                                         <div class="time">
-                                            <p><i class="lni lni-timer"></i> {{ notification.created_at|date:"H:i - d/m/y" }}</p>
+                                            <p style="text-align: center"><i class="lni lni-timer"></i> {{ notification.created_at|date:"H:i d/m/y" }}</p>
                                         </div>
                                     </div>
+                                                                            <div class="col-lg-1 col-md-2">
+                                            {%  if not notification.is_read %}
+                                            <a href="{% url 'mark_as_read_company' notification.pk %}" class="btn btn-primary btn-sm">Read</a>
+
+                                            {% else %}
+                                             <a href="{% url 'mark_as_read_company' notification.pk %}" class="btn btn-primary btn-sm"><i class="lni lni-checkmark"></i></a>
+                                            {% endif %}
+                                        </div>
                                 </div>
                             </div>
+                                {% endif %}
                             {% endfor %}
                          </div>
 

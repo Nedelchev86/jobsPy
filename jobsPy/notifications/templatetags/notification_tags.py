@@ -6,11 +6,10 @@ register = template.Library()
 
 @register.filter
 def unread_notifications(user):
-    if user.is_authenticated:
-        if user.jobseeker:
+    if user.role == "jobseeker":
             return len(NotificationJobSeeker.objects.filter(user=user, is_read=False))
-        else:
-            return len(Notification.objects.filter(user=user))
+    elif user.role == "company":
+            return len(Notification.objects.filter(user=user, is_read=False))
     else:
         return 0
     

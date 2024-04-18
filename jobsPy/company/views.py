@@ -8,7 +8,7 @@ from jobsPy.company.forms import EditCompanyFrom
 from jobsPy.company.models import CompanyProfile
 from jobsPy.core.accounts_mixins import CompanyRoleRequiredMixin, ApplicantOwnerRequiredMixin
 from jobsPy.jobs.models import Job, Applicant, FavoriteJob
-from jobsPy.notifications.models import Notification
+
 
 userModel = get_user_model()
 
@@ -123,10 +123,3 @@ class CompanyDeletedView(TemplateView):
     template_name = "company/profile_deleted.html"
 
 
-class CompanyNotificationListView(LoginRequiredMixin, ListView):
-    model = Notification
-    template_name = 'company/notifications.html'
-    context_object_name = 'notifications'
-
-    def get_queryset(self):
-        return super().get_queryset().filter(user=self.request.user)

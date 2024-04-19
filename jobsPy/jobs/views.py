@@ -1,7 +1,8 @@
+from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, View, DeleteView
 from jobsPy.company.models import CompanyProfile
@@ -10,8 +11,9 @@ from jobsPy.core.accounts_mixins import CompanyRoleRequiredMixin, JobByCompanyMi
 from jobsPy.core.decorators import job_seeker_activated_required
 from jobsPy.jobs.forms import CreateJobForms, EditeJobForm, ApplyForJobForms, ChangeStatusForm
 from jobsPy.jobs.models import Job, Category, Applicant, FavoriteJob
-from jobsPy.main.models import Seniority
+from jobsPy.main.models import Seniority, CompanySubscription
 
+userModel = get_user_model()
 
 class JobCreateView(LoginRequiredMixin, CompanyRoleRequiredMixin, CompanyProfileActivationMixin, CreateView):
     template_name = "jobs/create_job.html"
@@ -181,3 +183,24 @@ class DeleteJob(LoginRequiredMixin, CompanyRoleRequiredMixin, JobByCompanyMixin,
     model = Job
     template_name = "company/delete_job.html"
     success_url = reverse_lazy('company-dashboard')
+
+
+@login_required
+def subscribe_to_company(request, pk):
+    company = get_object_or_404(userModel, pk=pk)
+    is_subscribed = CompanySubscription.objects.filter(
+        job_seeker=request.user,
+        company=company
+    ).exists()
+    if request.method == 'POST':
+        if is_subscribed:
+            CompanySubscription.objects.filter(
+                job_seeker=request.user,
+                company=company
+            ).delete()
+        else:
+            CompanySubscription.objects.create(
+                job_seeker=request.user,
+                company=company
+            )
+    return redirect('company-details', pk=pk)

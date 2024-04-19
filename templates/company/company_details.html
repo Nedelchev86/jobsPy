@@ -168,7 +168,11 @@
                                 <div class="inner">
                             <div class="row m-n2 button">
                                         <div class=" col-lg-12  ">
-                                            <a href="#" class="d-block btn"><i class="fa fa-heart-o mr-1"></i> Subscribe for company</a>
+                                                <form method="post" action="{% url 'subscribe_to_company' object.pk %}">
+                                                    {% csrf_token %}
+                                                    <button style="width: 100%" class="d-block btn" type="submit">{% if not is_subscribed %}Subscribe for company{% else %} Unsubscribe for company{% endif %}</button>
+                                                </form>
+
                                         </div>
                                      </div>
                                 </div>

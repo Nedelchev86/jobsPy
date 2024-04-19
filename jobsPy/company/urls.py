@@ -1,7 +1,7 @@
 from django.urls import path
 from jobsPy.company.views import CompanyDashboard, CreatedJobs, EditCompany, CompanyApplicant, ApplicantList, \
     CompanyDetails, AllCompany, CompanyDeleteView, CompanyDeletedView
-from jobsPy.jobs.views import ChangeStatus
+from jobsPy.jobs.views import ChangeStatus, subscribe_to_company
 from jobsPy.notifications.views import CompanyNotificationListView, MarkCompanyNotificationAsReadView
 
 urlpatterns = [
@@ -17,5 +17,6 @@ urlpatterns = [
     path('', AllCompany.as_view(), name="all_company"),
     path('delete/', CompanyDeleteView.as_view(), name='delete_company'),
     path('deleted/', CompanyDeletedView.as_view(), name='deleted_success_company'),
+    path('details/<int:pk>/subscribe/', subscribe_to_company, name='subscribe_to_company'),
 
 ]

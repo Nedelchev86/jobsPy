@@ -8,7 +8,7 @@ from jobsPy.company.forms import EditCompanyFrom
 from jobsPy.company.models import CompanyProfile
 from jobsPy.core.accounts_mixins import CompanyRoleRequiredMixin, ApplicantOwnerRequiredMixin
 from jobsPy.jobs.models import Job, Applicant, FavoriteJob
-
+from jobsPy.main.models import CompanySubscription
 
 userModel = get_user_model()
 
@@ -90,11 +90,18 @@ class CompanyDetails(DetailView):
     model = CompanyProfile
     template_name = "company/company_details.html"
 
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         company = self.get_object()
+        is_subscribed = CompanySubscription.objects.filter(
+            job_seeker=self.request.user,
+            company=company.user
+        ).exists()
+
         jobs_published = Job.objects.filter(user=company.user)
         context['jobs_published'] = jobs_published
+        context['is_subscribed'] = is_subscribed
         return context
 
 

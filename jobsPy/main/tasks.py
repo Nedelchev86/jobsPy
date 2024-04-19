@@ -4,7 +4,7 @@ from jobsPy import settings
 from jobsPy.main.models import Subscriber
 
 
-# @shared_task
+@shared_task
 def send_contact_form_confirmation(name, email):
     subject = 'Confirmation: Your Message has been Received'
     message = (f'Hi {name},\n\nThank you for contacting us. We have received'
@@ -14,7 +14,7 @@ def send_contact_form_confirmation(name, email):
     send_mail(subject, message, from_email, recipient_list)
 
 
-# @shared_task
+@shared_task
 def send_contact_form_notification_to_team(name, email, subject, phone, message):
     # Construct email subject and message
     email_subject = 'New Contact Form Submission'

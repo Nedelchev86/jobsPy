@@ -109,6 +109,7 @@ class CompanyDetails(DetailView):
 
 class AllCompany(ListView):
     model = CompanyProfile
+    paginate_by = 10
     template_name = "company/company.html"
 
     def get_queryset(self):

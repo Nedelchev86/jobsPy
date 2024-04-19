@@ -11,7 +11,7 @@ def send_contact_form_confirmation(name, email):
                f' your message and will get back to you as soon as possible.\n\nBest regards,\nJobsPy Team')
     from_email = settings.EMAIL_HOST_USER
     recipient_list = [email]
-    send_mail(subject, message, from_email, recipient_list, fail_silently=False)
+    send_mail(subject, message, from_email, recipient_list, fail_silently=True)
     return "Done"
 
 @shared_task
@@ -24,7 +24,7 @@ def send_contact_form_notification_to_team(name, email, subject, phone, message)
     from_email = settings.EMAIL_HOST_USER
     admin_email = settings.EMAIL_HOST_USER
     # Send the email notification
-    send_mail(email_subject, email_message, from_email, [admin_email], fail_silently=False)
+    send_mail(email_subject, email_message, from_email, [admin_email], fail_silently=True)
     return "Done"
 
 
@@ -34,5 +34,5 @@ def send_news_notification(news_title, news_content):
     subject = f"{news_title} - JobsPy"
     message = f"{news_content}\n\nRegards,\nJobsPy Team"
     recipient_list = [subscriber.email for subscriber in subscribers]
-    send_mail(subject, message, settings.EMAIL_HOST_USER, recipient_list, fail_silently=False)
+    send_mail(subject, message, settings.EMAIL_HOST_USER, recipient_list, fail_silently=True)
     return "Done"

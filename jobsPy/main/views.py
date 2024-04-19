@@ -73,9 +73,9 @@ class ContactFrom(CreateView):
     def form_valid(self, form):
         response = super().form_valid(form)
 
-        send_contact_form_confirmation.delay(form.instance.name, form.instance.email,)
+        send_contact_form_confirmation(form.instance.name, form.instance.email,)
 
-        send_contact_form_notification_to_team.delay(form.instance.name, form.instance.email, form.instance.subject, form.instance.phone, form.instance.message)
+        send_contact_form_notification_to_team(form.instance.name, form.instance.email, form.instance.subject, form.instance.phone, form.instance.message)
 
         return response
 

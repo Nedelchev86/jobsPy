@@ -16,15 +16,11 @@ userModel = get_user_model()
 class RegisterView(RedirectAuthenticatedUserMixin, CreateView):
     template_name = 'accounts/register.html'
     form_class = RegisterUserForm
-
-    # Static way of providing `success_url`
     success_url = reverse_lazy('login_redirect_dashboard')
 
     def form_valid(self, form):
         result = super().form_valid(form)
-
         login(self.request, self.object)
-
         return result
 
 
@@ -41,7 +37,6 @@ class LoginUserView(RedirectAuthenticatedUserMixin, LoginView):
 
 class ChangePass(PasswordChangeView):
     form_class = ChangePassword
-
     template_name = "accounts/change_password.html"
     success_url = reverse_lazy('login_redirect_dashboard')
 
@@ -55,7 +50,6 @@ class RedirectDashboardView(LoginRequiredMixin, View):
         elif user_type == 'jobseeker':
             return redirect('job seeker dashboard')
         else:
-            # Handle other roles or situations
             return redirect('select_role')  # Redirect to a default page if the role is not recognized
 
 

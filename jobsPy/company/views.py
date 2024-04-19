@@ -90,14 +90,16 @@ class CompanyDetails(DetailView):
     model = CompanyProfile
     template_name = "company/company_details.html"
 
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         company = self.get_object()
-        is_subscribed = CompanySubscription.objects.filter(
-            job_seeker=self.request.user,
-            company=company.user
-        ).exists()
+        if self.request.user.is_authenticated:
+            is_subscribed = CompanySubscription.objects.filter(
+                job_seeker=self.request.user,
+                company=company.user
+            ).exists()
+        else:
+            is_subscribed = False
 
         jobs_published = Job.objects.filter(user=company.user)
         context['jobs_published'] = jobs_published

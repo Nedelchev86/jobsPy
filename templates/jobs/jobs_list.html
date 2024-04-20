@@ -27,9 +27,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
-              
+
                           {% for job in job_list %}
                         <div class="single-job">
+{#                        <div class="feature-job-list">Featured</div>#}
                             <div class="job-image-list">
             {% if job.user.company.image %}
                                 <img src="{{ job.user.company.image.url }}" alt="#">

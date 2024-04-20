@@ -8181,3 +8181,21 @@ label.required::after {
     line-height: 20px;
     font-size: 12px;
 }
+
+.feature-job-list{
+    position: absolute;
+    top: 22px;
+    right: -30px;
+    padding: 3px 35px;
+    font-size: 12px;
+    color: #fff;
+    background-color: #2042e3;
+    line-height: 20px;
+    text-transform: uppercase;
+    text-align: center;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    z-index: 1;
+    -webkit-clip-path: polygon(0% 0%, 80% 0%, 100% 100%, 0% 100%, 20% 0%);
+    clip-path: polygon(0% 0%, 80% 0%, 100% 100%, 0% 100%, 20% 0%);
+}

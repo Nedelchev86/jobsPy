@@ -1,0 +1,64 @@
+    /*
+    Flaticon icon font: Flaticon
+    Creation date: 28/08/2019 06:40
+    */
+
+    @font-face {
+  font-family: "Flaticon";
+  src: url("Flaticon.eot");
+  src: url("Flaticon.eot?#iefix") format("embedded-opentype"),
+       url("Flaticon.woff2") format("woff2"),
+       url("Flaticon.woff") format("woff"),
+       url("Flaticon.ttf") format("truetype"),
+       url("Flaticon.svg#Flaticon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "Flaticon";
+    src: url("Flaticon.svg#Flaticon") format("svg");
+  }
+}
+
+    .fi:before{
+        display: inline-block;
+  font-family: "Flaticon";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-decoration: inherit;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+    }
+
+    .flaticon-resume:before { content: "\f100"; }
+.flaticon-team:before { content: "\f101"; }
+.flaticon-career:before { content: "\f102"; }
+.flaticon-employees:before { content: "\f103"; }
+.flaticon-contact:before { content: "\f104"; }
+.flaticon-mortarboard:before { content: "\f105"; }
+.flaticon-idea:before { content: "\f106"; }
+.flaticon-accounting:before { content: "\f107"; }
+.flaticon-dish:before { content: "\f108"; }
+.flaticon-stethoscope:before { content: "\f109"; }
+.flaticon-worldwide:before { content: "\f10a"; }
+.flaticon-visitor:before { content: "\f10b"; }
+    
+    $font-Flaticon-resume: "\f100";
+    $font-Flaticon-team: "\f101";
+    $font-Flaticon-career: "\f102";
+    $font-Flaticon-employees: "\f103";
+    $font-Flaticon-contact: "\f104";
+    $font-Flaticon-mortarboard: "\f105";
+    $font-Flaticon-idea: "\f106";
+    $font-Flaticon-accounting: "\f107";
+    $font-Flaticon-dish: "\f108";
+    $font-Flaticon-stethoscope: "\f109";
+    $font-Flaticon-worldwide: "\f10a";
+    $font-Flaticon-visitor: "\f10b";

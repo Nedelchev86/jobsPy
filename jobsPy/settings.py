@@ -1,4 +1,5 @@
 import os
+from datetime import timedelta
 from pathlib import Path
 import dj_database_url
 from django.urls import reverse_lazy
@@ -21,11 +22,17 @@ DEBUG = os.environ.get('DEBUG', False) == 'True'
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(' ')
 
-# REST_FRAMEWORK = {
-#     "DEFAULT_AUTHENTICATION_CLASSES": (
-#         "rest_framework.authentication.JWT",
-#     )
-# }
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication"),
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.IsAuthenticated",],
+}
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+}
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -36,6 +43,7 @@ INSTALLED_APPS = [
     "whitenoise.runserver_nostatic",
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework_simplejwt',
     'ckeditor',
     'django.contrib.sites',
     'celery',

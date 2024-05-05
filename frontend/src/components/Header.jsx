@@ -1,3 +1,6 @@
+import React from "react";
+import {Link} from "react-router-dom";
+
 export default function Header() {
     return (
         <header className="header style4">
@@ -18,9 +21,12 @@ export default function Header() {
                                 <div className="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
                                     <ul id="nav" className="navbar-nav ml-auto">
                                         <li className="nav-item">
-                                            <a className="active" href="#">
+                                            <Link to="/" className="nav-link">
                                                 Home
-                                            </a>
+                                            </Link>
+                                            {/* <a className="active" href="#">
+                                                Home
+                                            </a> */}
                                         </li>
 
                                         <li className="nav-item ">
@@ -39,9 +45,12 @@ export default function Header() {
                                             </a>
                                         </li>
                                         <li className="nav-item">
-                                            <a href="#" className="">
+                                            <Link to="/blog" className="nav-link">
                                                 Blog
-                                            </a>
+                                            </Link>
+                                            {/* <a href="#" className="">
+                                                Blog
+                                            </a> */}
                                         </li>
                                         <li className="nav-item">
                                             <a href="#" className="">

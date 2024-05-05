@@ -53,8 +53,14 @@ export default function Header() {
 
                                 <div className="button">
                                     <a href="#" className="login">
-                                        <i className="lni lni-lock-alt"></i> Logout
+                                        <i className="lni lni-lock-alt"></i> Login
                                     </a>
+                                    <a href="#" className="btn">
+                                        Sign Up
+                                    </a>
+                                    {/* <a href="#" className="login">
+                                        <i className="lni lni-lock-alt"></i> Logout
+                                    </a> */}
                                 </div>
                             </nav>
                         </div>

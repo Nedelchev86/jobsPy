@@ -1,9 +1,14 @@
-from django.urls import path
+from django.urls import path, include
 
 from jobsPy.jobseekers.views import JobSeekerDashboard, EditProfile, FavouriteJobs, ApplyJobs, JobSeekerDetails, \
     AllEmployees, AddEducation, AddWorkExperience, EditEducation, EditWorkExperience, JobSeekerDeleteView, \
     ProfileDeletedView, DeleteEducation, DeleteWorkExperience
 from jobsPy.notifications.views import JobSeekerNotificationListView, MarkNotificationAsReadView
+from rest_framework.routers import DefaultRouter
+from .views import JobSeekerViewSet
+
+router = DefaultRouter()
+router.register(r'jobseekers', JobSeekerViewSet)
 
 urlpatterns = [
     path("all/", AllEmployees.as_view(), name="all-employees"),
@@ -23,5 +28,7 @@ urlpatterns = [
     path('delete-experience/<int:pk>', DeleteWorkExperience.as_view(), name='delete work experience'),
     path('notifications/', JobSeekerNotificationListView.as_view(), name='job seeker notifications'),
     path('notifications/<int:pk>/mark_as_read/', MarkNotificationAsReadView.as_view(), name='mark_as_read_job_seeker'),
+    path('', include(router.urls)),
 
 ]
+

@@ -1,6 +1,6 @@
 from django.urls import path
 from jobsPy.company.views import CompanyDashboard, CreatedJobs, EditCompany, CompanyApplicant, ApplicantList, \
-    CompanyDetails, AllCompany, CompanyDeleteView, CompanyDeletedView
+    CompanyDetails, AllCompany, CompanyDeleteView, CompanyDeletedView, CompanyProfileViewSet
 from jobsPy.jobs.views import ChangeStatus, subscribe_to_company
 from jobsPy.notifications.views import CompanyNotificationListView, MarkCompanyNotificationAsReadView
 
@@ -18,5 +18,6 @@ urlpatterns = [
     path('delete/', CompanyDeleteView.as_view(), name='delete_company'),
     path('deleted/', CompanyDeletedView.as_view(), name='deleted_success_company'),
     path('details/<int:pk>/subscribe/', subscribe_to_company, name='subscribe_to_company'),
+    path('api/companies/', CompanyProfileViewSet.as_view(), name="company api"),
 
 ]

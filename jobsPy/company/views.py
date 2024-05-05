@@ -6,9 +6,11 @@ from django.urls import reverse_lazy
 from django.views.generic import TemplateView, ListView, UpdateView, DetailView, DeleteView
 from jobsPy.company.forms import EditCompanyFrom
 from jobsPy.company.models import CompanyProfile
+from jobsPy.company.serializers import CompanyProfileSerializer
 from jobsPy.core.accounts_mixins import CompanyRoleRequiredMixin, ApplicantOwnerRequiredMixin
 from jobsPy.jobs.models import Job, Applicant, FavoriteJob
 from jobsPy.main.models import CompanySubscription
+from rest_framework import viewsets, generics
 
 userModel = get_user_model()
 
@@ -133,3 +135,9 @@ class CompanyDeletedView(TemplateView):
     template_name = "company/profile_deleted.html"
 
 
+
+
+class CompanyProfileViewSet(generics.ListCreateAPIView):
+    queryset = CompanyProfile.objects.filter(activated=True)
+    serializer_class = CompanyProfileSerializer
+    pagination_class = None  # Disable pagination

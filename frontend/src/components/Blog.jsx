@@ -1,35 +1,72 @@
+import React, {useState, useEffect} from "react";
+import Breadcrumbs from "./Breadcrumbs";
+
 const Blog = () => {
+    const [blogs, setBlogs] = useState([]);
+
+    useEffect(() => {
+        // Fetch blogs from your API
+        fetch("http://127.0.0.1:8000/api/blog/")
+            .then((response) => response.json())
+            .then((data) => setBlogs(data.results))
+            .catch((error) => console.error("Error fetching blogs:", error));
+    }, []);
+
     return (
         <>
-            <div className="breadcrumbs overlay">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-12">
-                            <div className="breadcrumbs-content">
-                                <h1 className="page-title">News and blogs / Django Rest Framework</h1>
-                                <p>
-                                    First steps in Django Rest Framework
-                                    <br />{" "}
-                                </p>
-                            </div>
-                            <ul className="breadcrumb-nav">
-                                <li>
-                                    <a href="#">Home</a>
-                                </li>
-                                <li>Blogs</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <Breadcrumbs pageTitle="News and blogs / Django Rest Framework" pageInfo="First steps in Django Rest Framework" />
 
             <section className="section latest-news-area blog-list">
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-8 col-md-7 col-12">
-                            <div id="blog-list" className="row"></div>
+                            <div id="blog-list" className="row">
+                                {blogs.map((blog) => (
+                                    <div className="col-lg-6 col-12" key={blog.id}>
+                                        <div className="single-news wow">
+                                            <div className="image">
+                                                <img className="thumb" src={blog.image_url_1} alt="#" />
+                                            </div>
+                                            <div className="content-body">
+                                                <h4 className="title">
+                                                    <a href="/blog/${blog.id}/">{blog.title}</a>
+                                                </h4>
+                                                <div className="meta-details">
+                                                    <ul>
+                                                        <li>
+                                                            <a href="#">
+                                                                <i className="lni lni-tag"></i> {blog.author.first_name} {blog.author.last_name}
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#">
+                                                                <i className="lni lni-calendar"></i> {blog.created_at.split("T")[0]}
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#">
+                                                                <i className="lni lni-eye"></i>
+                                                                {blog.views}
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div className="truncate-overflow">
+                                                    <p>{blog.description}</p>
+                                                </div>
+                                                <div className="button">
+                                                    <a href="/blog/${blog.id}/" className="btn">
+                                                        Read More
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        `;
+                                    </div>
+                                ))}
+                            </div>
 
-                            <div className="pagination center">
+                            {/* <div className="pagination center">
                                 <ul className="pagination-list">
                                     <li>
                                         <a href="#">
@@ -54,7 +91,7 @@ const Blog = () => {
                                         </a>
                                     </li>
                                 </ul>
-                            </div>
+                            </div> */}
                         </div>
                         <aside className="col-lg-4 col-md-5 col-12">
                             <div className="sidebar">

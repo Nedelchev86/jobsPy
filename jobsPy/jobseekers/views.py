@@ -9,6 +9,9 @@ from jobsPy.jobs.models import FavoriteJob, Applicant, Skills
 from jobsPy.jobseekers.forms import EditProfileFrom, EducationForm, WrokExperienceForm
 from jobsPy.jobseekers.models import JobSeeker, Education, Experience
 from jobsPy.notifications.models import NotificationJobSeeker
+from rest_framework import viewsets
+from .models import JobSeeker
+from .serializers import JobSeekerSerializer
 
 userModel = get_user_model()
 # Create your views here.
@@ -194,3 +197,7 @@ class ProfileDeletedView(TemplateView):
     template_name = "job_seekers/profile_deleted.html"
 
 
+class JobSeekerViewSet(viewsets.ModelViewSet):
+    queryset = JobSeeker.objects.filter(activated=True)  # Filter activated job seekers
+    serializer_class = JobSeekerSerializer
+    pagination_class = None  # Disable pagination

@@ -6,6 +6,7 @@ import Index from "./components/Index";
 import Blog from "./components/Blog";
 import CompanyList from "./components/CompanyList";
 import JobseekersList from "./components/Jobseekers";
+import JobSeekerDetails from "./components/JobSeekerDetails";
 
 function App() {
     return (
@@ -16,6 +17,7 @@ function App() {
                 <Route path="/blog" element={<Blog />} />
                 <Route path="/companies" element={<CompanyList />} />
                 <Route path="/jobseekers" element={<JobseekersList />} />
+                <Route path="/jobseeker/:id" element={<JobSeekerDetails />} />
             </Routes>
             <Footer />
         </Router>

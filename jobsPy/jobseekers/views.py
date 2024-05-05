@@ -198,6 +198,13 @@ class ProfileDeletedView(TemplateView):
 
 
 class JobSeekerViewSet(viewsets.ModelViewSet):
-    queryset = JobSeeker.objects.filter(activated=True)  # Filter activated job seekers
+    queryset = JobSeeker.objects.filter(activated=True)
     serializer_class = JobSeekerSerializer
     pagination_class = None  # Disable pagination
+
+    def get_queryset(self):
+        queryset = JobSeeker.objects.filter(activated=True)
+        city = self.request.query_params.get('city', None)
+        if city:
+            queryset = queryset.filter(city=city)
+        return queryset

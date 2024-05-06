@@ -24,39 +24,27 @@ export default function Header() {
                                             <Link to="/" className="nav-link">
                                                 Home
                                             </Link>
-                                            {/* <a className="active" href="#">
-                                                Home
-                                            </a> */}
                                         </li>
 
                                         <li className="nav-item ">
-                                            <a href="#" className="active">
+                                            <Link to="/jobs" className="nav-link">
                                                 Jobs
-                                            </a>
+                                            </Link>
                                         </li>
                                         <li className="nav-item">
                                             <Link to="/companies" className="nav-link">
                                                 Companies
                                             </Link>
-                                            {/* <a href="#" className="">
-                                                Companies
-                                            </a> */}
                                         </li>
                                         <li className="nav-item">
                                             <Link to="/jobseekers" className="nav-link">
                                                 Jobseekers
                                             </Link>
-                                            {/* <a href="#" className="">
-                                                Job Seekers
-                                            </a> */}
                                         </li>
                                         <li className="nav-item">
                                             <Link to="/blog" className="nav-link">
                                                 Blog
                                             </Link>
-                                            {/* <a href="#" className="">
-                                                Blog
-                                            </a> */}
                                         </li>
                                         <li className="nav-item">
                                             <a href="#" className="">

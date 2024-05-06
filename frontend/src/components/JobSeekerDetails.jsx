@@ -41,7 +41,7 @@ export default function JobSeekerDetails() {
                                                             <div className="name-head">
                                                                 {jobseeker.profile_picture && (
                                                                     <a className="mb-2" href="#">
-                                                                        <img className="circle-54" src={jobseeker.profile_picture} alt="" />
+                                                                        <img className="circle-54" src={`https://res.cloudinary.com/drjgddl0y/${jobseeker.profile_picture}`} alt="" />
                                                                     </a>
                                                                 )}
 
@@ -79,7 +79,7 @@ export default function JobSeekerDetails() {
 
                                                                 <div className="single-list">
                                                                     <h5 className="title">E-mail</h5>
-                                                                    <p>{jobseeker.user}</p>
+                                                                    <p>{jobseeker.id}</p>
                                                                 </div>
 
                                                                 <div className="single-list">

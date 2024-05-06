@@ -1,5 +1,6 @@
 import {useState, useEffect} from "react";
 import Breadcrumbs from "./Breadcrumbs";
+import {Link} from "react-router-dom";
 
 export default function CompanyList() {
     const [companies, setCompanies] = useState([]);
@@ -7,12 +8,11 @@ export default function CompanyList() {
         fetch("http://127.0.0.1:8000/company/api/companies/")
             .then((response) => response.json())
             .then((data) => setCompanies(data));
-    });
+    }, []);
 
     return (
         <>
-        <Breadcrumbs pageTitle="Companies" pageInfo="Take a look at the top IT companies ..."/>
-
+            <Breadcrumbs pageTitle="Companies" pageInfo="Take a look at the top IT companies ..." />
 
             <section className="job-category style2 section">
                 <div className="container">
@@ -35,7 +35,7 @@ export default function CompanyList() {
                         <div className="row">
                             {companies.map((company) => (
                                 <div key={company.user} className="col-lg-3 col-md-6 col-12">
-                                    <a href="{% url 'company-details' company.pk %}" className="single-cat wow" data-wow-delay=".4s">
+                                    <Link to={`/company/${company.user}`} className="single-cat wow" data-wow-delay=".4s">
                                         <div className="top-side">
                                             <img src={`https://res.cloudinary.com/drjgddl0y/${company.image}`} alt={company.name} />
                                         </div>
@@ -45,7 +45,7 @@ export default function CompanyList() {
                                             {/* <span className="available-job">{company.user.job_set.all | length}</span> */}
                                             <h3>{company.name}</h3>
                                         </div>
-                                    </a>
+                                    </Link>
                                 </div>
                             ))}
                         </div>

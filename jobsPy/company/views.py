@@ -4,6 +4,8 @@ from django.db.models import Count
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, ListView, UpdateView, DetailView, DeleteView
+from rest_framework.response import Response
+
 from jobsPy.company.forms import EditCompanyFrom
 from jobsPy.company.models import CompanyProfile
 from jobsPy.company.serializers import CompanyProfileSerializer
@@ -137,7 +139,19 @@ class CompanyDeletedView(TemplateView):
 
 
 
-class CompanyProfileViewSet(generics.ListCreateAPIView):
+# class CompanyProfileViewSet(generics.ListCreateAPIView):
+#     queryset = CompanyProfile.objects.filter(activated=True)
+#     serializer_class = CompanyProfileSerializer
+#     pagination_class = None  # Disable pagination
+
+
+class CompanyProfileViewSet(viewsets.ModelViewSet):
     queryset = CompanyProfile.objects.filter(activated=True)
     serializer_class = CompanyProfileSerializer
     pagination_class = None  # Disable pagination
+
+    # New method to retrieve details of a specific company by ID
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance)
+        return Response(serializer.data)

@@ -1,8 +1,14 @@
-from django.urls import path
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+
 from jobsPy.company.views import CompanyDashboard, CreatedJobs, EditCompany, CompanyApplicant, ApplicantList, \
     CompanyDetails, AllCompany, CompanyDeleteView, CompanyDeletedView, CompanyProfileViewSet
 from jobsPy.jobs.views import ChangeStatus, subscribe_to_company
 from jobsPy.notifications.views import CompanyNotificationListView, MarkCompanyNotificationAsReadView
+
+
+router = DefaultRouter()
+router.register(r'api/companies', CompanyProfileViewSet)
 
 urlpatterns = [
     path('dashboard/', CompanyDashboard.as_view(), name="company-dashboard"),
@@ -18,6 +24,7 @@ urlpatterns = [
     path('delete/', CompanyDeleteView.as_view(), name='delete_company'),
     path('deleted/', CompanyDeletedView.as_view(), name='deleted_success_company'),
     path('details/<int:pk>/subscribe/', subscribe_to_company, name='subscribe_to_company'),
-    path('api/companies/', CompanyProfileViewSet.as_view(), name="company api"),
+    # path('api/companies/', CompanyProfileViewSet.as_view(), name="company api"),
+    path('', include(router.urls)),
 
 ]

@@ -1,7 +1,7 @@
 from django.urls import path
 
 from jobsPy.jobs.views import JobCreateView, JobDetails, EditJob, AllJobsView, \
-    RemoveFromFavoritesView, add_to_favorites, apply_for_job, DeleteJob
+    RemoveFromFavoritesView, add_to_favorites, apply_for_job, DeleteJob, AllJobsViewApi
 from jobsPy.jobseekers.views import FavouriteJobs, ApplyJobs
 from jobsPy.main.views import JobsCategory
 
@@ -17,5 +17,6 @@ urlpatterns = [
     path("favourite-jobs/", FavouriteJobs.as_view(), name="favourite_jobs"),
     path("apply-jobs/", ApplyJobs.as_view(), name="jobs-apply"),
     path('category/<slug:category_slug>/', JobsCategory.as_view(), name='jobs_category'),
+    path('api/', AllJobsViewApi.as_view(), name='all_jobs'),
 
 ]

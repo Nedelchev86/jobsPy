@@ -5,12 +5,15 @@ from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, View, DeleteView
+from rest_framework.generics import ListAPIView
+
 from jobsPy.company.models import CompanyProfile
 from jobsPy.core.accounts_mixins import CompanyRoleRequiredMixin, JobByCompanyMixin, CompanyProfileActivationMixin, \
     ApplicantCompanyMixin
 from jobsPy.core.decorators import job_seeker_activated_required
 from jobsPy.jobs.forms import CreateJobForms, EditeJobForm, ApplyForJobForms, ChangeStatusForm
 from jobsPy.jobs.models import Job, Category, Applicant, FavoriteJob
+from jobsPy.jobs.serializers import JobSerializer
 from jobsPy.main.models import Seniority, CompanySubscription
 
 userModel = get_user_model()
@@ -204,3 +207,21 @@ def subscribe_to_company(request, pk):
                 company=company
             )
     return redirect('company-details', pk=pk)
+
+
+class AllJobsViewApi(ListAPIView):
+    serializer_class = JobSerializer
+    pagination_class = None  # Disable pagination
+
+    def get_queryset(self):
+        queryset = Job.objects.filter(is_published=True)
+        query = self.request.GET.get('q')
+        seniority_filter = self.request.GET.get('seniority')
+
+        if query:
+            queryset = queryset.filter(title__icontains=query)
+
+        if seniority_filter:
+            queryset = queryset.filter(seniority=seniority_filter)
+
+        return queryset

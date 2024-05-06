@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'jobsPy.company',
     'jobsPy.jobs',
     'jobsPy.blog',
+    'jobsPy.api',
 
 
     'allauth',

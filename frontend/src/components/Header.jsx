@@ -2,6 +2,8 @@ import React from "react";
 import {Link} from "react-router-dom";
 
 export default function Header() {
+    const isAuthenticated = localStorage.getItem("token");
+
     return (
         <header className="header style4">
             <div className="navbar-area">
@@ -54,17 +56,17 @@ export default function Header() {
                                     </ul>
                                 </div>
 
-                                <div className="button">
-                                    <a href="#" className="login">
-                                        <i className="lni lni-lock-alt"></i> Login
-                                    </a>
-                                    <a href="#" className="btn">
-                                        Sign Up
-                                    </a>
-                                    {/* <a href="#" className="login">
-                                        <i className="lni lni-lock-alt"></i> Logout
-                                    </a> */}
-                                </div>
+                                {!isAuthenticated && (
+                                    <div className="button">
+                                        <Link to="/login" className="login">
+                                            Login
+                                        </Link>
+
+                                        <Link to="/signup" className="btn">
+                                            Sign Up
+                                        </Link>
+                                    </div>
+                                )}
                             </nav>
                         </div>
                     </div>

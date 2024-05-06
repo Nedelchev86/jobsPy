@@ -9,6 +9,8 @@ import JobseekersList from "./components/Jobseekers";
 import JobSeekerDetails from "./components/JobSeekerDetails";
 import JobsList from "./components/JobsList";
 import CompanyDetails from "./components/CompanyDetails";
+import RegisterForm from "./components/RegisterForm";
+import LoginForm from "./components/LoginForm";
 
 function App() {
     return (
@@ -22,6 +24,8 @@ function App() {
                 <Route path="/jobseekers" element={<JobseekersList />} />
                 <Route path="/jobseeker/:id" element={<JobSeekerDetails />} />
                 <Route path="/jobs" element={<JobsList />} />
+                <Route path="/signup" element={<RegisterForm />} />
+                <Route path="/login" element={<LoginForm />} />
             </Routes>
             <Footer />
         </Router>

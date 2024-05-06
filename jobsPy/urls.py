@@ -16,10 +16,11 @@ urlpatterns = [
     path('jobs/', include('jobsPy.jobs.urls')),
     path('contact/', ContactFrom.as_view(), name="contact"),
     path('newsletter/', NewsletterCreateView.as_view(), name="newsletter"),
-    path('api/', include('jobsPy.blog.api.urls')),
+    path('api2/', include('jobsPy.blog.api.urls')),
     path('blog/', include('jobsPy.blog.urls')),
     path('notifications/', include('jobsPy.notifications.urls')),
     path('accounts/', include('allauth.urls')),
+    path('api/', include('jobsPy.api.urls')),
     re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
     re_path(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
 ]

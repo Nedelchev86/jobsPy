@@ -209,3 +209,4 @@ class JobSeekerViewSet(viewsets.ModelViewSet):
         if city:
             queryset = queryset.filter(city=city)
         return queryset
+

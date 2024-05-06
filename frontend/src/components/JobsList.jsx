@@ -5,7 +5,6 @@ export default function JobsList() {
     const [jobs, setJobs] = useState([]);
 
     useEffect(() => {
-        console.log("Start");
         fetch("http://127.0.0.1:8000/jobs/api/")
             .then((response) => response.json())
             .then((data) => setJobs(data));

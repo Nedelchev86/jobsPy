@@ -1,7 +1,7 @@
 import React, {useState} from "react";
-import Breadcrumbs from "./Breadcrumbs";
+import {Modal, Button, Form} from "react-bootstrap";
 
-const LoginForm = () => {
+const LoginModal = ({show, handleClose}) => {
     const [formData, setFormData] = useState({
         email: "",
         password: "",
@@ -29,7 +29,8 @@ const LoginForm = () => {
 
             const data = await response.json();
             localStorage.setItem("token", data.access); // Store token in local storage
-            window.location.href = "/";
+            handleClose(); // Close the modal after successful login
+            // Redirect or perform any action upon successful login
         } catch (error) {
             console.error("Login failed:", error.message);
             setError(error.message);
@@ -37,22 +38,29 @@ const LoginForm = () => {
     };
 
     return (
-        <>
-            <Breadcrumbs pageTitle="Login" pageInfo="Login to your account" />
-            <form onSubmit={handleSubmit}>
-                {error && <div className="error-message">{error}</div>}
-                <div>
-                    <label>Email:</label>
-                    <input type="email" name="email" value={formData.email} onChange={handleChange} required />
-                </div>
-                <div>
-                    <label>Password:</label>
-                    <input type="password" name="password" value={formData.password} onChange={handleChange} required />
-                </div>
-                <button type="submit">Login</button>
-            </form>
-        </>
+        <Modal show={show} onHide={handleClose}>
+            <Modal.Header closeButton>
+                <Modal.Title>Start Your Career Journey with JobsPy</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <Form onSubmit={handleSubmit}>
+                    {error && <div className="alert alert-danger">{error}</div>}
+                    <Form.Group controlId="formBasicEmail">
+                        <Form.Label>Email address</Form.Label>
+                        <Form.Control type="email" placeholder="Enter email" name="email" value={formData.email} onChange={handleChange} required />
+                    </Form.Group>
+
+                    <Form.Group controlId="formBasicPassword">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control type="password" placeholder="Password" name="password" value={formData.password} onChange={handleChange} required />
+                    </Form.Group>
+                    <Button variant="primary" type="submit">
+                        Log in
+                    </Button>
+                </Form>
+            </Modal.Body>
+        </Modal>
     );
 };
 
-export default LoginForm;
+export default LoginModal;

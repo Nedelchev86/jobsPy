@@ -1,23 +1,48 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {Link, useNavigate} from "react-router-dom";
 
 import LoginModal from "./LoginForm";
+import {jwtDecode} from "jwt-decode";
 
 export default function Header() {
     const isAuthenticated = localStorage.getItem("token");
+    const [user, setUser] = useState(null);
     const history = useNavigate();
-
-    const [showModal, setShowModal] = useState(false); // State to manage modal visibility
-    // Function to handle modal show/hide
+    const [showModal, setShowModal] = useState(false);
     const toggleModal = () => {
         setShowModal(!showModal);
     };
 
-    // Function to handle logout
     const handleLogout = () => {
         localStorage.removeItem("token");
         history("/");
     };
+
+    useEffect(() => {
+        if (!isAuthenticated) {
+            return;
+        }
+
+        fetch("http://127.0.0.1:8000/api/user/", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${isAuthenticated}`,
+            },
+        })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error("Failed to fetch user data");
+                }
+                return response.json();
+            })
+            .then((data) => {
+                setUser(data);
+            })
+            .catch((error) => {
+                console.error("Error fetching user data:", error);
+            });
+    }, []);
 
     return (
         <header className="header style4">
@@ -77,7 +102,7 @@ export default function Header() {
                                             Login
                                         </Link> */}
                                         <Link onClick={toggleModal} className="login">
-                                            <i class="lni lni-lock-alt"></i>
+                                            <i className="lni lni-lock-alt"></i>
                                             Login
                                         </Link>
 
@@ -88,11 +113,38 @@ export default function Header() {
                                 )}
 
                                 {isAuthenticated && (
-                                    <div className="button">
-                                        <button onClick={handleLogout} className="login">
-                                            Logout
-                                        </button>
-                                    </div>
+                                    <>
+                                        <div
+                                            className="text-center align-center"
+                                            style={{
+                                                alignItems: "center !important",
+                                                justifyContent: "center !important",
+                                                backgroundColor: "black",
+                                                width: 50,
+                                                height: 50,
+                                                borderRadius: 50,
+                                                marginRight: 10,
+                                                marginLeft: 20,
+                                            }}
+                                        >
+                                            <div className="user-profile-container">
+                                                {/* <a href="#">
+                                                <img className="user-profile-small" src="" alt="Logo" /> <span className="notification-badge">0</span>
+                                            </a> */}
+                                                {user && (
+                                                    <a href="#" className="user-profile-small" style={{paddingTop: "10%", color: "white", fontSize: 25}}>
+                                                        {user.email.split("")[0]}
+                                                        <span className="notification-badge">0</span>
+                                                    </a>
+                                                )}
+                                            </div>
+                                        </div>
+                                        <div className="button">
+                                            <button onClick={handleLogout} className="btn">
+                                                Logout
+                                            </button>
+                                        </div>
+                                    </>
                                 )}
                             </nav>
                         </div>

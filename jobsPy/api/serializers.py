@@ -17,8 +17,6 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
     )
 
 
-
-
     class Meta:
         model = userModel
         fields = ['email', 'password', 'role']  # Assuming 'role' is a field in your Account model
@@ -26,7 +24,11 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
             'password': {'write_only': True},  # Ensure password is write-only
         }
     def create(self, validated_data):
-        print("test")
         user = userModel.objects.create_user(**validated_data)
-        print("test2")
         return user
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = userModel
+        fields = ["email", "password", "role"]

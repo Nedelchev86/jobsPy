@@ -29,6 +29,7 @@ const LoginModal = ({show, handleClose}) => {
 
             const data = await response.json();
             localStorage.setItem("token", data.access); // Store token in local storage
+            localStorage.setItem("refresh_token", data.refresh);
             handleClose(); // Close the modal after successful login
             // Redirect or perform any action upon successful login
         } catch (error) {

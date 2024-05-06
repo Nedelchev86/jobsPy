@@ -9,7 +9,7 @@ from jobsPy.jobs.models import FavoriteJob, Applicant, Skills
 from jobsPy.jobseekers.forms import EditProfileFrom, EducationForm, WrokExperienceForm
 from jobsPy.jobseekers.models import JobSeeker, Education, Experience
 from jobsPy.notifications.models import NotificationJobSeeker
-from rest_framework import viewsets
+from rest_framework import viewsets, permissions
 from .models import JobSeeker
 from .serializers import JobSeekerSerializer
 
@@ -200,6 +200,7 @@ class ProfileDeletedView(TemplateView):
 class JobSeekerViewSet(viewsets.ModelViewSet):
     queryset = JobSeeker.objects.filter(activated=True)
     serializer_class = JobSeekerSerializer
+    permission_classes = permissions.AllowAny,
     pagination_class = None  # Disable pagination
 
     def get_queryset(self):

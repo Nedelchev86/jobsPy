@@ -5,6 +5,7 @@ from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, View, DeleteView
+from rest_framework import permissions
 from rest_framework.generics import ListAPIView
 
 from jobsPy.company.models import CompanyProfile
@@ -212,6 +213,7 @@ def subscribe_to_company(request, pk):
 class AllJobsViewApi(ListAPIView):
     serializer_class = JobSerializer
     pagination_class = None  # Disable pagination
+    permission_classes = permissions.AllowAny,
 
     def get_queryset(self):
         queryset = Job.objects.filter(is_published=True)

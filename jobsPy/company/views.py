@@ -12,7 +12,7 @@ from jobsPy.company.serializers import CompanyProfileSerializer
 from jobsPy.core.accounts_mixins import CompanyRoleRequiredMixin, ApplicantOwnerRequiredMixin
 from jobsPy.jobs.models import Job, Applicant, FavoriteJob
 from jobsPy.main.models import CompanySubscription
-from rest_framework import viewsets, generics
+from rest_framework import viewsets, generics, permissions
 
 userModel = get_user_model()
 
@@ -149,6 +149,7 @@ class CompanyProfileViewSet(viewsets.ModelViewSet):
     queryset = CompanyProfile.objects.filter(activated=True)
     serializer_class = CompanyProfileSerializer
     pagination_class = None  # Disable pagination
+    permission_classes = permissions.AllowAny,
 
     # New method to retrieve details of a specific company by ID
     def retrieve(self, request, *args, **kwargs):

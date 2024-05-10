@@ -33,6 +33,12 @@ class UserRegistrationAPIView(CreateAPIView):
     serializer_class = UserSerializer
     permission_classes = (permissions.AllowAny,)
 
+    def post(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.save()
+        return Response({'email': user.email}, status=status.HTTP_201_CREATED)
+
 class MySecuredAPIView(APIView):
     permission_classes = [IsAuthenticated]
 

@@ -1,7 +1,7 @@
 # serializers.py
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
-
+from rest_framework.validators import UniqueValidator
 
 userModel = get_user_model()
 class UserRegistrationSerializer(serializers.ModelSerializer):
@@ -29,6 +29,14 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = userModel
-        fields = ["email", "password", "role"]
+        fields = ['email', 'password', 'role']  # Assuming 'role' is a field in your Account model
+        extra_kwargs = {
+            'password': {'write_only': True},  # Ensure password is write-only
+        }
+
+    def create(self, validated_data):
+        user = userModel.objects.create_user(**validated_data)
+        return user

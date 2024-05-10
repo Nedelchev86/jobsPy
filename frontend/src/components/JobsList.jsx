@@ -45,6 +45,15 @@ export default function JobsList() {
                                                 <i className="lni lni-timer"></i> {job.job_type}
                                             </li>
                                         </ul>
+                                        <ul>
+                                            {job &&
+                                                job.needed_skills &&
+                                                job.needed_skills.map((skill) => (
+                                                    <li key={skill}>
+                                                        <span>{skill}</span>
+                                                    </li>
+                                                ))}
+                                        </ul>
                                     </div>
                                     <div className="job-button2"></div>
                                 </div>
@@ -65,6 +74,7 @@ export default function JobsList() {
                                     <form method="GET">
                                         <select style={{maxWidth: "70%"}} className="form-select form-select-sm" name="seniority">
                                             <option value="">All</option>
+
                                             {/* {% for seniority in seniorities %}
                                         <option value="{{ seniority.name }}">{{ seniority.name }}</option>
                                     {% endfor %} */}

@@ -1,11 +1,14 @@
 // RegisterForm.js
 import React, {useState} from "react";
 import Breadcrumbs from "./Breadcrumbs";
+import {useNavigate} from "react-router-dom";
 
 const RegisterForm = () => {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         email: "",
         password: "",
+        password2: "",
         role: "", // Default role
     });
     const [error, setError] = useState("");
@@ -38,7 +41,7 @@ const RegisterForm = () => {
                 }
                 throw new Error("Registration failed");
             }
-
+            navigate("/");
             console.log("User registered successfully");
             // Redirect or show success message
         } catch (error) {
@@ -96,19 +99,19 @@ const RegisterForm = () => {
                                         {error && <div className="alert alert-danger">{error}</div>} {/* Render error message if present */}
                                         <div className="form-group">
                                             <label htmlFor="id_email">Email:</label>
-                                            <input type="email" name="email" maxLength="100" autoFocus className="form-control" placeholder="Enter your email" onChange={handleChange} required id="id_email" />
+                                            <input type="email" name="email" maxLength="100" autoFocus className="form-control" placeholder="Enter your email" value={formData.email} onChange={handleChange} required id="id_email" />
                                         </div>
                                         <div className="form-group">
                                             <label htmlFor="id_password">Password:</label>
-                                            <input type="password" name="password" autoComplete="new-password" className="form-control" placeholder="Enter your password" onChange={handleChange} required aria-describedby="id_password1_helptext" id="id_password" />
+                                            <input type="password" name="password" autoComplete="new-password" className="form-control" placeholder="Enter your password" value={formData.password} onChange={handleChange} required aria-describedby="id_password1_helptext" id="id_password" />
                                         </div>
                                         <div className="form-group">
                                             <label htmlFor="id_password2">Password confirmation:</label>
-                                            <input type="password" name="password2" autoComplete="new-password" className="form-control" placeholder="Enter your password" onChange={handleChange} required aria-describedby="id_password2_helptext" id="id_password2" />
+                                            <input type="password" name="password2" autoComplete="new-password" className="form-control" placeholder="Enter your password" value={formData.password2} onChange={handleChange} required aria-describedby="id_password2_helptext" id="id_password2" />
                                         </div>
                                         <div className="form-group">
                                             <label htmlFor="id_role">Profile type:</label>
-                                            <select name="role" className="form-control" onChange={handleChange} required id="id_role">
+                                            <select name="role" className="form-control" value={formData.role} onChange={handleChange} required id="id_role">
                                                 <option value="">---------</option>
                                                 <option value="jobseeker">Job Seeker</option>
                                                 <option value="company">Company</option>

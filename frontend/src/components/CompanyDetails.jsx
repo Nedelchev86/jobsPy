@@ -38,7 +38,7 @@ export default function CompanyDetails() {
                                                                 <a className="mb-2" href="#">
                                                                     <img className="circle-54" src={`https://res.cloudinary.com/drjgddl0y/${company.image}`} alt="" />
                                                                 </a>
-                                                        
+
                                                                 <h4>
                                                                     <a className="name" href="#">
                                                                         {company.name}
@@ -112,6 +112,14 @@ export default function CompanyDetails() {
                                                 <div className="single-section skill">
                                                     <h4>Technologies</h4>
                                                     <ul className="list-unstyled d-flex align-items-center flex-wrap">
+                                                        {company &&
+                                                            company.skills &&
+                                                            company.skills.map((tech) => (
+                                                                <li key={tech}>
+                                                                    <a href="#">{tech}</a>
+                                                                </li>
+                                                            ))}
+
                                                         {/* {{ company.skills_set }}
                                     {% for tech in company.skills.all %}
                                     <li>

@@ -19,4 +19,5 @@ urlpatterns = [
     path('category/<slug:category_slug>/', JobsCategory.as_view(), name='jobs_category'),
     path('api/', AllJobsViewApi.as_view(), name='all_jobs'),
 
+
 ]

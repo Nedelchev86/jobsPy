@@ -1,3 +1,4 @@
+import {Link} from "react-router-dom";
 import Breadcrumbs from "./Breadcrumbs";
 import {useEffect, useState} from "react";
 
@@ -9,7 +10,9 @@ export default function JobsList() {
             .then((response) => response.json())
             .then((data) => setJobs(data));
     }, []);
+    
 
+    
     return (
         <>
             <Breadcrumbs
@@ -27,7 +30,9 @@ export default function JobsList() {
                                         <img src={`https://res.cloudinary.com/drjgddl0y/${job.job_image}`} alt="#" />
                                     </div>
                                     <div className="job-content">
-                                        <h4 style={{paddingRight: "0px"}}>{job.title}</h4>
+                                        <Link to={`/jobs/${job.id}`}>
+                                            <h4 style={{paddingRight: "0px"}}>{job.title}</h4>
+                                        </Link>
                                         <div className="truncate-overflow-jobs">
                                             <p>{job.description}</p>
                                         </div>

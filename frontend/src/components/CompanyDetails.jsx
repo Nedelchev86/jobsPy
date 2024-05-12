@@ -3,7 +3,7 @@ import Breadcrumbs from "./Breadcrumbs";
 import {useParams} from "react-router-dom";
 
 export default function CompanyDetails() {
-    const [company, setCompany] = useState([]);
+    const [company, setCompany] = useState();
     const {id} = useParams();
 
     useEffect(() => {
@@ -14,6 +14,12 @@ export default function CompanyDetails() {
             })
             .catch((error) => console.error("Error fetching jobseeker:", error));
     }, [id]);
+
+    if (!company) {
+        // Render loading state or redirect to login page
+        console.log("loading");
+        return <div>Loading...</div>;
+    }
 
     return (
         <>

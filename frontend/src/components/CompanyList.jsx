@@ -19,15 +19,9 @@ export default function CompanyList() {
                     <div className="row">
                         <div className="col-12">
                             <div className="section-title">
-                                <span className="wow fadeInDown" data-wow-delay=".2s">
-                                    Companies
-                                </span>
-                                <h2 className="wow fadeInUp" data-wow-delay=".4s">
-                                    Browse by Company
-                                </h2>
-                                <p className="wow fadeInUp" data-wow-delay=".6s">
-                                    List of the largest software companies
-                                </p>
+                                <span className="wow">Companies</span>
+                                <h2 className="wow">Browse by Company</h2>
+                                <p className="wow">List of the largest software companies</p>
                             </div>
                         </div>
                     </div>
@@ -35,7 +29,7 @@ export default function CompanyList() {
                         <div className="row">
                             {companies.map((company) => (
                                 <div key={company.user} className="col-lg-3 col-md-6 col-12">
-                                    <Link to={`/company/${company.user}`} className="single-cat wow" data-wow-delay=".4s">
+                                    <Link to={`/companies/${company.user}`} className="single-cat wow">
                                         <div className="top-side">
                                             <img src={`https://res.cloudinary.com/drjgddl0y/${company.image}`} alt={company.name} />
                                         </div>

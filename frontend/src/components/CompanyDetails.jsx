@@ -23,11 +23,7 @@ export default function CompanyDetails() {
 
     return (
         <>
-            <Breadcrumbs
-                pageTitle="Company Details"
-                pageInfo="Business plan draws on a wide range of knowledge from different business<br> disciplines.
-                            Business draws on a wide range of different business ."
-            />
+            <Breadcrumbs pageTitle="Companies" pageInfo="Take a look at the top IT companies ..." />
             <section className="section blog-single">
                 <div className="container">
                     <div className="row">
@@ -100,8 +96,8 @@ export default function CompanyDetails() {
                                                                     <h5 className="title">Website Linked</h5>
                                                                     <p>
                                                                         <a target="_blank" href="{{ company.website_url }}">
-                                                                            {" "}
-                                                                            Link{" "}
+                                                                      
+                                                                            Link
                                                                         </a>
                                                                     </p>
                                                                 </div>

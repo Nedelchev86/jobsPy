@@ -1,42 +1,15 @@
-// import React, { createContext, useState, useContext } from "react";
-
-// const AuthContext = createContext();
-
-// export const AuthProvider = ({ children }) => {
-//   const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-//   const login = () => {
-//     // Perform authentication logic here (e.g., make API call to validate credentials)
-//     // If authentication is successful, set isAuthenticated to true
-//     setIsAuthenticated(true);
-//   };
-
-//   const logout = () => {
-//     // Perform logout logic here (e.g., clear session, remove tokens)
-//     setIsAuthenticated(false);
-//   };
-
-//   return (
-//     <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
-//       {children}
-//     </AuthContext.Provider>
-//   );
-// };
-
-// export const useAuth = () => useContext(AuthContext);
-
 import React, {createContext, useContext, useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
+import {usePersistedState} from "../hooks/usePersistedState";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null);
-    const [token, setToken] = useState(localStorage.getItem("token"));
+    const [auth, setAuth] = usePersistedState("auth", "");
+    const isAuthenticated = !!auth;
 
-    const isAuthenticated = !!token;
-    console.log(isAuthenticated);
-    const history = useNavigate();
+    const navigate = useNavigate();
 
     const login = async (formData) => {
         try {
@@ -52,50 +25,94 @@ export const AuthProvider = ({children}) => {
                 throw new Error("Invalid email or password");
             }
             const data = await response.json();
-            localStorage.setItem("token", data.access); // Store token in local storage
+            localStorage.clear();
+            localStorage.setItem("access_token", data.access); // Store token in local storage
+
             localStorage.setItem("refresh_token", data.refresh);
-            setToken(data.access);
+            setAuth(data.access);
             setUser(response.data);
-            console.log(user);
+            // navigate("/dashboard");
         } catch (error) {
             console.error("Login failed:", error.message);
             setError(error.message);
         }
     };
 
-    useEffect(() => {
-        if (!isAuthenticated) {
-            return;
-        }
+    // useEffect(() => {
+    //     console.log(auth);
+    //     if (!isAuthenticated) {
+    //         localStorage.removeItem("access_token");
+    //         localStorage.removeItem("refresh_token");
+    //         return;
+    //     }
 
-        fetch("http://127.0.0.1:8000/api/user/", {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`,
-            },
-        })
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error("Failed to fetch user data");
-                }
-                return response.json();
-            })
-            .then((data) => {
-                setUser(data);
-            })
-            .catch((error) => {
-                console.error("Error fetching user data:", error);
-            });
-    }, [isAuthenticated]);
+    //     fetch("http://127.0.0.1:8000/api/user/", {
+    //         method: "GET",
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //             Authorization: `Bearer ${auth}`,
+    //         },
+    //     })
+    //         .then((response) => {
+    //             if (!response.ok) {
+    //                 if (response.status === 401) {
+    //                     // Clear token if unauthorized
+    //                     localStorage.removeItem("access_token");
+    //                     localStorage.removeItem("refresh_token");
+    //                     setAuth("");
+    //                 }
+    //                 throw new Error("Failed to fetch user data");
+    //             }
+    //             return response.json();
+    //         })
+    //         .then((data) => {
+    //             setUser(data);
+    //         })
+    //         .catch((error) => {
+    //             console.error("Error fetching user data:", error);
+    //         });
+    // }, [isAuthenticated]);
 
     const logout = () => {
-        localStorage.removeItem("token");
-        setToken(null);
-        history("/");
+        localStorage.removeItem("access_token");
+        localStorage.removeItem("refresh_token");
+        setAuth("");
+        navigate("/");
     };
 
-    return <AuthContext.Provider value={{user, isAuthenticated, login, logout}}>{children}</AuthContext.Provider>;
+    useEffect(() => {
+        if (!auth) return;
+        fetchUserData();
+    }, [auth]);
+
+    const fetchUserData = async () => {
+        if (auth) {
+            try {
+                const response = await fetch("http://127.0.0.1:8000/api/user/", {
+                    headers: {
+                        Authorization: `Bearer ${auth}`,
+                    },
+                });
+
+                if (!response.ok) {
+                    localStorage.removeItem("access_token");
+                    localStorage.removeItem("refresh_token");
+                    setAuth("");
+                    throw new Error("Failed to fetch user data");
+                }
+                const data = await response.json();
+
+                setUser(data);
+            } catch (error) {
+                localStorage.removeItem("access_token");
+                localStorage.removeItem("refresh_token");
+                setAuth("");
+                console.error("Failed to fetch user data:", error.message);
+            }
+        }
+    };
+
+    return <AuthContext.Provider value={{auth, user, isAuthenticated, login, logout, fetchUserData}}>{children}</AuthContext.Provider>;
 };
 
 export const useAuth = () => useContext(AuthContext);

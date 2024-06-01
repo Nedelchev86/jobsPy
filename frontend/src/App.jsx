@@ -23,7 +23,9 @@ import CreateJob from "./components/CreateJob";
 import ApplicantsList from "./components/ApplicantsList";
 import CreatedJobs from "./components/CreatedJobs";
 import ChangePassword from "./components/ChangePassword";
-import {JobProvider} from "./components/JobContext";
+import CompanyNotifications from "./components/CompanyNotifications";
+import ApplicantsForJob from "./components/ApplicantsForJob";
+import EditJob from "./components/EditJob";
 
 function App() {
     return (
@@ -52,8 +54,11 @@ function App() {
                     <Route path="edit" element={<EditProfile />} />
                     <Route path="bookmarked" element={<JobsFavoriteList />} />
                     <Route path="create-job" element={<CreateJob />} />
+                    <Route path="edit-job/:id" element={<EditJob />} />
                     <Route path="applicants" element={<ApplicantsList />} />
+                    <Route path="applicants/jobs/:id" element={<ApplicantsForJob />} />
                     <Route path="created-jobs" element={<CreatedJobs />} />
+                    <Route path="notifications" element={<CompanyNotifications />} />
                     <Route path="change-password" element={<ChangePassword />} />
                 </Route>
             </Routes>

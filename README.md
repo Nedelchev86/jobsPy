@@ -1,6 +1,6 @@
-# JobsPy - LIVE DEMO [JobsPy](https://jobspy.eu](https://jobspy.azurewebsites.net/)
+# JobsPy - LIVE DEMO https://jobspy.azurewebsites.net/
 
-[![Live Demo](LIVE DEM)](https://jobspy2-1.onrender.com/)
+
 
 
 JobsPy is a job portal designed to connect job seekers with companies. It provides a platform for job seekers to showcase their skills and for companies to advertise job openings and manage applications.
